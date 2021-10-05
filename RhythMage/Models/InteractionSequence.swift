@@ -35,6 +35,7 @@ class InteractionSequence {
     }
     
     //MARK: - Methods
+    //TODO: Implementation
     /// Calculates the duration of the complete sequence based on the duration of each interaction.
     /// - Returns: The total duration of the sequence.
     func calculateDuration() -> Double{
