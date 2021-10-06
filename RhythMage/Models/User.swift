@@ -33,5 +33,23 @@ class User {
         return id
     }
     
+    /// function to set the score of a specific song
+    func setCompletedSong(songId: String, songScore: Double){
+        if let lastScore = self.completed[songId]{
+            if lastScore < songScore{
+                self.completed[songId] = songScore
+            }
+        }
+    }
+    
+    /// A function to get the song highest score.
+    /// - Returns: Songs respective highestscore.
+    func getHighestscoreCompletedSong(songId: String) -> Double{
+        if let songScore = self.completed[songId] {
+            return songScore
+        } else {
+            return 0
+        }
+    }
     
 }
