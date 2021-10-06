@@ -57,6 +57,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D05DD7E270DCB820078F2D8 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8D05DD80270DCBAA0078F2D8 /* Controller */,
+				8D05DD7F270DCBA40078F2D8 /* View */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		8D05DD7F270DCBA40078F2D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DDCA7F827078441002E9925 /* GameScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D05DD80270DCBAA0078F2D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8DDCA7FA27078441002E9925 /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		8DA09D87270B7C92000B43C8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,8 +155,7 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				8DDCA7F827078441002E9925 /* GameScene.swift */,
-				8DDCA7FA27078441002E9925 /* GameViewController.swift */,
+				8D05DD7E270DCB820078F2D8 /* Game */,
 				8DDCA80C2707B127002E9925 /* MainScene */,
 			);
 			path = Scenes;
