@@ -40,6 +40,11 @@ class Level {
         self.unlocked = true
     }
     
+    ///Get status of level
+    func getUnlock()->Bool{
+        return self.unlocked
+    }
+    
     /// Gets level id.
     func getId()->String{
         return self.id
