@@ -9,19 +9,17 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: BaseGameViewController<SKView> {
     
+    //MARK: - Initialization
     init() {
-        super.init(nibName: nil, bundle: nil)
-        
-        // Creates and adds a SKView to be the view for SKScene
-        let skView = SKView(frame: self.view.bounds)
-        self.view.addSubview(skView)
+        //Calls super.init using teh screen's frame to create an SKView for the SKScene
+        super.init(mainView: SKView(frame: UIScreen.main.bounds))
         
         //Creates and presents the GameScene
         let skScene = GameScene(size: self.view.bounds.size)
         skScene.backgroundColor = .gray
-        skView.presentScene(skScene)
+        mainView.presentScene(skScene)
     }
     
     required init?(coder: NSCoder) {

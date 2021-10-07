@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameViewController.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				8DDCA7F227078441002E9925 /* AppDelegate.swift */,
 				8DDFF09A270CD84C00139FE2 /* AppContainer.swift */,
 				8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */,
+				8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
+				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
