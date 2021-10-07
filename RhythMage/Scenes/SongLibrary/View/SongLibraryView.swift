@@ -16,7 +16,7 @@ class SongLibraryView: UIView{
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryOwnedSongsCell.self, forCellReuseIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier)
-        table.backgroundColor = .clear
+        table.backgroundColor = .white
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         return table
@@ -24,12 +24,28 @@ class SongLibraryView: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
-        
+        self.backgroundColor = .black
+        setupHiararchy()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setupHiararchy() {
+        self.addSubview(tableView)
+    }
+    
+    func setupLayout(){
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+
+        ])
+    }
+    
     
 }

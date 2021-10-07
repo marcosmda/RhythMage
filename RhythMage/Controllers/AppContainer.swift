@@ -16,10 +16,17 @@ protocol MainSceneFactory {
     /// Creates an instance of MainSceneViewController to be used
     /// - Returns: An instance of MainSceneViewController
     func createMainScene() -> MainSceneViewController
+    /// Creates an instance of SongLibraryViewController to be used
+    /// - Returns: An instance of SongLibraryViewController
+    func createSongLibraryView() -> SongLibraryViewController
 }
 
 extension AppContainer: MainSceneFactory {
     func createMainScene() -> MainSceneViewController {
         return MainSceneViewController()
+    }
+    
+    func createSongLibraryView() -> SongLibraryViewController {
+        return SongLibraryViewController()
     }
 }

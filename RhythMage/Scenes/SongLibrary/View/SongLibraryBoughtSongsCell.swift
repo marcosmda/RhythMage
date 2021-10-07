@@ -28,18 +28,21 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     ///highest score label
     private let highestScoreLabel: DynamicLabel = {
        let label = DynamicLabel()
+        label.font = UIFont(name: "Inika-Bold", size: 15)
         label.numberOfLines = 1
         return label
     }()
     ///Song title Label
     private let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
+        label.font = UIFont(name: "Inika-Bold", size: 18)
         label.numberOfLines = 1
         return label
     }()
     ///Artist Name Label
     private let artistNameLabel: DynamicLabel = {
        let label = DynamicLabel()
+        label.font = UIFont(name: "Inika-Regular", size: 15)
         label.numberOfLines = 1
         return label
     }()
@@ -51,27 +54,17 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
         
         return stackView
     }()
-    ///StackView with labels and Icon
-    var stackView: UIStackView = {
-        let stackView = UIStackView()
-         stackView.translatesAutoresizingMaskIntoConstraints = false
-         stackView.axis = .horizontal
-         
-         return stackView
-     }()
     
     //MARK: - Initializers
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor.black
+        self.backgroundColor = UIColor.green
         
         contentView.clipsToBounds = true
-        accessoryType = .none
+        accessoryType = .disclosureIndicator
         
         setupHierarchy()
-        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -79,25 +72,31 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     }
     
     //MARK: - Layout Subviews
-    
-    func setupLayout() {
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            stackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65),
-        ])
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
+        highestScoreLabel.text = String(highestScore)
+        
+        let height: CGFloat = contentView.frame.size.height
+        let xPosition: CGFloat = contentView.frame.size.width - 15
+        let imageSize: CGFloat = 36
+        iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
+        
+        NSLayoutConstraint.activate([
+            
+            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
+            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            labelsStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 20),
+//            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+        ])
     }
     
     func setupHierarchy(){
-        labelsStackView.addSubview(highestScoreLabel)
-        labelsStackView.addSubview(songTitleLabel)
-        labelsStackView.addSubview(artistNameLabel)
-        stackView.addSubview(labelsStackView)
-        stackView.addSubview(iconImageView)
-        addSubview(stackView)
-        
+        labelsStackView.addArrangedSubview(highestScoreLabel)
+        labelsStackView.addArrangedSubview(songTitleLabel)
+        labelsStackView.addArrangedSubview(artistNameLabel)
+        addSubview(labelsStackView)
+        addSubview(iconImageView)
         
     }
     
@@ -114,7 +113,7 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     ///Configures the cell for usage
     public func configure(with model: Level, and userModel: User){
         artistNameLabel.text = model.artistName
-        songTitleLabel.text = model.artistName
+        songTitleLabel.text = model.songName
         if let highest = userModel.completed[model.getId()] {
             highestScore = highest
         }

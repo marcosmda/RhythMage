@@ -20,44 +20,68 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     
     var user = User(id: "66", name: "Pessoa")
     
-    override init(mainView: SongLibraryView) {
-        super.init(mainView: SongLibraryView())
-        
+    //MARK: - Initializers
+    init(){
+        let view = SongLibraryView()
+        super.init(mainView: view)
         mainView.tableView.delegate = self
-        
-        
+        mainView.tableView.dataSource = self
+        configure()
+        print(user.getHighestscoreCompletedSong(songId: "Happier than Ever"))
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    //MARK: - Methods
+    ///Function configure adds songs to the mock user: User.
+    func configure(){
+        user.setCompletedSong(songId: "Happier than Ever", songScore: 423422)
+        user.setCompletedSong(songId: "Sweet but Psycho", songScore: 342444)
+        user.setCompletedSong(songId: "A Concert Six Months From Now", songScore: 34353535)
+    }
+    
 }
 
+//MARK: - Extension UITableViewDelegate
 extension SongLibraryViewController: UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 82.00
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let song = models[indexPath.section].getUnlock()
-        
+        let song = models[indexPath.row].getUnlock()
         switch song.self {
         case true:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier, for: indexPath) as? SongLibraryOwnedSongsCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: models[indexPath.section], and: user)
+            cell.configure(with: models[indexPath.row], and: user)
             return cell
         case false:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier, for: indexPath) as? SongLibraryOwnedSongsCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: models[indexPath.section], and: user)
+            cell.configure(with: models[indexPath.row], and: user)
             return cell
         }
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -66,16 +90,19 @@ extension SongLibraryViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Your Songs"
     }
+
     
     
 }
 
+//MARK: - Extension UITableViewDataSource
 extension SongLibraryViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layer.cornerRadius = 10
         cell.layer.masksToBounds = true
         cell.layer.borderWidth = 2
+        cell.accessoryType = UITableViewCell.AccessoryType.none
         
         let borderColor: UIColor = UIColor.white
         cell.layer.borderColor = borderColor.cgColor
@@ -84,12 +111,15 @@ extension SongLibraryViewController: UITableViewDataSource{
         let selectedView: UIView = UIView(frame: cell.frame)
         selectedView.layer.cornerRadius = 10
         selectedView.layer.masksToBounds = true
-        selectedView.layer.borderWidth = 2
+        selectedView.layer.borderWidth = 0
         selectedView.layer.borderColor = UIColor.white.cgColor
         selectedView.backgroundColor = UIColor.black
         cell.selectedBackgroundView = selectedView
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected a row")
+    }
+
     
 }
