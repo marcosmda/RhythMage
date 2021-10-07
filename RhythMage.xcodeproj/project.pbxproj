@@ -126,7 +126,7 @@
 		8DDCA80A2707B110002E9925 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DBB92016270CC4B60090E41F /* Main */,
+				DBB92017270CC4D40090E41F /* BaseViewController.swift */,
 				8DDCA7F227078441002E9925 /* AppDelegate.swift */,
 			);
 			path = Controllers;
@@ -177,14 +177,6 @@
 				DBB92014270CC1960090E41F /* SongLibraryViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		DBB92016270CC4B60090E41F /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				DBB92017270CC4D40090E41F /* BaseViewController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
