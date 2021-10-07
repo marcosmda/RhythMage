@@ -68,13 +68,13 @@ extension SongLibraryViewController: UITableViewDelegate{
         let song = models[indexPath.row].getUnlock()
         switch song.self {
         case true:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier, for: indexPath) as? SongLibraryOwnedSongsCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
             cell.configure(with: models[indexPath.row], and: user)
             return cell
         case false:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier, for: indexPath) as? SongLibraryOwnedSongsCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
             cell.configure(with: models[indexPath.row], and: user)

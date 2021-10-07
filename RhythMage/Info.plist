@@ -4,8 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Inika-Bold.ttf</string>
 		<string>Inika-Regular.ttf</string>
+		<string>Inika-Bold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

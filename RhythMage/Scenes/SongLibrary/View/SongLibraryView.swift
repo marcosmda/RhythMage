@@ -15,7 +15,7 @@ class SongLibraryView: UIView{
     //MARK: - Properties
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
-        table.register(SongLibraryOwnedSongsCell.self, forCellReuseIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier)
+        table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         table.backgroundColor = .white
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
@@ -24,7 +24,7 @@ class SongLibraryView: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .black
+        self.backgroundColor = .white
         setupHiararchy()
         setupLayout()
     }

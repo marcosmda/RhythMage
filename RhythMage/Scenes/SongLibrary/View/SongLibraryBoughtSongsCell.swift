@@ -1,5 +1,5 @@
 //
-//  SongLibraryOwnedSongsCell.swift
+//  SongLibraryUnlockedSongCell.swift
 //  RhythMage
 //
 //  Created by Juliana Prado on 05/10/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SongLibraryOwnedSongsCell: UITableViewCell{
+class SongLibraryUnlockedSongCell: UITableViewCell{
     
     //MARK: - Properties
-    static let reusableIdentifier = "SettingsTableViewSwitchCell"
+    static let reusableIdentifier = "SongLibraryUnlockedSongCell"
     var delegate: SongLibraryViewDelegate?
 
     ///icon with the play symbol
@@ -36,7 +36,7 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     private let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = UIFont(name: "Inika-Bold", size: 18)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         return label
     }()
     ///Artist Name Label
@@ -51,13 +51,14 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        
+//        stackView.autoresizingMask = 2
+        stackView.backgroundColor = .blue
         return stackView
     }()
     
     //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: SongLibraryOwnedSongsCell.reusableIdentifier)
+        super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
         self.backgroundColor = UIColor.green
         
@@ -75,7 +76,8 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        highestScoreLabel.text = String(highestScore)
+        highestScoreLabel.text = "Highest Score: "+String(highestScore)
+
         
         let height: CGFloat = contentView.frame.size.height
         let xPosition: CGFloat = contentView.frame.size.width - 15
@@ -86,8 +88,9 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
             
             labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            labelsStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 20),
-//            stackView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+//            labelsStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -3),
+            labelsStackView.rightAnchor.constraint(equalTo: self.iconImageView.leftAnchor)
         ])
     }
     
@@ -112,8 +115,8 @@ class SongLibraryOwnedSongsCell: UITableViewCell{
     
     ///Configures the cell for usage
     public func configure(with model: Level, and userModel: User){
-        artistNameLabel.text = model.artistName
-        songTitleLabel.text = model.songName
+        artistNameLabel.text = model.artistName.uppercased()
+        songTitleLabel.text = model.songName.uppercased()
         if let highest = userModel.completed[model.getId()] {
             highestScore = highest
         }
