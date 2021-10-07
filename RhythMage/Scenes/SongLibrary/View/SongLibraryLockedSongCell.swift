@@ -17,7 +17,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .black
-        imageView.image = UIImage(systemName: "play.circle.fill")
+        imageView.image = UIImage(systemName: "lock.fill")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -36,5 +36,60 @@ class SongLibraryLockedSongCell: UITableViewCell {
         label.numberOfLines = 2
         return label
     }()
+    
+    
+    //MARK: - Initializers
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
+        
+        self.backgroundColor = UIColor.green
+        
+        contentView.clipsToBounds = true
+        accessoryType = .disclosureIndicator
+        
+        setupHierarchy()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Layout Subviews
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        unlockByLabel.text = "Highest Score: "
+
+        
+        let height: CGFloat = contentView.frame.size.height
+        let xPosition: CGFloat = contentView.frame.size.width - 15
+        let imageSize: CGFloat = 36
+        iconImageView.frame = CGRect(x: (xPosition - imageSize) / 2, y: (height - imageSize) / 2, width: imageSize, height: imageSize)
+        
+        NSLayoutConstraint.activate([
+            
+        ])
+    }
+    
+    func setupHierarchy(){
+        addSubview(unlockByLabel)
+        addSubview(iconImageView)
+        addSubview(pointsLabel)
+    }
+    
+    //MARK: - Configuration
+    ///Prepares the cell to be reused
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        unlockByLabel.text = nil
+        pointsLabel.text = nil
+    }
+    
+    ///Configures the cell for usage
+    public func configure(with model: Level, and userModel: User){
+        
+        
+    }
+    
     
 }

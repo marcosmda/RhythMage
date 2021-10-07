@@ -47,6 +47,9 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     ///Function configure adds songs to the mock user: User.
     func configure(){
         user.setCompletedSong(songId: "Happier than Ever", songScore: 423422)
+        models[0].unlock()
+        models[1].unlock()
+        models[2].unlock()
         user.setCompletedSong(songId: "Sweet but Psycho", songScore: 342444)
         user.setCompletedSong(songId: "A Concert Six Months From Now", songScore: 34353535)
     }
@@ -61,7 +64,13 @@ extension SongLibraryViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 82.00
+        let song = models[indexPath.row].getUnlock()
+        switch song.self {
+        case true:
+            return 82.00
+        case false:
+            return 61.00
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +83,7 @@ extension SongLibraryViewController: UITableViewDelegate{
             cell.configure(with: models[indexPath.row], and: user)
             return cell
         case false:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryLockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryLockedSongCell else {
                 return UITableViewCell()
             }
             cell.configure(with: models[indexPath.row], and: user)

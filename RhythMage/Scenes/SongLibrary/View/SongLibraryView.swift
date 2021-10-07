@@ -16,6 +16,7 @@ class SongLibraryView: UIView{
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
+        table.register(SongLibraryLockedSongCell.self, forCellReuseIdentifier: SongLibraryLockedSongCell.reusableIdentifier)
         table.backgroundColor = .white
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none

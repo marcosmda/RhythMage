@@ -41,12 +41,17 @@ class Level {
     }
     
     ///Get status of level
-    func getUnlock()->Bool{
+    func getUnlock() ->Bool {
         return self.unlocked
     }
     
     /// Gets level id.
-    func getId()->String{
+    func getId() ->String {
         return self.id
+    }
+    
+    /// Gets level song name.
+    func getSongName() ->String {
+        return self.songName
     }
 }

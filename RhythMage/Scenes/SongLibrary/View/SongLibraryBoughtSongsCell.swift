@@ -42,7 +42,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     ///Artist Name Label
     private let artistNameLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Regular", size: 15)
+        label.font = UIFont(name: "Inika-Regular.ttf", size: 15)
         label.numberOfLines = 1
         return label
     }()
@@ -51,8 +51,6 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-//        stackView.autoresizingMask = 2
-        stackView.backgroundColor = .blue
         return stackView
     }()
     
@@ -88,8 +86,6 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
             
             labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-//            labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            labelsStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -3),
             labelsStackView.rightAnchor.constraint(equalTo: self.iconImageView.leftAnchor)
         ])
     }
@@ -117,7 +113,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     public func configure(with model: Level, and userModel: User){
         artistNameLabel.text = model.artistName.uppercased()
         songTitleLabel.text = model.songName.uppercased()
-        if let highest = userModel.completed[model.getId()] {
+        if let highest = userModel.completed[model.getSongName()] {
             highestScore = highest
         }
         
