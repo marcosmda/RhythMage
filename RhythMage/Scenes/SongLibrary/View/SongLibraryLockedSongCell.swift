@@ -16,7 +16,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
     ///icon with the play symbol
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .black
+        imageView.tintColor = .white
         imageView.image = UIImage(systemName: "lock.fill")
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -42,10 +42,12 @@ class SongLibraryLockedSongCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor.green
+        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 1)
         
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
+        
+        
         
         setupHierarchy()
     }
@@ -60,9 +62,10 @@ class SongLibraryLockedSongCell: UITableViewCell {
         
         unlockByLabel.text = "Highest Score: "
 
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
         
-        let height: CGFloat = contentView.frame.size.height
-        let xPosition: CGFloat = contentView.frame.size.width - 15
+        let height: CGFloat = contentView.frame.size.height * 1.5
+        let xPosition: CGFloat = contentView.frame.size.width
         let imageSize: CGFloat = 36
         iconImageView.frame = CGRect(x: (xPosition - imageSize) / 2, y: (height - imageSize) / 2, width: imageSize, height: imageSize)
         

@@ -16,7 +16,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     ///icon with the play symbol
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .black
+        imageView.tintColor = .white
         imageView.image = UIImage(systemName: "play.circle.fill")
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -36,13 +36,13 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     private let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = UIFont(name: "Inika-Bold", size: 18)
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         return label
     }()
     ///Artist Name Label
     private let artistNameLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Regular.ttf", size: 15)
+        label.font = UIFont(name: "Inika", size: 15)
         label.numberOfLines = 1
         return label
     }()
@@ -58,9 +58,9 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor.green
+        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
         
-        contentView.clipsToBounds = true
+        contentView.clipsToBounds = false
         accessoryType = .disclosureIndicator
         
         setupHierarchy()
@@ -73,17 +73,14 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     //MARK: - Layout Subviews
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         highestScoreLabel.text = "Highest Score: "+String(highestScore)
 
-        
         let height: CGFloat = contentView.frame.size.height
         let xPosition: CGFloat = contentView.frame.size.width - 15
         let imageSize: CGFloat = 36
         iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
         
         NSLayoutConstraint.activate([
-            
             labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
             labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             labelsStackView.rightAnchor.constraint(equalTo: self.iconImageView.leftAnchor)
@@ -96,11 +93,9 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         labelsStackView.addArrangedSubview(artistNameLabel)
         addSubview(labelsStackView)
         addSubview(iconImageView)
-        
     }
     
     //MARK: - Configuration
-    
     ///Prepares the cell to be reused
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -113,7 +108,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     public func configure(with model: Level, and userModel: User){
         artistNameLabel.text = model.artistName.uppercased()
         songTitleLabel.text = model.songName.uppercased()
-        if let highest = userModel.completed[model.getSongName()] {
+        if let highest = userModel.completed[model.getId()] {
             highestScore = highest
         }
         

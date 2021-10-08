@@ -12,7 +12,6 @@ class SongLibraryView: UIView{
     //MARK: - Properties
     var delegate: SongLibraryViewDelegate?
     
-    //MARK: - Properties
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
