@@ -33,5 +33,4 @@ class User {
         return id
     }
     
-    
 }
