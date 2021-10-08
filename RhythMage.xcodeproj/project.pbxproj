@@ -27,7 +27,7 @@
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
 		DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9200E270CBEC90090E41F /* SongLibraryView.swift */; };
-		DBB92011270CBFFA0090E41F /* SongLibraryLockedSongsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92010270CBFFA0090E41F /* SongLibraryLockedSongsCell.swift */; };
+		DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */; };
 		DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */; };
 		DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92014270CC1960090E41F /* SongLibraryViewController.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
@@ -57,7 +57,7 @@
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
 		DBB9200E270CBEC90090E41F /* SongLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryView.swift; sourceTree = "<group>"; };
-		DBB92010270CBFFA0090E41F /* SongLibraryLockedSongsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongsCell.swift; sourceTree = "<group>"; };
+		DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryUnlockedSongCell.swift; sourceTree = "<group>"; };
 		DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewDelegate.swift; sourceTree = "<group>"; };
 		DBB92014270CC1960090E41F /* SongLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewController.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				DBB9200E270CBEC90090E41F /* SongLibraryView.swift */,
-				DBB92010270CBFFA0090E41F /* SongLibraryLockedSongsCell.swift */,
+				DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */,
 				DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */,
 			);
 			path = View;
@@ -268,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBB92011270CBFFA0090E41F /* SongLibraryLockedSongsCell.swift in Sources */,
+				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DDCA7F927078441002E9925 /* GameScene.swift in Sources */,
