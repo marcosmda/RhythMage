@@ -27,6 +27,8 @@
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
+		DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */; };
+		DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */; };
 		DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9200E270CBEC90090E41F /* SongLibraryView.swift */; };
 		DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */; };
 		DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */; };
@@ -58,6 +60,8 @@
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
+		DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		DBB9200E270CBEC90090E41F /* SongLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryView.swift; sourceTree = "<group>"; };
 		DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryUnlockedSongCell.swift; sourceTree = "<group>"; };
 		DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
 				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
 				8DDCA80C2707B127002E9925 /* MainScene */,
@@ -193,6 +198,31 @@
 				8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */,
 			);
 			path = MainScene;
+			sourceTree = "<group>";
+		};
+		DBB4A1D5271756BF0037BCB1 /* LoadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1D7271756CF0037BCB1 /* Controller */,
+				DBB4A1D6271756CA0037BCB1 /* View */,
+			);
+			path = LoadingScreen;
+			sourceTree = "<group>";
+		};
+		DBB4A1D6271756CA0037BCB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBB4A1D7271756CF0037BCB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		DBB92009270CBD830090E41F /* SongLibrary */ = {
@@ -306,9 +336,11 @@
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
+				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
+				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
