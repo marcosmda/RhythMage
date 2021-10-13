@@ -19,18 +19,39 @@ class Level {
     var sequences: [InteractionSequence]
     /// The boolean describing if the level is unlocked for the user or not.
     var unlocked: Bool
+    /// Name of the song.
+    var songName: String
+    /// Name of the artist.
+    var artistName: String
     
     //MARK: - Initialization
-    init(id: String, checkpointScores: CheckpointScores, sequences: [InteractionSequence]) {
+    init(id: String, checkpointScores: CheckpointScores, sequences: [InteractionSequence], song: String, artist: String) {
         self.id = id
         self.checkpointScores = checkpointScores
         self.sequences = sequences
         self.unlocked = false
+        self.songName = song
+        self.artistName = artist
     }
     
     //MARK: - Methods
     /// Unlocks the level so the user can play it.
     func unlock() {
         self.unlocked = true
+    }
+    
+    ///Get status of level
+    func getUnlock() ->Bool {
+        return self.unlocked
+    }
+    
+    /// Gets level id.
+    func getId() ->String {
+        return self.id
+    }
+    
+    /// Gets level song name.
+    func getSongName() ->String {
+        return self.songName
     }
 }
