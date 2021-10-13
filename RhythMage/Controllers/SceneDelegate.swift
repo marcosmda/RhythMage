@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         // 3. Create the view hierarchy
-        let viewController = appContainer.createMainScene()
+        let viewController = appContainer.createRecordingScene()
+//        let viewController = RecordingViewController()
         
         let rootViewController = UINavigationController(rootViewController: viewController)
         

@@ -10,7 +10,8 @@ import Foundation
 /// The X area of teh screen where the interactions will scroll.
 enum ScreenScrollArea {
     case left
-    case middle
+    case middleLeft
+    case middleRight
     case right
 }
 
