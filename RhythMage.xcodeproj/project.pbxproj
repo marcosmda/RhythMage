@@ -23,6 +23,7 @@
 		8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */; };
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
+		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
@@ -55,6 +56,7 @@
 		8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2192E4271778490078A93D /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +104,7 @@
 			children = (
 				8DDCA7F127078441002E9925 /* RhythMage */,
 				8DDCA7F027078441002E9925 /* Products */,
+				CF2192E2271778490078A93D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +175,14 @@
 				8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */,
 			);
 			path = MainScene;
+			sourceTree = "<group>";
+		};
+		CF2192E2271778490078A93D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CF2192E3271778490078A93D /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DBB92009270CBD830090E41F /* SongLibrary */ = {
@@ -454,6 +466,7 @@
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -485,6 +498,7 @@
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

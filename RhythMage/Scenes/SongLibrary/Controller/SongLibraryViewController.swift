@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GameKit
 
 class SongLibraryViewController: BaseViewController<SongLibraryView>{    
     
@@ -27,6 +28,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
+        setupGameKit()
         configure()
     }
     
@@ -140,4 +142,49 @@ extension SongLibraryViewController: UITableViewDataSource{
     }
 
 
+}
+
+//MARK: - GameKit Setup
+extension SongLibraryViewController {
+    
+    func setupGameKit() {
+        
+        GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            
+            if let viewController = viewController {
+                // Present the view controller so the player can sign in.
+                
+                self.present(viewController, animated: true, completion: nil)
+                
+                return
+            }
+            
+            if error != nil {
+                // Player could not be authenticated.
+                // Disable Game Center in the game.
+                return
+            }
+            
+            // Player was successfully authenticated.
+            // Check if there are any player restrictions before starting the game.
+            
+            if GKLocalPlayer.local.isUnderage {
+                // Hide explicit game content.
+            }
+            
+            if GKLocalPlayer.local.isMultiplayerGamingRestricted {
+                // Disable multiplayer game features.
+            }
+            
+            if GKLocalPlayer.local.isPersonalizedCommunicationRestricted {
+                // Disable in game communication UI.
+            }
+            
+        }
+        
+        GKAccessPoint.shared.isActive = true
+        
+    }
+    
+    
 }
