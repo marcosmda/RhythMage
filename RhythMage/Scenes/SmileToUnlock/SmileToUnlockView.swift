@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import AVFoundation
+import GameplayKit
 
 class SmileToUnlockView: UIView {
     
@@ -20,6 +21,13 @@ class SmileToUnlockView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        assignbackground()
+        self.addSubview(nameGameTitle)
+        self.addSubview(nameSongTitle)
+        self.addSubview(bestScoreTitle)
+        self.addSubview(mageImage)
+        self.addSubview(smileToPlayTitle)
+        self.addSubview(buttonSongLibrary)
         layoutSubviews()
     }
     
@@ -46,6 +54,8 @@ class SmileToUnlockView: UIView {
         label1.adjustsFontSizeToFitWidth = true
         return label1
     }()
+    
+    
     
     lazy var nameSongTitle: UILabel = {
         let label2 = UILabel(frame: .zero)
@@ -77,9 +87,19 @@ class SmileToUnlockView: UIView {
     
     let smileToPlayTitle: UILabel = {
         let label4 = UILabel(frame: .zero)
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "face.smiling.fill")
+        let imageOffsetY: CGFloat = 0.0
+        attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let myString = NSMutableAttributedString(string: " ")
+        myString.append(attachmentString)
+        let myStringAfter = NSMutableAttributedString(string: "SMILE TO UNLOCK")
+        myString.append(myStringAfter)
+        label4.attributedText = myString
         label4.translatesAutoresizingMaskIntoConstraints = false
         label4.textColor = .white
-        label4.text = ":) SMILE TO PLAY"
+        //label4.text = ":) SMILE TO PLAY"
         label4.numberOfLines = 0
         label4.textAlignment = .center
         label4.font = UIFont(name: "Inika-Bold", size: 27)
@@ -101,8 +121,8 @@ class SmileToUnlockView: UIView {
     
 
     //Setting the Buttons of the view
-    let buttonSettings: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 42.71, height: 42.71))
+
+    /*
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
@@ -112,20 +132,9 @@ class SmileToUnlockView: UIView {
         button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         return button
-    }()
+     */
+  //  }()
     
-    let buttonGameCenter: UIButton = {
-        let button2 = UIButton(frame: CGRect(x: 0, y: 0, width: 42.71, height: 42.71))
-        button2.translatesAutoresizingMaskIntoConstraints = false
-        button2.backgroundColor = .red
-        //TODO: Put the image of the user
-        button2.setImage(UIImage(named: "user.profile.pic"), for: .normal)
-        button2.imageView?.contentMode = .scaleAspectFit
-        button2.layer.cornerRadius = button2.frame.size.width/2
-        button2.addTarget(self, action: #selector(onGameCenterButtonPush), for: .touchUpInside)
-        button2.clipsToBounds = true
-        return button2
-    }()
     
     let buttonSongLibrary: UIButton = {
         let button3 = UIButton(frame: .zero)
@@ -142,60 +151,65 @@ class SmileToUnlockView: UIView {
         return button3
     }()
     
-    /*
-    func setLayoutBackground(){
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: self.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-    }*/
+    
+    func assignbackground(){
+        let background = UIImage(named: "background")
+
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: self.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = self.center
+        self.addSubview(imageView)
+        self.sendSubviewToBack(imageView)
+      }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        //let proportionalStackSpacing = UIScreen.main.bounds.height / 44.8
+        nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
+        nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
+        bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
+        mageImage.translatesAutoresizingMaskIntoConstraints = false
+        buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
         
-        let buttonsStackView = UIStackView(arrangedSubviews: [buttonSettings, buttonGameCenter])
-        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonsStackView.axis = .horizontal
-        buttonsStackView.alignment = .center
-        buttonsStackView.backgroundColor = .green
-        buttonsStackView.spacing = UIScreen.main.bounds.size.width - (46+46+30+30)
+        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
+        nameGameTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 60 ).isActive = true
+        nameGameTitle.bottomAnchor.constraint(equalTo: nameSongTitle.topAnchor, constant: 0).isActive = true
         
-
-        let restStackView = UIStackView(arrangedSubviews: [nameGameTitle, nameSongTitle, bestScoreTitle])
-        restStackView.translatesAutoresizingMaskIntoConstraints = false
-        restStackView.axis = .vertical
-        restStackView.alignment = .center
-        restStackView.backgroundColor = .red
-        //restStackView.distribution =
-        //restStackView.spacing = 20
+        nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        let finalStackView = UIStackView(arrangedSubviews: [buttonsStackView, restStackView, mageImage, smileToPlayTitle,buttonSongLibrary])
-        finalStackView.translatesAutoresizingMaskIntoConstraints = false
-        finalStackView.axis = .vertical
-        finalStackView.backgroundColor = .brown
-        self.addSubview(finalStackView)
- 
-        NSLayoutConstraint.activate([
-            finalStackView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor), //constant: 30),
-            finalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),//, constant: 1),
-            finalStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),//, constant: -1),
-            finalStackView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),//, constant: -1),
-        ])
         
-        NSLayoutConstraint.activate([
-
-            buttonSettings.widthAnchor.constraint(equalToConstant: 46),
-            buttonSettings.heightAnchor.constraint(equalToConstant: 46),
-            buttonGameCenter.widthAnchor.constraint(equalToConstant: 46),
-            buttonGameCenter.heightAnchor.constraint(equalToConstant: 46),
-            buttonSongLibrary.heightAnchor.constraint(equalToConstant: 61),
-            
-        ])
-        //assignbackground()
+        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
+        nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor, constant: 0).isActive = true
+        nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
+        nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
+        bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
+        bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
+        bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
+        bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
+        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 0).isActive = true
+        mageImage.bottomAnchor.constraint(equalTo: smileToPlayTitle.topAnchor, constant: -20).isActive = true
+        mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
+        smileToPlayTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
+        smileToPlayTitle.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 0).isActive = true
+        smileToPlayTitle.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
+        smileToPlayTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
+        buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
+        buttonSongLibrary.topAnchor.constraint(equalTo: smileToPlayTitle.bottomAnchor, constant: 0).isActive = true
+        buttonSongLibrary.heightAnchor.constraint(equalToConstant: 61).isActive = true
+        buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
+        buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
         
     }
     /*
@@ -218,14 +232,6 @@ class SmileToUnlockView: UIView {
         songPlaying = level.getSongName()
     }
     
-    @objc func onSettingsButtonPush(){
-        delegate?.onSettingsButtonPush()
-        
-    }
-    
-    @objc func onGameCenterButtonPush(){
-        delegate?.onGameCenterButtonPush()
-    }
     
     @objc func onSongLibraryButtonPush(){
         delegate?.onSongLibraryButtonPush()

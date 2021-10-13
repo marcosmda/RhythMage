@@ -11,8 +11,6 @@ import AVFoundation
 import GameKit
 
 protocol SmileToUnlockDelegate {
-    func onSettingsButtonPush()
-    func onGameCenterButtonPush()
     func onSongLibraryButtonPush()
 }
 
@@ -25,6 +23,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     var runCount:Double = 0
     
     var player: AVAudioPlayer!
+    
+    let buttonSettings:  UIBarButtonItem = {
+        UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .done, target: self, action: #selector(addTapped))
+        }()
     
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
@@ -66,9 +68,14 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        mainView.backgroundColor = .white
-        navigationController?.isNavigationBarHidden = true
+
         //playSound()
+        buttonSettings.tintColor = .purple
+        let boool = true
+        if boool {
+            self.navigationItem.leftBarButtonItem = self.buttonSettings
+        }
+        
         
     }
     
@@ -90,6 +97,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     @objc func updateCounter(){
         runCount+=0.5
         //print(runCount)
+    }
+    
+    @objc func addTapped(){
+        navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
     }
     
     private func configureFaceRecognition() {
@@ -153,6 +164,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     }
         }
     }
+                                                            
+
     
     func playSound(title: String, type: String){
         guard let path = Bundle.main.path(forResource: title, ofType: type) else {
@@ -171,20 +184,14 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     }
 
 }
-    
+
 
 extension SmileToUnlockController: SmileToUnlockDelegate {
-    func onGameCenterButtonPush() {
-        navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
-    }
     
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
     }
-    
-    func onSettingsButtonPush() {
-        navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
-    }
+
 }
 
 //MARK: - GameKit Setup
