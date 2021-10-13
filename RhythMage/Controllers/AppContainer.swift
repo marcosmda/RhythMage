@@ -21,6 +21,12 @@ protocol MainSceneFactory {
     func createSongLibraryView() -> SongLibraryViewController
 }
 
+protocol SmileToUnlockFactory{
+    /// Creates an instance of SmileToUnlockViewController to be used
+    /// - Returns: An instance of SmileToUnlockViewController
+    func createSmileToUnlockScene() -> SmileToUnlockController
+}
+
 extension AppContainer: MainSceneFactory {
     func createMainScene() -> MainSceneViewController {
         return MainSceneViewController()
@@ -28,5 +34,11 @@ extension AppContainer: MainSceneFactory {
     
     func createSongLibraryView() -> SongLibraryViewController {
         return SongLibraryViewController()
+    }
+}
+
+extension AppContainer:SmileToUnlockFactory{
+    func createSmileToUnlockScene() -> SmileToUnlockController {
+        return SmileToUnlockController(factory: self)
     }
 }

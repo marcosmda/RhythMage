@@ -32,6 +32,8 @@
 		DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92014270CC1960090E41F /* SongLibraryViewController.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
+		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
+		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		DBB92014270CC1960090E41F /* SongLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewController.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
+		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				DBB92009270CBD830090E41F /* SongLibrary */,
+				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
 				8DDCA7F827078441002E9925 /* GameScene.swift */,
 				8DDCA7FA27078441002E9925 /* GameViewController.swift */,
 				8DDCA80C2707B127002E9925 /* MainScene */,
@@ -194,6 +199,15 @@
 				DBB92014270CC1960090E41F /* SongLibraryViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		F14F1A50271228EA002F5C3A /* SmileToUnlock */ = {
+			isa = PBXGroup;
+			children = (
+				F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */,
+				F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */,
+			);
+			path = SmileToUnlock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +284,8 @@
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
+				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
+				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DDCA7F927078441002E9925 /* GameScene.swift in Sources */,
 				8DDCA7FB27078441002E9925 /* GameViewController.swift in Sources */,
