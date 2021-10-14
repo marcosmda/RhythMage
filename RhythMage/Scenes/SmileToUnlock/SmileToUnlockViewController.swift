@@ -15,14 +15,13 @@ protocol SmileToUnlockDelegate {
     func onSettingsButtonPush()
 }
 
-class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate{
+class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate {
     
     //public var smileView: SmileToUnlockView!
     
     var timer = Timer()
     var runCount:Double = 0
     var player: AVAudioPlayer!
-    
     
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
@@ -49,38 +48,31 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
+
     override func viewDidLoad() {
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
 
         //playSound()
-        let boool = true
-        if boool {
-            self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
-        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard ARFaceTrackingConfiguration.isSupported else { print("iPhone X required"); return }
+        configureFaceRecognition()
+        ableToPlay = true
         
-        let configuration = ARFaceTrackingConfiguration()
-        if #available(iOS 13.0, *) {
-            configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
+        let bool = true
+        if bool {
+            self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         }
         
-        configuration.isLightEstimationEnabled = true
-        sceneView?.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        sceneView?.delegate = self
     }
     
     @objc func updateCounter(){
-        runCount+=0.5
+        runCount += 0.5
     }
     
     func playSound(){
@@ -100,15 +92,22 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     }
     
     private func configureFaceRecognition() {
+        
+        guard ARFaceTrackingConfiguration.isSupported else { print("iPhone X required"); return }
+        
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
+        
+        if #available(iOS 13.0, *) {
+            configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
+        }
 
         let sceneView = ARSCNView(frame: view.bounds)
         mainView.addSubview(sceneView)
         sceneView.automaticallyUpdatesLighting = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         sceneView.isHidden = true
-        //sceneView.delegate = self
+        sceneView.delegate = self
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -135,7 +134,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         for move in blends {
             guard let faceFactor = faceAnchor.blendShapes[move] as? Float else {return}
             if (faceFactor > 0.7){
-                if selectedMove == nil{
+                if selectedMove == nil {
                     selectedMove = move
                 }
                 else{
@@ -151,13 +150,19 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
             
             self.currentMove = selectedMove
             
-            if ableToPlay && runCount > 1.5{
+            if ableToPlay && runCount > 2.0 {
                 print("ENTREI")
                 if self.currentMove == .mouthSmileRight || self.currentMove == .mouthSmileLeft {
-                    navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
+                    DispatchQueue.main.async {
+                        self.ableToPlay = false
+                        self.navigationController?.pushViewController(self.factory.createSongLibraryView(), animated: true)
+                    }
                 }
-        
-    }
+                
+                timer.invalidate()
+                
+            }
+            
         }
     }
                                                             
@@ -197,8 +202,7 @@ extension SmileToUnlockController {
             if error != nil {
                 // Player could not be authenticated.
                 // Disable Game Center in the game.
-                
-                GKAccessPoint.shared.isActive = false
+                //GKAccessPoint.shared.isActive = false
                 return
             }
             
@@ -217,9 +221,11 @@ extension SmileToUnlockController {
                 // Disable in game communication UI.
             }
             
+            GKAccessPoint.shared.isActive = true
+            
         }
         
-        GKAccessPoint.shared.isActive = true
+        
         
     }
     
