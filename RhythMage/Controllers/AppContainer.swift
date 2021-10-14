@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
 class AppContainer {
+    let realm = try! Realm()
+    var audioController = AudioController()
     
+    init() {
+        
+    }
 }
 
 //MARK: - MainScene
@@ -16,17 +22,36 @@ protocol MainSceneFactory {
     /// Creates an instance of MainSceneViewController to be used
     /// - Returns: An instance of MainSceneViewController
     func createMainScene() -> MainSceneViewController
-    /// Creates an instance of SongLibraryViewController to be used
-    /// - Returns: An instance of SongLibraryViewController
-    func createSongLibraryView() -> SongLibraryViewController
 }
 
 extension AppContainer: MainSceneFactory {
     func createMainScene() -> MainSceneViewController {
         return MainSceneViewController()
     }
-    
-    func createSongLibraryView() -> SongLibraryViewController {
+}
+
+//MARK: - SongLibrary
+protocol SongLibrarySceneFactory {
+    /// Creates an instance of SongLibraryViewController to be used
+    /// - Returns: An instance of SongLibraryViewController
+    func createSongLibraryScene() -> SongLibraryViewController
+}
+
+extension AppContainer: SongLibrarySceneFactory {
+    func createSongLibraryScene() -> SongLibraryViewController {
         return SongLibraryViewController()
+    }
+}
+
+//MARK: - RecordingScene
+protocol RecordingSceneFactory {
+    /// Creates an instance of RecordingViewController to be used
+    /// - Returns: An instance of RecordingViewController
+    func createRecordingScene() -> RecordingViewController
+}
+
+extension AppContainer: RecordingSceneFactory {
+    func createRecordingScene() -> RecordingViewController {
+        return RecordingViewController(realm: realm, audioController: self.audioController)
     }
 }
