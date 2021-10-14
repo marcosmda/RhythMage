@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import RealmSwift
 
 class AppContainer {
+    let realm = try! Realm()
     var audioController = AudioController()
+    
+    init() {
+        
+    }
 }
 
 //MARK: - MainScene
@@ -46,6 +52,6 @@ protocol RecordingSceneFactory {
 
 extension AppContainer: RecordingSceneFactory {
     func createRecordingScene() -> RecordingViewController {
-        return RecordingViewController(audioController: self.audioController)
+        return RecordingViewController(realm: realm, audioController: self.audioController)
     }
 }

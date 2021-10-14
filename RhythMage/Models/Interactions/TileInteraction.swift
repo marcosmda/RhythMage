@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// The X area of teh screen where the interactions will scroll.
-enum ScreenScrollArea {
-    case left
-    case middleLeft
-    case middleRight
-    case right
+enum ScreenScrollArea: Int {
+    case left = 0
+    case middleLeft = 1
+    case middleRight = 2
+    case right = 3
 }
 
 class TileInteraction: InteractionProtocol {
@@ -25,7 +26,7 @@ class TileInteraction: InteractionProtocol {
     /// The time when the interaction will start within the level.
     let startTime: Double
     /// The time when the interaction will end within the level.
-    let endTime: Double
+    var endTime: Double
     
     
     init(minimumScore: Double, xPosition: ScreenScrollArea, startTime: Double, endTime: Double){
@@ -33,5 +34,27 @@ class TileInteraction: InteractionProtocol {
         self.xPosition = xPosition
         self.startTime = startTime
         self.endTime = endTime
+    }
+}
+
+//MARK: - Realm
+class RealmTileInteraction: Object {
+    @objc dynamic var minimumScore: Double
+    @objc dynamic var xPosition: Int
+    @objc dynamic var startTime: Double
+    @objc dynamic var endTime: Double
+
+    required init(minimumScore: Double, xPosition: ScreenScrollArea, startTime: Double, endTime: Double) {
+        self.minimumScore = minimumScore
+        self.xPosition = xPosition.rawValue
+        self.startTime = startTime
+        self.endTime = endTime
+    }
+    
+    required init() {
+        self.minimumScore = 0
+        self.xPosition = 0
+        self.startTime = 0
+        self.endTime = 0
     }
 }
