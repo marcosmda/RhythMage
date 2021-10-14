@@ -12,6 +12,7 @@ import GameKit
 
 protocol SmileToUnlockDelegate {
     func onSongLibraryButtonPush()
+    func onSettingsButtonPush()
 }
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate{
@@ -19,22 +20,14 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     //public var smileView: SmileToUnlockView!
     
     var timer = Timer()
-    
     var runCount:Double = 0
-    
     var player: AVAudioPlayer!
     
-    let buttonSettings:  UIBarButtonItem = {
-        UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .done, target: self, action: #selector(addTapped))
-        }()
     
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
-    
-    var ableToPlay = false
-    
+
     typealias Factory = MainSceneFactory
-    
     let factory: Factory
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
@@ -42,14 +35,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     static public var isSupported: Bool {
         return ARFaceTrackingConfiguration.isSupported
     }
-    /// Action to do after a user has smiled
-    public var onSuccess: (() -> Void)?
-    
-    /// Set how much smile do you need from a user. 0.8 is kind of hard already!
-    public var successTreshold: CGFloat = 0.6
-    
-    private var userSmiled = false
-    
+    var ableToPlay = false
+
     init (factory: Factory)
     {
         self.factory = factory
@@ -64,19 +51,17 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     }
     
     
+    
     override func viewDidLoad() {
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
         timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
 
         //playSound()
-        buttonSettings.tintColor = .purple
         let boool = true
         if boool {
-            self.navigationItem.leftBarButtonItem = self.buttonSettings
+            self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,11 +81,22 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     
     @objc func updateCounter(){
         runCount+=0.5
-        //print(runCount)
     }
     
-    @objc func addTapped(){
-        navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
+    func playSound(){
+        guard let path = Bundle.main.path(forResource: mainView.songPlaying, ofType: "mp3") else {
+            print("No file.")
+            return}
+        let url = URL(fileURLWithPath: path)
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else {return}
+            player.play()
+        }
+        catch let error{
+            print(error.localizedDescription)
+        }
+        
     }
     
     private func configureFaceRecognition() {
@@ -156,7 +152,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
             self.currentMove = selectedMove
             
             if ableToPlay && runCount > 1.5{
-                
+                print("ENTREI")
                 if self.currentMove == .mouthSmileRight || self.currentMove == .mouthSmileLeft {
                     navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
                 }
@@ -166,27 +162,16 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     }
                                                             
 
-    
-    func playSound(title: String, type: String){
-        guard let path = Bundle.main.path(forResource: title, ofType: type) else {
-            print("No file.")
-            return}
-        let url = URL(fileURLWithPath: path)
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else {return}
-            player.play()
-        }
-        catch let error{
-            print(error.localizedDescription)
-        }
-        
-    }
-
 }
 
 
 extension SmileToUnlockController: SmileToUnlockDelegate {
+    
+    @objc func onSettingsButtonPush() {
+        let navController = UINavigationController(rootViewController: factory.createSongLibraryView())
+        navigationController?.present(navController, animated: true, completion: nil)
+    }
+    
     
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryView(), animated: true)
@@ -212,6 +197,8 @@ extension SmileToUnlockController {
             if error != nil {
                 // Player could not be authenticated.
                 // Disable Game Center in the game.
+                
+                GKAccessPoint.shared.isActive = false
                 return
             }
             

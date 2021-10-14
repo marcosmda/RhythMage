@@ -22,6 +22,7 @@ class SmileToUnlockView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         assignbackground()
+        buttonSettings.tintColor = .purple
         self.addSubview(nameGameTitle)
         self.addSubview(nameSongTitle)
         self.addSubview(bestScoreTitle)
@@ -49,9 +50,11 @@ class SmileToUnlockView: UIView {
         {
             label1.font = UIFontMetrics.default.scaledFont(for: UIFont(descriptor: configuration, size: 75))
         }
-        //label1.font = UIFont(name: "Inika-Bold", size: 75)
         label1.contentMode = .scaleAspectFit
         label1.adjustsFontSizeToFitWidth = true
+        //label1.minimumScaleFactor = 0.05
+        //label1.lineBreakMode = .byClipping
+        label1.fitTextToBounds()
         return label1
     }()
     
@@ -67,6 +70,7 @@ class SmileToUnlockView: UIView {
         label2.font = UIFont(name: "Inika-Bold", size: 18)
         label2.contentMode = .scaleAspectFill
         label2.sizeToFit()
+        label2.fitTextToBounds()
         return label2
         
     }()
@@ -80,7 +84,9 @@ class SmileToUnlockView: UIView {
         label3.textAlignment = .center
         label3.font = UIFont(name: "Inika-Regular", size: 18)
         label3.contentMode = .scaleAspectFill
+        label3.minimumScaleFactor = 0.1
         label3.sizeToFit()
+        label3.fitTextToBounds()
         return label3
         
     }()
@@ -88,23 +94,23 @@ class SmileToUnlockView: UIView {
     let smileToPlayTitle: UILabel = {
         let label4 = UILabel(frame: .zero)
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "face.smiling.fill")
-        let imageOffsetY: CGFloat = 0.0
+        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.white)
+        let imageOffsetY: CGFloat = -2.0
         attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
         let attachmentString = NSAttributedString(attachment: attachment)
         let myString = NSMutableAttributedString(string: " ")
         myString.append(attachmentString)
-        let myStringAfter = NSMutableAttributedString(string: "SMILE TO UNLOCK")
+        let myStringAfter = NSMutableAttributedString(string: " SMILE TO UNLOCK")
         myString.append(myStringAfter)
         label4.attributedText = myString
         label4.translatesAutoresizingMaskIntoConstraints = false
         label4.textColor = .white
-        //label4.text = ":) SMILE TO PLAY"
         label4.numberOfLines = 0
         label4.textAlignment = .center
-        label4.font = UIFont(name: "Inika-Bold", size: 27)
+        label4.font = UIFont(name: "Inika-Bold", size: 20)
         label4.contentMode = .scaleAspectFill
         label4.sizeToFit()
+        label4.fitTextToBounds()
         return label4
     }()
     
@@ -119,22 +125,17 @@ class SmileToUnlockView: UIView {
         return imageView
     }()
     
-
-    //Setting the Buttons of the view
-
-    /*
-        button.translatesAutoresizingMaskIntoConstraints = false
+    lazy var buttonSettings: UIBarButtonItem = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
         button.tintColor = .purple
-        button.imageView?.contentMode = .scaleAspectFit
-        button.layer.cornerRadius = button.frame.size.width/2
+        button.layer.cornerRadius = button.frame.size.height / 2
         button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
-        return button
-     */
-  //  }()
-    
+        let barButtonItem = UIBarButtonItem(customView: button)
+        return barButtonItem
+    }()
     
     let buttonSongLibrary: UIButton = {
         let button3 = UIButton(frame: .zero)
@@ -174,55 +175,50 @@ class SmileToUnlockView: UIView {
         mageImage.translatesAutoresizingMaskIntoConstraints = false
         buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
         
+        
         nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
         nameGameTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 60 ).isActive = true
         nameGameTitle.bottomAnchor.constraint(equalTo: nameSongTitle.topAnchor, constant: 0).isActive = true
-        
         nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        nameGameTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
         
         nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
         nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor, constant: 0).isActive = true
         nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
         nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        nameSongTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
         
         bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
         bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
         bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
         bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        bestScoreTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
-        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 0).isActive = true
+        
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
         mageImage.bottomAnchor.constraint(equalTo: smileToPlayTitle.topAnchor, constant: -20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
         
         
         smileToPlayTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
-        smileToPlayTitle.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 0).isActive = true
+        smileToPlayTitle.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 20).isActive = true
         smileToPlayTitle.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
         smileToPlayTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        smileToPlayTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
         
         buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
-        buttonSongLibrary.topAnchor.constraint(equalTo: smileToPlayTitle.bottomAnchor, constant: 0).isActive = true
-        buttonSongLibrary.heightAnchor.constraint(equalToConstant: 61).isActive = true
+        buttonSongLibrary.topAnchor.constraint(equalTo: smileToPlayTitle.bottomAnchor, constant: 20).isActive = true
+        buttonSongLibrary.heightAnchor.constraint(equalToConstant: 51).isActive = true
         buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
         buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
+
         
     }
-    /*
-    func assignbackground(){
-        var backgroundView: UIImageView = {
-            let bgView = UIImageView(frame: .zero)
-            bgView.image = UIImage(named: "background.jpeg")
-            bgView.contentMode = .scaleToFill
-            bgView.translatesAutoresizingMaskIntoConstraints = false
-            return bgView
-        }()
-        
-      }*/
     
     public func requestModel (user: User, level: Level)
     {
@@ -233,10 +229,12 @@ class SmileToUnlockView: UIView {
     }
     
     
+    @objc func onSettingsButtonPush(){
+        delegate?.onSettingsButtonPush()
+    }
+    
     @objc func onSongLibraryButtonPush(){
-        delegate?.onSongLibraryButtonPush()
-
-            
+        delegate?.onSongLibraryButtonPush()   
     }
     
     
@@ -244,3 +242,60 @@ class SmileToUnlockView: UIView {
 
     
 }
+
+extension UIFont {
+    
+    /**
+     Will return the best font conforming to the descriptor which will fit in the provided bounds.
+     */
+    static func bestFittingFontSize(for text: String, in bounds: CGRect, fontDescriptor: UIFontDescriptor, additionalAttributes: [NSAttributedString.Key: Any]? = nil) -> CGFloat {
+        let constrainingDimension = min(bounds.width, bounds.height)
+        let properBounds = CGRect(origin: .zero, size: bounds.size)
+        var attributes = additionalAttributes ?? [:]
+        
+        let infiniteBounds = CGSize(width: CGFloat.infinity, height: CGFloat.infinity)
+        var bestFontSize: CGFloat = constrainingDimension
+        
+        for fontSize in stride(from: bestFontSize, through: 0, by: -1) {
+            let newFont = UIFont(descriptor: fontDescriptor, size: fontSize)
+            attributes[.font] = newFont
+            
+            let currentFrame = text.boundingRect(with: infiniteBounds, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: attributes, context: nil)
+            
+            if properBounds.contains(currentFrame) {
+                bestFontSize = fontSize
+                break
+            }
+        }
+        return bestFontSize
+    }
+    
+    static func bestFittingFont(for text: String, in bounds: CGRect, fontDescriptor: UIFontDescriptor, additionalAttributes: [NSAttributedString.Key: Any]? = nil) -> UIFont {
+        let bestSize = bestFittingFontSize(for: text, in: bounds, fontDescriptor: fontDescriptor, additionalAttributes: additionalAttributes)
+        return UIFont(descriptor: fontDescriptor, size: bestSize)
+    }
+}
+
+extension UILabel {
+    
+    /// Will auto resize the contained text to a font size which fits the frames bounds.
+    /// Uses the pre-set font to dynamically determine the proper sizing
+    func fitTextToBounds() {
+        guard let text = text, let currentFont = font else { return }
+    
+        let bestFittingFont = UIFont.bestFittingFont(for: text, in: bounds, fontDescriptor: currentFont.fontDescriptor, additionalAttributes: basicStringAttributes)
+        font = bestFittingFont
+    }
+    
+    private var basicStringAttributes: [NSAttributedString.Key: Any] {
+        var attribs = [NSAttributedString.Key: Any]()
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = self.textAlignment
+        paragraphStyle.lineBreakMode = self.lineBreakMode
+        attribs[.paragraphStyle] = paragraphStyle
+        
+        return attribs
+    }
+}
+
