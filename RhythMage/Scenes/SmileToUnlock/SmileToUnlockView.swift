@@ -17,7 +17,6 @@ class SmileToUnlockView: UIView {
     public var buttonSelected: Bool = false
     
     var delegate: SmileToUnlockDelegate?
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +26,8 @@ class SmileToUnlockView: UIView {
         self.addSubview(nameSongTitle)
         self.addSubview(bestScoreTitle)
         self.addSubview(mageImage)
-        self.addSubview(smileToPlayTitle)
+        self.addSubview(progressView)
+        progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
         layoutSubviews()
     }
@@ -52,8 +52,6 @@ class SmileToUnlockView: UIView {
         }
         label1.contentMode = .scaleAspectFit
         label1.adjustsFontSizeToFitWidth = true
-        //label1.minimumScaleFactor = 0.05
-        //label1.lineBreakMode = .byClipping
         label1.fitTextToBounds()
         return label1
     }()
@@ -82,7 +80,7 @@ class SmileToUnlockView: UIView {
         label3.text = "Best Score: " + (bestScore ?? "0")
         label3.numberOfLines = 0
         label3.textAlignment = .center
-        label3.font = UIFont(name: "Inika-Regular", size: 18)
+        label3.font = UIFont(name: "Inika", size: 18)
         label3.contentMode = .scaleAspectFill
         label3.minimumScaleFactor = 0.1
         label3.sizeToFit()
@@ -94,7 +92,7 @@ class SmileToUnlockView: UIView {
     let smileToPlayTitle: UILabel = {
         let label4 = UILabel(frame: .zero)
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.white)
+        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.black)
         let imageOffsetY: CGFloat = -2.0
         attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
         let attachmentString = NSAttributedString(attachment: attachment)
@@ -104,7 +102,7 @@ class SmileToUnlockView: UIView {
         myString.append(myStringAfter)
         label4.attributedText = myString
         label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.textColor = .white
+        label4.textColor = .black
         label4.numberOfLines = 0
         label4.textAlignment = .center
         label4.font = UIFont(name: "Inika-Bold", size: 20)
@@ -112,6 +110,16 @@ class SmileToUnlockView: UIView {
         label4.sizeToFit()
         label4.fitTextToBounds()
         return label4
+    }()
+    
+    lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.trackTintColor = .systemPurple
+        progressView.progressTintColor = .white
+        progressView.layer.cornerRadius = 20
+        progressView.clipsToBounds = true
+        return progressView
     }()
     
     //Setting the image of the View
@@ -139,14 +147,15 @@ class SmileToUnlockView: UIView {
     
     let buttonSongLibrary: UIButton = {
         let button3 = UIButton(frame: .zero)
+        var songText = " Song Library"
         button3.backgroundColor = .white
         button3.setImage(UIImage(systemName: "music.note"), for: .normal)
         button3.tintColor = .purple
-        button3.setTitle("Library", for: .normal)
+        button3.setTitle(songText.uppercased(), for: .normal)
         button3.contentVerticalAlignment = .center
         button3.setTitleColor(.purple, for: .normal)
         //TODO: Confirm the colors
-        button3.titleLabel!.font = UIFont(name: "Inika-Regular", size: 20)
+        button3.titleLabel!.font = UIFont(name: "Inika-Bold", size: 20)
         button3.layer.cornerRadius = 20
         button3.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
         return button3
@@ -155,7 +164,7 @@ class SmileToUnlockView: UIView {
     
     func assignbackground(){
         let background = UIImage(named: "background")
-
+        
         var imageView : UIImageView!
         imageView = UIImageView(frame: self.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
@@ -164,7 +173,7 @@ class SmileToUnlockView: UIView {
         imageView.center = self.center
         self.addSubview(imageView)
         self.sendSubviewToBack(imageView)
-      }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -204,19 +213,21 @@ class SmileToUnlockView: UIView {
         mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
         
         
-        smileToPlayTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
-        smileToPlayTitle.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 20).isActive = true
-        smileToPlayTitle.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
-        smileToPlayTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        smileToPlayTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
+        smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
+        smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
+        
+        progressView.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
+        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 20).isActive = true
+        progressView.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
+        progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalTo: buttonSongLibrary.heightAnchor).isActive = true
         
         
-        buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.95, constant: 0).isActive = true
+        buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         buttonSongLibrary.topAnchor.constraint(equalTo: smileToPlayTitle.bottomAnchor, constant: 20).isActive = true
         buttonSongLibrary.heightAnchor.constraint(equalToConstant: 51).isActive = true
         buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
         buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-
         
     }
     
@@ -234,12 +245,12 @@ class SmileToUnlockView: UIView {
     }
     
     @objc func onSongLibraryButtonPush(){
-        delegate?.onSongLibraryButtonPush()   
+        delegate?.onSongLibraryButtonPush()
     }
     
     
     
-
+    
     
 }
 
@@ -282,7 +293,7 @@ extension UILabel {
     /// Uses the pre-set font to dynamically determine the proper sizing
     func fitTextToBounds() {
         guard let text = text, let currentFont = font else { return }
-    
+        
         let bestFittingFont = UIFont.bestFittingFont(for: text, in: bounds, fontDescriptor: currentFont.fontDescriptor, additionalAttributes: basicStringAttributes)
         font = bestFittingFont
     }

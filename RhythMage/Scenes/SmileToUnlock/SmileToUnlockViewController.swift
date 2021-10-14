@@ -13,11 +13,14 @@ import GameKit
 protocol SmileToUnlockDelegate {
     func onSongLibraryButtonPush()
     func onSettingsButtonPush()
+    func updateProgressBar()
 }
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate {
     
     //public var smileView: SmileToUnlockView!
+    
+    var progressFloat: CGFloat = 0
     
     var timer = Timer()
     var runCount:Double = 0
@@ -52,9 +55,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     override func viewDidLoad() {
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
-        //playSound()
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
     }
     
@@ -64,10 +65,17 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         configureFaceRecognition()
         ableToPlay = true
         
+        runCount = 0
+        
+        if runCount == 0 {
+            mainView.progressView.setProgress(0, animated: true)
+        }
+        
         let bool = true
         if bool {
             self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         }
+        
         
     }
     
@@ -148,6 +156,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         
         if(self.currentMove != selectedMove) {
             
+            self.progressFloat += 0.5
+            self.updateProgressBar()
+            
             self.currentMove = selectedMove
             
             if ableToPlay && runCount > 2.0 {
@@ -159,8 +170,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
                     }
                 }
                 
-                timer.invalidate()
-                
             }
             
         }
@@ -171,6 +180,13 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
 
 
 extension SmileToUnlockController: SmileToUnlockDelegate {
+    
+    func updateProgressBar() {
+        DispatchQueue.main.async {
+            self.mainView.progressView.setProgress(Float(self.progressFloat), animated: true)
+        }
+    }
+    
     
     @objc func onSettingsButtonPush() {
         let navController = UINavigationController(rootViewController: factory.createSongLibraryView())
