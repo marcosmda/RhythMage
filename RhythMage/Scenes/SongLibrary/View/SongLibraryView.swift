@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SongLibraryView: UIView{
+class SongLibraryView: UIView {
     
     //MARK: - Properties
     var delegate: SongLibraryViewDelegate?

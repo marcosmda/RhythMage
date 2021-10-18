@@ -28,21 +28,21 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
     ///highest score label
     private let highestScoreLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Bold", size: 15)
+        label.font = .inikaBold(ofSize: 15)
         label.numberOfLines = 1
         return label
     }()
     ///Song title Label
     private let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Bold", size: 18)
+        label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
         return label
     }()
     ///Artist Name Label
     private let artistNameLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika", size: 15)
+        label.font = .inika(ofSize: 15)
         label.numberOfLines = 1
         return label
     }()

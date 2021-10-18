@@ -10,6 +10,10 @@
 		8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */; };
 		8D0984192717522C007477F3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984182717522C007477F3 /* GameScene.swift */; };
 		8D09841B27175233007477F3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841A27175233007477F3 /* GameViewController.swift */; };
+		8D09842027175363007477F3 /* RecordingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841F27175363007477F3 /* RecordingScene.swift */; };
+		8D0984222717540A007477F3 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984212717540A007477F3 /* AudioController.swift */; };
+		8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */; };
+		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -21,9 +25,13 @@
 		8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F227078441002E9925 /* AppDelegate.swift */; };
 		8DDCA80027078443002E9925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FF27078443002E9925 /* Assets.xcassets */; };
 		8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA80127078443002E9925 /* LaunchScreen.storyboard */; };
-		8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */; };
+		8DDD692C2718AA2100818A45 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692B2718AA2100818A45 /* Realm */; };
+		8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692D2718AA2100818A45 /* RealmSwift */; };
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
+		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
+		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
+		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
@@ -37,12 +45,18 @@
 		DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92014270CC1960090E41F /* SongLibraryViewController.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
+		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
+		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameViewController.swift; sourceTree = "<group>"; };
 		8D0984182717522C007477F3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		8D09841A27175233007477F3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8D09841F27175363007477F3 /* RecordingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingScene.swift; sourceTree = "<group>"; };
+		8D0984212717540A007477F3 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fairy-tale-waltz.mp3"; sourceTree = "<group>"; };
+		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -56,9 +70,11 @@
 		8DDCA7F227078441002E9925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDCA7FF27078443002E9925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DDCA80227078443002E9925 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
@@ -72,6 +88,8 @@
 		DBB92014270CC1960090E41F /* SongLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewController.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
+		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2192E4271778490078A93D /* GameKit.framework in Frameworks */,
+				8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */,
+				8DDD692C2718AA2100818A45 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +131,39 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		8D09841C2717531B007477F3 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				8D09841D27175329007477F3 /* Controller */,
+				8D09841E27175335007477F3 /* View */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		8D09841D27175329007477F3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D09842627175C27007477F3 /* RecordingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D09841E27175335007477F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D09841F27175363007477F3 /* RecordingScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D09842327175BA9007477F3 /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
+			);
+			path = Songs;
+			sourceTree = "<group>";
+		};
 		8DA09D87270B7C92000B43C8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +186,7 @@
 			children = (
 				8DDCA7F127078441002E9925 /* RhythMage */,
 				8DDCA7F027078441002E9925 /* Products */,
+				CF2192E2271778490078A93D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,9 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				8D6CB93F270CE88C0057176F /* Info.plist */,
+				CFF5B03E271DFE9500E5CCE8 /* Shared */,
 				8DDCA80B2707B11C002E9925 /* Scenes */,
 				8DDCA80A2707B110002E9925 /* Controllers */,
 				8DDCA8092707B106002E9925 /* Models */,
+				8D09842327175BA9007477F3 /* Songs */,
 				8DDCA7FF27078443002E9925 /* Assets.xcassets */,
 				8DDCA80127078443002E9925 /* LaunchScreen.storyboard */,
 			);
@@ -180,6 +237,7 @@
 				8DDFF09A270CD84C00139FE2 /* AppContainer.swift */,
 				8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */,
 				8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */,
+				8D0984212717540A007477F3 /* AudioController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,21 +246,33 @@
 			isa = PBXGroup;
 			children = (
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
-				8D05DD7E270DCB820078F2D8 /* Game */,
-				DBB92009270CBD830090E41F /* SongLibrary */,
 				8DDCA80C2707B127002E9925 /* MainScene */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
+				8D09841C2717531B007477F3 /* Recording */,
+				8D05DD7E270DCB820078F2D8 /* Game */,
+				DBB92009270CBD830090E41F /* SongLibrary */,
+				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		8DDCA80C2707B127002E9925 /* MainScene */ = {
+		CF2192E2271778490078A93D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */,
+				CF2192E3271778490078A93D /* GameKit.framework */,
 			);
-			path = MainScene;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
+				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
+				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		DBB4A1D5271756BF0037BCB1 /* LoadingScreen */ = {
@@ -259,6 +329,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F14F1A50271228EA002F5C3A /* SmileToUnlock */ = {
+			isa = PBXGroup;
+			children = (
+				F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */,
+				F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */,
+			);
+			path = SmileToUnlock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +354,10 @@
 			dependencies = (
 			);
 			name = RhythMage;
+			packageProductDependencies = (
+				8DDD692B2718AA2100818A45 /* Realm */,
+				8DDD692D2718AA2100818A45 /* RealmSwift */,
+			);
 			productName = RhythMage;
 			productReference = 8DDCA7EF27078441002E9925 /* RhythMage.app */;
 			productType = "com.apple.product-type.application";
@@ -303,6 +386,9 @@
 				Base,
 			);
 			mainGroup = 8DDCA7E627078441002E9925;
+			packageReferences = (
+				8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 8DDCA7F027078441002E9925 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +407,7 @@
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
+				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,19 +419,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
+				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
+				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
+				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
+				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,
-				8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */,
 				DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
+				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
 				DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
+				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
@@ -356,6 +448,7 @@
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
 				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
+				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,11 +594,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -532,11 +626,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -578,6 +673,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DDD692B2718AA2100818A45 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		8DDD692D2718AA2100818A45 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DDCA7E727078441002E9925 /* Project object */;
 }

@@ -25,14 +25,14 @@ class SongLibraryLockedSongCell: UITableViewCell {
     ///"unlock by scoring" label
     private let unlockByLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Bold", size: 18)
+        label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
         return label
     }()
     ///"xxxx points" Label
     private let pointsLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = UIFont(name: "Inika-Bold", size: 18)
+        label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 2
         return label
     }()
