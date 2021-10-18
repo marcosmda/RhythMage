@@ -55,3 +55,20 @@ extension AppContainer: RecordingSceneFactory {
         return RecordingViewController(realm: realm, audioController: self.audioController)
     }
 }
+
+//MARK: - SmileToUnlock
+protocol SmileToUnlockFactory{
+    /// Creates an instance of SmileToUnlockViewController to be used
+    /// - Returns: An instance of SmileToUnlockViewController
+    func createSmileToUnlockScene() -> SmileToUnlockController
+}
+
+extension AppContainer:SmileToUnlockFactory{
+    func createSmileToUnlockScene() -> SmileToUnlockController {
+        return SmileToUnlockController(factory: self)
+    }
+}
+
+
+
+
