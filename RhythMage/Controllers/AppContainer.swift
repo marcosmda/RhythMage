@@ -19,6 +19,9 @@ protocol MainSceneFactory {
     /// Creates an instance of SongLibraryViewController to be used
     /// - Returns: An instance of SongLibraryViewController
     func createSongLibraryView() -> SongLibraryViewController
+    /// Creates an instance of LoadingScreenViewController to be used
+    /// - Returns: An instance of LoadingScreenViewController
+    func createLoadingScreenView() -> LoadingScreenViewController
 }
 
 extension AppContainer: MainSceneFactory {
@@ -28,5 +31,9 @@ extension AppContainer: MainSceneFactory {
     
     func createSongLibraryView() -> SongLibraryViewController {
         return SongLibraryViewController()
+    }
+    
+    func createLoadingScreenView() -> LoadingScreenViewController{
+        return LoadingScreenViewController()
     }
 }
