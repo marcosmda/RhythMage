@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */; };
+		8D0984192717522C007477F3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984182717522C007477F3 /* GameScene.swift */; };
+		8D09841B27175233007477F3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841A27175233007477F3 /* GameViewController.swift */; };
+		8D09842027175363007477F3 /* RecordingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841F27175363007477F3 /* RecordingScene.swift */; };
+		8D0984222717540A007477F3 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984212717540A007477F3 /* AudioController.swift */; };
+		8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */; };
+		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -16,11 +23,11 @@
 		8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8D270B8487000B43C8 /* TileInteraction.swift */; };
 		8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */; };
 		8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F227078441002E9925 /* AppDelegate.swift */; };
-		8DDCA7F927078441002E9925 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F827078441002E9925 /* GameScene.swift */; };
-		8DDCA7FB27078441002E9925 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FA27078441002E9925 /* GameViewController.swift */; };
 		8DDCA80027078443002E9925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FF27078443002E9925 /* Assets.xcassets */; };
 		8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA80127078443002E9925 /* LaunchScreen.storyboard */; };
 		8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */; };
+		8DDD692C2718AA2100818A45 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692B2718AA2100818A45 /* Realm */; };
+		8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692D2718AA2100818A45 /* RealmSwift */; };
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
@@ -40,6 +47,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameViewController.swift; sourceTree = "<group>"; };
+		8D0984182717522C007477F3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		8D09841A27175233007477F3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8D09841F27175363007477F3 /* RecordingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingScene.swift; sourceTree = "<group>"; };
+		8D0984212717540A007477F3 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fairy-tale-waltz.mp3"; sourceTree = "<group>"; };
+		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -51,8 +65,6 @@
 		8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceInteraction.swift; sourceTree = "<group>"; };
 		8DDCA7EF27078441002E9925 /* RhythMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhythMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDCA7F227078441002E9925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DDCA7F827078441002E9925 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		8DDCA7FA27078441002E9925 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8DDCA7FF27078443002E9925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DDCA80227078443002E9925 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
@@ -80,12 +92,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF2192E4271778490078A93D /* GameKit.framework in Frameworks */,
+				8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */,
+				8DDD692C2718AA2100818A45 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D05DD7E270DCB820078F2D8 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8D05DD80270DCBAA0078F2D8 /* Controller */,
+				8D05DD7F270DCBA40078F2D8 /* View */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		8D05DD7F270DCBA40078F2D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D0984182717522C007477F3 /* GameScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D05DD80270DCBAA0078F2D8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D09841A27175233007477F3 /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D09841C2717531B007477F3 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				8D09841D27175329007477F3 /* Controller */,
+				8D09841E27175335007477F3 /* View */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		8D09841D27175329007477F3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D09842627175C27007477F3 /* RecordingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D09841E27175335007477F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D09841F27175363007477F3 /* RecordingScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D09842327175BA9007477F3 /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
+			);
+			path = Songs;
+			sourceTree = "<group>";
+		};
 		8DA09D87270B7C92000B43C8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +200,7 @@
 				8DDCA80B2707B11C002E9925 /* Scenes */,
 				8DDCA80A2707B110002E9925 /* Controllers */,
 				8DDCA8092707B106002E9925 /* Models */,
+				8D09842327175BA9007477F3 /* Songs */,
 				8DDCA7FF27078443002E9925 /* Assets.xcassets */,
 				8DDCA80127078443002E9925 /* LaunchScreen.storyboard */,
 			);
@@ -157,6 +230,8 @@
 				8DDCA7F227078441002E9925 /* AppDelegate.swift */,
 				8DDFF09A270CD84C00139FE2 /* AppContainer.swift */,
 				8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */,
+				8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */,
+				8D0984212717540A007477F3 /* AudioController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +239,8 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				8D09841C2717531B007477F3 /* Recording */,
+				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
 				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
 				8DDCA7F827078441002E9925 /* GameScene.swift */,
@@ -252,6 +329,10 @@
 			dependencies = (
 			);
 			name = RhythMage;
+			packageProductDependencies = (
+				8DDD692B2718AA2100818A45 /* Realm */,
+				8DDD692D2718AA2100818A45 /* RealmSwift */,
+			);
 			productName = RhythMage;
 			productReference = 8DDCA7EF27078441002E9925 /* RhythMage.app */;
 			productType = "com.apple.product-type.application";
@@ -280,6 +361,9 @@
 				Base,
 			);
 			mainGroup = 8DDCA7E627078441002E9925;
+			packageReferences = (
+				8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 8DDCA7F027078441002E9925 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,6 +382,7 @@
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
+				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,13 +394,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
+				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
 				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
 				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
 				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
-				8DDCA7F927078441002E9925 /* GameScene.swift in Sources */,
-				8DDCA7FB27078441002E9925 /* GameViewController.swift in Sources */,
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,
 				8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */,
@@ -325,13 +409,18 @@
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
+				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
+				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
+				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
+				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
+				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +645,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DDD692B2718AA2100818A45 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		8DDD692D2718AA2100818A45 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DDD692A2718AA2100818A45 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8DDCA7E727078441002E9925 /* Project object */;
 }

@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import RealmSwift
 
 /// The enum describing the type of sequence that will be displayed.
-enum SequenceType {
-    case face
-    case tile
+enum SequenceType: Int {
+    case face = 0
+    case tile = 1
 }
 
 /// The sequence of interactions that will compose a sequnce of the gameplay of the level.
@@ -40,5 +41,16 @@ class InteractionSequence {
     /// - Returns: The total duration of the sequence.
     func calculateDuration() -> Double{
         return 0
+    }
+}
+
+//MARK: - Realm
+class RealmInteractionSequence: Object {
+    @objc dynamic let type: Int
+    
+    let sequence = List<RealmTileInteraction>()
+    
+    required init(){
+        self.type = 0
     }
 }
