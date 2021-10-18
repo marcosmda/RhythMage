@@ -17,19 +17,6 @@ class AppContainer {
     }
 }
 
-//MARK: - MainScene
-protocol MainSceneFactory {
-    /// Creates an instance of MainSceneViewController to be used
-    /// - Returns: An instance of MainSceneViewController
-    func createMainScene() -> MainSceneViewController
-}
-
-extension AppContainer: MainSceneFactory {
-    func createMainScene() -> MainSceneViewController {
-        return MainSceneViewController()
-    }
-}
-
 //MARK: - SongLibrary
 protocol SongLibrarySceneFactory {
     /// Creates an instance of SongLibraryViewController to be used

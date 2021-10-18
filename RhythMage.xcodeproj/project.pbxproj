@@ -25,7 +25,6 @@
 		8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F227078441002E9925 /* AppDelegate.swift */; };
 		8DDCA80027078443002E9925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FF27078443002E9925 /* Assets.xcassets */; };
 		8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA80127078443002E9925 /* LaunchScreen.storyboard */; };
-		8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */; };
 		8DDD692C2718AA2100818A45 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692B2718AA2100818A45 /* Realm */; };
 		8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692D2718AA2100818A45 /* RealmSwift */; };
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
@@ -67,7 +66,6 @@
 		8DDCA7F227078441002E9925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDCA7FF27078443002E9925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DDCA80227078443002E9925 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -243,19 +241,8 @@
 				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
 				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
-				8DDCA7F827078441002E9925 /* GameScene.swift */,
-				8DDCA7FA27078441002E9925 /* GameViewController.swift */,
-				8DDCA80C2707B127002E9925 /* MainScene */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		8DDCA80C2707B127002E9925 /* MainScene */ = {
-			isa = PBXGroup;
-			children = (
-				8DDCA80D2707B1A1002E9925 /* MainSceneViewController.swift */,
-			);
-			path = MainScene;
 			sourceTree = "<group>";
 		};
 		CF2192E2271778490078A93D /* Frameworks */ = {
@@ -402,7 +389,6 @@
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,
-				8DDCA80E2707B1A1002E9925 /* MainSceneViewController.swift in Sources */,
 				DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
