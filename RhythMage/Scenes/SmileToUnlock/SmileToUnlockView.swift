@@ -98,7 +98,7 @@ class SmileToUnlockView: UIView {
         let attachmentString = NSAttributedString(attachment: attachment)
         let myString = NSMutableAttributedString(string: " ")
         myString.append(attachmentString)
-        let myStringAfter = NSMutableAttributedString(string: " SMILE TO UNLOCK")
+        let myStringAfter = NSMutableAttributedString(string: " SMILE TO PLAY")
         myString.append(myStringAfter)
         label4.attributedText = myString
         label4.translatesAutoresizingMaskIntoConstraints = false
