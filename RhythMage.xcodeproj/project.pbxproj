@@ -35,6 +35,10 @@
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
+		DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */; };
+		DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */; };
+		DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */; };
+		DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */; };
 		DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9200E270CBEC90090E41F /* SongLibraryView.swift */; };
 		DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */; };
 		DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */; };
@@ -74,6 +78,10 @@
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
+		DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
+		DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewDelegate.swift; sourceTree = "<group>"; };
+		DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongContainerView.swift; sourceTree = "<group>"; };
 		DBB9200E270CBEC90090E41F /* SongLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryView.swift; sourceTree = "<group>"; };
 		DBB92010270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryUnlockedSongCell.swift; sourceTree = "<group>"; };
 		DBB92012270CC1860090E41F /* SongLibraryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +245,10 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
+				8DDCA80C2707B127002E9925 /* MainScene */,
+				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
+				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				8D09841C2717531B007477F3 /* Recording */,
 				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
@@ -261,6 +273,32 @@
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		DBB4A1D5271756BF0037BCB1 /* LoadingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1D7271756CF0037BCB1 /* Controller */,
+				DBB4A1D6271756CA0037BCB1 /* View */,
+			);
+			path = LoadingScreen;
+			sourceTree = "<group>";
+		};
+		DBB4A1D6271756CA0037BCB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DBB4A1D7271756CF0037BCB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBB4A1DA271756F90037BCB1 /* LoadingScreenViewController.swift */,
+				DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		DBB92009270CBD830090E41F /* SongLibrary */ = {
@@ -392,13 +430,17 @@
 				DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
+				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
+				DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
+				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
+				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,

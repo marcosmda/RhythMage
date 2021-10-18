@@ -21,12 +21,19 @@ class AppContainer {
 protocol SongLibrarySceneFactory {
     /// Creates an instance of SongLibraryViewController to be used
     /// - Returns: An instance of SongLibraryViewController
-    func createSongLibraryScene() -> SongLibraryViewController
+    func createSongLibraryView() -> SongLibraryViewController
+    /// Creates an instance of LoadingScreenViewController to be used
+    /// - Returns: An instance of LoadingScreenViewController
+    func createLoadingScreenView() -> LoadingScreenViewController
 }
 
 extension AppContainer: SongLibrarySceneFactory {
     func createSongLibraryScene() -> SongLibraryViewController {
         return SongLibraryViewController()
+    }
+    
+    func createLoadingScreenView() -> LoadingScreenViewController{
+        return LoadingScreenViewController()
     }
 }
 
