@@ -22,7 +22,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     
     var progressFloat: CGFloat = 0
     
-    var timer = Timer()
+    var timer: Timer?
     var runCount:Double = 0
     var player: AVAudioPlayer!
     
@@ -55,7 +55,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     override func viewDidLoad() {
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
     }
     
@@ -64,12 +63,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         
         configureFaceRecognition()
         ableToPlay = true
-        
-        runCount = 0
-        
-        if runCount == 0 {
-            mainView.progressView.setProgress(0, animated: true)
-        }
         
         let bool = true
         if bool {
@@ -81,6 +74,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     
     @objc func updateCounter(){
         runCount += 0.5
+        print(runCount)
     }
     
     func playSound(){
@@ -155,20 +149,28 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         }
         
         if(self.currentMove != selectedMove) {
-            
-            self.progressFloat += 0.5
+                
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
+          
+            self.progressFloat = 1.0
             self.updateProgressBar()
             
             self.currentMove = selectedMove
             
-            if ableToPlay && runCount > 2.0 {
+            if ableToPlay && runCount > 1.0 {
+                
                 print("ENTREI")
                 if self.currentMove == .mouthSmileRight || self.currentMove == .mouthSmileLeft {
+                    timer?.invalidate()
                     DispatchQueue.main.async {
-                        self.ableToPlay = false
+                        print("ENTREI")
                         self.navigationController?.pushViewController(self.factory.createSongLibraryView(), animated: true)
+                        self.progressFloat = 0
+                        self.runCount = 0
                     }
                 }
+                
+                
                 
             }
             
