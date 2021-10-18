@@ -65,7 +65,7 @@ class SmileToUnlockView: UIView {
         label2.text = (songPlaying ?? "Song Playing:")
         label2.numberOfLines = 0
         label2.textAlignment = .center
-        label2.font = UIFont(name: "Inika-Bold", size: 18)
+        label2.font = .inikaBold(ofSize: 18)
         label2.contentMode = .scaleAspectFill
         label2.sizeToFit()
         label2.fitTextToBounds()
@@ -80,7 +80,7 @@ class SmileToUnlockView: UIView {
         label3.text = "Best Score: " + (bestScore ?? "0")
         label3.numberOfLines = 0
         label3.textAlignment = .center
-        label3.font = UIFont(name: "Inika", size: 18)
+        label3.font = .inika(ofSize: 18)
         label3.contentMode = .scaleAspectFill
         label3.minimumScaleFactor = 0.1
         label3.sizeToFit()
@@ -92,7 +92,7 @@ class SmileToUnlockView: UIView {
     let smileToPlayTitle: UILabel = {
         let label4 = UILabel(frame: .zero)
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.black)
+        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.white)
         let imageOffsetY: CGFloat = -2.0
         attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
         let attachmentString = NSAttributedString(attachment: attachment)
@@ -102,10 +102,10 @@ class SmileToUnlockView: UIView {
         myString.append(myStringAfter)
         label4.attributedText = myString
         label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.textColor = .black
+        label4.textColor = .white
         label4.numberOfLines = 0
         label4.textAlignment = .center
-        label4.font = UIFont(name: "Inika-Bold", size: 20)
+        label4.font = .inikaBold(ofSize: 20)
         label4.contentMode = .scaleAspectFill
         label4.sizeToFit()
         label4.fitTextToBounds()
@@ -115,7 +115,7 @@ class SmileToUnlockView: UIView {
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.trackTintColor = .systemPurple
+        progressView.trackTintColor = .secondaryBackground
         progressView.progressTintColor = .white
         progressView.layer.cornerRadius = 20
         progressView.clipsToBounds = true
@@ -126,7 +126,7 @@ class SmileToUnlockView: UIView {
     let mageImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .yellow
+        imageView.backgroundColor = .yellowOrb
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Mage")
         imageView.contentMode = .scaleAspectFit
@@ -137,7 +137,7 @@ class SmileToUnlockView: UIView {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
-        button.tintColor = .purple
+        button.tintColor = .label
         button.layer.cornerRadius = button.frame.size.height / 2
         button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
@@ -150,12 +150,12 @@ class SmileToUnlockView: UIView {
         var songText = " Song Library"
         button3.backgroundColor = .white
         button3.setImage(UIImage(systemName: "music.note"), for: .normal)
-        button3.tintColor = .purple
+        button3.tintColor = .label
         button3.setTitle(songText.uppercased(), for: .normal)
         button3.contentVerticalAlignment = .center
-        button3.setTitleColor(.purple, for: .normal)
+        button3.setTitleColor(.label, for: .normal)
         //TODO: Confirm the colors
-        button3.titleLabel!.font = UIFont(name: "Inika-Bold", size: 20)
+        button3.titleLabel!.font = .inika(ofSize: 20)
         button3.layer.cornerRadius = 20
         button3.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
         return button3
