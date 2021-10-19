@@ -32,6 +32,7 @@
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
 		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
+		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -74,6 +75,7 @@
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -268,14 +270,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF36F113271F112200DE0604 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
+				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
+			);
+			path = Defaults;
+			sourceTree = "<group>";
+		};
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
-				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
-				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
-				CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */,
 				CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */,
+				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
+				CF36F113271F112200DE0604 /* Defaults */,
+				CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */,
+				CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -403,6 +414,7 @@
 				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
 				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
 				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
+				CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,

@@ -44,11 +44,7 @@ class SongLibraryView: UIView {
             tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-//            gradientView.topAnchor.constraint(equalTo: self.topAnchor),
-//            gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-//            gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
 
         ])
         
