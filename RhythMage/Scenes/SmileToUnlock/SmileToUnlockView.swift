@@ -207,8 +207,6 @@ class SmileToUnlockView: UIView {
         mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
         mageImage.bottomAnchor.constraint(equalTo: smileToPlayTitle.topAnchor, constant: -20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 130).isActive = true
-        
         
         smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
