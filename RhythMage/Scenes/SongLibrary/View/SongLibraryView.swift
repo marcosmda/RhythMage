@@ -52,6 +52,12 @@ class SongLibraryView: UIView {
     }
     
     override func layoutSubviews() {
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
         gradientView.setupGradient(with: self)
     }
     
