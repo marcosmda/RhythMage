@@ -252,12 +252,10 @@
 			isa = PBXGroup;
 			children = (
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
-				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				8D09841C2717531B007477F3 /* Recording */,
 				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
 				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
-				8DDCA80C2707B127002E9925 /* MainScene */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -275,7 +273,6 @@
 			children = (
 				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
-                DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 			);
 			path = Defaults;
 			sourceTree = "<group>";
@@ -283,6 +280,7 @@
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 				CF36F113271F112200DE0604 /* Defaults */,
@@ -614,7 +612,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = Z9QZ625W6Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
@@ -647,7 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = Z9QZ625W6Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";

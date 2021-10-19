@@ -63,13 +63,11 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     //MARK: - Methods
     ///Function configure adds songs to the mock user: User.
     func configure(){
-//        user.setCompletedSong(songId: "Happier than Ever", songScore: 423422)
         models[0].unlock()
         models[1].unlock()
         models[2].unlock()
         user.completed["11"] = 33333
-//        user.setCompletedSong(songId: "Sweet but Psycho", songScore: 342444)
-//        user.setCompletedSong(songId: "A Concert Six Months From Now", songScore: 34353535)
+
     }
     
 }
@@ -136,13 +134,13 @@ extension SongLibraryViewController: UITableViewDelegate{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: models[indexPath.section], and: user)
+            cell.song.configure(with: models[indexPath.section], and: user)
             return cell
         case false:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryLockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryLockedSongCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: models[indexPath.section], and: user)
+            cell.song.configure(with: models[indexPath.section], and: user)
             return cell
         }
     }
