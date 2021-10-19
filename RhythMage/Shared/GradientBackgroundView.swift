@@ -19,16 +19,17 @@ class GradientBackgroundView: UIView {
     let gradientLayer = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     
-    let gradientOne = UIColor.primary.cgColor
-    let gradientTwo = UIColor.label.cgColor
+    let gradientOne = UIColor.backgroundColor.cgColor
+    let gradientTwo = UIColor.backgroundColor2.cgColor
+    let gradientThree = UIColor.backgroundColor3.cgColor
+    let gradientFour = UIColor.backgroundColor4.cgColor
+    let gradientFive = UIColor.backgroundColor5.cgColor
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        gradientSet.append([gradientOne, gradientTwo])
-        gradientSet.append([gradientTwo, gradientOne])
+        gradientSet.append([gradientOne, gradientTwo, gradientThree, gradientFour, gradientFive])
+        gradientSet.append([gradientFive, gradientFour, gradientThree, gradientTwo, gradientOne])
         self.backgroundColor = .primary
-        
-        
     
     }
     
@@ -44,7 +45,7 @@ class GradientBackgroundView: UIView {
     func setupGradient(with view: UIView) {
 
             gradientLayer.colors = gradientSet[0]
-            gradientLayer.locations = [0.35, 0.85]
+            gradientLayer.locations = [0.0, 1.0]
             gradientLayer.frame = view.bounds
             gradientLayer.startPoint = CGPoint(x:1, y:0)
             gradientLayer.endPoint = CGPoint(x:0, y:1)
