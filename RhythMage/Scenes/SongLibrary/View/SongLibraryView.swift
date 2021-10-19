@@ -11,12 +11,13 @@ class SongLibraryView: UIView {
     
     //MARK: - Properties
     var delegate: SongLibraryViewDelegate?
+    var gradientView = GradientBackgroundView()
     
-    let tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         table.register(SongLibraryLockedSongCell.self, forCellReuseIdentifier: SongLibraryLockedSongCell.reusableIdentifier)
-        table.backgroundColor = .white
+        table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         return table
@@ -34,6 +35,7 @@ class SongLibraryView: UIView {
     }
     
     func setupHiararchy() {
+        self.addSubview(gradientView)
         self.addSubview(tableView)
     }
     
@@ -43,9 +45,18 @@ class SongLibraryView: UIView {
             tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+//            gradientView.topAnchor.constraint(equalTo: self.topAnchor),
+//            gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+//            gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 
         ])
+        
+        
     }
     
+    override func layoutSubviews() {
+        gradientView.setupGradient(with: self)
+    }
     
 }

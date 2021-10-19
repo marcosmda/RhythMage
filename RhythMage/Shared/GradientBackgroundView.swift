@@ -55,7 +55,7 @@ class GradientBackgroundView: UIView {
         DispatchQueue.main.async {
             let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
             gradientChangeAnimation.delegate = self
-            gradientChangeAnimation.duration = 7.0
+            gradientChangeAnimation.duration = 5.0
             gradientChangeAnimation.toValue = self.gradientSet[self.currentGradient]
             gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
             gradientChangeAnimation.isRemovedOnCompletion = false

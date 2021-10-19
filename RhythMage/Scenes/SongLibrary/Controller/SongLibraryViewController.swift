@@ -37,10 +37,27 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "Song Library"
+        
+        guard let navBar = self.navigationController?.navigationBar else {fatalError("Navigation Controller does not exist")}
+        
+        navBar.tintColor = .white
+        
+        navBar.barStyle = .default
+        navBar.isTranslucent = true
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white] // With a white background, make the title more readable.
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        
     }
     
     //MARK: - Methods
@@ -62,7 +79,7 @@ extension SongLibraryViewController: UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = self.view.backgroundColor
+        headerView.backgroundColor = .clear
         return headerView
     }
     

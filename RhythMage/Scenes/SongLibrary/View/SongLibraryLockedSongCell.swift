@@ -27,6 +27,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
+        label.textColor = .white
         return label
     }()
     ///"xxxx points" Label
@@ -34,6 +35,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 2
+        label.textColor = .white
         return label
     }()
     
@@ -42,12 +44,10 @@ class SongLibraryLockedSongCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 1)
+        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.8)
         
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
-        
-        
         
         setupHierarchy()
     }
