@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum SongContainerType {
     case lockedSong
@@ -18,9 +19,13 @@ class SongContainerView:UIView {
     var highestScore = 0.0
     var score: Int = 9999
     
+    var player: AVAudioPlayer!
+    
     var height: CGFloat = 0
     var xPosition: CGFloat = 0
-    var imageSize: CGFloat = 0
+    var imageSize: CGFloat = 36
+    
+    var isPlaying = false
     
     var type: SongContainerType = {
         return .buyableSong
@@ -30,7 +35,7 @@ class SongContainerView:UIView {
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .white
-        
+
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -106,14 +111,15 @@ class SongContainerView:UIView {
         switch type {
         case .lockedSong:
             unlockByLabel.text = "Unlock by scoring \(score) points in the previous level"
-            imageSize = 36
             setupHiararchyLockedSong()
             iconImageView.image = UIImage(systemName: "lock.fill")
             break
         case .unlockedSong:
-            imageSize = 36
             setupHiararchyUnlockedSong()
             iconImageView.image = UIImage(systemName: "play.circle.fill")
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlay(_:)))
+            iconImageView.isUserInteractionEnabled = true
+            iconImageView.addGestureRecognizer(tapGestureRecognizer)
             break
         case .buyableSong:
             iconImageView.image = UIImage(systemName: "play.circle.fill")
@@ -134,7 +140,7 @@ class SongContainerView:UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    //MARK: - LayoutSubviews
     override func layoutSubviews() {
         
         switch self.type {
@@ -160,7 +166,7 @@ class SongContainerView:UIView {
             unlockByLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
         
-        iconImageView.frame = CGRect(x: 20, y: (self.frame.size.height - imageSize) / 2, width: imageSize, height: imageSize)
+        iconImageView.frame = CGRect(x: 20, y: (self.frame.size.height - imageSize - 5) / 2, width: imageSize, height: imageSize)
     }
     
     func layoutSubviewsUnlockedSong(){
@@ -181,6 +187,7 @@ class SongContainerView:UIView {
     
     }
     
+    //MARK: - Hierarchy Functions
     func setupHiararchyLockedSong(){
         addSubview(unlockByLabel)
         addSubview(iconImageView)
@@ -226,4 +233,29 @@ class SongContainerView:UIView {
         }
         
     }
+    
+    @objc func togglePlay(_ sender: UITapGestureRecognizer){
+        isPlaying = !isPlaying
+        if isPlaying{
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            guard let path = Bundle.main.path(forResource: songTitleLabel.text, ofType: "mp3") else {
+                print("No file.")
+                return}
+            let url = URL(fileURLWithPath: path)
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else {return}
+                player.play()
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+        } else {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+           
+        }
+        
+        
+    }
+    
 }

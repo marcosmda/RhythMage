@@ -251,6 +251,7 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				DB10CF7F271F563300143B19 /* SmileToResume */,
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
 				8D09841C2717531B007477F3 /* Recording */,
 				8D05DD7E270DCB820078F2D8 /* Game */,
@@ -288,6 +289,29 @@
 				CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		DB10CF7F271F563300143B19 /* SmileToResume */ = {
+			isa = PBXGroup;
+			children = (
+				DB10CF80271F563D00143B19 /* Controller */,
+				DB10CF81271F564500143B19 /* View */,
+			);
+			path = SmileToResume;
+			sourceTree = "<group>";
+		};
+		DB10CF80271F563D00143B19 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DB10CF81271F564500143B19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		DBB4A1D5271756BF0037BCB1 /* LoadingScreen */ = {
