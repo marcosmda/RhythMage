@@ -8,16 +8,19 @@
 import SpriteKit
 
 class MainOrbNode: SKNode {
-    let size: CGFloat
+    let height: CGFloat
     let color: UIColor
     
     var rectCornerRadius: CGFloat {
-        return self.size/CGFloat(4.9)
+        return self.height/CGFloat(4.9)
+    }
+    var radius: CGFloat {
+        return (height * 1.25)/2
     }
     
     //MARK: - Initialization
-    init(size: CGFloat, color: UIColor) {
-        self.size = size
+    init(height: CGFloat, color: UIColor) {
+        self.height = height
         self.color = color
         super.init()
         setupNode()
@@ -31,11 +34,12 @@ class MainOrbNode: SKNode {
     func setupNode() {
         addShape()
         addBody()
+        self.name = GameSceneNodeNames.mainOrb.rawValue
     }
     
     func addShape() {
-        let rectSize = CGSize(width: size, height: size)
-        let origin = CGPoint(x: -size/2, y: -size/2)
+        let rectSize = CGSize(width: height, height: height)
+        let origin = CGPoint(x: -height/2, y: -height/2)
         let rect = CGRect(origin: origin, size: rectSize)
         let frontNode = SKShapeNode(rect: rect, cornerRadius: rectCornerRadius)
         let middleNode = SKShapeNode(rect: rect, cornerRadius: rectCornerRadius)
@@ -45,7 +49,6 @@ class MainOrbNode: SKNode {
         for node in nodes {
             node.fillColor = color
             node.strokeColor = .clear
-            node.glowWidth = 10
         }
         
         middleNode.alpha = 0.75
@@ -61,7 +64,8 @@ class MainOrbNode: SKNode {
     }
     
     func addBody() {
-        let body = SKPhysicsBody(circleOfRadius: size/2)
+        let size = CGSize(width: radius*2, height: radius*2)
+        let body = SKPhysicsBody(rectangleOf: size, center: self.position)
         body.isDynamic = false
         
         self.physicsBody = body

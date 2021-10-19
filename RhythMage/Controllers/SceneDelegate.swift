@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         // 3. Create the view hierarchy
-        let viewController = appContainer.createSmileToUnlockScene()
+        //let viewController = appContainer.createSmileToUnlockScene()
+        let viewController = appContainer.createGameScene()
         
         let rootViewController = UINavigationController(rootViewController: viewController)
         

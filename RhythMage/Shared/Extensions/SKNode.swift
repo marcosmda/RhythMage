@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SpriteKit
+
+extension SKNode {
+    func showCenter(with size: CGFloat = 3) {
+        let circle = SKShapeNode(circleOfRadius: size)
+        circle.fillColor = .red
+        self.addChild(circle)
+        circle.position = self.position
+    }
+}

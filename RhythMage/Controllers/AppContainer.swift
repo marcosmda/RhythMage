@@ -71,6 +71,19 @@ extension AppContainer:SmileToUnlockFactory{
     }
 }
 
+//MARK: - GameScene
+protocol GameSceneFactory{
+    /// Creates an instance of GameViewController to be used
+    /// - Returns: An instance of GameViewController
+    func createGameScene() -> GameViewController
+}
+
+extension AppContainer:GameSceneFactory{
+    func createGameScene() -> GameViewController {
+        return GameViewController
+    }
+}
+
 
 
 

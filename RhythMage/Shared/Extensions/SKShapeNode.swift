@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import SpriteKit
+
+extension SKShapeNode {
+    
+    public func rotate(angle: Double) {
+        var transform = CGAffineTransform(rotationAngle: CGFloat(angle*2*3.1415/360))
+        self.path = self.path?.mutableCopy(using: &transform)
+    }
+}
