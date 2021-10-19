@@ -1,18 +1,16 @@
 //
-//  SongLibraryUnlockedSongCell.swift
+//  SongContainerView.swift
 //  RhythMage
 //
-//  Created by Juliana Prado on 05/10/21.
+//  Created by Juliana Prado on 14/10/21.
 //
 
 import UIKit
 
-class SongLibraryUnlockedSongCell: UITableViewCell{
+class SongContainerView:UIView {
     
-    //MARK: - Properties
-    static let reusableIdentifier = "SongLibraryUnlockedSongCell"
-    var delegate: SongLibraryViewDelegate?
-
+    var highestScore = 0.0
+    
     ///icon with the play symbol
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -22,31 +20,39 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         return imageView
     }()
     
-    ///highest score as a Double
-    private var highestScore = 0.0
+    ///highest score label
+    private let backgroundView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
+        view.layer.borderWidth = 3
+        view.layer.masksToBounds = true
+        return view
+    }()
     
     ///highest score label
     private let highestScoreLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = .inikaBold(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Inika-Bold", size: 15)
         label.numberOfLines = 1
-        label.textColor = .secondary
         return label
     }()
     ///Song title Label
     private let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = .inikaBold(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Inika-Bold", size: 18)
         label.numberOfLines = 1
-        label.textColor = .secondary
         return label
     }()
     ///Artist Name Label
     private let artistNameLabel: DynamicLabel = {
        let label = DynamicLabel()
-        label.font = .inika(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Inika", size: 15)
         label.numberOfLines = 1
-        label.textColor = .secondary
         return label
     }()
     ///StackView containing the Labels
@@ -54,54 +60,61 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .clear
+        stackView.distribution = .fill
         return stackView
     }()
     
-    //MARK: - Initializers
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
+    init() {
+        super.init(frame: .zero)
+       
+        highestScoreLabel.text = "Highest Score: "+String(highestScore)
+        songTitleLabel.text = "Hello"
+        artistNameLabel.text = "Adele"
         
-        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
+        backgroundView.backgroundColor = .red
+        setupHiararchy()
         
-        contentView.clipsToBounds = false
-        
-        setupHierarchy()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Layout Subviews
+    
     override func layoutSubviews() {
-        super.layoutSubviews()
-        highestScoreLabel.text = "Highest Score: "+String(highestScore)
-
-        let height: CGFloat = contentView.frame.size.height
-        let xPosition: CGFloat = contentView.frame.size.width - 15
+        
+        let height: CGFloat = self.frame.size.height//backgroundView.frame.size.height
+        let xPosition: CGFloat = self.frame.size.width - 24
         let imageSize: CGFloat = 36
         iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
         
+        
         NSLayoutConstraint.activate([
-            labelsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
-            labelsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            labelsStackView.rightAnchor.constraint(equalTo: self.iconImageView.leftAnchor)
-        ])
+            labelsStackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
+            labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 24),
+            labelsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: 10),
+    
+//            iconImageView.widthAnchor.constraint(equalToConstant: 22),
+//            iconImageView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+            
+            backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
+])
     }
     
-    func setupHierarchy(){
+    func setupHiararchy(){
+        
+        self.addSubview(backgroundView)
         labelsStackView.addArrangedSubview(highestScoreLabel)
         labelsStackView.addArrangedSubview(songTitleLabel)
         labelsStackView.addArrangedSubview(artistNameLabel)
-        addSubview(labelsStackView)
-        addSubview(iconImageView)
+        backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(iconImageView)
     }
     
     //MARK: - Configuration
     ///Prepares the cell to be reused
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    func prepareForReuse() {
         highestScoreLabel.text = nil
         songTitleLabel.text = nil
         artistNameLabel.text = nil
@@ -114,7 +127,6 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         if let highest = userModel.completed[model.getId()] {
             highestScore = highest
         }
-        
-    }
     
+    }
 }
