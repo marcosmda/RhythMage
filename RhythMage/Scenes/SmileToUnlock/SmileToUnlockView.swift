@@ -132,7 +132,7 @@ class SmileToUnlockView: UIView {
     let mageImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blueOrb
+        //imageView.backgroundColor = .blueOrb
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Mage")
         imageView.contentMode = .scaleAspectFit
