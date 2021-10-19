@@ -27,11 +27,18 @@ class GradientBackgroundView: UIView {
         gradientSet.append([gradientOne, gradientTwo])
         gradientSet.append([gradientTwo, gradientOne])
         self.backgroundColor = .primary
+        
+        
     
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCircleBackgroundBlur() {
+        drawCircles()
+        drawBlurBackground()
     }
 
     func setupGradient(with view: UIView) {
@@ -43,12 +50,9 @@ class GradientBackgroundView: UIView {
             gradientLayer.endPoint = CGPoint(x:0, y:1)
             gradientLayer.drawsAsynchronously = true
         
-            //self.layer.insertSublayer(gradientLayer, at:0)
+            self.layer.insertSublayer(gradientLayer, at:0)
         
             animationBackground()
-        
-            drawCircles()
-        
     }
     
     @objc func animationBackground() {
@@ -119,10 +123,10 @@ class GradientBackgroundView: UIView {
 
             let pathAnim : CABasicAnimation = CABasicAnimation(keyPath: "path");
             pathAnim.toValue = newPath.cgPath;
-
-            let anims: CAAnimationGroup = CAAnimationGroup();
-            anims.animations = [pathAnim];
-            anims.isRemovedOnCompletion = false;
+           
+            let anims: CAAnimationGroup = CAAnimationGroup()
+            anims.animations = [pathAnim]
+            anims.isRemovedOnCompletion = false
             anims.duration = CFTimeInterval(Float.random(in: 9.0...14.0))
             anims.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
             anims.autoreverses = true
@@ -130,9 +134,13 @@ class GradientBackgroundView: UIView {
             anims.fillMode = CAMediaTimingFillMode.forwards;
 
             shapeLayer.add(anims, forKey: nil);
+        
             
         }
-     
+        
+    }
+    
+    func drawBlurBackground() {
         let blurEffect = UIBlurEffect(style: .systemChromeMaterialDark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
@@ -140,31 +148,6 @@ class GradientBackgroundView: UIView {
         
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(blurEffectView)
-        
-    }
-    
-    func scaleShape(shape : CAShapeLayer){
-
-        let newRadius : CGFloat = 120;
-
-        let newPath: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: shape.frame.midX, y: shape.frame.midY), radius: newRadius, startAngle: CGFloat(0),endAngle:CGFloat(Double.pi * 2), clockwise: true);
-
-
-        let newBounds : CGRect = CGRect(x: 0, y: 0, width: 2 * newRadius, height: 2 * newRadius)
-        let pathAnim : CABasicAnimation = CABasicAnimation(keyPath: "path");
-
-        pathAnim.toValue = newPath.cgPath;
-
-        let boundsAnim : CABasicAnimation = CABasicAnimation(keyPath: "bounds");
-        boundsAnim.toValue = newBounds
-
-        let anims: CAAnimationGroup = CAAnimationGroup();
-        anims.animations = [pathAnim, boundsAnim];
-        anims.isRemovedOnCompletion = false;
-        anims.duration = 2.0;
-        anims.fillMode = CAMediaTimingFillMode.forwards;
-
-        shape.add(anims, forKey: nil);
     }
     
 }
@@ -175,7 +158,6 @@ extension GradientBackgroundView: CAAnimationDelegate {
             if flag {
                 gradientLayer.colors = gradientSet[currentGradient]
                 animationBackground()
-                drawCircles()
             }
         }
     

@@ -22,7 +22,6 @@ class SmileToUnlockView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //assignbackground()
         buttonSettings.tintColor = .label
         self.addSubview(gradientView)
         self.addSubview(nameGameTitle)
@@ -40,7 +39,6 @@ class SmileToUnlockView: UIView {
     }
     
     //Setting the labels of the view
-    
     let nameGameTitle: DynamicLabel = {
         let label1 = DynamicLabel()
         label1.translatesAutoresizingMaskIntoConstraints = false
@@ -231,7 +229,7 @@ class SmileToUnlockView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupGradient(with: self)
+        gradientView.setupCircleBackgroundBlur()
         
     }
     

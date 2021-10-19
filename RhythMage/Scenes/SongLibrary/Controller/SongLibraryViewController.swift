@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SongLibraryViewController: BaseViewController<SongLibraryView>{    
+class SongLibraryViewController: BaseViewController<SongLibraryView>{
     
     //MARK: - Properties
     var models = [

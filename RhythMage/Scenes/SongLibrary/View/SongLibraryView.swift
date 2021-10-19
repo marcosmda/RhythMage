@@ -25,7 +25,7 @@ class SongLibraryView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = .primary
         setupHiararchy()
         setupLayout()
     }
@@ -40,6 +40,7 @@ class SongLibraryView: UIView {
     }
     
     func setupLayout(){
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
