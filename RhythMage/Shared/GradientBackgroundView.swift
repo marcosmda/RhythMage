@@ -19,7 +19,7 @@ class GradientBackgroundView: UIView {
     let gradientLayer = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     
-    let gradientOne = UIColor.backgroundColor.cgColor
+    let gradientOne = UIColor.label.cgColor
     let gradientTwo = UIColor.backgroundColor2.cgColor
     let gradientThree = UIColor.backgroundColor3.cgColor
     let gradientFour = UIColor.backgroundColor4.cgColor
@@ -45,12 +45,11 @@ class GradientBackgroundView: UIView {
     func setupGradient(with view: UIView) {
 
             gradientLayer.colors = gradientSet[0]
-            gradientLayer.locations = [0.0, 1.0]
+            gradientLayer.locations = [0.0, 0.25, 0.5, 0.75, 1.0]
             gradientLayer.frame = view.bounds
+            gradientLayer.drawsAsynchronously = true
             gradientLayer.startPoint = CGPoint(x:1, y:0)
             gradientLayer.endPoint = CGPoint(x:0, y:1)
-            gradientLayer.drawsAsynchronously = true
-        
             self.layer.insertSublayer(gradientLayer, at:0)
         
             animationBackground()
@@ -72,6 +71,9 @@ class GradientBackgroundView: UIView {
             gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
             gradientChangeAnimation.isRemovedOnCompletion = false
             self.gradientLayer.add(gradientChangeAnimation, forKey: "colorChange")
+            
+            
+            
         }
         
     }
