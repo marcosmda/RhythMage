@@ -246,8 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
-				8DDCA80C2707B127002E9925 /* MainScene */,
-				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				8D09841C2717531B007477F3 /* Recording */,
 				8D05DD7E270DCB820078F2D8 /* Game */,
@@ -268,9 +266,9 @@
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
+                DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -594,7 +592,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -626,7 +624,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
