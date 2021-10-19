@@ -22,8 +22,8 @@ class SmileToUnlockView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        assignbackground()
-        buttonSettings.tintColor = .purple
+        //assignbackground()
+        buttonSettings.tintColor = .label
         self.addSubview(gradientView)
         self.addSubview(nameGameTitle)
         self.addSubview(nameSongTitle)
@@ -45,11 +45,11 @@ class SmileToUnlockView: UIView {
         let label1 = DynamicLabel()
         label1.translatesAutoresizingMaskIntoConstraints = false
         label1.textColor = .white
-        label1.text = "RYTH\nMAGE"
-        label1.shadowColor = .label
-        label1.shadowOffset = CGSize(width: 0, height: 7)
+        label1.text = "RHYTH\nMAGE"
+        label1.shadowColor = .primary
+        label1.layer.shadowOffset = CGSize(width: 0, height: 5)
         label1.layer.shadowOpacity = 0.5
-        label1.layer.shadowRadius = 15
+        label1.layer.shadowRadius = 20
         label1.numberOfLines = 2
         label1.textAlignment = .center
         if let configuration = UIFont(name: "Inika-Bold", size: 75)?.fontDescriptor
@@ -68,7 +68,7 @@ class SmileToUnlockView: UIView {
         let label2 = UILabel(frame: .zero)
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.textColor = .white
-        label2.text = (songPlaying ?? "Song Playing:")
+        label2.text = (songPlaying ?? "Song Playing: Happier Than Ever - Billie Eilish")
         label2.numberOfLines = 0
         label2.textAlignment = .center
         label2.font = .inikaBold(ofSize: 18)
@@ -128,11 +128,10 @@ class SmileToUnlockView: UIView {
         return progressView
     }()
     
-    //Setting the image of the View
+    //MARK: - Mage Image
     let mageImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blueOrb
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Mage")
         imageView.contentMode = .scaleAspectFit
@@ -184,26 +183,17 @@ class SmileToUnlockView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
-        nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
-        bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
-        mageImage.translatesAutoresizingMaskIntoConstraints = false
-        buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
-        
+        handleAutoResizingMasks()
         
         nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
-        nameGameTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 60 ).isActive = true
-        nameGameTitle.bottomAnchor.constraint(equalTo: nameSongTitle.topAnchor, constant: 0).isActive = true
+        nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
         nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameGameTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
         
-        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
+        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor, constant: 0).isActive = true
         nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
         nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameSongTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
         
         bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
@@ -213,11 +203,11 @@ class SmileToUnlockView: UIView {
         bestScoreTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
         
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
         mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
         mageImage.bottomAnchor.constraint(equalTo: smileToPlayTitle.topAnchor, constant: -20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
+        mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 130).isActive = true
         
         
         smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
@@ -262,7 +252,17 @@ class SmileToUnlockView: UIView {
         delegate?.onSongLibraryButtonPush()
     }
     
-    
+    func handleAutoResizingMasks() {
+        
+        nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
+        nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
+        bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
+        mageImage.translatesAutoresizingMaskIntoConstraints = false
+        buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+    }
     
     
     
