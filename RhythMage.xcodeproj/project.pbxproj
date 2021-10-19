@@ -32,6 +32,7 @@
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
 		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
 		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
+		CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C024A271F3E070046D529 /* CircularGradientView.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -78,6 +79,7 @@
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
+		CF3C024A271F3E070046D529 /* CircularGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGradientView.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				CF36F113271F112200DE0604 /* Defaults */,
 				CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */,
 				CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */,
+				CF3C024A271F3E070046D529 /* CircularGradientView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
+				CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */,
 				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
