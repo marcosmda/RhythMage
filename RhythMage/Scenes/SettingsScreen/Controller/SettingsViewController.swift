@@ -19,17 +19,17 @@ class SettingsViewController: BaseViewController<SettingsView>{
     let tableView = UITableView()
     var safeArea: UILayoutGuide!
     var characters = ["TERMS OF USE", "CREDITS"]
-    var user: User
+    //var user: User
     
     typealias Factory = SmileToUnlockFactory
     let factory: Factory
     //var sender: UISwitch
     
     //MARK: - Initializers
-    init(user: User, factory: Factory){
-        self.user = user
+    init( factory: Factory){//user: User,
+        //self.user = user
         self.factory = factory
-        let view = SettingsView(frame: .zero, userSettings: user.userSettings)
+        let view = SettingsView(frame: .zero)//, userSettings: user.userSettings)
         super.init(mainView: view)
         mainView.delegate = self
     }

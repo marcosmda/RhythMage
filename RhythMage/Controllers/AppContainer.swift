@@ -80,7 +80,7 @@ protocol SettingsFactory {
 }
 extension AppContainer:SettingsFactory{
     func createSettingsScene() -> SettingsViewController {
-        return SettingsViewController(user: User, factory: self)
+        return SettingsViewController( factory: self)//user: User,
     }
 
 }

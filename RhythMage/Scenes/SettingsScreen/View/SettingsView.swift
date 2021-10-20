@@ -11,7 +11,8 @@ import UIKit
 class SettingsView: UIView{
     
     var delegate: SettingsDelegate?
-    var userSettings: UserSettings
+    var tableView: SettingsTableViewCell
+    //var userSettings: UserSettings
     
     let rectangle: UIView = {
         let view = UIView(frame: .zero)
@@ -103,8 +104,8 @@ class SettingsView: UIView{
         return table
     }()
     
-    init(frame: CGRect, userSettings: UserSettings) {
-        self.userSettings = userSettings
+    override init(frame: CGRect){//}, userSettings: UserSettings) { nao tem override
+        //self.userSettings = userSettings
         super.init(frame: frame)
         self.addSubview(rectangle)
         self.addSubview(hapticSwitch)
@@ -112,6 +113,7 @@ class SettingsView: UIView{
         self.addSubview(settingsDescription)
         self.addSubview(tableView)
         setupRectangleView()
+        //tableView
         
     }
     
@@ -175,12 +177,16 @@ class SettingsView: UIView{
     @objc func switchValueDidChange(_ sender: UISwitch)
     {
         delegate?.switchValueDidChange()
-        if (sender.isOn == true){
-               userSettings.isUserHapitcOn = true
-          }
-           else{
-               userSettings.isUserHapitcOn = true
-           }
+        if (sender.isOn == true)
+        {
+            print("oi")
+            //userSettings.isUserHapitcOn = true
+        }
+        else
+        {
+            print("tchau")
+            //userSettings.isUserHapitcOn = true
+        }
            
 
     }

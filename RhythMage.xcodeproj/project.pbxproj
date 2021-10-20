@@ -49,7 +49,6 @@
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 		F1FE4CF4271F08AC00D276CC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF3271F08AC00D276CC /* SettingsView.swift */; };
 		F1FE4CF6271F08B700D276CC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */; };
-		F1FE4CF8271F414400D276CC /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF7271F414400D276CC /* SettingsTableViewController.swift */; };
 		F1FE4CFA271F420100D276CC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF9271F420100D276CC /* SettingsTableViewCell.swift */; };
 		F1FE4CFC271F51AA00D276CC /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CFB271F51AA00D276CC /* UserSettings.swift */; };
 /* End PBXBuildFile section */
@@ -97,7 +96,6 @@
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 		F1FE4CF3271F08AC00D276CC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F1FE4CF7271F414400D276CC /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F1FE4CF9271F420100D276CC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F1FE4CFB271F51AA00D276CC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */,
-				F1FE4CF7271F414400D276CC /* SettingsTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -475,7 +472,6 @@
 				DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
-				F1FE4CF8271F414400D276CC /* SettingsTableViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
