@@ -11,6 +11,8 @@ class SummaryView: UIView {
 
     let gradientView = GradientBackgroundView()
     
+    let interactionsButtonView = InteractionButtonsView()
+    
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
@@ -26,7 +28,8 @@ class SummaryView: UIView {
     lazy var shareButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
-        button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        button.setImage(UIImage(systemName: "square.and.arrow.up",
+                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
         //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
@@ -37,8 +40,8 @@ class SummaryView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
         self.addSubview(gradientView)
+        self.addSubview(interactionsButtonView)
         setupLayout()
         
     }
@@ -49,6 +52,8 @@ class SummaryView: UIView {
     }
     
     func setupLayout() {
+        
+        //MARK: - Gradient View Setup
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         
         gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -56,7 +61,15 @@ class SummaryView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupGradient(with: self)
+        gradientView.setupCircleBackgroundBlur()
+        
+        //MARK: - Bottom Screen
+        interactionsButtonView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
+        interactionsButtonView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor).isActive = true
+        interactionsButtonView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
+        interactionsButtonView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
+        
+        
     }
     
 
