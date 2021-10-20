@@ -10,7 +10,8 @@ import UIKit
 class SongLibraryView: UIView {
     
     //MARK: - Properties
-    var delegate: SongLibraryViewDelegate?
+    //var delegate: SongLibraryViewDelegate?
+    var delegate: SongLibraryDelegate?
     var gradientView = GradientBackgroundView()
     
     lazy var tableView: UITableView = {
@@ -60,6 +61,22 @@ class SongLibraryView: UIView {
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         gradientView.setupGradient(with: self)
+    }
+    
+    lazy var buttonBack: UIBarButtonItem = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.backgroundColor = .white
+        button.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        button.tintColor = .label
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        button.clipsToBounds = true
+        let barButtonItem = UIBarButtonItem(customView: button)
+        return barButtonItem
+    }()
+    
+    @objc func backButtonAction(_sender: UIBarButtonItem) {
+        delegate?.backButtonAction()
     }
     
 }
