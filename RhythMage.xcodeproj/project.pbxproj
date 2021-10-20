@@ -37,6 +37,7 @@
 		CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E8D2720866700B7F2DE /* SummaryViewController.swift */; };
 		CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E8F27208C5F00B7F2DE /* SummaryHeaderView.swift */; };
 		CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E912720910200B7F2DE /* InteractionButtonsView.swift */; };
+		CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E9627209D8D00B7F2DE /* PointsView.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -88,6 +89,7 @@
 		CF746E8D2720866700B7F2DE /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		CF746E8F27208C5F00B7F2DE /* SummaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeaderView.swift; sourceTree = "<group>"; };
 		CF746E912720910200B7F2DE /* InteractionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionButtonsView.swift; sourceTree = "<group>"; };
+		CF746E9627209D8D00B7F2DE /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		CF746E932720911100B7F2DE /* Auxiliary Views */ = {
 			isa = PBXGroup;
 			children = (
+				CF746E9627209D8D00B7F2DE /* PointsView.swift */,
 				CF746E912720910200B7F2DE /* InteractionButtonsView.swift */,
 				CF746E8F27208C5F00B7F2DE /* SummaryHeaderView.swift */,
 			);
@@ -497,6 +500,7 @@
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
+				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,
 				DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
