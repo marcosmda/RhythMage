@@ -11,7 +11,7 @@ protocol SongLibraryDelegate {
     func backButtonAction()
 }
 
-class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate{
+class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate, UIGestureRecognizerDelegate{
     
     
     //MARK: - Properties
@@ -44,6 +44,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem =  self.mainView.buttonBack
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
