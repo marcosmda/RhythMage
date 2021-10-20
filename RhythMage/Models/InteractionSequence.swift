@@ -54,25 +54,10 @@ class RealmInteractionSequence: Object {
         self.type = 0
     }
 }
-
+//MARK: - Mocked Data
 extension InteractionSequence {
     static func mockedInteraction() -> InteractionSequence {
         let data = [
-            TileInteraction(minimumScore: 10,
-              xPosition: 1,
-              startTime: 1.1811433540424332,
-              endTime: 1.297810022952035
-            ),
-            TileInteraction(minimumScore: 10,
-              xPosition: 2,
-              startTime: 1.7311433650320396,
-              endTime: 1.8144767000339925
-            ),
-            TileInteraction(minimumScore: 10,
-              xPosition: 3,
-              startTime: 2.11447670601774,
-              endTime: 2.1811433739494532
-            ),
             TileInteraction(minimumScore: 10,
               xPosition: 1,
               startTime: 2.564476715051569,

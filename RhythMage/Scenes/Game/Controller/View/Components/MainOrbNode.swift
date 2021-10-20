@@ -8,14 +8,15 @@
 import SpriteKit
 
 class MainOrbNode: SKNode {
+    static let heightToRadiusCte: CGFloat = 1.25
     let height: CGFloat
     let color: UIColor
     
     var rectCornerRadius: CGFloat {
-        return self.height/CGFloat(4.9)
+        return self.height/CGFloat(4)
     }
     var radius: CGFloat {
-        return (height * 1.25)/2
+        return (height * MainOrbNode.heightToRadiusCte)/2
     }
     
     //MARK: - Initialization
@@ -67,6 +68,11 @@ class MainOrbNode: SKNode {
         let size = CGSize(width: radius*2, height: radius*2)
         let body = SKPhysicsBody(rectangleOf: size, center: self.position)
         body.isDynamic = false
+        body.usesPreciseCollisionDetection = true
+        body.categoryBitMask = GameSceneCattegoryTypes.mainOrb.rawValue
+        body.contactTestBitMask = GameSceneCattegoryTypes.tileOrb.rawValue
+        body.collisionBitMask = 0
+        
         
         self.physicsBody = body
     }

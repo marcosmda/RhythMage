@@ -49,6 +49,10 @@ class HitLineNode: SKNode {
         let size = CGSize(width: width, height: height)
         let body = SKPhysicsBody(rectangleOf: size, center: self.position)
         body.isDynamic = false
+        body.usesPreciseCollisionDetection = true
+        body.categoryBitMask = GameSceneCattegoryTypes.hitLine.rawValue
+        body.contactTestBitMask = GameSceneCattegoryTypes.tileOrb.rawValue
+        body.collisionBitMask = 0
         
         self.physicsBody = body
     }

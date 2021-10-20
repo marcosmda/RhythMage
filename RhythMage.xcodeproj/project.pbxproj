@@ -19,6 +19,7 @@
 		8D270A2F271F237100958160 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A2E271F237100958160 /* SKNode.swift */; };
 		8D270A32271F2BFF00958160 /* HitLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A31271F2BFF00958160 /* HitLineNode.swift */; };
 		8D270A34271F451000958160 /* defaultLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D270A33271F450F00958160 /* defaultLevel.json */; };
+		8D68601B271F63D700C8909C /* TileOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68601A271F63D700C8909C /* TileOrbNode.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -67,6 +68,7 @@
 		8D270A2E271F237100958160 /* SKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
 		8D270A31271F2BFF00958160 /* HitLineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitLineNode.swift; sourceTree = "<group>"; };
 		8D270A33271F450F00958160 /* defaultLevel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultLevel.json; sourceTree = "<group>"; };
+		8D68601A271F63D700C8909C /* TileOrbNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileOrbNode.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -120,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				8D05DD80270DCBAA0078F2D8 /* Controller */,
-				8D05DD7F270DCBA40078F2D8 /* View */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -138,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09841A27175233007477F3 /* GameViewController.swift */,
+				8D05DD7F270DCBA40078F2D8 /* View */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +192,7 @@
 			children = (
 				8D270A29271F1AE800958160 /* MainOrbNode.swift */,
 				8D270A31271F2BFF00958160 /* HitLineNode.swift */,
+				8D68601A271F63D700C8909C /* TileOrbNode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				8D270A2F271F237100958160 /* SKNode.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
+				8D68601B271F63D700C8909C /* TileOrbNode.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,

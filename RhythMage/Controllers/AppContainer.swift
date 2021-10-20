@@ -80,7 +80,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel())
     }
 }
 

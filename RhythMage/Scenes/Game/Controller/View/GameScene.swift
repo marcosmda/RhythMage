@@ -13,13 +13,27 @@ enum GameSceneNodeNames: String {
     case pauseButton
 }
 
+enum GameSceneCattegoryTypes: UInt32 {
+    case mainOrb = 0x1
+    case hitLine = 0x2
+    case tileOrb = 0x3
+}
+
+
 class GameScene: SKScene {
     //MARK: - Properties
-    let mainOrb = MainOrbNode(height: 88, color: .pinkOrb)
+    let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
     let hitLine = HitLineNode(height: 3)
+    var tileOrbs = [TileOrbNode]()
+    static let mainOrbHeight: CGFloat = 88
+    static let orbYPosition: CGFloat = 80
     let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
     
     private var currentNode: SKNode?
+    static var hitPoint: CGFloat {
+        return orbYPosition + MainOrbNode.heightToRadiusCte*mainOrbHeight/2 + 3
+    }
+    
     
     //MARK: - Initialization
     override init(size: CGSize) {
@@ -31,22 +45,47 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
-    func setupScene() {
+    //MARK: - Public Methods
+    func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
+        let duration = tileInteraction.endTime - tileInteraction.startTime
+        let height = duration * scrollVelocity
+        let tile = TileOrbNode(height: height)
+        tile.position.y = (UIScreen.main.bounds.height - GameScene.hitPoint) + tileInteraction.startTime*scrollVelocity 
+        
+        let width = UIScreen.main.bounds.width
+        switch tileInteraction.xPosition {
+        case ScreenScrollArea.left.rawValue:
+            tile.position.x = width/8
+        case ScreenScrollArea.middleLeft.rawValue:
+            tile.position.x = 3*width/8
+        case ScreenScrollArea.middleRight.rawValue:
+            tile.position.x = 5*width/8
+        case ScreenScrollArea.right.rawValue:
+            tile.position.x = 7*width/8
+        default:
+            tile.position.x = width/2
+        }
+
+        tile.physicsBody?.velocity = CGVector(dx: 0, dy: -scrollVelocity)
+        self.addChild(tile)
+    }
+    
+    //MARK: - Private Methods
+    private func setupScene() {
         addChildren()
         setupPositions()
         self.backgroundColor = .label
     }
     
-    func addChildren() {
+    private func addChildren() {
         self.addChild(mainOrb)
         self.addChild(hitLine)
     }
     
-    func setupPositions() {
-        let orbYPosition:CGFloat = 80
-        mainOrb.position = CGPoint(x: screenCenter.x, y: orbYPosition)
-        hitLine.position = CGPoint(x: screenCenter.x, y: orbYPosition + mainOrb.radius + 3)
+    private func setupPositions() {
+        mainOrb.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition)
+        mainOrb.zPosition = 999999
+        hitLine.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition + mainOrb.radius + 3)
     }
     
     //MARK: - Touch Methods
@@ -77,3 +116,5 @@ class GameScene: SKScene {
         self.currentNode = nil
     }
 }
+
+
