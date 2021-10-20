@@ -30,6 +30,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 15)
         label.numberOfLines = 1
+        label.textColor = .secondary
         return label
     }()
     ///Song title Label
@@ -37,6 +38,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
+        label.textColor = .secondary
         return label
     }()
     ///Artist Name Label
@@ -44,6 +46,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let label = DynamicLabel()
         label.font = .inika(ofSize: 15)
         label.numberOfLines = 1
+        label.textColor = .secondary
         return label
     }()
     ///StackView containing the Labels
@@ -51,6 +54,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -61,7 +65,6 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
         
         contentView.clipsToBounds = false
-        accessoryType = .disclosureIndicator
         
         setupHierarchy()
     }

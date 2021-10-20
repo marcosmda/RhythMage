@@ -16,12 +16,14 @@ class SmileToUnlockView: UIView {
     var bestScore: String?
     public var buttonSelected: Bool = false
     
+    var gradientView = GradientBackgroundView()
+    
     var delegate: SmileToUnlockDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        assignbackground()
-        buttonSettings.tintColor = .purple
+        buttonSettings.tintColor = .label
+        self.addSubview(gradientView)
         self.addSubview(nameGameTitle)
         self.addSubview(nameSongTitle)
         self.addSubview(bestScoreTitle)
@@ -37,22 +39,24 @@ class SmileToUnlockView: UIView {
     }
     
     //Setting the labels of the view
-    
     let nameGameTitle: DynamicLabel = {
         let label1 = DynamicLabel()
         label1.translatesAutoresizingMaskIntoConstraints = false
         label1.textColor = .white
-        label1.text = "RYTH\nMAGE"
-        label1.shadowColor = .purple
+        label1.text = "RHYTH\nMAGE"
+        label1.shadowColor = .primary
+        label1.layer.shadowOffset = CGSize(width: 0, height: 5)
+        label1.layer.shadowOpacity = 0.5
+        label1.layer.shadowRadius = 20
         label1.numberOfLines = 2
         label1.textAlignment = .center
+        label1.setContentHuggingPriority(.defaultHigh, for: .vertical)
         if let configuration = UIFont(name: "Inika-Bold", size: 75)?.fontDescriptor
         {
             label1.font = UIFontMetrics.default.scaledFont(for: UIFont(descriptor: configuration, size: 75))
         }
         label1.contentMode = .scaleAspectFit
         label1.adjustsFontSizeToFitWidth = true
-        label1.fitTextToBounds()
         return label1
     }()
     
@@ -60,21 +64,21 @@ class SmileToUnlockView: UIView {
     
     lazy var nameSongTitle: UILabel = {
         let label2 = UILabel(frame: .zero)
+        label2.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.textColor = .white
-        label2.text = (songPlaying ?? "Song Playing:")
-        label2.numberOfLines = 0
+        label2.text = (songPlaying ?? "Song Playing: Happier Than Ever - Billie Eilish")
+        label2.numberOfLines = 2
         label2.textAlignment = .center
         label2.font = .inikaBold(ofSize: 18)
-        label2.contentMode = .scaleAspectFill
-        label2.sizeToFit()
-        label2.fitTextToBounds()
+        label2.contentMode = .scaleAspectFit
         return label2
         
     }()
     
     lazy var bestScoreTitle: UILabel = {
         let label3 = UILabel(frame: .zero)
+        label3.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label3.translatesAutoresizingMaskIntoConstraints = false
         label3.textColor = .white
         label3.text = "Best Score: " + (bestScore ?? "0")
@@ -122,11 +126,10 @@ class SmileToUnlockView: UIView {
         return progressView
     }()
     
-    //Setting the image of the View
+    //MARK: - Mage Image
     let mageImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .yellowOrb
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "Mage")
         imageView.contentMode = .scaleAspectFit
@@ -134,11 +137,11 @@ class SmileToUnlockView: UIView {
     }()
     
     lazy var buttonSettings: UIBarButtonItem = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
         button.tintColor = .label
-        button.layer.cornerRadius = button.frame.size.height / 2
+        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
@@ -155,7 +158,7 @@ class SmileToUnlockView: UIView {
         button3.contentVerticalAlignment = .center
         button3.setTitleColor(.label, for: .normal)
         //TODO: Confirm the colors
-        button3.titleLabel!.font = .inika(ofSize: 20)
+        button3.titleLabel!.font = .inikaBold(ofSize: 20)
         button3.layer.cornerRadius = 20
         button3.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
         return button3
@@ -178,56 +181,49 @@ class SmileToUnlockView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
-        nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
-        bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
-        mageImage.translatesAutoresizingMaskIntoConstraints = false
-        buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
+        handleAutoResizingMasks()
         
-        
-        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
-        nameGameTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 60 ).isActive = true
-        nameGameTitle.bottomAnchor.constraint(equalTo: nameSongTitle.topAnchor, constant: 0).isActive = true
+        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
+        nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
         nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameGameTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
         
         
-        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
-        nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor, constant: 0).isActive = true
+        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
+        nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor).isActive = true
         nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        nameSongTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
-        
         
         bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
         bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
         bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
         bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        bestScoreTitle.heightAnchor.constraint(lessThanOrEqualToConstant: 40).isActive = true
         
-        
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
         mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
-        mageImage.bottomAnchor.constraint(equalTo: smileToPlayTitle.topAnchor, constant: -20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        mageImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 200).isActive = true
-        
         
         smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
         progressView.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
-        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 20).isActive = true
+        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 25).isActive = true
         progressView.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
         progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         progressView.heightAnchor.constraint(equalTo: buttonSongLibrary.heightAnchor).isActive = true
         
         
         buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
-        buttonSongLibrary.topAnchor.constraint(equalTo: smileToPlayTitle.bottomAnchor, constant: 20).isActive = true
+        buttonSongLibrary.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
         buttonSongLibrary.heightAnchor.constraint(equalToConstant: 51).isActive = true
         buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
         buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        gradientView.setupGradient(with: self)
         
     }
     
@@ -248,7 +244,17 @@ class SmileToUnlockView: UIView {
         delegate?.onSongLibraryButtonPush()
     }
     
-    
+    func handleAutoResizingMasks() {
+        
+        nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
+        nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
+        bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
+        mageImage.translatesAutoresizingMaskIntoConstraints = false
+        buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+    }
     
     
     

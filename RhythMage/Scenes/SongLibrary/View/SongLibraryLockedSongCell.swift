@@ -13,6 +13,8 @@ class SongLibraryLockedSongCell: UITableViewCell {
     static let reusableIdentifier = "SongLibraryLockedSongCell"
     var delegate: SongLibraryViewDelegate?
     
+    var score: Int = 9999
+    
     ///icon with the play symbol
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -25,8 +27,11 @@ class SongLibraryLockedSongCell: UITableViewCell {
     ///"unlock by scoring" label
     private let unlockByLabel: DynamicLabel = {
        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .inikaBold(ofSize: 18)
-        label.numberOfLines = 1
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.textColor = .white
         return label
     }()
     ///"xxxx points" Label
@@ -34,6 +39,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 2
+        label.textColor = .white
         return label
     }()
     
@@ -42,12 +48,10 @@ class SongLibraryLockedSongCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 1)
+        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.8)
         
         contentView.clipsToBounds = true
         accessoryType = .disclosureIndicator
-        
-        
         
         setupHierarchy()
     }
@@ -60,16 +64,19 @@ class SongLibraryLockedSongCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        unlockByLabel.text = "Highest Score: "
+        unlockByLabel.text = "Unlock by scoring \(score) points in the previous level"
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
         
         let height: CGFloat = contentView.frame.size.height * 1.5
         let xPosition: CGFloat = contentView.frame.size.width
         let imageSize: CGFloat = 36
-        iconImageView.frame = CGRect(x: (xPosition - imageSize) / 2, y: (height - imageSize) / 2, width: imageSize, height: imageSize)
+        iconImageView.frame = CGRect(x: 20, y: contentView.frame.size.height/2 - 10, width: imageSize, height: imageSize)
         
         NSLayoutConstraint.activate([
+            unlockByLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 20),
+            unlockByLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -20),
+            unlockByLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
             
         ])
     }
@@ -90,7 +97,6 @@ class SongLibraryLockedSongCell: UITableViewCell {
     
     ///Configures the cell for usage
     public func configure(with model: Level, and userModel: User){
-        
         
     }
     

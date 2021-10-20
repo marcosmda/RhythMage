@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SongLibraryViewController: BaseViewController<SongLibraryView>{    
+protocol SongLibraryDelegate {
+    func backButtonAction()
+}
+
+class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate{
+    
     
     //MARK: - Properties
     var models = [
@@ -26,6 +31,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         super.init(mainView: view)
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        mainView.delegate = self
         
         configure()
     }
@@ -37,10 +43,27 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem =  self.mainView.buttonBack
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "Song Library"
+        
+        guard let navBar = self.navigationController?.navigationBar else {fatalError("Navigation Controller does not exist")}
+        
+        navBar.tintColor = .white
+        
+        navBar.barStyle = .default
+        navBar.isTranslucent = true
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white] // With a white background, make the title more readable.
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        
     }
     
     //MARK: - Methods
@@ -55,19 +78,51 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
 //        user.setCompletedSong(songId: "A Concert Six Months From Now", songScore: 34353535)
     }
     
+    func backButtonAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 //MARK: - Extension UITableViewDelegate
 extension SongLibraryViewController: UITableViewDelegate{
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = self.view.backgroundColor
-        return headerView
-    }
+        
+        if section == 0 {
+            
+            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "Your Songs")
+            
+            return headerView
+            
+        } else if section == 3 {
+            
+            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "Song Shop")
+            return headerView
+            
+        }
+        
+        else {
+            let headerView = UIView()
+            headerView.backgroundColor = .clear
+            return headerView
+        }
+     
+        
+        }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 2
+        
+        if section == 0 || section == 3 {
+            return 65
+        }
+        
+        else {
+            return 2
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,17 +162,13 @@ extension SongLibraryViewController: UITableViewDelegate{
         return models.count
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Your Songs"
-    }
-
 }
 
 //MARK: - Extension UITableViewDataSource
 extension SongLibraryViewController: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         cell.layer.borderWidth = 2
         cell.accessoryType = UITableViewCell.AccessoryType.none
@@ -127,7 +178,7 @@ extension SongLibraryViewController: UITableViewDataSource{
         cell.selectionStyle = .none
 
         let selectedView: UIView = UIView(frame: cell.frame)
-        selectedView.layer.cornerRadius = 10
+        selectedView.layer.cornerRadius = 20
         selectedView.layer.masksToBounds = true
         selectedView.layer.borderWidth = 0
         selectedView.layer.borderColor = UIColor.white.cgColor
