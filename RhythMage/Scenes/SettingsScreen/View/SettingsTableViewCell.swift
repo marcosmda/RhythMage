@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SettingsTableViewCell: UIView {
+
+    static let reusableIdentifier = "SettingsTableViewCell"
     
     let rectangle: UIView = {
         let view = UIView(frame: .zero)
@@ -61,6 +63,8 @@ class SettingsTableViewCell: UIView {
             //rightChevronImage.centerXAnchor.constraint(equalTo: rectangle.rightAnchor, constant: -50),
             rightChevronImage.trailingAnchor.constraint(equalTo: buttonText.leadingAnchor, constant: 50)])
     }
+    
+    
     
     
 }

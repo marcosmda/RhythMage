@@ -11,7 +11,6 @@ import UIKit
 class SettingsView: UIView{
     
     var delegate: SettingsDelegate?
-    var tableView: SettingsTableViewCell
     //var userSettings: UserSettings
     
     let rectangle: UIView = {
@@ -94,14 +93,19 @@ class SettingsView: UIView{
         return barButtonItem
     }()
     
-    let tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
-        table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
-        table.register(SongLibraryLockedSongCell.self, forCellReuseIdentifier: SongLibraryLockedSongCell.reusableIdentifier)
-        table.backgroundColor = .white
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.separatorStyle = .none
-        return table
+    let termsOfUseButton: UIButton = {
+        let button3 = UIButton(frame: .zero)
+        var buttonText = "TERMS OF USE"
+        button3.backgroundColor = .terciary.withAlphaComponent(0.5)
+        button3.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button3.tintColor = .secondary
+        button3.setTitle(buttonText.uppercased(), for: .normal)
+        button3.contentVerticalAlignment = .center
+        button3.setTitleColor(.secondary, for: .normal)
+        button3.titleLabel!.font = .inika(ofSize: 18)
+        button3.layer.cornerRadius = 20
+        //button3.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
+        return button3
     }()
     
     override init(frame: CGRect){//}, userSettings: UserSettings) { nao tem override
@@ -111,29 +115,38 @@ class SettingsView: UIView{
         self.addSubview(hapticSwitch)
         self.addSubview(titleText)
         self.addSubview(settingsDescription)
-        self.addSubview(tableView)
+        self.addSubview(termsOfUseButton)
         setupRectangleView()
-        //tableView
-        
+        addButtonsToView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func setupRectangleView(){
         
         NSLayoutConstraint.activate([
             rectangle.topAnchor.constraint(equalTo: self.topAnchor, constant: 150),
-            rectangle.heightAnchor.constraint(lessThanOrEqualToConstant: 80),
+           rectangle.heightAnchor.constraint(lessThanOrEqualToConstant: 80),
             rectangle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
-            rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30)])
+           rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            
+])
         setupElementsInRectangleView()
         rectangle.addSubview(hapticSwitch)
         rectangle.addSubview(titleText)
         rectangle.addSubview(settingsDescription)
-        
-        
+    }
+    func addButtonsToView(){
+        NSLayoutConstraint.activate([
+            //termsOfUseButton.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 150),
+           //rectangle.heightAnchor.constraint(lessThanOrEqualToConstant: 80),
+            //termsOfUseButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
+            //termsOfUseButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            
+])
     }
     
     func setupElementsInRectangleView(){
@@ -153,22 +166,9 @@ class SettingsView: UIView{
         settingsDescription.leadingAnchor.constraint(equalTo: rectangle.leadingAnchor, constant: 20),
         
         ])
+        
     }
-    
-    
-    func setupLayout(){
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
 
-        ])
-    }
-    override func layoutSubviews(){
-        super.layoutSubviews()
-    }
-    
 
     @objc func onBackButtonPush(){
         delegate?.onBackButtonPush()
