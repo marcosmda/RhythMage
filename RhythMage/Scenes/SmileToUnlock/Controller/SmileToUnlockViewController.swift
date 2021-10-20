@@ -10,12 +10,6 @@ import ARKit
 import AVFoundation
 import GameKit
 
-protocol SmileToUnlockDelegate {
-    func onSongLibraryButtonPush()
-    func onSettingsButtonPush()
-    func updateProgressBar()
-}
-
 class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate {
     
     //public var smileView: SmileToUnlockView!

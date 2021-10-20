@@ -39,7 +39,6 @@ class SongLibraryLockedSongCell: UITableViewCell {
         super.layoutSubviews()
 
         NSLayoutConstraint.activate([
-            
             song.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             song.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             song.heightAnchor.constraint(equalTo: contentView.heightAnchor)

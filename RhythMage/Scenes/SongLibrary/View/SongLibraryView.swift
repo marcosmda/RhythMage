@@ -13,6 +13,7 @@ class SongLibraryView: UIView {
     var delegate: SongLibraryViewDelegate?
     var gradientView = GradientBackgroundView()
     
+    ///Table View to display songs
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
@@ -23,6 +24,7 @@ class SongLibraryView: UIView {
         return table
     }()
     
+    //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -34,9 +36,10 @@ class SongLibraryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupHiararchy() {
-        self.addSubview(gradientView)
-        self.addSubview(tableView)
+    
+    //MARK: - Setup Layout
+    override func layoutSubviews() {
+        gradientView.setupGradient(with: self)
     }
     
     func setupLayout(){
@@ -45,14 +48,17 @@ class SongLibraryView: UIView {
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
-
         ])
-        
-        
     }
     
-    override func layoutSubviews() {
-        gradientView.setupGradient(with: self)
+    //MARK: - Setup Hierarchy
+    func setupHiararchy() {
+        self.addSubview(gradientView)
+        self.addSubview(tableView)
     }
+    
+   
+    
+    
     
 }

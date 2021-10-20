@@ -71,6 +71,19 @@ extension AppContainer:SmileToUnlockFactory{
     }
 }
 
+//MARK: - SmileToResume
+protocol SmileToResumeFactory{
+    /// Creates an instance of SmileToResumeViewController to be used
+    /// - Returns: An instance of SmileToResumeViewController
+    func createSmileToResumeScene() -> SmileToResumeViewController
+}
+
+extension AppContainer: SmileToResumeFactory{
+    func createSmileToResumeScene() -> SmileToResumeViewController {
+        return SmileToResumeViewController(factory: self)
+    }
+}
+
 
 
 
