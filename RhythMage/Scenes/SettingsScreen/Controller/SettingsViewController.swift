@@ -10,6 +10,8 @@ import UIKit
 
 protocol SettingsDelegate {
     func onBackButtonPush()
+    func onTermsOfUsePush()
+    func onCreditsPush()
     func switchValueDidChange()
 }
 
@@ -17,7 +19,6 @@ class SettingsViewController: BaseViewController<SettingsView>{
     
     var ableToPlay = false
     var safeArea: UILayoutGuide!
-    var characters = ["Link", "Zelda", "Ganondorf", "Midna"]
     //var user: User
     
     typealias Factory = SmileToUnlockFactory
@@ -41,8 +42,6 @@ class SettingsViewController: BaseViewController<SettingsView>{
       super.viewDidLoad()
         //mainView.layoutSubviews()
         mainView.backgroundColor = .secondaryBackground
-        safeArea = mainView.layoutMarginsGuide
-        mainView.layoutSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +65,14 @@ class SettingsViewController: BaseViewController<SettingsView>{
 }
 
 extension SettingsViewController: SettingsDelegate {
+    func onTermsOfUsePush() {
+        // navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
+    }
+    
+    func onCreditsPush() {
+        //navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
+    }
+    
     func switchValueDidChange() {
     }
     

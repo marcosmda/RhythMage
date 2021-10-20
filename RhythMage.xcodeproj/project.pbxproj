@@ -49,7 +49,6 @@
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 		F1FE4CF4271F08AC00D276CC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF3271F08AC00D276CC /* SettingsView.swift */; };
 		F1FE4CF6271F08B700D276CC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */; };
-		F1FE4CFA271F420100D276CC /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF9271F420100D276CC /* SettingsTableViewCell.swift */; };
 		F1FE4CFC271F51AA00D276CC /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CFB271F51AA00D276CC /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +95,6 @@
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 		F1FE4CF3271F08AC00D276CC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F1FE4CF9271F420100D276CC /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		F1FE4CFB271F51AA00D276CC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,7 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				F1FE4CF3271F08AC00D276CC /* SettingsView.swift */,
-				F1FE4CF9271F420100D276CC /* SettingsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,7 +451,6 @@
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
 				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
-				F1FE4CFA271F420100D276CC /* SettingsTableViewCell.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
 				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
 				F1FE4CFC271F51AA00D276CC /* UserSettings.swift in Sources */,
