@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SongLibraryViewController: BaseViewController<SongLibraryView>{
+protocol SongLibraryDelegate {
+    func backButtonAction()
+}
+
+class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate{
+    
     
     //MARK: - Properties
     var models = [
@@ -26,6 +31,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         super.init(mainView: view)
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        mainView.delegate = self
         
         configure()
     }
@@ -37,7 +43,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.leftBarButtonItem =  self.mainView.buttonBack
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +76,10 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         user.completed["11"] = 33333
 //        user.setCompletedSong(songId: "Sweet but Psycho", songScore: 342444)
 //        user.setCompletedSong(songId: "A Concert Six Months From Now", songScore: 34353535)
+    }
+    
+    func backButtonAction() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
