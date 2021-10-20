@@ -313,7 +313,6 @@
 		CF36F113271F112200DE0604 /* Defaults */ = {
 			isa = PBXGroup;
 			children = (
-				8D270A2B271F211C00958160 /* Extensions */,
 				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
@@ -324,6 +323,7 @@
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+                8D270A2B271F211C00958160 /* Extensions */,
 				CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 				CF36F113271F112200DE0604 /* Defaults */,
