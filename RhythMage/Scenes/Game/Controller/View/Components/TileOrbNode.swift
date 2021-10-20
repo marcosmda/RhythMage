@@ -9,19 +9,23 @@ import SpriteKit
 
 class TileOrbNode: SKNode {
     var colors: [UIColor] = [.pinkOrb, .blueOrb, .greenOrb, .orangeOrb, .yellowOrb]
-    let defaultHeight: CGFloat = UIScreen.main.bounds.width*3/16
+    let defaultHeight: CGFloat = 50
     
+    let tileInteraction: TileInteraction
+    let hasTail: Bool
     let height: CGFloat
     var color: UIColor {
         return setColor()
     }
     
     var rectCornerRadius: CGFloat {
-        return self.height/CGFloat(4)
+        return self.defaultHeight/CGFloat(4)
     }
     
     //MARK: - Initialization
-    init(height: CGFloat) {
+    init(tileInteraction: TileInteraction, height: CGFloat) {
+        self.tileInteraction = tileInteraction
+        self.hasTail = height > defaultHeight/2 ? true : false
         self.height = height > defaultHeight/2 ? height : defaultHeight/2
         super.init()
         setupNode()
@@ -35,7 +39,9 @@ class TileOrbNode: SKNode {
     func setupNode() {
         addShape()
         addBody()
-        addKiteTail()
+        if hasTail {
+            addKiteTail()
+        }
     }
     
     func addShape() {
@@ -75,7 +81,7 @@ class TileOrbNode: SKNode {
         body.linearDamping = 0
         
         body.categoryBitMask = GameSceneCattegoryTypes.tileOrb.rawValue
-        body.contactTestBitMask = GameSceneCattegoryTypes.mainOrb.rawValue | GameSceneCattegoryTypes.hitLine.rawValue
+        body.contactTestBitMask = GameSceneCattegoryTypes.mainOrb.rawValue
         body.collisionBitMask = 0
         
         self.physicsBody = body
@@ -88,6 +94,9 @@ class TileOrbNode: SKNode {
         let kiteTail = SKShapeNode(rect: rect, cornerRadius: rectCornerRadius)
         
         kiteTail.alpha = 0.4
+        kiteTail.strokeColor = color
+        kiteTail.fillColor = color
+        
         self.addChild(kiteTail)
     }
     

@@ -60,6 +60,11 @@ extension InteractionSequence {
         let data = [
             TileInteraction(minimumScore: 10,
               xPosition: 1,
+                            startTime: 0.5,
+                            endTime: 1.75
+            ),
+            TileInteraction(minimumScore: 10,
+              xPosition: 1,
               startTime: 2.564476715051569,
               endTime: 2.6478100499371067
             ),

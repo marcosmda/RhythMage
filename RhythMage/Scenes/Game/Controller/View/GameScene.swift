@@ -19,25 +19,36 @@ enum GameSceneCattegoryTypes: UInt32 {
     case tileOrb = 0x3
 }
 
+protocol GameSceneDelegate {
+    func getElapsedTime() -> Double
+}
 
 class GameScene: SKScene {
     //MARK: - Properties
-    let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
-    let hitLine = HitLineNode(height: 3)
-    var tileOrbs = [TileOrbNode]()
     static let mainOrbHeight: CGFloat = 88
     static let orbYPosition: CGFloat = 80
-    let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
-    
-    private var currentNode: SKNode?
     static var hitPoint: CGFloat {
         return orbYPosition + MainOrbNode.heightToRadiusCte*mainOrbHeight/2 + 3
     }
     
+    let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
+    let hitLine = HitLineNode(height: 3)
+    let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+    
+    var tileOrbs = [TileOrbNode]()
+    var hashes = [Int]()
+    var score: Double = 0
+    var gameDelegate: GameSceneDelegate?
+    
+    private var currentNode: SKNode?
+    private var tileKiteContactStartTime: Double = 0
     
     //MARK: - Initialization
     override init(size: CGSize) {
         super.init(size: size)
+        
+        physicsWorld.contactDelegate = self
+        
         setupScene()
     }
     
@@ -49,8 +60,8 @@ class GameScene: SKScene {
     func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
         let duration = tileInteraction.endTime - tileInteraction.startTime
         let height = duration * scrollVelocity
-        let tile = TileOrbNode(height: height)
-        tile.position.y = (UIScreen.main.bounds.height - GameScene.hitPoint) + tileInteraction.startTime*scrollVelocity 
+        let tile = TileOrbNode(tileInteraction: tileInteraction, height: height)
+        tile.position.y = GameScene.hitPoint + scrollVelocity*(tileInteraction.startTime + startDelayTime)
         
         let width = UIScreen.main.bounds.width
         switch tileInteraction.xPosition {
@@ -65,7 +76,9 @@ class GameScene: SKScene {
         default:
             tile.position.x = width/2
         }
-
+        
+        tileOrbs.append(tile)
+        hashes.append(tile.physicsBody!.hash)
         tile.physicsBody?.velocity = CGVector(dx: 0, dy: -scrollVelocity)
         self.addChild(tile)
     }
@@ -86,6 +99,17 @@ class GameScene: SKScene {
         mainOrb.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition)
         mainOrb.zPosition = 999999
         hitLine.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition + mainOrb.radius + 3)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < 0{
+            tileOrbs[0].removeFromParent()
+            tileOrbs.remove(at: 0)
+        } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y + tileOrbs[0].height) < 0 {
+            tileOrbs[0].removeFromParent()
+            tileOrbs.remove(at: 0)
+            hashes = hashes.filter{$0 != tileOrbs[0].physicsBody?.hash}
+        }
     }
     
     //MARK: - Touch Methods
@@ -117,4 +141,33 @@ class GameScene: SKScene {
     }
 }
 
-
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let delegate = gameDelegate else {return}
+        let tileBody = contact.bodyA.categoryBitMask == GameSceneCattegoryTypes.tileOrb.rawValue ? contact.bodyA : contact.bodyB
+        
+        if hashes.contains(tileBody.hash){
+            let tile = tileBody.node as! TileOrbNode
+            
+            if tile.hasTail {
+                tileKiteContactStartTime = delegate.getElapsedTime()
+            } else {
+                score += tile.tileInteraction.minimumScore
+                hashes = hashes.filter{$0 != tileBody.hash}
+            }
+        }
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        guard let delegate = gameDelegate else {return}
+        let tileBody = contact.bodyA.categoryBitMask == GameSceneCattegoryTypes.tileOrb.rawValue ? contact.bodyA : contact.bodyB
+        
+        //Only the tiles with kite Tail enters this if
+        if hashes.contains(tileBody.hash){
+            let tile = tileBody.node as! TileOrbNode
+            let actualTime = delegate.getElapsedTime()
+            score = 2 * tile.tileInteraction.minimumScore * (actualTime - tileKiteContactStartTime)
+            tileKiteContactStartTime = 0
+        }
+    }
+}

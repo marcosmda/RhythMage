@@ -13,26 +13,26 @@ import RealmSwift
 class GameViewController: BaseGameViewController<GameScene> {
     //MARK: - Properties
     let realm: Realm
-    var audioController: AudioController
+    let audioController: AudioController
     let level: Level
     
+    /// Refers to the velocity of the Tiles scrolling
+    private let scrollVelocity: Double = 200
     private let startDelayTime: Double = 5
     private let timerResolution: Double = 0.01
+    
     private var timer: Timer?
-    var elapsedTime: Double = 0
+    private var elapsedTime: Double = 0
     private var isPlaying: Bool = false {
         didSet {
-            if isPlaying {audioController.start()}
+            //if isPlaying {audioController.start()}
         }
     }
     /// The height where the center of the HitLineNode is placed
     private var hitPoint: CGFloat {
         return GameScene.hitPoint
     }
-    /// Refers to the velocity of the Tiles scrolling
-    private var scrollVelocity: Double {
-        return Double(UIScreen.main.bounds.height - hitPoint)/startDelayTime
-    }
+    
     
     //MARK: - Initialization
     init(realm: Realm, audioController: AudioController, level: Level) {
@@ -45,8 +45,8 @@ class GameViewController: BaseGameViewController<GameScene> {
         
         //Delegates
         self.audioController.delegates.append(self)
+        mainScene.gameDelegate = self
         
-        mainScene.physicsWorld.contactDelegate = self
         //ViewControllerSetup
         debugMode(true)
         setup()
@@ -72,7 +72,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         
         var smallerInteraction = [InteractionProtocol]()
         
-        for i in 0...19 {
+        for i in 0...4 {
             smallerInteraction.append(interactionSequence.sequence[i])
         }
         
@@ -108,12 +108,12 @@ class GameViewController: BaseGameViewController<GameScene> {
 
 extension GameViewController: AudioControllerDelegate {
     func audioFinished() {
-        
+        isPlaying = false
     }
 }
 
-extension GameViewController: SKPhysicsContactDelegate {
-    func didBegin(_ contact: SKPhysicsContact) {
-        //print(elapsedTime)
+extension GameViewController: GameSceneDelegate {
+    func getElapsedTime() -> Double {
+        return self.elapsedTime
     }
 }
