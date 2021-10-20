@@ -71,6 +71,18 @@ extension AppContainer:SmileToUnlockFactory{
     }
 }
 
+//MARK: - Summary
+protocol SummaryFactory {
+    /// Creates an instance of SummaryViewController to be used
+    /// - Returns: An instance of SummaryViewController
+    func createSummaryScene() -> SummaryViewController
+}
+
+extension AppContainer: SummaryFactory {
+    func createSummaryScene() -> SummaryViewController {
+        return SummaryViewController()
+    }
+}
 
 
 
