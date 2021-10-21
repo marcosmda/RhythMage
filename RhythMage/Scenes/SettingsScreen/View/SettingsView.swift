@@ -94,7 +94,8 @@ class SettingsView: UIView{
     }()
     
     //MARK: - Initializers
-    override init(frame: CGRect){//}, userSettings: UserSettings) { nao tem override
+    //override
+    override init(frame: CGRect){//, userSettings: UserSettings) { //nao tem override
         //self.userSettings = userSettings
 
         super.init(frame: frame)
