@@ -19,10 +19,12 @@ class SettingsViewController: BaseViewController<SettingsView>{
     
     var ableToPlay = false
     var safeArea: UILayoutGuide!
+    var buttons = ["TERMS OF USE", "CREDITS"]
     //var user: User
     
     typealias Factory = SmileToUnlockFactory
     let factory: Factory
+    
     //var sender: UISwitch
     
     //MARK: - Initializers
@@ -32,6 +34,10 @@ class SettingsViewController: BaseViewController<SettingsView>{
         let view = SettingsView(frame: .zero)//, userSettings: user.userSettings)
         super.init(mainView: view)
         mainView.delegate = self
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+        
+       // mainView.setupCell
     }
     
     required init?(coder: NSCoder) {
@@ -40,7 +46,6 @@ class SettingsViewController: BaseViewController<SettingsView>{
     
     override func viewDidLoad() {
       super.viewDidLoad()
-        //mainView.layoutSubviews()
         mainView.backgroundColor = .secondaryBackground
     }
     
@@ -59,11 +64,42 @@ class SettingsViewController: BaseViewController<SettingsView>{
         
         
     }
-
-    
-    
 }
-
+    
+//MARK: - Extension UITableViewDelegate
+extension SettingsViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        //headerView.backgroundColor = self.view.backgroundColor
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath) as? SettingsButtonCell else {
+            return UITableViewCell()
+        }
+        cell.setupCell(currentSetting: buttons[indexPath.section])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54.00
+       
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return buttons.count
+    }
+}
 extension SettingsViewController: SettingsDelegate {
     func onTermsOfUsePush() {
         // navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
@@ -80,6 +116,28 @@ extension SettingsViewController: SettingsDelegate {
     func onBackButtonPush() {
        // navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: true)
     }
+
+}
+
+//MARK: - Extension UITableViewDataSource
+extension SettingsViewController: UITableViewDataSource{
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.layer.cornerRadius = 10
+        cell.layer.masksToBounds = true
+        cell.accessoryType = UITableViewCell.AccessoryType.none
+
+        let selectedView: UIView = UIView(frame: cell.frame)
+        selectedView.layer.cornerRadius = 10
+        selectedView.layer.masksToBounds = true
+        selectedView.backgroundColor = .terciary
+        cell.selectedBackgroundView = selectedView
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected a row")
+    }
+
 
 }
 

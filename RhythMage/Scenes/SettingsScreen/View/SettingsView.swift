@@ -8,101 +8,11 @@
 import Foundation
 import UIKit
 
-class MyCustomButton: UIButton {
-    
-    private let myTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .secondary
-        label.numberOfLines = 1
-        label.font = .inikaBold(ofSize: 18)
-        label.contentMode = .scaleAspectFill
-        label.minimumScaleFactor = 0.1
-        label.textAlignment = .left
-        label.sizeToFit()
-        return label
-    }()
-    
-    private let myIconView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        //imageView.contentMode = .right
-        imageView.tintColor = .secondary
-        return imageView
-    }()
-    
-    private var viewModel:MyCustomButtonViewModel?
-    
-    override init(frame: CGRect) {
-        self.viewModel = nil
-        super.init(frame: frame)
-        layoutSubviews()
-    }
-    
-    init(with viewModel: MyCustomButtonViewModel) {
-        self.viewModel = viewModel
-        super.init(frame: .zero)
-
-        addSubviews()
-        configure(with: viewModel)
-    }
-    private func addSubviews(){
-        guard !myTitleLabel.isDescendant(of: self) else {
-            return
-        }
-        addSubview(myTitleLabel)
-        addSubview(myIconView)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public func configure(with viewModel: MyCustomButtonViewModel){
-        myTitleLabel.text = viewModel.title
-        myIconView.image = UIImage(systemName: viewModel.imageName)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        //myIconView.frame = CGRect(x: 0, y: 0, width: 50, height: self.frame.height).integral
-        //myTitleLabel.frame = CGRect(x: 0, y: 0, width: frame.width - 65, height: (self.frame.height-10)/2).integral
-        
-    }
-    
-}
-
-struct MyCustomButtonViewModel {
-    let title:String
-    let imageName: String
-}
-
 class SettingsView: UIView{
     
     var delegate: SettingsDelegate?
     //var userSettings: UserSettings
-    
-    private let termsOfUseButton: MyCustomButton = {
-        let button = MyCustomButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .terciary.withAlphaComponent(0.5)
-        button.layer.cornerRadius = 20
-        return button
-    }()
-    
-    
-    private let creditsButton: MyCustomButton = {
-        let button = MyCustomButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .terciary.withAlphaComponent(0.5)
-        button.layer.cornerRadius = 20
-        let viewModel = MyCustomButtonViewModel(title: "TERMS OF USE", imageName: "chevron.right")
-        button.configure(with: viewModel)
-        return button
-    }()
-    
+
     let rectangle: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -183,63 +93,25 @@ class SettingsView: UIView{
         return barButtonItem
     }()
     
-    let viewModel2 = MyCustomButtonViewModel(title: "CREDITS", imageName: "chevron.right")
-    
-    
-    
-        /*
-    let termsOfUseButton: UIButton = {
-        let button3 = UIButton(frame: .zero)
-        button3.translatesAutoresizingMaskIntoConstraints = false
-        var buttonText = "  TERMS OF USE"
-        button3.backgroundColor = .terciary.withAlphaComponent(0.5)
-        button3.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button3.tintColor = .secondary
-        button3.setTitle(buttonText.uppercased(), for: .normal)
-        button3.contentVerticalAlignment = .center
-        button3.setTitleColor(.secondary, for: .normal)
-        button3.titleLabel!.font = .inikaBold(ofSize: 18)
-        button3.layer.cornerRadius = 20
-        button3.contentHorizontalAlignment = .left
-        button3.addTarget(self, action: #selector(onTermsOfUsePush), for: .touchUpInside)
-        return button3
+    let tableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .grouped)
+        table.register(SettingsButtonCell.self, forCellReuseIdentifier: SettingsButtonCell.reusableIdentifier)
+        table.backgroundColor = .clear
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.separatorStyle = .none
+        return table
     }()
-    
-    let creditsButton: UIButton = {
-        let button3 = UIButton(frame: .zero)
-        button3.translatesAutoresizingMaskIntoConstraints = false
-        var buttonText = "  CREDITS"
-        button3.backgroundColor = .terciary.withAlphaComponent(0.5)
-        button3.setImage(UIImage(systemName: "chevron.right"), for: .normal)
-        button3.tintColor = .secondary
-        button3.setTitle(buttonText.uppercased(), for: .normal)
-        button3.contentVerticalAlignment = .center
-        button3.setTitleColor(.secondary, for: .normal)
-        button3.titleLabel!.font = .inikaBold(ofSize: 18)
-        button3.contentHorizontalAlignment = .left
-        button3.layer.cornerRadius = 20
-        button3.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
-        return button3
-    }()*/
-    
     override init(frame: CGRect){//}, userSettings: UserSettings) { nao tem override
         //self.userSettings = userSettings
 
-        
         super.init(frame: frame)
         self.addSubview(rectangle)
         self.addSubview(hapticSwitch)
         self.addSubview(titleText)
         self.addSubview(settingsDescription)
-        //self.addSubview(termsOfUseButton)
-        //self.addSubview(creditsButton)
+        self.addSubview(tableView)
         setupRectangleView()
-        self.addSubview(termsOfUseButton)
-        self.addSubview(creditsButton)
-
-        //creditsButton.configure(with: viewModel2)
-        
-        addButtonsToView()
+        setupLayoutTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -261,19 +133,6 @@ class SettingsView: UIView{
         rectangle.addSubview(titleText)
         rectangle.addSubview(settingsDescription)
     }
-    func addButtonsToView(){
-        NSLayoutConstraint.activate([
-            termsOfUseButton.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 20),
-            termsOfUseButton.heightAnchor.constraint(equalToConstant: 54),
-            termsOfUseButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
-            termsOfUseButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
-            
-            creditsButton.topAnchor.constraint(equalTo: termsOfUseButton.bottomAnchor, constant: 20),
-            creditsButton.heightAnchor.constraint(equalToConstant: 54),
-            creditsButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
-            creditsButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
-])
-    }
     
     func setupElementsInRectangleView(){
         NSLayoutConstraint.activate([
@@ -293,6 +152,16 @@ class SettingsView: UIView{
         
         ])
         
+    }
+    
+    func setupLayoutTableView(){
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 20),
+            tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -30),
+
+        ])
     }
 
 
