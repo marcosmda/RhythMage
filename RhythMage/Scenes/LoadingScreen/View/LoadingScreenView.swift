@@ -64,7 +64,7 @@ class LoadingScreenView: UIView {
     }()
         
     override init(frame: CGRect) {
-        song = SongContainerView()
+        song = SongContainerView(type: .unlockedSong)
         song.translatesAutoresizingMaskIntoConstraints = false
         
         super.init(frame: frame)

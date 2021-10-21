@@ -245,15 +245,12 @@ class SmileToUnlockView: UIView {
     }
     
     func handleAutoResizingMasks() {
-        
         nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
         nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
         bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
         mageImage.translatesAutoresizingMaskIntoConstraints = false
         buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
     }
     
     
