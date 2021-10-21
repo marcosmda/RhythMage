@@ -30,7 +30,7 @@ class CreditsSceneViewController: BaseViewController<CreditsView>{
         
         let bool = true
         if bool {
-            self.navigationController?.navigationBar.
+            //self.navigationController?.navigationBar.
             self.navigationItem.leftBarButtonItem = self.mainView.backButton
         }
         
