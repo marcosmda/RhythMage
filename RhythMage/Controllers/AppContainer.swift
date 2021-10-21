@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 class AppContainer {
+    /// The Main Navigation Controller with the root set in SmileToUnlock
+    lazy var navigationController = MainNavigationController(rootViewController: self.createGameScene())
     let realm = try! Realm()
     var audioController = AudioController()
     
@@ -16,6 +18,21 @@ class AppContainer {
 
         
     }
+}
+
+//MARK: - NavigationController
+protocol NavigationControllerFactory {
+    /// Creates an instance of NavigationController to be used
+    /// - Returns: An instance of NavigationController
+    func createNavigationController() -> MainNavigationController
+}
+
+extension AppContainer: NavigationControllerFactory {
+    
+    func createNavigationController() -> MainNavigationController {
+        return navigationController
+    }
+
 }
 
 //MARK: - SongLibrary
