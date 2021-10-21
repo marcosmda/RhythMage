@@ -47,7 +47,6 @@ class SongLibraryView: UIView {
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
-
         ])
         
         

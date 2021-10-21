@@ -17,18 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 1. Capture the scene if there is one into a variable
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        // 2. Create a new UIWindow
+        // 2. Create a new UIWindow with a ViewController
         let window = UIWindow(windowScene: windowScene)
+        let rootViewController = appContainer.createNavigationController()
         
-        // 3. Create the view hierarchy
-        let viewController = appContainer.createSmileToUnlockScene()
-        
-        let rootViewController = MainNavigationController(rootViewController: viewController)
-        
-        // 4. Set the root view controller of the window
+        rootViewController.navigationBar.isHidden = true
         window.rootViewController = rootViewController
         
-        // 5. Set the window and make it keyAndVisible
+        // 3. Set the window and make it keyAndVisible
         self.window = window
         window.makeKeyAndVisible()
     
