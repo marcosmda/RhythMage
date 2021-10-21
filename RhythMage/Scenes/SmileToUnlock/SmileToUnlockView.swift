@@ -223,7 +223,7 @@ class SmileToUnlockView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupGradient(with: self)
+        gradientView.setupCircleBackgroundBlur()
         
     }
     

@@ -30,7 +30,7 @@ class GradientBackgroundView: UIView {
         gradientSet.append([gradientOne, gradientTwo, gradientThree, gradientFour, gradientFive])
         gradientSet.append([gradientFive, gradientFour, gradientThree, gradientTwo, gradientOne])
         self.backgroundColor = .primary
-    
+        self.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -43,27 +43,27 @@ class GradientBackgroundView: UIView {
     }
 
     func setupGradient(with view: UIView) {
-
-            gradientLayer.colors = gradientSet[0]
-            gradientLayer.locations = [0.0, 0.25, 0.5, 0.75, 1.0]
-            gradientLayer.frame = view.bounds
-            gradientLayer.drawsAsynchronously = true
-            gradientLayer.startPoint = CGPoint(x:1, y:0)
-            gradientLayer.endPoint = CGPoint(x:0, y:1)
-            self.layer.insertSublayer(gradientLayer, at:0)
+        gradientLayer.colors = gradientSet[0]
+        gradientLayer.locations = [0.0, 0.25, 0.5, 0.75, 1.0]
+        gradientLayer.frame = view.bounds
+        gradientLayer.drawsAsynchronously = true
+        gradientLayer.startPoint = CGPoint(x:1, y:0)
+        gradientLayer.endPoint = CGPoint(x:0, y:1)
+        self.layer.insertSublayer(gradientLayer, at:0)
         
-            animationBackground()
+        animationBackground()
     }
     
     @objc func animationBackground() {
-
+        
         if currentGradient < gradientSet.count - 1 {
             currentGradient += 1
         } else {
             currentGradient = 0
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
             let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
             gradientChangeAnimation.delegate = self
             gradientChangeAnimation.duration = 5.0
@@ -71,9 +71,6 @@ class GradientBackgroundView: UIView {
             gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
             gradientChangeAnimation.isRemovedOnCompletion = false
             self.gradientLayer.add(gradientChangeAnimation, forKey: "colorChange")
-            
-            
-            
         }
         
     }
@@ -85,7 +82,7 @@ class GradientBackgroundView: UIView {
         
         var i = 0
         
-        let colors: [UIColor] = [UIColor.backgroundColor, UIColor.backgroundColor2, UIColor.backgroundColor3, UIColor.backgroundColor4, UIColor.backgroundColor5]
+        let colors: [UIColor] = [UIColor.label, UIColor.backgroundColor2, UIColor.backgroundColor3, UIColor.backgroundColor4, UIColor.backgroundColor5]
         
         var auxColors: [UIColor] = []
         
@@ -104,9 +101,9 @@ class GradientBackgroundView: UIView {
                 clockwise: true)
             let shapeLayer = CAShapeLayer()
             shapeLayer.path = circlePath.cgPath
-            let index = Int.random(in: 0..<auxColors.count)
-            shapeLayer.fillColor = auxColors[index].cgColor
-            auxColors.remove(at: index)
+            
+            //MARK: - popLast() Function
+            shapeLayer.fillColor = auxColors.popLast()?.cgColor
             self.layer.addSublayer(shapeLayer)
             
                 if i % 2 != 0 {
