@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         // 3. Create the view hierarchy
-        let viewController = appContainer.createSettingsScene()
+        let viewController = appContainer.createSmileToUnlockScene()
         
-        let rootViewController = UINavigationController(rootViewController: viewController)
+        let rootViewController = MainNavigationController(rootViewController: viewController)
         
         // 4. Set the root view controller of the window
         window.rootViewController = rootViewController
@@ -61,7 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
 
 }
 
