@@ -29,6 +29,7 @@
 		8DDD692E2718AA2100818A45 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8DDD692D2718AA2100818A45 /* RealmSwift */; };
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
+		CF06475B2721E71D00477C3A /* SongMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06475A2721E71D00477C3A /* SongMock.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
 		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
 		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
@@ -84,6 +85,7 @@
 		8DDCA80227078443002E9925 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		CF06475A2721E71D00477C3A /* SongMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMock.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				CF746E992720A5DA00B7F2DE /* SummaryImageSetup.swift */,
+				CF06475A2721E71D00477C3A /* SongMock.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
 				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
+				CF06475B2721E71D00477C3A /* SongMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
