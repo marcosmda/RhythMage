@@ -8,7 +8,6 @@
 import Foundation
 
 class User {
-    
     //MARK: Private Properties
     /// The user's id for reference on database.
     private var id: String
@@ -18,8 +17,6 @@ class User {
     var name: String
     /// The level tracker for each song. It stores a dictionary containing the level id as key and the highsocre as value.
     var completed:[String:Double]
-    
-    var userSettings = UserSettings()
     
     //MARK: - Initialization
     init(id: String, name: String){
