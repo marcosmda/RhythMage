@@ -30,7 +30,9 @@ class CreditsSceneViewController: BaseViewController<CreditsView>{
         
         let bool = true
         if bool {
-            //self.navigationController?.navigationBar.
+            self.navigationItem.title = "CREDITS"
+            let attributes = [NSAttributedString.Key.font: UIFont(name: "Inika-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.white]
+            self.navigationController?.navigationBar.titleTextAttributes = attributes
             self.navigationItem.leftBarButtonItem = self.mainView.backButton
         }
         
