@@ -15,9 +15,6 @@ protocol CreditsSceneDelegate {
 class CreditsSceneViewController: BaseViewController<CreditsView>{
     
     var ableToPlay = false
-    //MARK: To Do: Navigation of Scene
-    //typealias Factory = SettingsSceneFactory
-    //let factory: Factory
     
     
     override func viewDidLoad() {
@@ -33,7 +30,7 @@ class CreditsSceneViewController: BaseViewController<CreditsView>{
         
         let bool = true
         if bool {
-            //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.secondary, NSAttributedString.Key.fontinika(ofSize: 20)]
+
             self.navigationItem.leftBarButtonItem = self.mainView.backButton
         }
         
@@ -43,9 +40,6 @@ class CreditsSceneViewController: BaseViewController<CreditsView>{
     init ()
     {
         super.init(mainView: CreditsView())
-        //mainView.delegate = self
-        //mainView.layoutSubviews()
-        //setupGameKit()
     }
     
     required init?(coder: NSCoder) {

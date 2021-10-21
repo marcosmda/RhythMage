@@ -20,6 +20,7 @@ class CreditsView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     var delegate: CreditsSceneDelegate?
     lazy var backButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
