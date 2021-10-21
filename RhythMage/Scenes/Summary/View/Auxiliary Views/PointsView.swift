@@ -46,10 +46,6 @@ class PointsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        
-    }
-    
     private func setupHierarchy() {
         addSubview(mainStackView)
         mainStackView.addArrangedSubview(pointsText)
