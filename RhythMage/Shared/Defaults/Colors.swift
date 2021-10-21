@@ -55,4 +55,25 @@ extension UIColor {
         return UIColor(red: 1.00, green: 0.85, blue: 0.46, alpha: 1.00)
     }()
     
+    //MARK: - Background Colors - Gradient
+    static let backgroundColor: UIColor = {
+        return UIColor(red: 0.25, green: 0.25, blue: 0.62, alpha: 1.00)
+    }()
+    
+    static let backgroundColor2: UIColor = {
+        return UIColor(red: 0.31, green: 0.31, blue: 0.63, alpha: 1.00)
+    }()
+    
+    static let backgroundColor3: UIColor = {
+        return UIColor(red: 0.34, green: 0.32, blue: 0.75, alpha: 1.00)
+    }()
+    
+    static let backgroundColor4: UIColor = {
+        return UIColor(red: 0.38, green: 0.36, blue: 0.90, alpha: 1.00)
+    }()
+    
+    static let backgroundColor5: UIColor = {
+        return UIColor(red: 0.47, green: 0.46, blue: 0.80, alpha: 1.00)
+    }()
+    
 }

@@ -8,80 +8,166 @@
 import SpriteKit
 import GameplayKit
 
+enum GameSceneNodeNames: String {
+    case mainOrb
+    case pauseButton
+}
+
+enum GameSceneCattegoryTypes: UInt32 {
+    case mainOrb = 0x1
+    case hitLine = 0x2
+    case tileOrb = 0x3
+}
+
+protocol GameSceneDelegate {
+    func getElapsedTime() -> Double
+}
+
 class GameScene: SKScene {
+    //MARK: - Properties
+    static let mainOrbHeight: CGFloat = 88
+    static let orbYPosition: CGFloat = 80
+    static var hitPoint: CGFloat {
+        return orbYPosition + MainOrbNode.heightToRadiusCte*mainOrbHeight/2 + 3
+    }
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
+    let hitLine = HitLineNode(height: 3)
+    let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
     
-   
+    var tileOrbs = [TileOrbNode]()
+    var hashes = [Int]()
+    var score: Double = 0
+    var gameDelegate: GameSceneDelegate?
     
+    private var currentNode: SKNode?
+    private var tileKiteContactStartTime: Double = 0
     
-    override func didMove(to view: SKView) {
+    //MARK: - Initialization
+    override init(size: CGSize) {
+        super.init(size: size)
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        physicsWorld.contactDelegate = self
+        
+        setupScene()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Public Methods
+    func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
+        let duration = tileInteraction.endTime - tileInteraction.startTime
+        let height = duration * scrollVelocity
+        let tile = TileOrbNode(tileInteraction: tileInteraction, height: height)
+        tile.position.y = GameScene.hitPoint + scrollVelocity*(tileInteraction.startTime + startDelayTime)
+        
+        let width = UIScreen.main.bounds.width
+        switch tileInteraction.xPosition {
+        case ScreenScrollArea.left.rawValue:
+            tile.position.x = width/8
+        case ScreenScrollArea.middleLeft.rawValue:
+            tile.position.x = 3*width/8
+        case ScreenScrollArea.middleRight.rawValue:
+            tile.position.x = 5*width/8
+        case ScreenScrollArea.right.rawValue:
+            tile.position.x = 7*width/8
+        default:
+            tile.position.x = width/2
         }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+        tileOrbs.append(tile)
+        hashes.append(tile.physicsBody!.hash)
+        tile.physicsBody?.velocity = CGVector(dx: 0, dy: -scrollVelocity)
+        self.addChild(tile)
+    }
+    
+    //MARK: - Private Methods
+    private func setupScene() {
+        addChildren()
+        setupPositions()
+        self.backgroundColor = .label
+    }
+    
+    private func addChildren() {
+        self.addChild(mainOrb)
+        self.addChild(hitLine)
+    }
+    
+    private func setupPositions() {
+        mainOrb.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition)
+        mainOrb.zPosition = 999999
+        hitLine.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition + mainOrb.radius + 3)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < 0{
+            tileOrbs[0].removeFromParent()
+            tileOrbs.remove(at: 0)
+        } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y + tileOrbs[0].height) < 0 {
+            tileOrbs[0].removeFromParent()
+            tileOrbs.remove(at: 0)
+            hashes = hashes.filter{$0 != tileOrbs[0].physicsBody?.hash}
         }
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
+    //MARK: - Touch Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        guard let touch = touches.first else {return}
+        let location = touch.location(in: self)
+        let touchedNodes = self.nodes(at: location)
+        
+        for node in touchedNodes.reversed() {
+            if node.name == GameSceneNodeNames.mainOrb.rawValue {
+                self.currentNode = mainOrb
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        guard let touch = touches.first else {return}
+        let node = self.currentNode
+        let location = touch.location(in: self)
+        
+        node?.position.x = location.x
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        self.currentNode = nil
     }
-    
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        self.currentNode = nil
+    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let delegate = gameDelegate else {return}
+        let tileBody = contact.bodyA.categoryBitMask == GameSceneCattegoryTypes.tileOrb.rawValue ? contact.bodyA : contact.bodyB
+        
+        if hashes.contains(tileBody.hash){
+            let tile = tileBody.node as! TileOrbNode
+            
+            if tile.hasTail {
+                tileKiteContactStartTime = delegate.getElapsedTime()
+            } else {
+                score += tile.tileInteraction.minimumScore
+                hashes = hashes.filter{$0 != tileBody.hash}
+            }
+        }
     }
     
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+    func didEnd(_ contact: SKPhysicsContact) {
+        guard let delegate = gameDelegate else {return}
+        let tileBody = contact.bodyA.categoryBitMask == GameSceneCattegoryTypes.tileOrb.rawValue ? contact.bodyA : contact.bodyB
+        
+        //Only the tiles with kite Tail enters this if
+        if hashes.contains(tileBody.hash){
+            let tile = tileBody.node as! TileOrbNode
+            let actualTime = delegate.getElapsedTime()
+            score = 2 * tile.tileInteraction.minimumScore * (actualTime - tileKiteContactStartTime)
+            tileKiteContactStartTime = 0
+        }
     }
 }

@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SongLibraryViewController: BaseViewController<SongLibraryView>{    
+protocol SongLibraryDelegate {
+    func backButtonAction()
+}
+
+class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate, UIGestureRecognizerDelegate{
+    
     
     //MARK: - Properties
     var models = [
@@ -26,6 +31,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         super.init(mainView: view)
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        mainView.delegate = self
         
         configure()
     }
@@ -37,7 +43,8 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.leftBarButtonItem =  self.mainView.buttonBack
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +75,10 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>{
         models[2].unlock()
         user.completed["11"] = 33333
 
+    }
+    
+    func backButtonAction() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

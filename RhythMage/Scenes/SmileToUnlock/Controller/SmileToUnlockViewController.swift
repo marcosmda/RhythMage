@@ -38,9 +38,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     {
         self.factory = factory
         super.init(mainView: SmileToUnlockView())
-        mainView.delegate = self
-        mainView.layoutSubviews()
-        setupGameKit()
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -50,6 +49,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     override func viewDidLoad() {
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
+        mainView.delegate = self
+        mainView.layoutSubviews()
+        setupGameKit()
         
     }
     
@@ -63,8 +65,11 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         if bool {
             self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         }
-        
-        
+  
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     @objc func updateCounter(){
