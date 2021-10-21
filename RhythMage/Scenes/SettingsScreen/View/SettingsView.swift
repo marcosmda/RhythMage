@@ -13,6 +13,7 @@ class SettingsView: UIView{
     var delegate: SettingsDelegate?
     //var userSettings: UserSettings
 
+    ///Create the rectangle view of the haptic button
     let rectangle: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +22,7 @@ class SettingsView: UIView{
         return view
     }()
     
+    ///Create the haptic button
     lazy var hapticSwitch: UISwitch = {
         let switchHapitc = UISwitch()
         switchHapitc.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +36,7 @@ class SettingsView: UIView{
         return switchHapitc
     }()
     
+    ///Create the main title of the rectangle view with the hapticSwitch
     lazy var titleText: UILabel = {
         let label3 = UILabel(frame: .zero)
         label3.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +53,7 @@ class SettingsView: UIView{
         
     }()
     
+    ///Create the subtitle of the rectangle view with the hapticSwitch
     lazy var settingsDescription: UILabel = {
         let label4 = UILabel(frame: .zero)
         label4.translatesAutoresizingMaskIntoConstraints = false
@@ -65,22 +69,8 @@ class SettingsView: UIView{
         
     }()
     
-    lazy var settingsNameBar: UILabel = {
-        let label4 = UILabel(frame: .zero)
-        label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.textColor = .secondary.withAlphaComponent(0.5)
-        label4.numberOfLines = 0
-        label4.textAlignment = .left
-        label4.text = "Settings"
-        label4.font = .inikaBold(ofSize: 25)
-        label4.contentMode = .scaleAspectFill
-        label4.minimumScaleFactor = 0.1
-        label4.sizeToFit()
-        return label4
-        
-    }()
     
-    
+    ///Create the layout of back button on the Navigation Bar
     lazy var backButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .secondary
@@ -93,6 +83,7 @@ class SettingsView: UIView{
         return barButtonItem
     }()
     
+    ///Create the table view of the buttons bellow the haptic button
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SettingsButtonCell.self, forCellReuseIdentifier: SettingsButtonCell.reusableIdentifier)
@@ -101,6 +92,8 @@ class SettingsView: UIView{
         table.separatorStyle = .none
         return table
     }()
+    
+    //MARK: - Initializers
     override init(frame: CGRect){//}, userSettings: UserSettings) { nao tem override
         //self.userSettings = userSettings
 
@@ -118,7 +111,7 @@ class SettingsView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    ///Add autolayout of the rectangle view
     func setupRectangleView(){
         
         NSLayoutConstraint.activate([
@@ -129,11 +122,14 @@ class SettingsView: UIView{
             
 ])
         setupElementsInRectangleView()
+        
+        ///Add elements to the rectangle view
         rectangle.addSubview(hapticSwitch)
         rectangle.addSubview(titleText)
         rectangle.addSubview(settingsDescription)
     }
     
+    ///Add autolayout of the elements inside the rectangle view
     func setupElementsInRectangleView(){
         NSLayoutConstraint.activate([
         hapticSwitch.topAnchor.constraint(equalTo: rectangle.topAnchor, constant: 20),
@@ -154,6 +150,7 @@ class SettingsView: UIView{
         
     }
     
+    ///Add autolayout of the tableview
     func setupLayoutTableView(){
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 20),
@@ -164,10 +161,11 @@ class SettingsView: UIView{
         ])
     }
 
-
+    ///Create a action to the back button associated with the delegate
     @objc func onBackButtonPush(){
         delegate?.onBackButtonPush()
     }
+    ///Create a action to the haptic switch button associated with the delegate 
     @objc func switchValueDidChange(_ sender: UISwitch)
     {
         delegate?.switchValueDidChange()

@@ -14,6 +14,7 @@ class SettingsButtonCell:  UITableViewCell{
     static let reusableIdentifier = "SettingsButtonCell"
     var delegate: SettingsDelegate?
     
+    ///Create a title to appear inside the table view
     let settingLabel: DynamicLabel = {
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,15 +23,7 @@ class SettingsButtonCell:  UITableViewCell{
         return label
     }()
     
-    let separator: UIView = {
-        let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .terciary
-        view.layer.cornerRadius = 20
-        
-        return view
-    }()
-    
+    ///Create the symbol to appear inside the table view
     let accessory: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +39,6 @@ class SettingsButtonCell:  UITableViewCell{
         contentView.clipsToBounds = false
         accessoryType = .disclosureIndicator
         self.addSubview(accessory)
-        self.addSubview(separator)
         self.addSubview(settingLabel)
     }
     
@@ -54,7 +46,7 @@ class SettingsButtonCell:  UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    ///Add autolayout to the label inside the tableView
     func setupSettingLabel() {
         contentView.addSubview(settingLabel)
         
@@ -67,6 +59,7 @@ class SettingsButtonCell:  UITableViewCell{
         ])
     }
     
+    ///Add autolayout to the image inside the tableView
     func setupAccessory() {
         contentView.addSubview(accessory)
         accessory.image = UIImage(systemName: "chevron.right")
@@ -78,7 +71,7 @@ class SettingsButtonCell:  UITableViewCell{
         ])
     }
     
-    
+    ///Function to call inside the controler to set the objects of the table view
     func setupCell(currentSetting: String) {
         setupSettingLabel()
         setupAccessory()
