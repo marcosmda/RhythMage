@@ -71,6 +71,20 @@ extension AppContainer:SmileToUnlockFactory{
     }
 }
 
+
+//MARK: - CreditsScene
+protocol CreditsSceneFactory{
+    /// Creates an instance of CreditsSceneViewController to be used
+    /// - Returns: An instance of CreditsSceneViewController
+    func createCreditsScene() -> CreditsSceneViewController
+}
+
+extension AppContainer:CreditsSceneFactory{
+    func createCreditsScene() -> CreditsSceneViewController {
+        return CreditsSceneViewController()
+    }
+}
+
 //MARK: - GameScene
 protocol GameSceneFactory{
     /// Creates an instance of GameViewController to be used
@@ -83,6 +97,7 @@ extension AppContainer:GameSceneFactory{
         return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel())
     }
 }
+
 
 
 

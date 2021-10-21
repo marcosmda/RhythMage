@@ -59,6 +59,8 @@
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
 		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
+		F1FE4D0727209C5200D276CC /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4D0627209C5200D276CC /* CreditsView.swift */; };
+		F1FE4D0927209C7500D276CC /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +116,8 @@
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
+		F1FE4D0627209C5200D276CC /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +296,7 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F1FE4D0327209C3400D276CC /* CreditsScene */,
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
 				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				8D09841C2717531B007477F3 /* Recording */,
@@ -397,6 +402,31 @@
 			path = SmileToUnlock;
 			sourceTree = "<group>";
 		};
+		F1FE4D0327209C3400D276CC /* CreditsScene */ = {
+			isa = PBXGroup;
+			children = (
+				F1FE4D0427209C3D00D276CC /* View */,
+				F1FE4D0527209C4200D276CC /* Controller */,
+			);
+			path = CreditsScene;
+			sourceTree = "<group>";
+		};
+		F1FE4D0427209C3D00D276CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1FE4D0627209C5200D276CC /* CreditsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F1FE4D0527209C4200D276CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -494,6 +524,7 @@
 				8D270A32271F2BFF00958160 /* HitLineNode.swift in Sources */,
 				8D855C7F2720B10A00DA780F /* UIView.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
+				F1FE4D0727209C5200D276CC /* CreditsView.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
@@ -502,6 +533,7 @@
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
+				F1FE4D0927209C7500D276CC /* CreditsSceneViewController.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
