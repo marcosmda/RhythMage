@@ -9,6 +9,7 @@ import UIKit
 
 class SummaryView: UIView {
 
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(gradientView)
@@ -29,7 +30,7 @@ class SummaryView: UIView {
     //MARK: - Views
     let pointsView = PointsView()
     let interactionsButtonView = InteractionButtonsView()
-    var summaryImageViewCollection = SummaryImageViewCollection()
+    var summaryImageViewCollection = SummaryImageViewCollection(frame: .zero, with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"])
     
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))

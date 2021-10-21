@@ -10,13 +10,13 @@ import UIKit
 class SummaryViewController: BaseViewController<SummaryView> {
     
     var headerView: SummaryHeaderView?
+    let songMock = SongMock()
     
     //MARK: - Initializers
     init(){
         let view = SummaryView()
         super.init(mainView: view)
-        headerView = SummaryHeaderView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        //mainView.delegate = self
+        headerView = SummaryHeaderView(frame: .zero, songText: songMock.models[0].songName, artistText: songMock.models[0].artistName)
         
     }
     
@@ -35,15 +35,5 @@ class SummaryViewController: BaseViewController<SummaryView> {
     override func viewDidLayoutSubviews() {
         self.navigationItem.titleView = headerView
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

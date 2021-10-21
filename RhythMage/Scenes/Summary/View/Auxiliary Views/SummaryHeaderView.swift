@@ -55,6 +55,13 @@ class SummaryHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(frame: CGRect, songText: String, artistText: String) {
+        self.init(frame: frame)
+        self.frame = .zero
+        self.artistText.text = artistText
+        self.songText.text = songText.uppercased()
+    }
+    
     func setupHierarchy() {
         addSubview(mainStackView)
         mainStackView.addArrangedSubview(defaultLabel)

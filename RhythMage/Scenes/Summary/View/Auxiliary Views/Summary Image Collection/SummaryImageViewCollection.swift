@@ -9,16 +9,28 @@ import UIKit
 
 class SummaryImageViewCollection: UIView {
 
-    var summaryViews: [SummaryImageView] = [SummaryImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: "UserPhoto-Test")!), SummaryImageView(), SummaryImageView()]
+    var summaryViews: [SummaryImageView] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupHierarchy()
-        setupLayout()
+        
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(frame: CGRect, with images: [String]) {
+        self.init(frame: frame)
+        
+        for image in images {
+            summaryViews.append(SummaryImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: image)!))
+        }
+        
+        setupHierarchy()
+        setupLayout()
+        
     }
     
     func setupHierarchy() {
