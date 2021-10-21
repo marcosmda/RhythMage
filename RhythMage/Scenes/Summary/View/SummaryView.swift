@@ -14,6 +14,8 @@ class SummaryView: UIView {
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
         self.addSubview(pointsView)
+        self.addSubview(summaryImageViewCollection)
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +27,7 @@ class SummaryView: UIView {
     
     let pointsView = PointsView()
     let interactionsButtonView = InteractionButtonsView()
+    var summaryImageViewCollection = SummaryImageViewCollection()
     
     
     lazy var rankingButton: UIBarButtonItem = {
@@ -53,7 +56,8 @@ class SummaryView: UIView {
     }()
     
     override func layoutSubviews() {
-        setupLayout()
+        
+        
     }
     
     func setupLayout() {
@@ -68,18 +72,23 @@ class SummaryView: UIView {
         
         gradientView.setupCircleBackgroundBlur()
         
+        //MARK: - Summary Image
+        summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
+        summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 35).isActive = true
+        summaryImageViewCollection.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
+        summaryImageViewCollection.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
+        
         //MARK: - Points View
         pointsView.translatesAutoresizingMaskIntoConstraints = false
-        pointsView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        pointsView.topAnchor.constraint(equalTo: summaryImageViewCollection.bottomAnchor).isActive = true
         pointsView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        pointsView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         
         //MARK: - Bottom Screen
         interactionsButtonView.translatesAutoresizingMaskIntoConstraints = false
         interactionsButtonView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor).isActive = true
         interactionsButtonView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        interactionsButtonView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        
+        interactionsButtonView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true  
     }
     
 

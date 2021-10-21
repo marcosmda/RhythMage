@@ -10,12 +10,11 @@ import UIKit
 class PointsView: UIView {
 
     private var mainStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: 300, height: 150))
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .red
         return stackView
     }()
     
@@ -40,7 +39,7 @@ class PointsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarchy()
-        
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -48,7 +47,7 @@ class PointsView: UIView {
     }
     
     override func layoutSubviews() {
-        setupLayout()
+        
     }
     
     private func setupHierarchy() {
@@ -58,6 +57,8 @@ class PointsView: UIView {
     }
     
     private func setupLayout() {
+        mainStackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        mainStackView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         mainStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         mainStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
