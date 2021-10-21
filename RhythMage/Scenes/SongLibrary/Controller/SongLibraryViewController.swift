@@ -47,7 +47,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.title = "Song Library"
         
