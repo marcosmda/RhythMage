@@ -23,12 +23,13 @@ class SummaryView: UIView {
         
     }
     
+    //MARK: - Gradient
     let gradientView = GradientBackgroundView()
     
+    //MARK: - Views
     let pointsView = PointsView()
     let interactionsButtonView = InteractionButtonsView()
     var summaryImageViewCollection = SummaryImageViewCollection()
-    
     
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -54,9 +55,6 @@ class SummaryView: UIView {
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
-    
-    override func layoutSubviews() {
-    }
     
     func setupLayout() {
         

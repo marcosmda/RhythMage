@@ -9,7 +9,7 @@ import UIKit
 
 class SummaryImageViewCollection: UIView {
 
-    var summaryViews: [SummaryImageView] = [SummaryImageView(), SummaryImageView(), SummaryImageView()]
+    var summaryViews: [SummaryImageView] = [SummaryImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: "UserPhoto-Test")!), SummaryImageView(), SummaryImageView()]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,6 @@ class SummaryImageViewCollection: UIView {
     func setupLayout() {
         
         var i = 0
-        let horizontalSpacing = 10
         let verticalSpacing = 30.0
         let rotation = [0.0, 0.3, -0.3]
         
@@ -60,7 +59,6 @@ class SummaryImageViewCollection: UIView {
                 if i % 2 != 0 {
                     summaryViews[i].centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: verticalSpacing).isActive = true
                 }
-                
                 
             } else {
                 summaryViews[2].trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true

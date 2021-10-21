@@ -10,9 +10,9 @@ import UIKit
 class SummaryImageView: UIView {
     
     private var summarySetup: SummaryImageSetup?
-    private var image: UIImage?
+    private let image: UIImage = UIImage(named: "UserPhoto-Test")!
     
-    private var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
@@ -27,10 +27,10 @@ class SummaryImageView: UIView {
         setupLayout()
     }
     
-    init(frame: CGRect, summarySetup: SummaryImageSetup, with image: UIImage){
-        super.init(frame: frame)
+    convenience init(frame: CGRect, summarySetup: SummaryImageSetup, with image: UIImage){
+        self.init(frame: frame)
         self.summarySetup = summarySetup
-        self.image = image
+        imageView.bounds = frame
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +42,7 @@ class SummaryImageView: UIView {
     }
     
     func setupLayout() {
-        imageView.image = UIImage(named: "UserPhoto-Test")!
+        imageView.image = image
         imageView.layer.cornerRadius = 20
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.borderWidth = 4
