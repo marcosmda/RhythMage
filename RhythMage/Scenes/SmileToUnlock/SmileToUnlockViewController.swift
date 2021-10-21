@@ -55,7 +55,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
         mainView.delegate = self
-        mainView.layoutSubviews()
+        configureFaceRecognition()
+        self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         setupGameKit()
         
     }
@@ -63,18 +64,17 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        configureFaceRecognition()
         ableToPlay = true
-        
-        let bool = true
-        if bool {
-            self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
-        }
   
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+             super.viewDidAppear(animated)
+        GKAccessPoint.shared.isActive = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        GKAccessPoint.shared.isActive = false
     }
     
     @objc func updateCounter(){
