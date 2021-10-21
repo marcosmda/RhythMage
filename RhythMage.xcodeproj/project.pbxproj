@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */; };
-		8D0984192717522C007477F3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984182717522C007477F3 /* GameScene.swift */; };
 		8D09841B27175233007477F3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841A27175233007477F3 /* GameViewController.swift */; };
 		8D09842027175363007477F3 /* RecordingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841F27175363007477F3 /* RecordingScene.swift */; };
 		8D0984222717540A007477F3 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984212717540A007477F3 /* AudioController.swift */; };
 		8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */; };
 		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
-		8D270A2A271F1AE800958160 /* MainOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A29271F1AE800958160 /* MainOrbNode.swift */; };
-		8D270A2D271F212800958160 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A2C271F212800958160 /* SKShapeNode.swift */; };
-		8D270A2F271F237100958160 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A2E271F237100958160 /* SKNode.swift */; };
-		8D270A32271F2BFF00958160 /* HitLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D270A31271F2BFF00958160 /* HitLineNode.swift */; };
+		8D10E5642721E602000A75C5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E55C2721E602000A75C5 /* GameViewController.swift */; };
+		8D10E5652721E602000A75C5 /* MainOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E55F2721E602000A75C5 /* MainOrbNode.swift */; };
+		8D10E5662721E602000A75C5 /* TileOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E5602721E602000A75C5 /* TileOrbNode.swift */; };
+		8D10E5672721E602000A75C5 /* HitLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E5612721E602000A75C5 /* HitLineNode.swift */; };
+		8D10E5682721E602000A75C5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E5622721E602000A75C5 /* GameScene.swift */; };
+		8D10E5692721E602000A75C5 /* GameSceneDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E5632721E602000A75C5 /* GameSceneDisplayView.swift */; };
+		8D10E56E2721E6DE000A75C5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E56B2721E6DE000A75C5 /* UIView.swift */; };
+		8D10E56F2721E6DE000A75C5 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E56C2721E6DE000A75C5 /* SKNode.swift */; };
+		8D10E5702721E6DE000A75C5 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D10E56D2721E6DE000A75C5 /* SKShapeNode.swift */; };
 		8D270A34271F451000958160 /* defaultLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D270A33271F450F00958160 /* defaultLevel.json */; };
-		8D68601B271F63D700C8909C /* TileOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68601A271F63D700C8909C /* TileOrbNode.swift */; };
-		8D855C7D27209EB600DA780F /* GameSceneDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855C7C27209EB600DA780F /* GameSceneDisplayView.swift */; };
-		8D855C7F2720B10A00DA780F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D855C7E2720B10A00DA780F /* UIView.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -38,12 +39,6 @@
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
-		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
-		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
-		CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C024A271F3E070046D529 /* CircularGradientView.swift */; };
-		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
-		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
-		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */; };
@@ -57,29 +52,46 @@
 		DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92014270CC1960090E41F /* SongLibraryViewController.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
+		F110F95D27219E96003BCE09 /* SettingsButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F95C27219E96003BCE09 /* SettingsButtonsCell.swift */; };
+		F110F9872721E2A4003BCE09 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9802721E2A4003BCE09 /* MainNavigationController.swift */; };
+		F110F9882721E2A4003BCE09 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9822721E2A4003BCE09 /* UIView.swift */; };
+		F110F9892721E2A4003BCE09 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9832721E2A4003BCE09 /* SKNode.swift */; };
+		F110F98A2721E2A4003BCE09 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9842721E2A4003BCE09 /* SKShapeNode.swift */; };
+		F110F98B2721E2A4003BCE09 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9852721E2A4003BCE09 /* SongLibraryHeaderView.swift */; };
+		F110F98C2721E2A4003BCE09 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9862721E2A4003BCE09 /* GradientBackgroundView.swift */; };
+		F110F9912721E2AC003BCE09 /* CircularGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F98D2721E2AB003BCE09 /* CircularGradientView.swift */; };
+		F110F9922721E2AC003BCE09 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F98F2721E2AC003BCE09 /* TextStyles.swift */; };
+		F110F9932721E2AC003BCE09 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9902721E2AC003BCE09 /* Colors.swift */; };
+		F110F99B2721E2D0003BCE09 /* MainOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9962721E2D0003BCE09 /* MainOrbNode.swift */; };
+		F110F99C2721E2D0003BCE09 /* TileOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9972721E2D0003BCE09 /* TileOrbNode.swift */; };
+		F110F99D2721E2D0003BCE09 /* HitLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9982721E2D0003BCE09 /* HitLineNode.swift */; };
+		F110F99E2721E2D0003BCE09 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F9992721E2D0003BCE09 /* GameScene.swift */; };
+		F110F99F2721E2D0003BCE09 /* GameSceneDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F110F99A2721E2D0003BCE09 /* GameSceneDisplayView.swift */; };
 		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
-		F1FE4D0727209C5200D276CC /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4D0627209C5200D276CC /* CreditsView.swift */; };
-		F1FE4D0927209C7500D276CC /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */; };
+		F1FE4CF4271F08AC00D276CC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF3271F08AC00D276CC /* SettingsView.swift */; };
+		F1FE4CF6271F08B700D276CC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */; };
+		F1FE4CFC271F51AA00D276CC /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FE4CFB271F51AA00D276CC /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameViewController.swift; sourceTree = "<group>"; };
-		8D0984182717522C007477F3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		8D09841A27175233007477F3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8D09841F27175363007477F3 /* RecordingScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingScene.swift; sourceTree = "<group>"; };
 		8D0984212717540A007477F3 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fairy-tale-waltz.mp3"; sourceTree = "<group>"; };
 		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
-		8D270A29271F1AE800958160 /* MainOrbNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOrbNode.swift; sourceTree = "<group>"; };
-		8D270A2C271F212800958160 /* SKShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
-		8D270A2E271F237100958160 /* SKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
-		8D270A31271F2BFF00958160 /* HitLineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitLineNode.swift; sourceTree = "<group>"; };
+		8D10E55C2721E602000A75C5 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8D10E55F2721E602000A75C5 /* MainOrbNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOrbNode.swift; sourceTree = "<group>"; };
+		8D10E5602721E602000A75C5 /* TileOrbNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileOrbNode.swift; sourceTree = "<group>"; };
+		8D10E5612721E602000A75C5 /* HitLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitLineNode.swift; sourceTree = "<group>"; };
+		8D10E5622721E602000A75C5 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		8D10E5632721E602000A75C5 /* GameSceneDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneDisplayView.swift; sourceTree = "<group>"; };
+		8D10E56B2721E6DE000A75C5 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		8D10E56C2721E6DE000A75C5 /* SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
+		8D10E56D2721E6DE000A75C5 /* SKShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
 		8D270A33271F450F00958160 /* defaultLevel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = defaultLevel.json; sourceTree = "<group>"; };
-		8D68601A271F63D700C8909C /* TileOrbNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileOrbNode.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D855C7C27209EB600DA780F /* GameSceneDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDisplayView.swift; sourceTree = "<group>"; };
-		8D855C7E2720B10A00DA780F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		8DA09D83270B7963000B43C8 /* CheckpointScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointScores.swift; sourceTree = "<group>"; };
@@ -95,12 +107,6 @@
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
-		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
-		CF3C024A271F3E070046D529 /* CircularGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGradientView.swift; sourceTree = "<group>"; };
-		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
-		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DB6BD2BC270F916E00BE8C80 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
@@ -114,10 +120,26 @@
 		DBB92014270CC1960090E41F /* SongLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryViewController.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		F110F95C27219E96003BCE09 /* SettingsButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonsCell.swift; sourceTree = "<group>"; };
+		F110F9802721E2A4003BCE09 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		F110F9822721E2A4003BCE09 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		F110F9832721E2A4003BCE09 /* SKNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
+		F110F9842721E2A4003BCE09 /* SKShapeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
+		F110F9852721E2A4003BCE09 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
+		F110F9862721E2A4003BCE09 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		F110F98D2721E2AB003BCE09 /* CircularGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularGradientView.swift; sourceTree = "<group>"; };
+		F110F98F2721E2AC003BCE09 /* TextStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		F110F9902721E2AC003BCE09 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		F110F9962721E2D0003BCE09 /* MainOrbNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainOrbNode.swift; sourceTree = "<group>"; };
+		F110F9972721E2D0003BCE09 /* TileOrbNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileOrbNode.swift; sourceTree = "<group>"; };
+		F110F9982721E2D0003BCE09 /* HitLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HitLineNode.swift; sourceTree = "<group>"; };
+		F110F9992721E2D0003BCE09 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		F110F99A2721E2D0003BCE09 /* GameSceneDisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneDisplayView.swift; sourceTree = "<group>"; };
 		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
-		F1FE4D0627209C5200D276CC /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
-		F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
+		F1FE4CF3271F08AC00D276CC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F1FE4CFB271F51AA00D276CC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,33 +156,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D05DD7E270DCB820078F2D8 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				8D05DD80270DCBAA0078F2D8 /* Controller */,
-			);
-			path = Game;
-			sourceTree = "<group>";
-		};
-		8D05DD7F270DCBA40078F2D8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				8D0984182717522C007477F3 /* GameScene.swift */,
-				8D855C7C27209EB600DA780F /* GameSceneDisplayView.swift */,
-				8D270A30271F2BE500958160 /* Components */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8D05DD80270DCBAA0078F2D8 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8D09841A27175233007477F3 /* GameViewController.swift */,
-				8D05DD7F270DCBA40078F2D8 /* View */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		8D09841C2717531B007477F3 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,29 +185,55 @@
 			isa = PBXGroup;
 			children = (
 				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
-				8D270A33271F450F00958160 /* defaultLevel.json */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
 		};
-		8D270A2B271F211C00958160 /* Extensions */ = {
+		8D10E55A2721E602000A75C5 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				8D270A2C271F212800958160 /* SKShapeNode.swift */,
-				8D270A2E271F237100958160 /* SKNode.swift */,
-				8D855C7E2720B10A00DA780F /* UIView.swift */,
+				8D10E55B2721E602000A75C5 /* Controller */,
+				8D10E55D2721E602000A75C5 /* View */,
 			);
-			path = Extensions;
+			path = Game;
 			sourceTree = "<group>";
 		};
-		8D270A30271F2BE500958160 /* Components */ = {
+		8D10E55B2721E602000A75C5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8D270A29271F1AE800958160 /* MainOrbNode.swift */,
-				8D270A31271F2BFF00958160 /* HitLineNode.swift */,
-				8D68601A271F63D700C8909C /* TileOrbNode.swift */,
+				8D10E55C2721E602000A75C5 /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D10E55D2721E602000A75C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D10E55E2721E602000A75C5 /* Components */,
+				8D10E5622721E602000A75C5 /* GameScene.swift */,
+				8D10E5632721E602000A75C5 /* GameSceneDisplayView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D10E55E2721E602000A75C5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D10E55F2721E602000A75C5 /* MainOrbNode.swift */,
+				8D10E5602721E602000A75C5 /* TileOrbNode.swift */,
+				8D10E5612721E602000A75C5 /* HitLineNode.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8D10E56A2721E6DE000A75C5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D10E56B2721E6DE000A75C5 /* UIView.swift */,
+				8D10E56C2721E6DE000A75C5 /* SKNode.swift */,
+				8D10E56D2721E6DE000A75C5 /* SKShapeNode.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8DA09D87270B7C92000B43C8 /* Protocols */ = {
@@ -270,6 +291,7 @@
 				8DA09D87270B7C92000B43C8 /* Protocols */,
 				8DA09D8C270B8425000B43C8 /* Interactions */,
 				8DA09D7F270B7564000B43C8 /* User.swift */,
+				F1FE4CFB271F51AA00D276CC /* UserSettings.swift */,
 				8DA09D8A270B7F97000B43C8 /* Book.swift */,
 				8DA09D81270B7948000B43C8 /* Level.swift */,
 				8DA09D83270B7963000B43C8 /* CheckpointScores.swift */,
@@ -296,11 +318,11 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F1FE4D0327209C3400D276CC /* CreditsScene */,
+				F1FE4CEF271F088700D276CC /* SettingsScreen */,
+				8D10E55A2721E602000A75C5 /* Game */,
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
 				DBB4A1DE2718B6BF0037BCB1 /* SongContainerView.swift */,
 				8D09841C2717531B007477F3 /* Recording */,
-				8D05DD7E270DCB820078F2D8 /* Game */,
 				DBB92009270CBD830090E41F /* SongLibrary */,
 				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
 			);
@@ -318,9 +340,9 @@
 		CF36F113271F112200DE0604 /* Defaults */ = {
 			isa = PBXGroup;
 			children = (
+				8D10E56A2721E6DE000A75C5 /* Extensions */,
 				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
-				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
 			);
 			path = Defaults;
 			sourceTree = "<group>";
@@ -328,13 +350,13 @@
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-                8D270A2B271F211C00958160 /* Extensions */,
-				CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */,
+				F110F9812721E2A4003BCE09 /* Extensions */,
+				F110F9862721E2A4003BCE09 /* GradientBackgroundView.swift */,
+				F110F9802721E2A4003BCE09 /* MainNavigationController.swift */,
+				F110F9852721E2A4003BCE09 /* SongLibraryHeaderView.swift */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
-				CF36F113271F112200DE0604 /* Defaults */,
-				CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */,
-				CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */,
-				CF3C024A271F3E070046D529 /* CircularGradientView.swift */,
+				F110F98D2721E2AB003BCE09 /* CircularGradientView.swift */,
+				F110F98E2721E2AB003BCE09 /* Defaults */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -393,6 +415,45 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F110F9812721E2A4003BCE09 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F110F9822721E2A4003BCE09 /* UIView.swift */,
+				F110F9832721E2A4003BCE09 /* SKNode.swift */,
+				F110F9842721E2A4003BCE09 /* SKShapeNode.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F110F98E2721E2AB003BCE09 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				F110F98F2721E2AC003BCE09 /* TextStyles.swift */,
+				F110F9902721E2AC003BCE09 /* Colors.swift */,
+			);
+			path = Defaults;
+			sourceTree = "<group>";
+		};
+		F110F9942721E2D0003BCE09 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F110F9952721E2D0003BCE09 /* Components */,
+				F110F9992721E2D0003BCE09 /* GameScene.swift */,
+				F110F99A2721E2D0003BCE09 /* GameSceneDisplayView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F110F9952721E2D0003BCE09 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F110F9962721E2D0003BCE09 /* MainOrbNode.swift */,
+				F110F9972721E2D0003BCE09 /* TileOrbNode.swift */,
+				F110F9982721E2D0003BCE09 /* HitLineNode.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F14F1A50271228EA002F5C3A /* SmileToUnlock */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,27 +463,28 @@
 			path = SmileToUnlock;
 			sourceTree = "<group>";
 		};
-		F1FE4D0327209C3400D276CC /* CreditsScene */ = {
+		F1FE4CEF271F088700D276CC /* SettingsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F1FE4D0427209C3D00D276CC /* View */,
-				F1FE4D0527209C4200D276CC /* Controller */,
+				F1FE4CF0271F088F00D276CC /* View */,
+				F1FE4CF2271F089900D276CC /* Controller */,
 			);
-			path = CreditsScene;
+			path = SettingsScreen;
 			sourceTree = "<group>";
 		};
-		F1FE4D0427209C3D00D276CC /* View */ = {
+		F1FE4CF0271F088F00D276CC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F1FE4D0627209C5200D276CC /* CreditsView.swift */,
+				F1FE4CF3271F08AC00D276CC /* SettingsView.swift */,
+				F110F95C27219E96003BCE09 /* SettingsButtonsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		F1FE4D0527209C4200D276CC /* Controller */ = {
+		F1FE4CF2271F089900D276CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F1FE4D0827209C7500D276CC /* CreditsSceneViewController.swift */,
+				F1FE4CF5271F08B700D276CC /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -494,7 +556,6 @@
 			files = (
 				DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */,
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
-				8D270A34271F451000958160 /* defaultLevel.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
@@ -509,50 +570,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
-				8D855C7D27209EB600DA780F /* GameSceneDisplayView.swift in Sources */,
 				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
+				F110F99D2721E2D0003BCE09 /* HitLineNode.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
+				F1FE4CFC271F51AA00D276CC /* UserSettings.swift in Sources */,
+				8D10E5662721E602000A75C5 /* TileOrbNode.swift in Sources */,
 				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
 				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
 				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
-				CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */,
 				DB6BD2BD270F916E00BE8C80 /* SongLibraryLockedSongCell.swift in Sources */,
+				8D10E5642721E602000A75C5 /* GameViewController.swift in Sources */,
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,
+				8D10E5682721E602000A75C5 /* GameScene.swift in Sources */,
 				DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
-				8D270A32271F2BFF00958160 /* HitLineNode.swift in Sources */,
-				8D855C7F2720B10A00DA780F /* UIView.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
-				F1FE4D0727209C5200D276CC /* CreditsView.swift in Sources */,
+				F110F9892721E2A4003BCE09 /* SKNode.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
+				8D10E5702721E6DE000A75C5 /* SKShapeNode.swift in Sources */,
 				DBB9200F270CBEC90090E41F /* SongLibraryView.swift in Sources */,
-				8D270A2A271F1AE800958160 /* MainOrbNode.swift in Sources */,
 				DBB4A1DF2718B6BF0037BCB1 /* SongContainerView.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
+				F110F9882721E2A4003BCE09 /* UIView.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
-				F1FE4D0927209C7500D276CC /* CreditsSceneViewController.swift in Sources */,
+				8D10E56E2721E6DE000A75C5 /* UIView.swift in Sources */,
+				8D10E56F2721E6DE000A75C5 /* SKNode.swift in Sources */,
+				8D10E5672721E602000A75C5 /* HitLineNode.swift in Sources */,
+				8D10E5692721E602000A75C5 /* GameSceneDisplayView.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
-				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
+				8D10E5652721E602000A75C5 /* MainOrbNode.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
-				8D270A2F271F237100958160 /* SKNode.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
+				F110F9932721E2AC003BCE09 /* Colors.swift in Sources */,
+				F110F9872721E2A4003BCE09 /* MainNavigationController.swift in Sources */,
+				F110F98B2721E2A4003BCE09 /* SongLibraryHeaderView.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
-				8D68601B271F63D700C8909C /* TileOrbNode.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
-				CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */,
-				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
+				F1FE4CF6271F08B700D276CC /* SettingsViewController.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
-				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
+				F110F95D27219E96003BCE09 /* SettingsButtonsCell.swift in Sources */,
 				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
-				8D270A2D271F212800958160 /* SKShapeNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,10 +762,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
@@ -730,10 +794,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
