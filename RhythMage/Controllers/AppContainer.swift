@@ -13,6 +13,7 @@ class AppContainer {
     var audioController = AudioController()
     
     init() {
+
         
     }
 }
@@ -70,6 +71,20 @@ extension AppContainer:SmileToUnlockFactory{
         return SmileToUnlockController(factory: self)
     }
 }
+
+//MARK: - SettingsScene
+protocol SettingsFactory {
+    /// Creates an instance of SettingsViewController to be used
+    /// - Returns: An instance of SettingsViewController
+    func createSettingsScene() -> SettingsViewController
+}
+extension AppContainer:SettingsFactory{
+    func createSettingsScene() -> SettingsViewController {
+        return SettingsViewController( factory: self)//user: User,
+    }
+
+}
+
 
 
 //MARK: - CreditsScene
