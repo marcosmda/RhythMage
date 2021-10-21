@@ -165,16 +165,9 @@ class SettingsView: UIView{
     }
 
 
-    @objc func onTermsOfUsePush(){
-        delegate?.onTermsOfUsePush()
-    }
     @objc func onBackButtonPush(){
         delegate?.onBackButtonPush()
     }
-    @objc func onCreditsPush(){
-        delegate?.onCreditsPush()
-    }
-    
     @objc func switchValueDidChange(_ sender: UISwitch)
     {
         delegate?.switchValueDidChange()

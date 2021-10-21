@@ -10,8 +10,6 @@ import UIKit
 
 protocol SettingsDelegate {
     func onBackButtonPush()
-    func onTermsOfUsePush()
-    func onCreditsPush()
     func switchValueDidChange()
 }
 
@@ -22,7 +20,7 @@ class SettingsViewController: BaseViewController<SettingsView>{
     var buttons = ["TERMS OF USE", "CREDITS"]
     //var user: User
     
-    typealias Factory = SmileToUnlockFactory
+    typealias Factory = SmileToUnlockFactory //& CreditsFactory
     let factory: Factory
     
     //var sender: UISwitch
@@ -99,16 +97,28 @@ extension SettingsViewController: UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return buttons.count
     }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 1 {
+            //let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath)
+            switch indexPath.row {
+            case 0:
+                print("Enter Credits")
+                //navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: true)
+                //navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
+            case 1:
+                print("Enter Terms Of Use")
+                
+            default:
+                return nil
+            }
+        }
+    return indexPath
+    }
+    
 }
+
 extension SettingsViewController: SettingsDelegate {
-    func onTermsOfUsePush() {
-        // navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
-    }
-    
-    func onCreditsPush() {
-        //navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
-    }
-    
     func switchValueDidChange() {
     }
     

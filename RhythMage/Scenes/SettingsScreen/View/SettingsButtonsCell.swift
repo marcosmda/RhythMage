@@ -31,11 +31,9 @@ class SettingsButtonCell:  UITableViewCell{
         return view
     }()
     
-    
     let accessory: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.tintColor = .secondary
         return imageView
     }()
     
