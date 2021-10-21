@@ -11,6 +11,7 @@ class SmileToResumeView: UIView{
     
     //MARK: - Properties
     var delegate: SmileToResumeDelegate?
+    var gradientView = GradientBackgroundView()
     
     ///Title inside the progressbar to describe what the user has to do
     let smileToResumeTitle: UILabel = {
@@ -48,17 +49,16 @@ class SmileToResumeView: UIView{
     ///Button that leads to the main menu
     let buttonMainMenu: UIButton = {
         let button3 = UIButton(frame: .zero)
-        var songText = " Song Library"
-        button3.backgroundColor = .white
-        button3.setImage(UIImage(systemName: "music.note"), for: .normal)
+        var songText = "Main Menu"
+        button3.backgroundColor = UIColor.terciaryBackground
         button3.tintColor = .label
         button3.setTitle(songText.uppercased(), for: .normal)
         button3.contentVerticalAlignment = .center
-        button3.setTitleColor(.label, for: .normal)
+        button3.setTitleColor(.white, for: .normal)
         //TODO: Confirm the colors
         button3.titleLabel!.font = .inikaBold(ofSize: 20)
         button3.layer.cornerRadius = 20
-        button3.addTarget(self, action: #selector(onMainMenuButtonClick), for: .touchUpInside)
+        button3.addTarget(self, action: #selector(onMainMenuButtonClicked), for: .touchUpInside)
         return button3
     }()
     
@@ -79,13 +79,43 @@ class SmileToResumeView: UIView{
         
     }()
     
+    fileprivate let container: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 24
+        return view
+    }()
+    
     //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(pausedTitle)
-        self.addSubview(progressView)
+        
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            self.backgroundColor = .clear
+
+            let blurEffect = UIBlurEffect(style: .dark)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            self.addSubview(blurEffectView) //if you have more UIViews, use an insertSubview API to place it where needed
+        } else {
+            self.backgroundColor = .black
+        }
+
+        self.frame = UIScreen.main.bounds
+        
+        container.addSubview(gradientView)
+        container.addSubview(pausedTitle)
         progressView.addSubview(smileToResumeTitle)
-        self.addSubview(buttonMainMenu)
+        container.addSubview(progressView)
+        container.addSubview(buttonMainMenu)
+        self.addSubview(container)
+        
+        
         layoutSubviews()
     }
     
@@ -99,7 +129,16 @@ class SmileToResumeView: UIView{
         buttonMainMenu.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    @objc func onMainMenuButtonClick(){
+    @objc fileprivate func animateIn() {
+        self.container.transform = CGAffineTransform(translationX: 0, y: 0)
+        self.alpha = 1
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.container.transform = .identity
+            self.alpha = 1
+        })
+    }
+    
+    @objc func onMainMenuButtonClicked(){
         delegate?.onMainMenuButtonClicked()
     }
     
@@ -109,22 +148,31 @@ class SmileToResumeView: UIView{
         
         handleAutoResizingMasks()
         
-        
+        container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
+        container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.27).isActive = true
+
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToResumeTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
+        
+        pausedTitle.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         
         progressView.widthAnchor.constraint(equalTo: buttonMainMenu.widthAnchor).isActive = true
         progressView.topAnchor.constraint(equalTo: pausedTitle.bottomAnchor, constant: 20).isActive = true
         progressView.bottomAnchor.constraint(equalTo: buttonMainMenu.topAnchor, constant: -20).isActive = true
-        progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         progressView.heightAnchor.constraint(equalTo: buttonMainMenu.heightAnchor).isActive = true
         
-        buttonMainMenu.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
+        buttonMainMenu.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.85).isActive = true
         buttonMainMenu.topAnchor.constraint(equalTo: smileToResumeTitle.bottomAnchor, constant: 20).isActive = true
         buttonMainMenu.heightAnchor.constraint(equalToConstant: 51).isActive = true
-        buttonMainMenu.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
-        buttonMainMenu.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        buttonMainMenu.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -42).isActive = true
+        buttonMainMenu.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         
+        gradientView.setupGradient(with: self.container)
+        
+        animateIn()
     }
     
 }

@@ -23,7 +23,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
 
-    typealias Factory = SongLibrarySceneFactory
+    //    typealias Factory = SongLibrarySceneFactory
+    typealias Factory = SmileToResumeSceneFactory
     let factory: Factory
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
@@ -158,7 +159,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
                     timer?.invalidate()
                     DispatchQueue.main.async {
                         print("ENTREI")
-                        self.navigationController?.pushViewController(self.factory.createSongLibraryScene(), animated: true)
+                        self.navigationController?.pushViewController(self.factory.createSmileToResumeScene(), animated: true)
+
+//                        self.navigationController?.pushViewController(self.factory.createSongLibraryScene(), animated: true)
                         self.progressFloat = 0
                         self.runCount = 0
                     }
@@ -185,13 +188,18 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     
     @objc func onSettingsButtonPush() {
-        let navController = UINavigationController(rootViewController: factory.createSongLibraryScene())
+        let navController = UINavigationController(rootViewController: factory.createSmileToResumeScene())
+//        let navController = UINavigationController(rootViewController: factory.createSongLibraryScene())
         navigationController?.present(navController, animated: true, completion: nil)
     }
     
     
     func onSongLibraryButtonPush() {
-        navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
+        let vc = factory.createSmileToResumeScene()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
+//        navigationController?.pushViewController(factory.createSmileToResumeScene(), animated: true)
     }
 
 }

@@ -9,4 +9,5 @@ import Foundation
 
 protocol SmileToResumeDelegate {
     func onMainMenuButtonClicked()
+    func updateProgressBar()
 }

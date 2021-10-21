@@ -20,7 +20,7 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         self.song.translatesAutoresizingMaskIntoConstraints = false
        
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
-        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
+        self.backgroundColor = UIColor.terciaryBackground
         
         contentView.clipsToBounds = false
         

@@ -59,26 +59,26 @@ extension AppContainer: RecordingSceneFactory {
 }
 
 //MARK: - SmileToUnlock
-protocol SmileToUnlockFactory{
+protocol SmileToUnlockSceneFactory{
     /// Creates an instance of SmileToUnlockViewController to be used
     /// - Returns: An instance of SmileToUnlockViewController
     func createSmileToUnlockScene() -> SmileToUnlockController
 }
 
-extension AppContainer:SmileToUnlockFactory{
+extension AppContainer: SmileToUnlockSceneFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
         return SmileToUnlockController(factory: self)
     }
 }
 
 //MARK: - SmileToResume
-protocol SmileToResumeFactory{
+protocol SmileToResumeSceneFactory{
     /// Creates an instance of SmileToResumeViewController to be used
     /// - Returns: An instance of SmileToResumeViewController
     func createSmileToResumeScene() -> SmileToResumeViewController
 }
 
-extension AppContainer: SmileToResumeFactory{
+extension AppContainer: SmileToResumeSceneFactory{
     func createSmileToResumeScene() -> SmileToResumeViewController {
         return SmileToResumeViewController(factory: self)
     }
