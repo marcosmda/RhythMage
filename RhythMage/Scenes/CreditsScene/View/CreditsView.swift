@@ -12,6 +12,7 @@ class CreditsView: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addSubview(gradientView)
         self.addSubview(creditsText)
         setUpView()
     }
@@ -20,6 +21,7 @@ class CreditsView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
+    var gradientView = GradientBackgroundView()
     
     var delegate: CreditsSceneDelegate?
     lazy var backButton: UIBarButtonItem = {
@@ -40,7 +42,6 @@ class CreditsView: UIView{
         label1.textColor = .secondary
         label1.text = "THIS GAME WAS MADE IN BRAZIL BY (NOT SO) HAPPY DEVELOPERS"
         label1.font = .inikaBold(ofSize: 25)
-        label1.shadowColor = .purple
         label1.numberOfLines = 0
         label1.textAlignment = .center
         label1.contentMode = .scaleAspectFit
@@ -53,6 +54,14 @@ class CreditsView: UIView{
         creditsText.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         creditsText.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -60).isActive = true
         creditsText.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60).isActive = true
+        
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        gradientView.setupGradient(with: self)
 
     }
     
