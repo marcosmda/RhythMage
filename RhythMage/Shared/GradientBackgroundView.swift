@@ -19,7 +19,7 @@ class GradientBackgroundView: UIView {
     let gradientLayer = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     
-    let gradientOne = UIColor.label.cgColor
+    let gradientOne = UIColor.backgroundColor.cgColor
     let gradientTwo = UIColor.backgroundColor2.cgColor
     let gradientThree = UIColor.backgroundColor3.cgColor
     let gradientFour = UIColor.backgroundColor4.cgColor
@@ -62,8 +62,8 @@ class GradientBackgroundView: UIView {
             currentGradient = 0
         }
         
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else {return}
+//        DispatchQueue.main.async { [weak self] in
+//            guard let self = self else {return}
             let gradientChangeAnimation = CABasicAnimation(keyPath: "colors")
             gradientChangeAnimation.delegate = self
             gradientChangeAnimation.duration = 5.0
@@ -71,7 +71,7 @@ class GradientBackgroundView: UIView {
             gradientChangeAnimation.fillMode = CAMediaTimingFillMode.forwards
             gradientChangeAnimation.isRemovedOnCompletion = false
             self.gradientLayer.add(gradientChangeAnimation, forKey: "colorChange")
-        }
+  //      }
         
     }
     
@@ -82,7 +82,7 @@ class GradientBackgroundView: UIView {
         
         var i = 0
         
-        let colors: [UIColor] = [UIColor.label, UIColor.backgroundColor2, UIColor.backgroundColor3, UIColor.backgroundColor4, UIColor.backgroundColor5]
+        let colors: [UIColor] = [UIColor.backgroundColor, UIColor.backgroundColor2, UIColor.backgroundColor3, UIColor.backgroundColor4, UIColor.backgroundColor5]
         
         var auxColors: [UIColor] = []
         

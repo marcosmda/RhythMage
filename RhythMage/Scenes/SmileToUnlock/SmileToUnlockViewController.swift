@@ -44,7 +44,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         self.factory = factory
         super.init(mainView: SmileToUnlockView())
         
-        
     }
     
     required init?(coder: NSCoder) {
@@ -55,22 +54,15 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
       super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
         mainView.delegate = self
-        mainView.layoutSubviews()
+        configureFaceRecognition()
+        self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         setupGameKit()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        configureFaceRecognition()
         ableToPlay = true
-        
-        let bool = true
-        if bool {
-            self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
-        }
-  
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -155,7 +147,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
         
         if(self.currentMove != selectedMove) {
                 
-            timer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
+           timer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
           
             self.progressFloat = 1.0
             self.updateProgressBar()
@@ -180,6 +172,15 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
             }
             
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        GKAccessPoint.shared.isActive = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        GKAccessPoint.shared.isActive = false
     }
                                                             
 
@@ -245,6 +246,7 @@ extension SmileToUnlockController {
             }
             
             GKAccessPoint.shared.isActive = true
+            
             
         }
         

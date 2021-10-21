@@ -31,7 +31,57 @@ class SmileToUnlockView: UIView {
         self.addSubview(progressView)
         progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
-        layoutSubviews()
+        
+        setupLayout()
+    }
+    
+    func setupLayout() {
+        print("euuu")
+        
+        handleAutoResizingMasks()
+        
+        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
+        nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
+        nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
+        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
+        nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
+        nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor).isActive = true
+        nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
+        bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
+        bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
+        bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
+        mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
+        smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
+        
+        progressView.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
+        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 25).isActive = true
+        progressView.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
+        progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalTo: buttonSongLibrary.heightAnchor).isActive = true
+        
+        
+        buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
+        buttonSongLibrary.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
+        buttonSongLibrary.heightAnchor.constraint(equalToConstant: 51).isActive = true
+        buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
+        buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        gradientView.setupCircleBackgroundBlur()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -176,55 +226,6 @@ class SmileToUnlockView: UIView {
         imageView.center = self.center
         self.addSubview(imageView)
         self.sendSubviewToBack(imageView)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        handleAutoResizingMasks()
-        
-        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
-        nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
-        nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        
-        nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
-        nameSongTitle.bottomAnchor.constraint(equalTo: bestScoreTitle.topAnchor).isActive = true
-        nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
-        bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
-        bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
-        bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
-        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
-        mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
-        smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
-        
-        progressView.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
-        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 25).isActive = true
-        progressView.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
-        progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        progressView.heightAnchor.constraint(equalTo: buttonSongLibrary.heightAnchor).isActive = true
-        
-        
-        buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
-        buttonSongLibrary.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
-        buttonSongLibrary.heightAnchor.constraint(equalToConstant: 51).isActive = true
-        buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -42).isActive = true
-        buttonSongLibrary.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        gradientView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        gradientView.setupCircleBackgroundBlur()
-        
     }
     
     public func requestModel (user: User, level: Level)
