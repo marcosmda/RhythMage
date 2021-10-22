@@ -42,6 +42,7 @@
 		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
 		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
 		CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C024A271F3E070046D529 /* CircularGradientView.swift */; };
+		CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF573B79272336AA00FE1C35 /* CreditsSceneViewController.swift */; };
 		CF577A6F2720D85300BF82E3 /* SummaryImageViewCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF577A6E2720D85300BF82E3 /* SummaryImageViewCollection.swift */; };
 		CF746E8C2720865700B7F2DE /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E8B2720865700B7F2DE /* SummaryView.swift */; };
 		CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E8D2720866700B7F2DE /* SummaryViewController.swift */; };
@@ -80,7 +81,6 @@
 		F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */; };
 		F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UseSettings.swift */; };
 		F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0827232FD400A2DC09 /* CreditsView.swift */; };
-		F1587F0B27232FE800A2DC09 /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */; };
 		F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +120,7 @@
 		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
 		CF3C024A271F3E070046D529 /* CircularGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGradientView.swift; sourceTree = "<group>"; };
+		CF573B79272336AA00FE1C35 /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
 		CF577A6E2720D85300BF82E3 /* SummaryImageViewCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageViewCollection.swift; sourceTree = "<group>"; };
 		CF746E8B2720865700B7F2DE /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		CF746E8D2720866700B7F2DE /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDelegate.swift; sourceTree = "<group>"; };
 		F1587F0327232F2C00A2DC09 /* UseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseSettings.swift; sourceTree = "<group>"; };
 		F1587F0827232FD400A2DC09 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
-		F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
 		F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -595,7 +595,7 @@
 		F1587F0727232FBD00A2DC09 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */,
+				CF573B79272336AA00FE1C35 /* CreditsSceneViewController.swift */,
 				F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */,
 			);
 			path = Controller;
@@ -720,8 +720,8 @@
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
+				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
-				F1587F0B27232FE800A2DC09 /* CreditsSceneViewController.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
