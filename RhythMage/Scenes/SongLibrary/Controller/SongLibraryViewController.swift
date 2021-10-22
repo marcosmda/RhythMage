@@ -12,7 +12,8 @@ protocol SongLibraryDelegate {
 }
 
 class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate, UIGestureRecognizerDelegate{
-    
+    //MARK: Injected Properties
+    let authenticationController: AuthenticationController
     
     //MARK: - Properties
     var models = [
@@ -23,12 +24,17 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         Level(id: "55", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Angel Baby", artist: "Troye Sivan")
     ]
     
-    var user = User(id: "66", name: "Pessoa")
-    
+    var user: User {
+        if let user = authenticationController.user {
+            return user
+        } else {
+            return User.empty()
+        }
+    }
     //MARK: - Initializers
-    init(){
-        let view = SongLibraryView()
-        super.init(mainView: view)
+    init(authenticationController: AuthenticationController){
+        self.authenticationController = authenticationController
+        super.init(mainView: SongLibraryView())
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         mainView.delegate = self
