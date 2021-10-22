@@ -74,6 +74,14 @@
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
 		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
+		F1587EFC27232EB300A2DC09 /* SettingsButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */; };
+		F1587EFE27232ED000A2DC09 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFD27232ED000A2DC09 /* SettingsView.swift */; };
+		F1587F0027232EF200A2DC09 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFF27232EF200A2DC09 /* SettingsViewController.swift */; };
+		F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */; };
+		F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UseSettings.swift */; };
+		F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0827232FD400A2DC09 /* CreditsView.swift */; };
+		F1587F0B27232FE800A2DC09 /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */; };
+		F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +152,14 @@
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
 		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
+		F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonCell.swift; sourceTree = "<group>"; };
+		F1587EFD27232ED000A2DC09 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F1587EFF27232EF200A2DC09 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDelegate.swift; sourceTree = "<group>"; };
+		F1587F0327232F2C00A2DC09 /* UseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseSettings.swift; sourceTree = "<group>"; };
+		F1587F0827232FD400A2DC09 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
+		F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +314,7 @@
 				8DA09D87270B7C92000B43C8 /* Protocols */,
 				8DA09D8C270B8425000B43C8 /* Interactions */,
 				8DA09D7F270B7564000B43C8 /* User.swift */,
+				F1587F0327232F2C00A2DC09 /* UseSettings.swift */,
 				8DA09D8A270B7F97000B43C8 /* Book.swift */,
 				8DA09D81270B7948000B43C8 /* Level.swift */,
 				8DA09D83270B7963000B43C8 /* CheckpointScores.swift */,
@@ -324,6 +341,8 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F1587F0527232FA700A2DC09 /* CreditsScene */,
+				F1587EF827232E7700A2DC09 /* SettingsScene */,
 				DB1A41072723220F00F7EDD1 /* SongLibrary */,
 				DB1A40FE272321D300F7EDD1 /* SmileToResume */,
 				DBB4A1D5271756BF0037BCB1 /* LoadingScreen */,
@@ -529,6 +548,59 @@
 			path = SmileToUnlock;
 			sourceTree = "<group>";
 		};
+		F1587EF827232E7700A2DC09 /* SettingsScene */ = {
+			isa = PBXGroup;
+			children = (
+				F1587EFA27232E9400A2DC09 /* View */,
+				F1587EF927232E7C00A2DC09 /* Controller */,
+			);
+			path = SettingsScene;
+			sourceTree = "<group>";
+		};
+		F1587EF927232E7C00A2DC09 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F1587EFF27232EF200A2DC09 /* SettingsViewController.swift */,
+				F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F1587EFA27232E9400A2DC09 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */,
+				F1587EFD27232ED000A2DC09 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F1587F0527232FA700A2DC09 /* CreditsScene */ = {
+			isa = PBXGroup;
+			children = (
+				F1587F0727232FBD00A2DC09 /* Controller */,
+				F1587F0627232FB600A2DC09 /* View */,
+			);
+			path = CreditsScene;
+			sourceTree = "<group>";
+		};
+		F1587F0627232FB600A2DC09 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F1587F0827232FD400A2DC09 /* CreditsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F1587F0727232FBD00A2DC09 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F1587F0A27232FE800A2DC09 /* CreditsSceneViewController.swift */,
+				F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -630,13 +702,17 @@
 				DB1A41132723220F00F7EDD1 /* SongLibraryLockedSongCell.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
 				DB1A4106272321D300F7EDD1 /* SmileToResumeView.swift in Sources */,
+				F1587EFC27232EB300A2DC09 /* SettingsButtonCell.swift in Sources */,
+				F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DB1A4104272321D300F7EDD1 /* SmileToResumeViewController.swift in Sources */,
 				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,
 				DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */,
+				F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */,
 				DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */,
+				F1587F0027232EF200A2DC09 /* SettingsViewController.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
@@ -645,6 +721,7 @@
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
+				F1587F0B27232FE800A2DC09 /* CreditsSceneViewController.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
@@ -652,8 +729,10 @@
 				DB1A410F2723220F00F7EDD1 /* SongLibraryViewController.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
 				CF577A6F2720D85300BF82E3 /* SummaryImageViewCollection.swift in Sources */,
+				F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */,
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
+				F1587EFE27232ED000A2DC09 /* SettingsView.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				8D00CA282722D4C000DCBA84 /* HitLineNode.swift in Sources */,
 				CF746E8C2720865700B7F2DE /* SummaryView.swift in Sources */,
@@ -665,6 +744,7 @@
 				8D00CA1C2722D39D00DCBA84 /* GameSceneDisplayView.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
 				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
+				F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */,
 				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
 				8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */,
 				CF06475B2721E71D00477C3A /* SongMock.swift in Sources */,
