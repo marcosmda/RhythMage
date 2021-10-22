@@ -127,4 +127,29 @@ extension AppContainer:GameSceneFactory{
     }
 }
 
+//MARK: - SettingsScene
+protocol SettingsSceneFactory{
+    /// Creates an instance of SettingsViewController to be used
+    /// - Returns: An instance of SettingsViewController
+    func createSettingsScene() -> SettingsViewController
+}
+
+extension AppContainer:SettingsSceneFactory{
+    func createSettingsScene() -> SettingsViewController {
+        return SettingsViewController(factory: self)
+    }
+}
+
+//MARK: - CreditsScene
+protocol CreditsSceneFactory{
+    /// Creates an instance of CreditsSceneViewController to be used
+    /// - Returns: An instance of CreditsSceneViewController
+    func createCreditsScene() -> CreditsSceneViewController
+}
+
+extension AppContainer:CreditsSceneFactory{
+    func createCreditsScene() -> CreditsSceneViewController {
+        return CreditsSceneViewController(factory: self)
+    }
+}
 
