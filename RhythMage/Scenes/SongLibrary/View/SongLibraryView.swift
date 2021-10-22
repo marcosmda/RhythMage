@@ -47,7 +47,6 @@ class SongLibraryView: UIView {
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
-
         ])
         
         
@@ -60,7 +59,7 @@ class SongLibraryView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupCircleBackgroundBlur()
+        gradientView.setupGradient(with: self)
     }
     
     lazy var buttonBack: UIBarButtonItem = {
