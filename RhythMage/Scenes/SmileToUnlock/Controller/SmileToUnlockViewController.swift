@@ -190,13 +190,12 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     
     @objc func onSettingsButtonPush() {
-        //let vc = factory.createSmileToResumeScene()
-        /*let vc = factory.createSett()
+        let vc = factory.createSmileToResumeScene()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)*/
-        let navController = UINavigationController(rootViewController: factory.createSettingsScene())
-        navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
+        present(vc, animated: true, completion: nil)
+//        let navController = UINavigationController(rootViewController: factory.createSettingsScene())
+//        navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
     }
     
     
