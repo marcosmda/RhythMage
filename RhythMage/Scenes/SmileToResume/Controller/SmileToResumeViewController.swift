@@ -17,7 +17,7 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     var timer: Timer?
     var runCount:Double = 0
     
-    typealias Factory = SmileToUnlockSceneFactory
+    typealias Factory = SmileToUnlockFactory
     let factory: Factory
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
@@ -52,7 +52,6 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         ableToPlay = true
         
     }
-    
     
 }
 
