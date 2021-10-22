@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D00CA1C2722D39D00DCBA84 /* GameSceneDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA1B2722D39D00DCBA84 /* GameSceneDisplayView.swift */; };
+		8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */; };
+		8D00CA212722D43100DCBA84 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA202722D43100DCBA84 /* SKNode.swift */; };
+		8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */; };
+		8D00CA252722D45000DCBA84 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA242722D45000DCBA84 /* UIView.swift */; };
+		8D00CA282722D4C000DCBA84 /* HitLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA272722D4C000DCBA84 /* HitLineNode.swift */; };
+		8D00CA2A2722D4D800DCBA84 /* MainOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA292722D4D800DCBA84 /* MainOrbNode.swift */; };
+		8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA2B2722D4EE00DCBA84 /* TileOrbNode.swift */; };
 		8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */; };
 		8D0984192717522C007477F3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984182717522C007477F3 /* GameScene.swift */; };
 		8D09841B27175233007477F3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09841A27175233007477F3 /* GameViewController.swift */; };
@@ -63,6 +71,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D00CA1B2722D39D00DCBA84 /* GameSceneDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDisplayView.swift; sourceTree = "<group>"; };
+		8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaultLevel.json; sourceTree = "<group>"; };
+		8D00CA202722D43100DCBA84 /* SKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
+		8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
+		8D00CA242722D45000DCBA84 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		8D00CA272722D4C000DCBA84 /* HitLineNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitLineNode.swift; sourceTree = "<group>"; };
+		8D00CA292722D4D800DCBA84 /* MainOrbNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOrbNode.swift; sourceTree = "<group>"; };
+		8D00CA2B2722D4EE00DCBA84 /* TileOrbNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileOrbNode.swift; sourceTree = "<group>"; };
 		8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGameViewController.swift; sourceTree = "<group>"; };
 		8D0984182717522C007477F3 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		8D09841A27175233007477F3 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +148,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D00CA1F2722D41D00DCBA84 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D00CA202722D43100DCBA84 /* SKNode.swift */,
+				8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */,
+				8D00CA242722D45000DCBA84 /* UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8D00CA262722D4B500DCBA84 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D00CA272722D4C000DCBA84 /* HitLineNode.swift */,
+				8D00CA292722D4D800DCBA84 /* MainOrbNode.swift */,
+				8D00CA2B2722D4EE00DCBA84 /* TileOrbNode.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		8D05DD7E270DCB820078F2D8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +180,9 @@
 		8D05DD7F270DCBA40078F2D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D00CA262722D4B500DCBA84 /* Components */,
 				8D0984182717522C007477F3 /* GameScene.swift */,
+				8D00CA1B2722D39D00DCBA84 /* GameSceneDisplayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
+				8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -358,6 +397,7 @@
 		CFF5B03E271DFE9500E5CCE8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8D00CA1F2722D41D00DCBA84 /* Extensions */,
 				CF36F113271F112200DE0604 /* Defaults */,
 				CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */,
 				DBB9201C270CE3850090E41F /* DynamicLabel.swift */,
@@ -498,6 +538,7 @@
 			files = (
 				DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */,
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
+				8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
@@ -512,12 +553,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB92011270CBFFA0090E41F /* SongLibraryUnlockedSongCell.swift in Sources */,
+				8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */,
 				CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */,
+				8D00CA252722D45000DCBA84 /* UIView.swift in Sources */,
 				CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */,
 				CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */,
 				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
 				8DA09D82270B7948000B43C8 /* Level.swift in Sources */,
 				CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */,
+				8D00CA2A2722D4D800DCBA84 /* MainOrbNode.swift in Sources */,
 				F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */,
 				F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */,
 				CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */,
@@ -525,6 +569,7 @@
 				8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */,
 				DBB92015270CC1960090E41F /* SongLibraryViewController.swift in Sources */,
 				DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */,
+				8D00CA212722D43100DCBA84 /* SKNode.swift in Sources */,
 				8DA09D86270B79B3000B43C8 /* InteractionSequence.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
@@ -538,6 +583,7 @@
 				CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
+				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
@@ -545,12 +591,14 @@
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
+				8D00CA282722D4C000DCBA84 /* HitLineNode.swift in Sources */,
 				CF746E8C2720865700B7F2DE /* SummaryView.swift in Sources */,
 				DBB92013270CC1860090E41F /* SongLibraryViewDelegate.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
 				CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */,
 				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
+				8D00CA1C2722D39D00DCBA84 /* GameSceneDisplayView.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
 				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
 				8D09842027175363007477F3 /* RecordingScene.swift in Sources */,
@@ -700,10 +748,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
@@ -717,7 +765,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage;
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Marcos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -733,10 +781,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
@@ -750,7 +798,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage;
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Marcos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
