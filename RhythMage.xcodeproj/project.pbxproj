@@ -62,6 +62,9 @@
 		DB1A41112723220F00F7EDD1 /* SongLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410C2723220F00F7EDD1 /* SongLibraryView.swift */; };
 		DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410D2723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift */; };
 		DB1A41132723220F00F7EDD1 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410E2723220F00F7EDD1 /* SongLibraryLockedSongCell.swift */; };
+		DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */; };
+		DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */; };
+		DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */; };
@@ -129,6 +132,9 @@
 		DB1A410C2723220F00F7EDD1 /* SongLibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryView.swift; sourceTree = "<group>"; };
 		DB1A410D2723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryUnlockedSongCell.swift; sourceTree = "<group>"; };
 		DB1A410E2723220F00F7EDD1 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
+		DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewDelegate.swift; sourceTree = "<group>"; };
+		DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSceneViewDelegate.swift; sourceTree = "<group>"; };
+		DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewDelegate.swift; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09841A27175233007477F3 /* GameViewController.swift */,
+				DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -214,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09842627175C27007477F3 /* RecordingViewController.swift */,
+				DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -469,6 +477,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		DB1A4114272322C400F7EDD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DB1A4115272322C800F7EDD1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */,
+				DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DBB4A1D5271756BF0037BCB1 /* LoadingScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,8 +523,8 @@
 		F14F1A50271228EA002F5C3A /* SmileToUnlock */ = {
 			isa = PBXGroup;
 			children = (
-				F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */,
-				F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */,
+				DB1A4115272322C800F7EDD1 /* Controller */,
+				DB1A4114272322C400F7EDD1 /* View */,
 			);
 			path = SmileToUnlock;
 			sourceTree = "<group>";
@@ -610,6 +635,7 @@
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				DB1A4104272321D300F7EDD1 /* SmileToResumeViewController.swift in Sources */,
 				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,
+				DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */,
 				DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */,
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
@@ -617,6 +643,8 @@
 				CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
+				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
+				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,

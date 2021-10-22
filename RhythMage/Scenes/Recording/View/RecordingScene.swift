@@ -16,10 +16,6 @@ enum ScreenAreaButtons: String {
     case pauseButton
 }
 
-protocol RecordingSceneDelegate {
-    func pauseButtonTouched()
-}
-
 class RecordingScene: SKScene {
     //MARK: - Properties
     var tileInteractions = [RealmTileInteraction]()
