@@ -108,7 +108,6 @@ class SmileToResumeView: UIView{
 
         self.frame = UIScreen.main.bounds
         
-        container.addSubview(gradientView)
         container.addSubview(pausedTitle)
         progressView.addSubview(smileToResumeTitle)
         container.addSubview(progressView)
@@ -116,7 +115,6 @@ class SmileToResumeView: UIView{
         self.addSubview(container)
         
         
-        layoutSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -144,10 +142,13 @@ class SmileToResumeView: UIView{
     
     //MARK: - Layout Subviews
     override func layoutSubviews() {
-        super.layoutSubviews()
         
         handleAutoResizingMasks()
-        
+        setupLayout()
+
+    }
+    
+    func setupLayout(){
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
@@ -171,7 +172,8 @@ class SmileToResumeView: UIView{
         buttonMainMenu.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         
         gradientView.setupGradient(with: self.container)
-        
+        container.addSubview(gradientView)
+
         animateIn()
     }
     

@@ -32,7 +32,6 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         self.factory = factory
         super.init(mainView: SmileToResumeView())
         mainView.delegate = self
-        mainView.layoutSubviews()
     }
     
     required init?(coder: NSCoder) {
@@ -145,8 +144,8 @@ extension SmileToResumeViewController: SmileToResumeDelegate {
     @objc func onMainMenuButtonClicked() {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-        let navController = UINavigationController(rootViewController: self.factory.createSmileToUnlockScene())
-        navigationController?.present(navController, animated: true, completion: nil)
+//        let navController = UINavigationController(rootViewController: self.factory.createSmileToUnlockScene())
+//        navigationController?.present(navController, animated: true, completion: nil)
     }
     
     func updateProgressBar() {
