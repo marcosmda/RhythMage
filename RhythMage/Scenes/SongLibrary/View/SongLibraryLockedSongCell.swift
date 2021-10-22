@@ -68,8 +68,8 @@ class SongLibraryLockedSongCell: UITableViewCell {
 
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
         
-        let height: CGFloat = contentView.frame.size.height * 1.5
-        let xPosition: CGFloat = contentView.frame.size.width
+        let _: CGFloat = contentView.frame.size.height * 1.5
+        let _: CGFloat = contentView.frame.size.width
         let imageSize: CGFloat = 36
         iconImageView.frame = CGRect(x: 20, y: contentView.frame.size.height/2 - 10, width: imageSize, height: imageSize)
         

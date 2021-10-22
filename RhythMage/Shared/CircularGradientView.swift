@@ -63,6 +63,7 @@ class CircularGradientView: UIView {
             shapeLayer.fillColor = UIColor.primary.cgColor
             view.layer.addSublayer(shapeLayer)
             lastPosition = lastPosition + 2
+            i += 1
         }
     }
     

@@ -22,7 +22,7 @@ class TileInteraction: InteractionProtocol {
     
     //MARK: Properties
     /// The area where the tile will scroll.
-    let xPosition: ScreenScrollArea
+    let xPosition: Int
     /// The time when the interaction will start within the level.
     let startTime: Double
     /// The time when the interaction will end within the level.
@@ -30,6 +30,13 @@ class TileInteraction: InteractionProtocol {
     
     
     init(minimumScore: Double, xPosition: ScreenScrollArea, startTime: Double, endTime: Double){
+        self.minimumScore = minimumScore
+        self.xPosition = xPosition.rawValue
+        self.startTime = startTime
+        self.endTime = endTime
+    }
+    
+    init(minimumScore: Double, xPosition: Int, startTime: Double, endTime: Double){
         self.minimumScore = minimumScore
         self.xPosition = xPosition
         self.startTime = startTime
@@ -43,7 +50,7 @@ class RealmTileInteraction: Object {
     @objc dynamic var xPosition: Int
     @objc dynamic var startTime: Double
     @objc dynamic var endTime: Double
-
+    
     required init(minimumScore: Double, xPosition: ScreenScrollArea, startTime: Double, endTime: Double) {
         self.minimumScore = minimumScore
         self.xPosition = xPosition.rawValue

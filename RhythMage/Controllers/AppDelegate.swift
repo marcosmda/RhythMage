@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         do{
-            let realm = try! Realm()
-            print(realm.configuration.fileURL)
+            let _ = try! Realm()
+            //print(realm.configuration.fileURL)
         }
         
         return true
