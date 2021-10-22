@@ -18,6 +18,7 @@ enum SongContainerType {
 class SongContainerView:UIView {
     var highestScore = 0.0
     var score: Int = 9999
+    var multiplier = 1
     
     var player: AVAudioPlayer!
     
@@ -27,6 +28,8 @@ class SongContainerView:UIView {
     
     var isPlaying = false
     
+    var encouragements = ["That's great!","Wonderful!","Ready, Set, Face Magic!","Good!", "Excellent!", "Don't give up!", "You are really struggling!"]
+    
     var type: SongContainerType = {
         return .buyableSong
     }()
@@ -35,7 +38,6 @@ class SongContainerView:UIView {
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .white
-
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -44,6 +46,7 @@ class SongContainerView:UIView {
     private let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+//        view.backgroundColor = .blue
         view.clipsToBounds = true
         view.layer.cornerRadius = 20
         view.layer.borderWidth = 3
@@ -94,6 +97,37 @@ class SongContainerView:UIView {
         return label
     }()
     ///StackView containing the Labels
+    var encouragementLabel: DynamicLabel = {
+        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .inikaBold(ofSize: 18)
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
+    ///Multiplier label
+    let multiplierTitle: UILabel = {
+        let label4 = UILabel(frame: .zero)
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "star.fill")?.withTintColor(.white)
+        let imageOffsetY: CGFloat = -1.0
+        attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let myString = NSMutableAttributedString(string: " 9X")
+        myString.append(attachmentString)
+        label4.attributedText = myString
+        label4.translatesAutoresizingMaskIntoConstraints = false
+        label4.textColor = .white
+        label4.numberOfLines = 0
+        label4.textAlignment = .center
+        label4.font = .inikaBold(ofSize: 20)
+        label4.contentMode = .scaleAspectFill
+        label4.sizeToFit()
+        label4.fitTextToBounds()
+        return label4
+    }()
+    ///StackView containing the Labels
     var labelsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,11 +135,10 @@ class SongContainerView:UIView {
         stackView.distribution = .fill
         return stackView
     }()
-    
+  
     init(type: SongContainerType) {
         super.init(frame: .zero)
 
-        
         self.type = type
         
         switch type {
@@ -117,7 +150,7 @@ class SongContainerView:UIView {
         case .unlockedSong:
             setupHiararchyUnlockedSong()
             iconImageView.image = UIImage(systemName: "play.circle.fill")
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlay(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlaySong(_:)))
             iconImageView.isUserInteractionEnabled = true
             iconImageView.addGestureRecognizer(tapGestureRecognizer)
             break
@@ -126,14 +159,14 @@ class SongContainerView:UIView {
             setupHiararchyLockedSong()
             break
         case .playingSong:
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlayGame(_:)))
+            iconImageView.isUserInteractionEnabled = true
+            iconImageView.addGestureRecognizer(tapGestureRecognizer)
+            setupHierarchyPlayingSong()
             break
         }
-        
-       
-        backgroundView.backgroundColor = .clear
-        
-        
+//        backgroundView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -142,7 +175,6 @@ class SongContainerView:UIView {
     
     //MARK: - LayoutSubviews
     override func layoutSubviews() {
-        
         switch self.type {
         case .unlockedSong:
             layoutSubviewsUnlockedSong()
@@ -151,6 +183,7 @@ class SongContainerView:UIView {
             layoutSubviewsLockedSong()
             break
         case .playingSong:
+            layoutSubviewsPlayingSong()
             break
         case .buyableSong:
             break
@@ -158,8 +191,6 @@ class SongContainerView:UIView {
     }
     
     func layoutSubviewsLockedSong(){
-        
-        
         NSLayoutConstraint.activate([
             unlockByLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 20),
             unlockByLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -20),
@@ -170,7 +201,6 @@ class SongContainerView:UIView {
     }
     
     func layoutSubviewsUnlockedSong(){
-    
         height = self.frame.size.height
         xPosition = self.frame.size.width - 24
         iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
@@ -184,7 +214,24 @@ class SongContainerView:UIView {
             backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
             backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
         ])
+    }
     
+    func layoutSubviewsPlayingSong(){
+        height = self.frame.size.height
+        xPosition = self.frame.size.width - 14
+        iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 7, width: imageSize, height: imageSize)
+        
+        NSLayoutConstraint.activate([
+            labelsStackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
+            labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 24),
+            labelsStackView.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: 10),
+            
+            multiplierTitle.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -14),
+            multiplierTitle.topAnchor.constraint(equalTo: iconImageView.bottomAnchor),
+            
+            backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
+        ])
     }
     
     //MARK: - Hierarchy Functions
@@ -200,6 +247,15 @@ class SongContainerView:UIView {
         labelsStackView.addArrangedSubview(songTitleLabel)
         labelsStackView.addArrangedSubview(artistNameLabel)
         backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(iconImageView)
+    }
+    
+    func setupHierarchyPlayingSong(){
+        self.addSubview(backgroundView)
+        labelsStackView.addArrangedSubview(encouragementLabel)
+        labelsStackView.addArrangedSubview(pointsLabel)
+        backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(multiplierTitle)
         backgroundView.addSubview(iconImageView)
     }
     
@@ -227,6 +283,7 @@ class SongContainerView:UIView {
             }
             highestScoreLabel.text = "Highest Score: "+String(highestScore)
         case .playingSong:
+            encouragementLabel.text = encouragements[0]
             break
         case .buyableSong:
             break
@@ -234,7 +291,7 @@ class SongContainerView:UIView {
         
     }
     
-    @objc func togglePlay(_ sender: UITapGestureRecognizer){
+    @objc func togglePlaySong(_ sender: UITapGestureRecognizer){
         isPlaying = !isPlaying
         if isPlaying{
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
@@ -254,8 +311,17 @@ class SongContainerView:UIView {
             iconImageView.image = UIImage(systemName: "play.circle.fill")
            
         }
-        
-        
+    }
+    
+    @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
+        isPlaying = !isPlaying
+        if isPlaying{
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+        } else {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+           
+        }
+    
     }
     
 }

@@ -153,3 +153,16 @@ extension AppContainer:CreditsSceneFactory{
     }
 }
 
+//MARK: - TestView
+protocol TestViewFactory{
+    /// Creates an instance of CreditsSceneViewController to be used
+    /// - Returns: An instance of CreditsSceneViewController
+    func createTestViewScene() -> TestViewController
+}
+
+extension AppContainer: TestViewFactory{
+    func createTestViewScene() -> TestViewController {
+        return TestViewController(factory: self)
+    }
+}
+
