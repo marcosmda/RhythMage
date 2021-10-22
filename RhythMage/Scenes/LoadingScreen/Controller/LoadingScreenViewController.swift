@@ -8,9 +8,20 @@
 import UIKit
 
 class LoadingScreenViewController: BaseViewController<LoadingScreenView> {
+    //MARK: Injected Properties
+    let authenticationController: AuthenticationController
+    
+    var user: User {
+        if let user = authenticationController.user {
+            return user
+        } else {
+            return  User.empty()
+        }
+    }
     
     //MARK: - Initializers
-    init(){
+    init(authenticationController: AuthenticationController){
+        self.authenticationController = authenticationController
         let view = LoadingScreenView()
         super.init(mainView: view)
     }

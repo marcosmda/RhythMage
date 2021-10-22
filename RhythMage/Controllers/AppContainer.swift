@@ -9,10 +9,12 @@ import Foundation
 import RealmSwift
 
 class AppContainer {
+    let realm = try! Realm()
+    let audioController = AudioController()
+    
     /// The Main Navigation Controller with the root set in SmileToUnlock
     lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
-    let realm = try! Realm()
-    var audioController = AudioController()
+    let authenticatinController = AuthenticationController()
     
     init() {
         
@@ -44,9 +46,8 @@ protocol SongLibrarySceneFactory {
 extension AppContainer: SongLibrarySceneFactory {
     
     func createSongLibraryScene() -> SongLibraryViewController {
-        return SongLibraryViewController()
+        return SongLibraryViewController(authenticationController: authenticatinController)
     }
-
 }
 
 //MARK: - LoadingScene
@@ -58,7 +59,7 @@ protocol LoadingSceneFactory {
 
 extension AppContainer: LoadingSceneFactory {
     func createLoadingScreenScene() -> LoadingScreenViewController{
-        return LoadingScreenViewController()
+        return LoadingScreenViewController(authenticationController: authenticatinController)
     }
 }
 
@@ -84,7 +85,7 @@ protocol SmileToUnlockFactory{
 
 extension AppContainer:SmileToUnlockFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
-        return SmileToUnlockController(factory: self)
+        return SmileToUnlockController(factory: self, authenticationController: authenticatinController)
     }
 }
 
@@ -136,7 +137,7 @@ protocol SettingsSceneFactory{
 
 extension AppContainer:SettingsSceneFactory{
     func createSettingsScene() -> SettingsViewController {
-        return SettingsViewController(factory: self)
+        return SettingsViewController(factory: self, authenticationController: authenticatinController)
     }
 }
 

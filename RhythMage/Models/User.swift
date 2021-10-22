@@ -10,7 +10,7 @@ import Foundation
 class User {
     //MARK: Private Properties
     /// The user's id for reference on database.
-    private var id: String
+    var id: String
     
     //MARK: Public Properties
     /// The user's display name.
@@ -18,11 +18,14 @@ class User {
     /// The level tracker for each song. It stores a dictionary containing the level id as key and the highsocre as value.
     var completed:[String:Double]
     
+    var settings: UserSettings
+    
     //MARK: - Initialization
     init(id: String, name: String){
         self.id = id
         self.name = name
         self.completed = [String:Double]()
+        self.settings = UserSettings()
     }
     
     //MARK: - Methods
@@ -31,6 +34,10 @@ class User {
     /// - Returns: The user's id.
     func getId() -> String {
         return id
+    }
+    
+    static func empty() -> User{
+        return User(id: "", name: "")
     }
     
 }
