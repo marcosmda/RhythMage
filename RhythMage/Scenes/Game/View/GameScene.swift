@@ -19,10 +19,6 @@ enum GameSceneCattegoryTypes: UInt32 {
     case tileOrb = 0x3
 }
 
-protocol GameSceneDelegate {
-    func getElapsedTime() -> Double
-}
-
 class GameScene: SKScene {
     //MARK: - Properties
     static let mainOrbHeight: CGFloat = 88
