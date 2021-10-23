@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SummaryViewDelegate {
-    func 
+    //func 
 }
 
 class SummaryViewController: BaseViewController<SummaryView> {
@@ -18,7 +18,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     
     //MARK: - Initializers
     init(){
-        let view = SummaryView(frame: UIScreen.main.bounds, with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"])
+        let view = SummaryView(with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"], points: 28456, message: "Magic in the air!")
         super.init(mainView: view)
         headerView = SummaryHeaderView(frame: .zero, songText: songMock.models[0].songName, artistText: songMock.models[0].artistName)
         

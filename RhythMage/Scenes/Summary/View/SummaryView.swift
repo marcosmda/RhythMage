@@ -15,7 +15,6 @@ class SummaryView: UIView {
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
         self.addSubview(pointsView)
-        //self.addSubview(summaryImageViewCollection)
         setupLayout()
     }
     
@@ -24,9 +23,13 @@ class SummaryView: UIView {
         
     }
     
-    convenience init(frame: CGRect, with images: [String]) {
-        self.init(frame: frame)
+    convenience init(with images: [String], points: Int, message: String) {
+        self.init(frame: .zero)
         summaryImageViewCollection = SummaryImageViewCollection(frame: frame, with: images)
+        configureSummaryImage()
+    }
+    
+    func configureSummaryImage() {
         self.addSubview(summaryImageViewCollection)
         summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
         summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
@@ -39,8 +42,8 @@ class SummaryView: UIView {
     let gradientView = GradientBackgroundView()
     
     //MARK: - Views
-    let pointsView = PointsView()
-    let interactionsButtonView = InteractionButtonsView()
+    var pointsView = PointsView(points: 206373, message: "Magic!")
+    var interactionsButtonView = InteractionButtonsView()
     var summaryImageViewCollection = SummaryImageViewCollection()
     
     lazy var rankingButton: UIBarButtonItem = {
