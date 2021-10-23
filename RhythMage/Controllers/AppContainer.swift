@@ -10,7 +10,7 @@ import RealmSwift
 
 class AppContainer {
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createSummaryScene())
     let realm = try! Realm()
     var audioController = AudioController()
     

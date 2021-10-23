@@ -15,7 +15,7 @@ class SummaryView: UIView {
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
         self.addSubview(pointsView)
-        self.addSubview(summaryImageViewCollection)
+        //self.addSubview(summaryImageViewCollection)
         setupLayout()
     }
     
@@ -24,13 +24,24 @@ class SummaryView: UIView {
         
     }
     
+    convenience init(frame: CGRect, with images: [String]) {
+        self.init(frame: frame)
+        summaryImageViewCollection = SummaryImageViewCollection(frame: frame, with: images)
+        self.addSubview(summaryImageViewCollection)
+        summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
+        summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
+        summaryImageViewCollection.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
+        summaryImageViewCollection.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
+        pointsView.topAnchor.constraint(equalTo: summaryImageViewCollection.bottomAnchor, constant: 35).isActive = true
+    }
+    
     //MARK: - Gradient
     let gradientView = GradientBackgroundView()
     
     //MARK: - Views
     let pointsView = PointsView()
     let interactionsButtonView = InteractionButtonsView()
-    var summaryImageViewCollection = SummaryImageViewCollection(frame: .zero, with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"])
+    var summaryImageViewCollection = SummaryImageViewCollection()
     
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -70,14 +81,11 @@ class SummaryView: UIView {
         gradientView.setupCircleBackgroundBlur()
         
         //MARK: - Summary Image
-        summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
-        summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
-        summaryImageViewCollection.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
-        summaryImageViewCollection.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
+        
         
         //MARK: - Points View
         pointsView.translatesAutoresizingMaskIntoConstraints = false
-        pointsView.topAnchor.constraint(equalTo: summaryImageViewCollection.bottomAnchor, constant: 35).isActive = true
+        
         pointsView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         pointsView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         

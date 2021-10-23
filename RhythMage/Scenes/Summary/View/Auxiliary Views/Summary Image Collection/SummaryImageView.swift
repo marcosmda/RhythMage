@@ -10,7 +10,7 @@ import UIKit
 class SummaryImageView: UIView {
     
     private var summarySetup: SummaryImageSetup?
-    private let image: UIImage = UIImage(named: "UserPhoto-Test")!
+    private var image: UIImage?
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,13 +24,14 @@ class SummaryImageView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarchy()
-        setupLayout()
     }
     
-    convenience init(frame: CGRect, summarySetup: SummaryImageSetup, with image: UIImage){
-        self.init(frame: frame)
+    convenience init(summarySetup: SummaryImageSetup, with image: UIImage){
+        self.init(frame: .zero)
+        self.image = image
         self.summarySetup = summarySetup
-        imageView.bounds = frame
+        setupLayout()
+        //imageView.bounds = frame
     }
     
     required init?(coder: NSCoder) {
