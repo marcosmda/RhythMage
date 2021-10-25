@@ -9,11 +9,14 @@ import UIKit
 
 class SummaryView: UIView {
 
+    var delegate: SummaryDelegate?
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
+        setupInteractionButtonViewActions()
         self.addSubview(pointsView)
         setupLayout()
     }
@@ -52,7 +55,7 @@ class SummaryView: UIView {
         button.setImage(UIImage(named: "podium"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
-        //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onLeaderboardButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -65,11 +68,34 @@ class SummaryView: UIView {
                                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
-        //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onShareButton), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
+    
+    //MARK: - Setup Button Actions
+    @objc func onSongLibraryButtonPush(_ sender: UIButton) {
+        delegate?.goToSongLibrary()
+    }
+    @objc func onMenuButtonPush(_ sender: UIButton) {
+        delegate?.goToMainMenu()
+    }
+    
+    @objc func onLeaderboardButtonPush(_ sender: UIButton) {
+        delegate?.goToLeaderboards()
+    }
+    
+    @objc func onShareButton(_ sender: UIButton) {
+        //MARK: - TO-DO: Add Share func!
+        delegate?.goToLeaderboards()
+    }
+    
+    //MARK: - SetupInteractionButtons
+    func setupInteractionButtonViewActions() {
+        self.interactionsButtonView.buttonSongLibrary.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
+        self.interactionsButtonView.menuButton.addTarget(self, action: #selector(onMenuButtonPush), for: .touchUpInside)
+    }
     
     func setupLayout() {
         
@@ -82,9 +108,6 @@ class SummaryView: UIView {
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         gradientView.setupCircleBackgroundBlur()
-        
-        //MARK: - Summary Image
-        
         
         //MARK: - Points View
         pointsView.translatesAutoresizingMaskIntoConstraints = false

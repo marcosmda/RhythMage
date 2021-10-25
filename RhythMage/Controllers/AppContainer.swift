@@ -110,7 +110,7 @@ protocol SummaryFactory {
 
 extension AppContainer: SummaryFactory {
     func createSummaryScene() -> SummaryViewController {
-        return SummaryViewController()
+        return SummaryViewController(factory: self)
     }
 }
 
