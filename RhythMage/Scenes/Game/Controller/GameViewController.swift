@@ -15,6 +15,10 @@ class GameViewController: BaseGameViewController<GameScene> {
     let realm: Realm
     let audioController: AudioController
     let level: Level
+    var gameView: GameView
+    
+    typealias Factory = SmileToResumeFactory
+    let factory: Factory
     
     /// Refers to the velocity of the Tiles scrolling
     private let scrollVelocity: Double = 200
@@ -35,17 +39,24 @@ class GameViewController: BaseGameViewController<GameScene> {
     
     
     //MARK: - Initialization
-    init(realm: Realm, audioController: AudioController, level: Level) {
+    init(realm: Realm, audioController: AudioController, level: Level, factory: Factory) {
         self.realm = realm
         self.audioController = audioController
         self.level = level
+        self.gameView = GameView()
+        self.factory = factory
         
         //Calls super.init using teh screen's frame to create an SKView for the SKScene
         super.init(mainScene: GameScene(size: UIScreen.main.bounds.size))
         
+        gameView = GameView(frame: self.mainView.frame)
+        gameView.delegate = self
+        self.mainView.addSubview(gameView)
         //Delegates
         self.audioController.delegates.append(self)
         mainScene.gameDelegate = self
+        
+        self.navigationController?.isNavigationBarHidden = true
         
         //ViewControllerSetup
         debugMode(true)
@@ -54,6 +65,11 @@ class GameViewController: BaseGameViewController<GameScene> {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     //MARK: - Methods
@@ -115,5 +131,12 @@ extension GameViewController: AudioControllerDelegate {
 extension GameViewController: GameSceneDelegate {
     func getElapsedTime() -> Double {
         return self.elapsedTime
+    }
+    
+    func pauseGame() {
+        let vc = factory.createSmileToResumeScene()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        present(vc, animated: true, completion: nil)
     }
 }

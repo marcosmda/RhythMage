@@ -123,7 +123,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel())
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self)
     }
 }
 
@@ -152,17 +152,3 @@ extension AppContainer:CreditsSceneFactory{
         return CreditsSceneViewController(factory: self)
     }
 }
-
-//MARK: - TestView
-protocol TestViewFactory{
-    /// Creates an instance of CreditsSceneViewController to be used
-    /// - Returns: An instance of CreditsSceneViewController
-    func createTestViewScene() -> TestViewController
-}
-
-extension AppContainer: TestViewFactory{
-    func createTestViewScene() -> TestViewController {
-        return TestViewController(factory: self)
-    }
-}
-

@@ -114,8 +114,6 @@ class SmileToResumeView: UIView{
         container.addSubview(progressView)
         container.addSubview(buttonMainMenu)
         self.addSubview(container)
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -126,6 +124,7 @@ class SmileToResumeView: UIView{
     func handleAutoResizingMasks() {
         pausedTitle.translatesAutoresizingMaskIntoConstraints = false
         buttonMainMenu.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc fileprivate func animateIn() {
@@ -156,7 +155,6 @@ class SmileToResumeView: UIView{
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
         container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.27).isActive = true
-
         
         ///Constraints - smile to resume label
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
@@ -178,6 +176,9 @@ class SmileToResumeView: UIView{
         buttonMainMenu.heightAnchor.constraint(equalToConstant: 51).isActive = true
         buttonMainMenu.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -42).isActive = true
         buttonMainMenu.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        
+        gradientView.widthAnchor.constraint(equalTo: self.container.widthAnchor).isActive = true
+        gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
         
         ///animates the container
         animateIn()

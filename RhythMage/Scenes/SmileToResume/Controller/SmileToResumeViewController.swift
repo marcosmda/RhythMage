@@ -135,8 +135,7 @@ extension SmileToResumeViewController: SmileToResumeDelegate {
     @objc func onMainMenuButtonClicked() {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-        //        let navController = UINavigationController(rootViewController: self.factory.createSmileToUnlockScene())
-        //        navigationController?.present(navController, animated: true, completion: nil)
+       
     }
     
     func updateProgressBar() {

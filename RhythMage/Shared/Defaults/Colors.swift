@@ -30,8 +30,11 @@ extension UIColor {
         return UIColor(red: 1, green: 1.0, blue: 1.0, alpha: 0.05)
     }()
     static let terciaryBackground: UIColor = {
-           return UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
-        }()
+        return UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.5)
+    }()
+    static let quaternaryBackground: UIColor = {
+        return UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.3)
+    }()
     
     //MARK: - Orb Colors
     static let blueOrb: UIColor = {

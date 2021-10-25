@@ -9,4 +9,5 @@ import Foundation
 
 protocol GameSceneDelegate {
     func getElapsedTime() -> Double
+    func pauseGame()
 }

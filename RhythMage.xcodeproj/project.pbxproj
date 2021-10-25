@@ -66,8 +66,7 @@
 		DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */; };
 		DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */; };
 		DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */; };
-		DB1A411D27234E5C00F7EDD1 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411C27234E5C00F7EDD1 /* TestView.swift */; };
-		DB1A411F272350D300F7EDD1 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411E272350D300F7EDD1 /* TestViewController.swift */; };
+		DB1A411D27234E5C00F7EDD1 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411C27234E5C00F7EDD1 /* GameView.swift */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */; };
@@ -146,8 +145,7 @@
 		DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewDelegate.swift; sourceTree = "<group>"; };
 		DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSceneViewDelegate.swift; sourceTree = "<group>"; };
 		DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewDelegate.swift; sourceTree = "<group>"; };
-		DB1A411C27234E5C00F7EDD1 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		DB1A411E272350D300F7EDD1 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		DB1A411C27234E5C00F7EDD1 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
@@ -212,6 +210,7 @@
 		8D05DD7F270DCBA40078F2D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DB1A411C27234E5C00F7EDD1 /* GameView.swift */,
 				8D00CA262722D4B500DCBA84 /* Components */,
 				8D0984182717522C007477F3 /* GameScene.swift */,
 				8D00CA1B2722D39D00DCBA84 /* GameSceneDisplayView.swift */,
@@ -345,8 +344,6 @@
 		8DDCA80B2707B11C002E9925 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				DB1A411E272350D300F7EDD1 /* TestViewController.swift */,
-				DB1A411C27234E5C00F7EDD1 /* TestView.swift */,
 				F1587F0527232FA700A2DC09 /* CreditsScene */,
 				F1587EF827232E7700A2DC09 /* SettingsScene */,
 				DB1A41072723220F00F7EDD1 /* SongLibrary */,
@@ -690,7 +687,6 @@
 			files = (
 				8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */,
 				CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */,
-				DB1A411F272350D300F7EDD1 /* TestViewController.swift in Sources */,
 				8D00CA252722D45000DCBA84 /* UIView.swift in Sources */,
 				CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */,
 				CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */,
@@ -731,7 +727,7 @@
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
-				DB1A411D27234E5C00F7EDD1 /* TestView.swift in Sources */,
+				DB1A411D27234E5C00F7EDD1 /* GameView.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
 				DB1A41112723220F00F7EDD1 /* SongLibraryView.swift in Sources */,
 				DB1A410F2723220F00F7EDD1 /* SongLibraryViewController.swift in Sources */,
