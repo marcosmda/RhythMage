@@ -10,6 +10,12 @@ import Foundation
 import AVFoundation
 import GameplayKit
 
+protocol SmileToUnlockDelegate {
+    func onSongLibraryButtonPush()
+    func onSettingsButtonPush()
+    func updateProgressBar()
+}
+
 class SmileToUnlockView: UIView {
     
     var songPlaying:String?

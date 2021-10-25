@@ -23,6 +23,7 @@
 		8D0984222717540A007477F3 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0984212717540A007477F3 /* AudioController.swift */; };
 		8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */; };
 		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
+		8D4A63C1272725C4009AF315 /* FaceTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -64,7 +65,6 @@
 		DB1A41112723220F00F7EDD1 /* SongLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410C2723220F00F7EDD1 /* SongLibraryView.swift */; };
 		DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410D2723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift */; };
 		DB1A41132723220F00F7EDD1 /* SongLibraryLockedSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A410E2723220F00F7EDD1 /* SongLibraryLockedSongCell.swift */; };
-		DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */; };
 		DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */; };
 		DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
@@ -102,6 +102,7 @@
 		8D0984212717540A007477F3 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fairy-tale-waltz.mp3"; sourceTree = "<group>"; };
 		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
+		8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingController.swift; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -143,7 +144,6 @@
 		DB1A410C2723220F00F7EDD1 /* SongLibraryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryView.swift; sourceTree = "<group>"; };
 		DB1A410D2723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryUnlockedSongCell.swift; sourceTree = "<group>"; };
 		DB1A410E2723220F00F7EDD1 /* SongLibraryLockedSongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongLibraryLockedSongCell.swift; sourceTree = "<group>"; };
-		DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewDelegate.swift; sourceTree = "<group>"; };
 		DB1A41182723235700F7EDD1 /* RecordingSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSceneViewDelegate.swift; sourceTree = "<group>"; };
 		DB1A411A2723238300F7EDD1 /* GameSceneViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneViewDelegate.swift; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
@@ -335,6 +335,7 @@
 				8DDFF09A270CD84C00139FE2 /* AppContainer.swift */,
 				8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */,
 				8D05DD85270F0DA10078F2D8 /* BaseGameViewController.swift */,
+				8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */,
 				8D0984212717540A007477F3 /* AudioController.swift */,
 				8D00CA452723439000DCBA84 /* AuthenticationController.swift */,
 			);
@@ -511,7 +512,6 @@
 			isa = PBXGroup;
 			children = (
 				F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */,
-				DB1A4116272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -713,7 +713,6 @@
 				8D00CA462723439000DCBA84 /* AuthenticationController.swift in Sources */,
 				DB1A4104272321D300F7EDD1 /* SmileToResumeViewController.swift in Sources */,
 				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,
-				DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */,
 				F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */,
 				DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */,
 				F1587F0027232EF200A2DC09 /* SettingsViewController.swift in Sources */,
@@ -726,6 +725,7 @@
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
 				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
+				8D4A63C1272725C4009AF315 /* FaceTrackingController.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
