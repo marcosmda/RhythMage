@@ -9,13 +9,15 @@ import UIKit
 
 class SummaryView: UIView {
 
+    var delegate: SummaryDelegate?
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
+        setupInteractionButtonViewActions()
         self.addSubview(pointsView)
-        self.addSubview(summaryImageViewCollection)
         setupLayout()
     }
     
@@ -24,13 +26,28 @@ class SummaryView: UIView {
         
     }
     
+    convenience init(with images: [String], points: Int, message: String) {
+        self.init(frame: .zero)
+        summaryImageViewCollection = SummaryImageViewCollection(frame: frame, with: images)
+        configureSummaryImage()
+    }
+    
+    func configureSummaryImage() {
+        self.addSubview(summaryImageViewCollection)
+        summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
+        summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
+        summaryImageViewCollection.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
+        summaryImageViewCollection.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
+        pointsView.topAnchor.constraint(equalTo: summaryImageViewCollection.bottomAnchor, constant: 35).isActive = true
+    }
+    
     //MARK: - Gradient
     let gradientView = GradientBackgroundView()
     
     //MARK: - Views
-    let pointsView = PointsView()
-    let interactionsButtonView = InteractionButtonsView()
-    var summaryImageViewCollection = SummaryImageViewCollection(frame: .zero, with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"])
+    var pointsView = PointsView(points: 206373, message: "Magic!")
+    var interactionsButtonView = InteractionButtonsView()
+    var summaryImageViewCollection = SummaryImageViewCollection()
     
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -38,7 +55,7 @@ class SummaryView: UIView {
         button.setImage(UIImage(named: "podium"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
-        //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onLeaderboardButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -51,11 +68,34 @@ class SummaryView: UIView {
                                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 21, weight: .bold)), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
-        //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onShareButton), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
+    
+    //MARK: - Setup Button Actions
+    @objc func onSongLibraryButtonPush(_ sender: UIButton) {
+        delegate?.goToSongLibrary()
+    }
+    @objc func onMenuButtonPush(_ sender: UIButton) {
+        delegate?.goToMainMenu()
+    }
+    
+    @objc func onLeaderboardButtonPush(_ sender: UIButton) {
+        delegate?.goToLeaderboards()
+    }
+    
+    @objc func onShareButton(_ sender: UIButton) {
+        //MARK: - TO-DO: Add Share func!
+        delegate?.goToLeaderboards()
+    }
+    
+    //MARK: - SetupInteractionButtons
+    func setupInteractionButtonViewActions() {
+        self.interactionsButtonView.buttonSongLibrary.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
+        self.interactionsButtonView.menuButton.addTarget(self, action: #selector(onMenuButtonPush), for: .touchUpInside)
+    }
     
     func setupLayout() {
         
@@ -69,15 +109,9 @@ class SummaryView: UIView {
         
         gradientView.setupCircleBackgroundBlur()
         
-        //MARK: - Summary Image
-        summaryImageViewCollection.translatesAutoresizingMaskIntoConstraints = false
-        summaryImageViewCollection.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
-        summaryImageViewCollection.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
-        summaryImageViewCollection.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
-        
         //MARK: - Points View
         pointsView.translatesAutoresizingMaskIntoConstraints = false
-        pointsView.topAnchor.constraint(equalTo: summaryImageViewCollection.bottomAnchor, constant: 35).isActive = true
+        
         pointsView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         pointsView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         

@@ -9,6 +9,9 @@ import UIKit
 
 class PointsView: UIView {
 
+    private var points: Int?
+    private var message: String?
+    
     private var mainStackView: UIStackView = {
         let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: 300, height: 150))
         stackView.axis = .vertical
@@ -18,18 +21,17 @@ class PointsView: UIView {
         return stackView
     }()
     
-    private var pointsText: DynamicLabel = {
+    private lazy var pointsText: DynamicLabel = {
         let label = DynamicLabel()
-        label.text = NSLocalizedString("32.256", comment: "User Score")
         label.numberOfLines = 1
         label.font = .inikaBold(ofSize: 96)
         label.textColor = .white
         return label
     }()
     
-    private var defaultText: DynamicLabel = {
+    private lazy var defaultText: DynamicLabel = {
         let label = DynamicLabel()
-        label.text = NSLocalizedString("Magical Points", comment: "Default Text")
+        
         label.numberOfLines = 1
         label.font = .inika(ofSize: 28)
         label.textColor = .white
@@ -40,6 +42,14 @@ class PointsView: UIView {
         super.init(frame: frame)
         setupHierarchy()
         setupLayout()
+    }
+    
+    convenience init(points: Int, message: String) {
+        self.init(frame: .zero)
+        self.points = points
+        pointsText.text = NSLocalizedString("\(self.points ?? 0)", comment: "User Score")
+        self.message = message
+        defaultText.text = NSLocalizedString(self.message ?? "No Message", comment: "Default Text")
     }
     
     required init?(coder: NSCoder) {
