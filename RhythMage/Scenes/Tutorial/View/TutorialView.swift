@@ -9,8 +9,20 @@ import UIKit
 import AVKit
 import AVFoundation
 
+protocol TutorialViewDelegate {
+    func updateSubtitles(currentTime: Double)
+}
+
 class TutorialView: UIView {
 
+    private var timer: Timer?
+    private var video: Video?
+    private var isSoundOn: Bool = true
+    private var player: AVPlayer?
+    private var timeElapsed: Double = 0.0
+    
+    var videoDelegate: TutorialViewDelegate?
+    
     private let backgroundSubtitleView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -19,10 +31,9 @@ class TutorialView: UIView {
         return view
     }()
     
-    var subtitle: UILabel = {
+   lazy var subtitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "At the top of the icy mountains, there is a very clumsy mage, who always works his magic to different music."
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 4
         label.textColor = .white
@@ -30,16 +41,35 @@ class TutorialView: UIView {
     }()
     
     lazy var soundOption: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .terciary.withAlphaComponent(0.5)
         button.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 20
-        //button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onSoundOption), for: .touchUpInside)
         button.clipsToBounds = true
         return button
     }()
+    
+    @objc func onSoundOption(_ sender: UIButton) {
+        isSoundOn.toggle()
+        
+        switch self.isSoundOn {
+            case true:
+                player?.volume = 1.0
+                UIView.transition(with: sender, duration: 0.3, options: .transitionCrossDissolve) {
+                    self.soundOption.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
+                }
+
+            case false:
+                player?.volume = 0.0
+                UIView.transition(with: sender, duration: 0.3, options: .transitionCrossDissolve) {
+                self.soundOption.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+            }
+            
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +77,12 @@ class TutorialView: UIView {
         addSubview(soundOption)
         backgroundSubtitleView.addSubview(subtitle)
         setupLayout()
+        
+    }
+    
+    convenience init(video: Video) {
+        self.init(frame: .zero)
+        self.video = video
     }
     
     required init?(coder: NSCoder) {
@@ -80,18 +116,20 @@ class TutorialView: UIView {
 
 extension TutorialView {
     
-    func playVideo() {
-        guard let path = Bundle.main.path(forResource: "rhythMage", ofType:"mp4") else {
+    func playVideo(with name: String) {
+        guard let path = Bundle.main.path(forResource: name, ofType:"mp4") else {
             debugPrint("rhythMage.m4v not found")
             return
         }
-        let player = AVPlayer(url: URL(fileURLWithPath: path))
+        
+        player = AVPlayer(url: URL(fileURLWithPath: path))
         let playerLayer = AVPlayerLayer(player: player)
         self.layer.insertSublayer(playerLayer, at: 0)
         playerLayer.frame = self.layer.bounds
-        playerLayer.videoGravity = AVLayerVideoGravity.resize
-        player.volume = 1.0
-        player.play()
+        playerLayer.videoGravity = .resizeAspectFill
+        player?.play()
+        setTimer()
+        
         
         //MARK: - Could be used in the future
 //        let playerController = AVPlayerViewController()
@@ -103,6 +141,15 @@ extension TutorialView {
 //            player.play()
 //        }
         
+    }
+    
+    private func setTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateElapsedTime() {
+        timeElapsed = (player?.currentTime().seconds)!
+        videoDelegate?.updateSubtitles(currentTime: timeElapsed)
     }
     
 }
