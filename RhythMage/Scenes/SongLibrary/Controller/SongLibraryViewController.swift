@@ -127,7 +127,6 @@ extension SongLibraryViewController: UITableViewDelegate{
             return 2
         }
         
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -194,6 +193,4 @@ extension SongLibraryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected a row")
     }
-
-
 }
