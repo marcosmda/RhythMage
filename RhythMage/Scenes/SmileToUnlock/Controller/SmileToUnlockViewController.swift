@@ -28,8 +28,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewD
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
 
-    
-    
+    typealias Factory = SongLibrarySceneFactory & SettingsSceneFactory
+    let factory: Factory
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
     static public var isSupported: Bool {
@@ -198,12 +198,6 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     
     @objc func onSettingsButtonPush() {
-        //let vc = factory.createSmileToResumeScene()
-        /*let vc = factory.createSett()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)*/
-        let navController = UINavigationController(rootViewController: factory.createSettingsScene())
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
     }
     

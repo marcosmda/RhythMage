@@ -74,6 +74,10 @@ class LoadingScreenView: UIView {
         
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func layoutSubviews() {
         
         NSLayoutConstraint.activate([
@@ -92,11 +96,7 @@ class LoadingScreenView: UIView {
         ])
         
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
- 
+   
     func setupHiararchy(){
         self.addSubview(song)
         self.addSubview(loadingPackStack)

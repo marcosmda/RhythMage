@@ -108,13 +108,12 @@ class SmileToResumeView: UIView{
 
         self.frame = UIScreen.main.bounds
         
+        container.addSubview(gradientView)
         container.addSubview(pausedTitle)
         progressView.addSubview(smileToResumeTitle)
         container.addSubview(progressView)
         container.addSubview(buttonMainMenu)
         self.addSubview(container)
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -125,6 +124,7 @@ class SmileToResumeView: UIView{
     func handleAutoResizingMasks() {
         pausedTitle.translatesAutoresizingMaskIntoConstraints = false
         buttonMainMenu.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc fileprivate func animateIn() {
@@ -145,35 +145,42 @@ class SmileToResumeView: UIView{
         
         handleAutoResizingMasks()
         setupLayout()
+        gradientView.setupGradient(with: self.container)
 
     }
     
     func setupLayout(){
+        ///Constraints - container
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
         container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.27).isActive = true
-
+        
+        ///Constraints - smile to resume label
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToResumeTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
+        ///Constraints - paused label
         pausedTitle.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         
+        ///Constraints - progress view
         progressView.widthAnchor.constraint(equalTo: buttonMainMenu.widthAnchor).isActive = true
         progressView.topAnchor.constraint(equalTo: pausedTitle.bottomAnchor, constant: 20).isActive = true
         progressView.bottomAnchor.constraint(equalTo: buttonMainMenu.topAnchor, constant: -20).isActive = true
         progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         progressView.heightAnchor.constraint(equalTo: buttonMainMenu.heightAnchor).isActive = true
         
+        ///Constraints - Main Menu Button
         buttonMainMenu.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.85).isActive = true
         buttonMainMenu.topAnchor.constraint(equalTo: smileToResumeTitle.bottomAnchor, constant: 20).isActive = true
         buttonMainMenu.heightAnchor.constraint(equalToConstant: 51).isActive = true
         buttonMainMenu.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -42).isActive = true
         buttonMainMenu.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         
-        gradientView.setupGradient(with: self.container)
-        container.addSubview(gradientView)
-
+        gradientView.widthAnchor.constraint(equalTo: self.container.widthAnchor).isActive = true
+        gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
+        
+        ///animates the container
         animateIn()
     }
     
