@@ -111,7 +111,7 @@ protocol SummaryFactory {
 
 extension AppContainer: SummaryFactory {
     func createSummaryScene() -> SummaryViewController {
-        return SummaryViewController()
+        return SummaryViewController(factory: self)
     }
 }
 
@@ -124,7 +124,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel())
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self)
     }
 }
 
@@ -153,4 +153,3 @@ extension AppContainer:CreditsSceneFactory{
         return CreditsSceneViewController(factory: self)
     }
 }
-

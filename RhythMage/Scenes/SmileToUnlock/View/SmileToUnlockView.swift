@@ -259,12 +259,8 @@ class SmileToUnlockView: UIView {
         mageImage.translatesAutoresizingMaskIntoConstraints = false
         buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+            
     }
-    
-    
-    
 }
 
 extension UIFont {

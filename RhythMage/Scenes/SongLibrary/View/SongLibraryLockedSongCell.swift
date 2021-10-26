@@ -22,7 +22,7 @@ class SongLibraryLockedSongCell: UITableViewCell {
        
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
         
-        self.backgroundColor = UIColor(red: 0.158, green: 0.156, blue: 0.156, alpha: 0.8)
+        self.backgroundColor = .terciaryBackground
         
         contentView.clipsToBounds = true
         

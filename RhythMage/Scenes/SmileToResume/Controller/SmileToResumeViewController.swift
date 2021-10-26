@@ -9,7 +9,7 @@ import UIKit
 import ARKit
 
 class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
-   
+    
     var sceneView: ARSCNView?
     var currentMove: ARFaceAnchor.BlendShapeLocation? = nil
     var progressFloat: CGFloat = 0
@@ -26,9 +26,8 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         return ARFaceTrackingConfiguration.isSupported
     }
     var ableToPlay = false
-
-    init (factory: Factory)
-    {
+    
+    init (factory: Factory) {
         self.factory = factory
         super.init(mainView: SmileToResumeView())
         mainView.delegate = self
@@ -37,11 +36,10 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
-      super.viewDidLoad()
+        super.viewDidLoad()
         sceneView = ARSCNView(frame: .zero)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,9 +47,7 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         
         configureFaceRecognition()
         ableToPlay = true
-        
     }
-    
 }
 
 //MARK: - ARSCNViewDelegate
@@ -67,7 +63,7 @@ extension SmileToResumeViewController: ARSCNViewDelegate {
         if #available(iOS 13.0, *) {
             configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
         }
-
+        
         let sceneView = ARSCNView(frame: view.bounds)
         mainView.addSubview(sceneView)
         sceneView.automaticallyUpdatesLighting = true
@@ -109,9 +105,9 @@ extension SmileToResumeViewController: ARSCNViewDelegate {
         }
         
         if(self.currentMove != selectedMove) {
-                
+            
             timer = Timer.scheduledTimer(timeInterval: TimeInterval(0.5), target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
-          
+            
             self.progressFloat = 1.0
             self.updateProgressBar()
             
@@ -129,14 +125,9 @@ extension SmileToResumeViewController: ARSCNViewDelegate {
                         self.runCount = 0
                     }
                 }
-                
-                
-                
             }
-            
         }
     }
-    
 }
 
 extension SmileToResumeViewController: SmileToResumeDelegate {
@@ -144,8 +135,7 @@ extension SmileToResumeViewController: SmileToResumeDelegate {
     @objc func onMainMenuButtonClicked() {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-//        let navController = UINavigationController(rootViewController: self.factory.createSmileToUnlockScene())
-//        navigationController?.present(navController, animated: true, completion: nil)
+       
     }
     
     func updateProgressBar() {

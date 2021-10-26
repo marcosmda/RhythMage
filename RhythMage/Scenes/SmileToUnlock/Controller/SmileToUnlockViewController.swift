@@ -21,7 +21,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     var progressTime: Double = 0
     var player: AVAudioPlayer!
     var initiatedGameScene = false
-    
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
     static public var isSupported: Bool {
@@ -125,7 +124,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     }
     
     
-    func onSettingsButtonPush() {
+    @objc func onSettingsButtonPush() {
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
     }
     
