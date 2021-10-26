@@ -154,3 +154,16 @@ extension AppContainer:CreditsSceneFactory{
     }
 }
 
+//MARK: - CreditsScene
+protocol TermsOfUseSceneFactory{
+    /// Creates an instance of TermsOfUseViewController to be used
+    /// - Returns: An instance of TermsOfUseViewController
+    func createTermsOfUseScene() -> TermsOfUseViewController
+}
+
+extension AppContainer:TermsOfUseSceneFactory{
+    func createTermsOfUseScene() -> TermsOfUseViewController {
+        return TermsOfUseViewController()
+    }
+}
+
