@@ -29,9 +29,7 @@ class TutorialViewController: BaseViewController<TutorialView> {
     }
     
     func setupTimeStamps() {
-        
-        guard let subtitles = video?.subtitles.keys else {return}
-        
+    
         let sorted = video!.subtitles.sorted {$0.key < $1.key}
         
         for element in sorted {
@@ -81,7 +79,12 @@ extension TutorialViewController: TutorialViewDelegate {
     }
     
     func didEndVideo() {
-        navigationController?.pushViewController(factory.createCameraSetupScene(), animated: false)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.pushViewController(factory.createCameraSetupScene(), animated: false)
     }
     
 }

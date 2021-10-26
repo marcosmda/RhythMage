@@ -58,6 +58,8 @@
 		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
 		CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B592728906700773C92 /* CameraAccessView.swift */; };
 		CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */; };
+		CFE760582728AE5B0059F245 /* HeadphoneRecomendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */; };
+		CFE7605A2728B71D0059F245 /* HeadphonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE760592728B71D0059F245 /* HeadphonerViewController.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -143,6 +145,8 @@
 		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
 		CFC99B592728906700773C92 /* CameraAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAccessView.swift; sourceTree = "<group>"; };
 		CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSetupViewController.swift; sourceTree = "<group>"; };
+		CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphoneRecomendationView.swift; sourceTree = "<group>"; };
+		CFE760592728B71D0059F245 /* HeadphonerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphonerViewController.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 			children = (
 				CF1F02342727858D004A1FAD /* TutorialViewController.swift */,
 				CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */,
+				CFE760592728B71D0059F245 /* HeadphonerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 			children = (
 				CF1F02362727859D004A1FAD /* TutorialView.swift */,
 				CFC99B592728906700773C92 /* CameraAccessView.swift */,
+				CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -776,6 +782,7 @@
 				DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */,
 				F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */,
 				CF1F02352727858D004A1FAD /* TutorialViewController.swift in Sources */,
+				CFE760582728AE5B0059F245 /* HeadphoneRecomendationView.swift in Sources */,
 				DB1A41122723220F00F7EDD1 /* SongLibraryUnlockedSongCell.swift in Sources */,
 				CF1F02372727859D004A1FAD /* TutorialView.swift in Sources */,
 				F1587F0027232EF200A2DC09 /* SettingsViewController.swift in Sources */,
@@ -787,6 +794,7 @@
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
 				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
+				CFE7605A2728B71D0059F245 /* HeadphonerViewController.swift in Sources */,
 				CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */,
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
