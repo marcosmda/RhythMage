@@ -27,7 +27,8 @@ class SongContainerView:UIView {
     
     var isPlaying = false
     
-    var delegate: GameSceneDelegate?
+    var gameDelegate: GameSceneDelegate?
+    var libraryDelegate: SongLibraryViewDelegate?
     
     var encouragements = ["Ready, Set, Face Magic!","Excellent!","That's great!","Good!", "Don't give up!", "You are really struggling!"]
     
@@ -63,7 +64,7 @@ class SongContainerView:UIView {
         return label
     }()
     ///Song title Label
-    private let songTitleLabel: DynamicLabel = {
+    let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
@@ -154,7 +155,7 @@ class SongContainerView:UIView {
         case .unlockedSong:
             setupHiararchyUnlockedSong()
             iconImageView.image = UIImage(systemName: "play.circle.fill")
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlaySong(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlaySong))
             iconImageView.isUserInteractionEnabled = true
             iconImageView.addGestureRecognizer(tapGestureRecognizer)
             break
@@ -172,7 +173,6 @@ class SongContainerView:UIView {
             setupHierarchyPlayingSong()
             break
         }
-//        backgroundView.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -343,9 +343,14 @@ class SongContainerView:UIView {
         }
     }
     
-    @objc func togglePlaySong(_ sender: UITapGestureRecognizer){
-        isPlaying = !isPlaying
-        if isPlaying{
+    @objc func togglePlaySong(){
+        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
+        isPlaying.toggle()
+        
+        if !isPlaying {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+        }
+        else {
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
             guard let path = Bundle.main.path(forResource: songTitleLabel.text, ofType: "mp3") else {
                 print("No file.")
@@ -359,14 +364,13 @@ class SongContainerView:UIView {
             catch let error{
                 print(error.localizedDescription)
             }
-        } else {
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
         }
     }
     
+   
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
         print("pausou")
-        delegate?.pauseGame()
+        gameDelegate?.pauseGame()
     }
 }
 
