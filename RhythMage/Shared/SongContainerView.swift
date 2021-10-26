@@ -16,6 +16,7 @@ enum SongContainerType {
 }
 
 class SongContainerView:UIView {
+    
     var highestScore = 0.0
     var score: Int = 99999
     
@@ -43,7 +44,6 @@ class SongContainerView:UIView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
     ///highest score label
     private let backgroundView: UIView = {
         let view = UIView()
@@ -54,7 +54,6 @@ class SongContainerView:UIView {
         view.layer.masksToBounds = true
         return view
     }()
-    
     ///highest score label
     private let highestScoreLabel: DynamicLabel = {
        let label = DynamicLabel()
@@ -218,7 +217,6 @@ class SongContainerView:UIView {
             labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 24),
             labelsStackView.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor),
             
-            
             backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
             backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
         ])
@@ -349,12 +347,15 @@ class SongContainerView:UIView {
         
         if !isPlaying {
             iconImageView.image = UIImage(systemName: "play.circle.fill")
+            player.stop()
         }
+        
         else {
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: songTitleLabel.text, ofType: "mp3") else {
+            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
                 print("No file.")
-                return}
+                return
+            }
             let url = URL(fileURLWithPath: path)
             do {
                 player = try AVAudioPlayer(contentsOf: url)
@@ -366,10 +367,8 @@ class SongContainerView:UIView {
             }
         }
     }
-    
    
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
-        print("pausou")
         gameDelegate?.pauseGame()
     }
 }
@@ -385,7 +384,7 @@ extension Formatter {
 }
 
 extension Numeric {
-    var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? ""
-        
+    var formattedWithSeparator: String {
+        Formatter.withSeparator.string(for: self) ?? ""
     }
 }

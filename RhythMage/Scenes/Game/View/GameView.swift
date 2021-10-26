@@ -76,7 +76,7 @@ class GameView: UIView {
         
         NSLayoutConstraint.activate([
             ///Constraints - container
-            container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding as! CGFloat),
+            container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!),
             container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
             container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
