@@ -22,7 +22,7 @@ class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView
         super.viewWillAppear(animated)
         
         ///Set the navigationBar Title
-        
+        self.navigationItem.titleView = mainView.titleNavBar
         
         }
     

@@ -13,7 +13,7 @@ class TermsOfUseView: UIView{
     var delegate: TermsOfUseDelegate?
     var gradientView = GradientBackgroundView()
     
-    ///Create a title of the section of the terms of use to appear inside the table view
+    ///Create a title of the section of the terms of use to appear in the nav bar
     let titleNavBar: DynamicLabel = {
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
