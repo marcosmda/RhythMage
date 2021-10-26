@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SongLibraryViewDelegate {
-
+    func didPlaySong(songName: String)
 }

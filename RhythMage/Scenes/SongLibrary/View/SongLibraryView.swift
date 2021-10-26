@@ -13,6 +13,7 @@ class SongLibraryView: UIView {
     //var delegate: SongLibraryViewDelegate?
     var delegate: SongLibraryDelegate?
     var gradientView = GradientBackgroundView()
+    weak var currentPlayingCell: SongLibraryUnlockedSongCell?
     
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -49,7 +50,6 @@ class SongLibraryView: UIView {
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
         ])
         
-        
     }
     
     override func layoutSubviews() {
@@ -73,6 +73,13 @@ class SongLibraryView: UIView {
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
+    
+    
+    func didPlaySong(){
+        
+        currentPlayingCell?.song.togglePlaySong()
+        
+    }
     
     @objc func backButtonAction(_sender: UIBarButtonItem) {
         delegate?.backButtonAction()
