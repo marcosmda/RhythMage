@@ -88,20 +88,32 @@ extension TermsOfUseViewController: UITableViewDelegate{
     
     ///Set navigation afer clicking inside the cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 1 {
-            //let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath)
-            switch indexPath.row {
+        
+        switch indexPath.section {
+                
             case 0:
-                print("Enter Credits")
+                print("Enter privacy policy")
+                
                 //self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
-
             case 1:
-                print("Enter Terms Of Use")
+                print("Enter Interpretation &\nDefinitions")
+                
+            case 2:
+                print("Enter Collecting & Using\nYour Personal Data")
+            
+            case 3:
+                print("Enter Disclosure of Your\nPersonal Data")
+                
+            case 4:
+                print("Enter Access of the Services")
+                
+            case 5:
+                print("Enter Contact Us")
                 
             default:
                 return nil
             }
-        }
+        
     return indexPath
     }
     
@@ -124,10 +136,10 @@ extension TermsOfUseViewController: UITableViewDataSource{
         //cell.selectedBackgroundView = selectedView
     }
     
-    /*
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected a row")
-    }*/
+    }
 
 
 }
