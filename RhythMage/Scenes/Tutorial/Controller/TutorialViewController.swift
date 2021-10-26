@@ -37,12 +37,6 @@ class TutorialViewController: BaseViewController<TutorialView> {
             
         }
         
-        
-//
-//        if ellapsedKeys[0] > lastKey  {
-//            ellapsedKeys = ellapsedKeys.reversed()
-//        }
-        
         print(ellapsedKeys)
         
     }
@@ -71,15 +65,14 @@ class TutorialViewController: BaseViewController<TutorialView> {
 extension TutorialViewController: TutorialViewDelegate {
    
     func updateSubtitles(currentTime: Double) {
-    
-        guard let lastKey = ellapsedKeys.last else {return}
-        
-       
-        
+
         if ellapsedKeys.count == 0 {return}
         
             if  currentTime >= ellapsedKeys[0] {
-                mainView.subtitle.text = video?.subtitles[ellapsedKeys[0]]
+                self.mainView.subtitle.text = self.video?.subtitles[self.ellapsedKeys[0]]
+                UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseInOut]) {
+                    self.mainView.layoutIfNeeded()
+                }
                 ellapsedKeys.remove(at: 0)
             }
         

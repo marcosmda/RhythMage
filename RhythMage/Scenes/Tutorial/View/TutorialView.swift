@@ -28,6 +28,7 @@ class TutorialView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .terciary.withAlphaComponent(0.5)
         view.layer.cornerRadius = 20
+        view.clipsToBounds = true
         return view
     }()
     
@@ -74,6 +75,7 @@ class TutorialView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(backgroundSubtitleView)
+        drawBlurBackground()
         addSubview(soundOption)
         backgroundSubtitleView.addSubview(subtitle)
         setupLayout()
@@ -110,6 +112,15 @@ class TutorialView: UIView {
         subtitle.widthAnchor.constraint(equalTo: backgroundSubtitleView.widthAnchor, multiplier: 0.9).isActive = true
         subtitle.bottomAnchor.constraint(equalTo: backgroundSubtitleView.bottomAnchor, constant: -20).isActive = true
         
+    }
+    
+    func drawBlurBackground() {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.alpha = 0.95
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundSubtitleView.addSubview(blurEffectView)
     }
     
 }
