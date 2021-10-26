@@ -39,7 +39,6 @@
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
 		CF06475B2721E71D00477C3A /* SongMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06475A2721E71D00477C3A /* SongMock.swift */; };
-		CF14BB9327282BB1005E7705 /* rhythMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF14BB9227282BB1005E7705 /* rhythMage.mp4 */; };
 		CF1F02352727858D004A1FAD /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F02342727858D004A1FAD /* TutorialViewController.swift */; };
 		CF1F02372727859D004A1FAD /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F02362727859D004A1FAD /* TutorialView.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
@@ -56,6 +55,7 @@
 		CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E992720A5DA00B7F2DE /* SummaryImageSetup.swift */; };
 		CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */; };
 		CFC99B5527286EE600773C92 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5427286EE600773C92 /* Video.swift */; };
+		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -122,7 +122,6 @@
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		CF06475A2721E71D00477C3A /* SongMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMock.swift; sourceTree = "<group>"; };
-		CF14BB9227282BB1005E7705 /* rhythMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhythMage.mp4; sourceTree = "<group>"; };
 		CF1F02342727858D004A1FAD /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		CF1F02362727859D004A1FAD /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -139,6 +138,7 @@
 		CF746E992720A5DA00B7F2DE /* SummaryImageSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageSetup.swift; sourceTree = "<group>"; };
 		CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageView.swift; sourceTree = "<group>"; };
 		CFC99B5427286EE600773C92 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 		CF14BB9127282B7A005E7705 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				CF14BB9227282BB1005E7705 /* rhythMage.mp4 */,
+				CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -725,7 +725,7 @@
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
 				8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
-				CF14BB9327282BB1005E7705 /* rhythMage.mp4 in Resources */,
+				CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
 			);
