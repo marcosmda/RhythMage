@@ -56,6 +56,8 @@
 		CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */; };
 		CFC99B5527286EE600773C92 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5427286EE600773C92 /* Video.swift */; };
 		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
+		CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B592728906700773C92 /* CameraAccessView.swift */; };
+		CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
 		CFF5B042271E033700E5CCE8 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B041271E033700E5CCE8 /* TextStyles.swift */; };
 		CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */; };
@@ -139,6 +141,8 @@
 		CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageView.swift; sourceTree = "<group>"; };
 		CFC99B5427286EE600773C92 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
+		CFC99B592728906700773C92 /* CameraAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAccessView.swift; sourceTree = "<group>"; };
+		CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSetupViewController.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CFF5B041271E033700E5CCE8 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1F02342727858D004A1FAD /* TutorialViewController.swift */,
+				CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1F02362727859D004A1FAD /* TutorialView.swift */,
+				CFC99B592728906700773C92 /* CameraAccessView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				8D00CA462723439000DCBA84 /* AuthenticationController.swift in Sources */,
+				CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */,
 				DB1A4104272321D300F7EDD1 /* SmileToResumeViewController.swift in Sources */,
 				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,
 				DB1A4117272322E700F7EDD1 /* SmileToUnlockViewDelegate.swift in Sources */,
@@ -780,6 +787,7 @@
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
 				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
+				CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */,
 				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,

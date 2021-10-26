@@ -11,6 +11,7 @@ import AVFoundation
 
 protocol TutorialViewDelegate {
     func updateSubtitles(currentTime: Double)
+    func didEndVideo()
 }
 
 class TutorialView: UIView {
@@ -36,7 +37,7 @@ class TutorialView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .inikaBold(ofSize: 18)
-        label.numberOfLines = 4
+        label.numberOfLines = 0
         label.textColor = .white
         return label
     }()
@@ -141,17 +142,13 @@ extension TutorialView {
         player?.play()
         setTimer()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
         
-        //MARK: - Could be used in the future
-//        let playerController = AVPlayerViewController()
-//        playerController.player = player
-//        playerController.showsPlaybackControls = false
-//        playerController.allowsPictureInPicturePlayback = true
-//        playerController.player?.volume = 0.0
-//        present(playerController, animated: true) {
-//            player.play()
-//        }
-        
+    }
+    
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        videoDelegate?.didEndVideo()
     }
     
     private func setTimer() {

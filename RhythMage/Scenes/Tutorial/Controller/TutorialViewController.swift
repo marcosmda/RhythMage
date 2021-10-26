@@ -15,7 +15,11 @@ class TutorialViewController: BaseViewController<TutorialView> {
     
     var ellapsedKeys: [Double] = []
     
-    init() {
+    typealias Factory = CameraSetupSceneFactory
+    let factory: Factory
+    
+    init(factory: Factory) {
+        self.factory = factory
         video = Video.setOnboarding()
         let view = TutorialView(video: video!)
         super.init(mainView: view)
@@ -25,8 +29,6 @@ class TutorialViewController: BaseViewController<TutorialView> {
     }
     
     func setupTimeStamps() {
-        
-      
         
         guard let subtitles = video?.subtitles.keys else {return}
         
@@ -76,8 +78,10 @@ extension TutorialViewController: TutorialViewDelegate {
                 ellapsedKeys.remove(at: 0)
             }
         
-        
-        
+    }
+    
+    func didEndVideo() {
+        navigationController?.pushViewController(factory.createCameraSetupScene(), animated: false)
     }
     
 }

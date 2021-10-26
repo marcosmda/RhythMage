@@ -163,7 +163,20 @@ protocol TutorialSceneFactory{
 
 extension AppContainer: TutorialSceneFactory{
     func createTutorialScene() -> TutorialViewController {
-        return TutorialViewController()
+        return TutorialViewController(factory: self)
+    }
+}
+
+//MARK: - CameraSetupViewController
+protocol CameraSetupSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraSetupScene() -> CameraSetupViewController
+}
+
+extension AppContainer: CameraSetupSceneFactory{
+    func createCameraSetupScene() -> CameraSetupViewController {
+        return CameraSetupViewController()
     }
 }
 
