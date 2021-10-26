@@ -38,6 +38,7 @@ class SmileToUnlockView: UIView {
         progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
         layoutSubviews()
+        gradientView.setupCircleBackgroundBlur()
     }
     
     required init?(coder: NSCoder) {
@@ -229,7 +230,7 @@ class SmileToUnlockView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupCircleBackgroundBlur()
+        
         
     }
     

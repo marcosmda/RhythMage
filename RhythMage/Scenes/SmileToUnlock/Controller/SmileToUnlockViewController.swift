@@ -12,7 +12,7 @@ import GameKit
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     //MARK: Injected Properties
-    typealias Factory = SongLibrarySceneFactory & SmileToResumeFactory & SettingsSceneFactory
+    typealias Factory = SongLibrarySceneFactory & SettingsSceneFactory & GameSceneFactory
     let factory: Factory
     let authenticationController: AuthenticationController
     let faceTrackingController = FaceTrackingController()
@@ -20,6 +20,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     //MARK: Properties
     var progressTime: Double = 0
     var player: AVAudioPlayer!
+    var initiatedGameScene = false
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
@@ -27,27 +28,23 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         return ARFaceTrackingConfiguration.isSupported
     }
     var ableToPlay = false
-
+    
     //MARK: Initialization
     init (factory: Factory, authenticationController: AuthenticationController)
     {
         self.factory = factory
         self.authenticationController = authenticationController
         super.init(mainView: SmileToUnlockView())
-        
         mainView.addSubview(faceTrackingController)
-        faceTrackingController.delegates.append(self)
-        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK: View Life Cycle
     override func viewDidLoad() {
-      super.viewDidLoad()
+        super.viewDidLoad()
         mainView.delegate = self
         self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
         if let navigation = navigationController {
@@ -57,16 +54,25 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ableToPlay = true
+        initiatedGameScene = false
+        mainView.progressView.setProgress(0, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-             super.viewDidAppear(animated)
+        super.viewDidAppear(animated)
         GKAccessPoint.shared.isActive = true
+        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         GKAccessPoint.shared.isActive = false
+    }
+    
+    @objc private func setFaceTrackingController() {
+        faceTrackingController.initialConfiguration()
+        faceTrackingController.isEnabled = true
+        faceTrackingController.delegates.append(self)
+        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
     //MARK: AudioController Methods
@@ -91,15 +97,23 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                guard let self = self else { return }
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.navigationController?.pushViewController(self.factory.createSettingsScene(), animated: true)
-                }
+        DispatchQueue.main.async {
+                self.mainView.progressView.setProgress(Float(time/2), animated: true)
+        }
+        if !initiatedGameScene && time >= 2 {
+            initiatedGameScene = true
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(self.factory.createGameScene(), animated: true)
+                self.faceTrackingController.kill()
             }
+        }
     }
     
+    func faceReleased() {
+        DispatchQueue.main.async {
+            self.mainView.progressView.setProgress(0, animated: true)
+        }
+    }
     
 }
 
@@ -107,9 +121,7 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
 extension SmileToUnlockController: SmileToUnlockDelegate {
     
     func updateProgressBar() {
-        DispatchQueue.main.async {
-            self.mainView.progressView.setProgress(Float(self.progressTime), animated: true)
-        }
+        //self.mainView.progressView.setProgress(Float(self.progressTime), animated: true)
     }
     
     
@@ -120,7 +132,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
     }
-
+    
 }
 
 
