@@ -10,6 +10,12 @@ import Foundation
 import AVFoundation
 import GameplayKit
 
+protocol SmileToUnlockDelegate {
+    func onSongLibraryButtonPush()
+    func onSettingsButtonPush()
+    func updateProgressBar()
+}
+
 class SmileToUnlockView: UIView {
     
     var songPlaying:String?
@@ -32,6 +38,7 @@ class SmileToUnlockView: UIView {
         progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
         layoutSubviews()
+        gradientView.setupCircleBackgroundBlur()
     }
     
     required init?(coder: NSCoder) {
@@ -223,7 +230,7 @@ class SmileToUnlockView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupCircleBackgroundBlur()
+        
         
     }
     
