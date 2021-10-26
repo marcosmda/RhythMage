@@ -12,8 +12,6 @@ import GameKit
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView>, ARSCNViewDelegate {
     //MARK: Injected Properties
-    typealias Factory = SongLibrarySceneFactory & SmileToResumeFactory & SettingsSceneFactory
-    let factory: Factory
     let authenticationController: AuthenticationController
     
     //MARK: Properties
