@@ -154,3 +154,16 @@ extension AppContainer:CreditsSceneFactory{
     }
 }
 
+//MARK: - Tutorial
+protocol TutorialSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createTutorialScene() -> TutorialViewController
+}
+
+extension AppContainer: TutorialSceneFactory{
+    func createTutorialScene() -> TutorialViewController {
+        return TutorialViewController()
+    }
+}
+
