@@ -39,6 +39,7 @@
 		8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */; };
 		8DDFF09B270CD84C00139FE2 /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDFF09A270CD84C00139FE2 /* AppContainer.swift */; };
 		CF06475B2721E71D00477C3A /* SongMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06475A2721E71D00477C3A /* SongMock.swift */; };
+		CF14BB9327282BB1005E7705 /* rhythMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF14BB9227282BB1005E7705 /* rhythMage.mp4 */; };
 		CF1F02352727858D004A1FAD /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F02342727858D004A1FAD /* TutorialViewController.swift */; };
 		CF1F02372727859D004A1FAD /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F02362727859D004A1FAD /* TutorialView.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
@@ -120,6 +121,7 @@
 		8DDFF098270CD5F000139FE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8DDFF09A270CD84C00139FE2 /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		CF06475A2721E71D00477C3A /* SongMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongMock.swift; sourceTree = "<group>"; };
+		CF14BB9227282BB1005E7705 /* rhythMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhythMage.mp4; sourceTree = "<group>"; };
 		CF1F02342727858D004A1FAD /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		CF1F02362727859D004A1FAD /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -308,6 +310,7 @@
 				8DDCA80A2707B110002E9925 /* Controllers */,
 				8DDCA8092707B106002E9925 /* Models */,
 				8D09842327175BA9007477F3 /* Songs */,
+				CF14BB9127282B7A005E7705 /* Videos */,
 				8DDCA7FF27078443002E9925 /* Assets.xcassets */,
 				8DDCA80127078443002E9925 /* LaunchScreen.storyboard */,
 			);
@@ -360,6 +363,14 @@
 				F14F1A50271228EA002F5C3A /* SmileToUnlock */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		CF14BB9127282B7A005E7705 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				CF14BB9227282BB1005E7705 /* rhythMage.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 		CF1F023327278578004A1FAD /* Tutorial */ = {
@@ -703,6 +714,7 @@
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
 				8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
+				CF14BB9327282BB1005E7705 /* rhythMage.mp4 in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
 			);

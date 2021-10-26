@@ -203,7 +203,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)*/
-        let navController = UINavigationController(rootViewController: factory.createSettingsScene())
+        //let navController = UINavigationController(rootViewController: factory.createSettingsScene())
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
     }
     

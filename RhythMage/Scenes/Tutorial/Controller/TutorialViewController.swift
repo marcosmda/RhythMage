@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class TutorialViewController: BaseViewController<TutorialView> {
 
     init() {
@@ -22,5 +23,12 @@ class TutorialViewController: BaseViewController<TutorialView> {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView.playVideo()
+    }
+    
+    
 
 }
