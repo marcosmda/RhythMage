@@ -13,8 +13,6 @@ class SummaryImageViewCollection: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +23,7 @@ class SummaryImageViewCollection: UIView {
         self.init(frame: frame)
         
         for image in images {
-            summaryViews.append(SummaryImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: image)!))
+            summaryViews.append(SummaryImageView(summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: image)!))
         }
         
         setupHierarchy()

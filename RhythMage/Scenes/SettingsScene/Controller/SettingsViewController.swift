@@ -9,21 +9,27 @@ import Foundation
 import UIKit
 
 class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecognizerDelegate{
+    //MARK: Injected Properties
+    typealias Factory = SmileToUnlockFactory & CreditsSceneFactory
+    let factory: Factory
+    let authenticationController: AuthenticationController
     
+    //MARK: Properties
     var ableToPlay = false
     var safeArea: UILayoutGuide!
     var buttons = ["TERMS OF USE", "CREDITS"]
-    //var user: UserSettings
-    
-    typealias Factory = SmileToUnlockFactory & CreditsSceneFactory
-    let factory: Factory
-    
+    var user: User {
+        if let user = authenticationController.user {
+            return user
+        } else {
+            return User.empty()
+        }
+    }
     //var sender: UISwitch
     
     //MARK: - Initializers
-    init(factory: Factory){//}, user: UserSettings){
-        //self.user = userSettings
-        //self.user = user
+    init(factory: Factory, authenticationController: AuthenticationController){
+        self.authenticationController = authenticationController
         self.factory = factory
         let view = SettingsView(frame: .zero)//, userSettings: user)//, userSettings: user)
         super.init(mainView: view)

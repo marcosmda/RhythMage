@@ -10,5 +10,4 @@ import Foundation
 class UserSettings{
     
     var isHapticOn: Bool = true
-    var user = User(id: "1", name: "Carlos")
 }
