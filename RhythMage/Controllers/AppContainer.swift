@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 class AppContainer {
     let realm = try! Realm()
@@ -93,12 +94,12 @@ extension AppContainer:SmileToUnlockFactory{
 protocol SmileToResumeFactory{
     /// Creates an instance of SmileToResumeViewController to be used
     /// - Returns: An instance of SmileToResumeViewController
-    func createSmileToResumeScene() -> SmileToResumeViewController
+    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController
 }
 
 extension AppContainer:SmileToResumeFactory{
-    func createSmileToResumeScene() -> SmileToResumeViewController {
-        return SmileToResumeViewController(factory: self)
+    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController {
+        return SmileToResumeViewController(factory: self, rootNavigationController: rootNavigationController)
     }
 }
 

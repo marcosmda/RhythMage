@@ -1,5 +1,5 @@
 //
-//  GAmeView.swift
+//  GameDisplayView.swift
 //  RhythMage
 //
 //  Created by Juliana Prado on 22/10/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameView: UIView {
+class GameDisplayView: UIView {
     
     //MARK: - Properties
     public var song: SongContainerView
@@ -26,7 +26,7 @@ class GameView: UIView {
     }()
     
     ///progress bar
-    private lazy var progressView: UIProgressView = {
+    lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.trackTintColor = .white
@@ -53,6 +53,7 @@ class GameView: UIView {
     override init(frame: CGRect) {
         self.song = SongContainerView(type: .playingSong)
         self.song.translatesAutoresizingMaskIntoConstraints = false
+        self.song.pointsLabel.text = "0"
         
         
         super.init(frame: frame)
