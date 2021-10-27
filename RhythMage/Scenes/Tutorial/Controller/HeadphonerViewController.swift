@@ -16,7 +16,6 @@ class HeadphonerViewController: BaseViewController<HeadphoneRecomendationView> {
         self.factory = factory
         let view = HeadphoneRecomendationView()
         super.init(mainView: view)
-        view.headphoneDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -28,12 +27,12 @@ class HeadphonerViewController: BaseViewController<HeadphoneRecomendationView> {
 
         // Do any additional setup after loading the view.
     }
-
-}
-
-extension HeadphonerViewController: HeadphoneRecomendationDelegate {
     
-    func didFinishHeadphoneScreen() {
+    override func viewDidAppear(_ animated: Bool) {
+        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(authorizeSegue), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func authorizeSegue() {
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

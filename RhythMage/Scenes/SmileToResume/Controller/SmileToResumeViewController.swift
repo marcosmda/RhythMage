@@ -66,7 +66,7 @@ extension SmileToResumeViewController: SmileToResumeViewDelegate {
     
     @objc func onMainMenuButtonClicked() {
         dismiss(animated: true) {
-            self.rootNavigationController.popToRootViewController(animated: true)
+            self.rootNavigationController.popToViewController(ofClass: SmileToUnlockController.self, animated: true)
         }
         
     }

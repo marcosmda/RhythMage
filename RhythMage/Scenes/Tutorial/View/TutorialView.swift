@@ -156,7 +156,7 @@ extension TutorialView {
     }
     
     @objc func updateElapsedTime() {
-        timeElapsed = (player?.currentTime().seconds)!
+        timeElapsed = (player?.currentTime().seconds) ?? 0
         videoDelegate?.updateSubtitles(currentTime: timeElapsed)
     }
     

@@ -31,6 +31,7 @@
 		8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8A270B7F97000B43C8 /* Book.swift */; };
 		8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8D270B8487000B43C8 /* TileInteraction.swift */; };
 		8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */; };
+		8DB1CFC92729E7C90015B113 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB1CFC82729E7C90015B113 /* UINavigationController.swift */; };
 		8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F227078441002E9925 /* AppDelegate.swift */; };
 		8DDCA80027078443002E9925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FF27078443002E9925 /* Assets.xcassets */; };
 		8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA80127078443002E9925 /* LaunchScreen.storyboard */; };
@@ -120,6 +121,7 @@
 		8DA09D8A270B7F97000B43C8 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		8DA09D8D270B8487000B43C8 /* TileInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileInteraction.swift; sourceTree = "<group>"; };
 		8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceInteraction.swift; sourceTree = "<group>"; };
+		8DB1CFC82729E7C90015B113 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		8DDCA7EF27078441002E9925 /* RhythMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhythMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDCA7F227078441002E9925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDCA7FF27078443002E9925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				8D00CA202722D43100DCBA84 /* SKNode.swift */,
+				8DB1CFC82729E7C90015B113 /* UINavigationController.swift */,
 				8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */,
 				8D00CA242722D45000DCBA84 /* UIView.swift */,
 			);
@@ -800,12 +803,12 @@
 				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
 				CFE7605A2728B71D0059F245 /* HeadphonerViewController.swift in Sources */,
 				CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */,
-				DB1A411B2723238300F7EDD1 /* GameSceneViewDelegate.swift in Sources */,
 				8D4A63C1272725C4009AF315 /* FaceTrackingController.swift in Sources */,
 				8D00CA2C2722D4EE00DCBA84 /* TileOrbNode.swift in Sources */,
 				8D0984192717522C007477F3 /* GameScene.swift in Sources */,
 				DB1A411D27234E5C00F7EDD1 /* GameDisplayView.swift in Sources */,
 				CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */,
+				8DB1CFC92729E7C90015B113 /* UINavigationController.swift in Sources */,
 				DB1A41112723220F00F7EDD1 /* SongLibraryView.swift in Sources */,
 				DB1A410F2723220F00F7EDD1 /* SongLibraryViewController.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,

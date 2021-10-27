@@ -30,7 +30,8 @@ class GameViewController: BaseGameViewController<GameScene> {
     /// Refers to the velocity of the Tiles scrolling
     private let scrollVelocity: Double = 400
     private let startDelayTime: Double = 3
-    
+    private var timer: Timer?
+    private var remainingTime: Double = 0
     /// The height where the center of the HitLineNode is placed
     private var hitPoint: CGFloat {
         return GameScene.hitPoint
@@ -72,7 +73,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         setupCameraCaptureSession()
         
         createTiles()
-        Timer.scheduledTimer(timeInterval: startDelayTime, target: self, selector: #selector(startAudio), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: startDelayTime, target: self, selector: #selector(startAudio), userInfo: nil, repeats: false)
         mainScene.setVelocity(velocity: Float(scrollVelocity))
     }
     
@@ -102,13 +103,23 @@ class GameViewController: BaseGameViewController<GameScene> {
     }
     
     private func toggleGameStatus() {
-        guard let scene = mainView.scene else {return}
-        if !scene.isPaused {
-            mainView.scene?.isPaused = true
+        if !mainScene.isPaused {
+            mainScene.isPaused = true
             audioController.pause()
-        } else if scene.isPaused {
-            mainView.scene?.isPaused = false
-            audioController.play()
+            if timer != nil {
+                remainingTime = timer?.fireDate.timeIntervalSince(Date()) ?? 3
+                timer?.invalidate()
+                timer = nil
+            }
+            
+        } else if mainScene.isPaused {
+            if timer == nil {
+                timer = Timer.scheduledTimer(timeInterval: remainingTime, target: self, selector: #selector(startAudio), userInfo: nil, repeats: false)
+                mainScene.isPaused = false
+            } else {
+                mainScene.isPaused = false
+                audioController.play()
+            }
         }
     }
     
@@ -190,7 +201,7 @@ extension GameViewController: GameSceneDelegate {
 
 extension GameViewController: SmileToResumeDelegate {
     func resumed() {
-        audioController.start(playing: true)
+        audioController.start(playing: false)
         toggleGameStatus()
     }
 }
