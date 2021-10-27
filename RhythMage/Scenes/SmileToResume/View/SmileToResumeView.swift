@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol SmileToResumeViewDelegate {
+    func onMainMenuButtonClicked()
+}
+
 class SmileToResumeView: UIView{
     
     //MARK: - Properties
-    var delegate: SmileToResumeDelegate?
+    var delegate: SmileToResumeViewDelegate?
     var gradientView = GradientBackgroundView()
     
     ///Title inside the progressbar to describe what the user has to do

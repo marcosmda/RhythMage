@@ -54,13 +54,13 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         initiatedGameScene = false
-        mainView.progressView.setProgress(0, animated: true)
+        mainView.progressView.setProgress(0, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         GKAccessPoint.shared.isActive = true
-        Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

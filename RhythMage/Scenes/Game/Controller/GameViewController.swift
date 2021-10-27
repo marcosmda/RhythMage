@@ -29,7 +29,7 @@ class GameViewController: BaseGameViewController<GameScene> {
     private var elapsedTime: Double = 0
     private var isPlaying: Bool = false {
         didSet {
-            //if isPlaying {audioController.start()}
+            if isPlaying {audioController.start()}
         }
     }
     /// The height where the center of the HitLineNode is placed
@@ -134,7 +134,8 @@ extension GameViewController: GameSceneDelegate {
     }
     
     func pauseGame() {
-        let vc = factory.createSmileToResumeScene()
+        guard let navController = self.navigationController else {return}
+        let vc = factory.createSmileToResumeScene(rootNavigationController: navController)
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
