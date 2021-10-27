@@ -21,13 +21,9 @@ class GameViewController: BaseGameViewController<GameScene> {
     let factory: Factory
     
     /// Refers to the velocity of the Tiles scrolling
-    private let scrollVelocity: Double = 200
+    private let scrollVelocity: Double = 400
     private let startDelayTime: Double = 3
-    private let timerResolution: Double = 0.001
     
-    private var timer: Timer?
-    private var elapsedTime: Double = 0
-    private var isPlaying: Bool = false
     /// The height where the center of the HitLineNode is placed
     private var hitPoint: CGFloat {
         return GameScene.hitPoint
@@ -42,7 +38,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         self.gameDisplayView = GameDisplayView()
         self.factory = factory
         
-        //Calls super.init using teh screen's frame to create an SKView for the SKScene
+        //Calls super.init using the screen's frame to create an SKView for the SKScene
         super.init(mainScene: GameScene(size: UIScreen.main.bounds.size))
         
         gameDisplayView = GameDisplayView(frame: self.mainView.frame)
@@ -67,50 +63,34 @@ class GameViewController: BaseGameViewController<GameScene> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        setTimer()
+        
         createTiles()
+        Timer.scheduledTimer(timeInterval: startDelayTime, target: self, selector: #selector(startAudio), userInfo: nil, repeats: false)
+        mainScene.setVelocity(velocity: Float(scrollVelocity))
     }
     
     //MARK: - Methods
-    func setup() {
+    private func setup() {
         setupAudioController()
-        
     }
     
-    func setupAudioController() {
+    private func setupAudioController() {
         audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
         audioController.start(playing: false)
     }
 
-    func createTiles() {
+    private func createTiles() {
         guard let interactionSequence = level.sequences.first else{return}
-        
-//        var smallerInteraction = [InteractionProtocol]()
-//
-//        for i in 0...4 {
-//            smallerInteraction.append(interactionSequence.sequence[i])
-//        }
         
         for interaction in interactionSequence.sequence {
             guard let tile = interaction as? TileInteraction else {break}
-            
             mainScene.addTileOrb(tile: tile, scrollVelocity: scrollVelocity, startDelayTime: startDelayTime)
         }
     }
     
     //MARK: - Private Methods
-    private func setTimer() {
-        timer = Timer.scheduledTimer(timeInterval: timerResolution, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
-    }
-    
-    @objc private func updateElapsedTime() {
-        elapsedTime += timerResolution
-        
-        //Check for song start
-        if !isPlaying && elapsedTime >= startDelayTime{
-            isPlaying = true
-            audioController.play()
-        }
+    @objc private func startAudio() {
+        audioController.play()
     }
     
     private func toggleGameStatus() {
@@ -118,14 +98,9 @@ class GameViewController: BaseGameViewController<GameScene> {
         if !scene.isPaused {
             mainView.scene?.isPaused = true
             audioController.pause()
-            
-            timer?.invalidate()
-            timer = nil
         } else if scene.isPaused {
             mainView.scene?.isPaused = false
             audioController.play()
-            
-            setTimer()
         }
     }
     
@@ -140,7 +115,6 @@ class GameViewController: BaseGameViewController<GameScene> {
 
 extension GameViewController: AudioControllerDelegate {
     func audioFinished() {
-        isPlaying = false
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(self.factory.createSummaryScene(), animated: true)
         }
@@ -148,9 +122,8 @@ extension GameViewController: AudioControllerDelegate {
 }
 
 extension GameViewController: GameSceneDelegate {
-    
-    func getElapsedTime() -> Double {
-        return self.elapsedTime
+    func getElapsedTime() -> Double? {
+        return audioController.getPlayerTime()
     }
     
     func pauseGame() {

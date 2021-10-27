@@ -20,7 +20,7 @@ enum GameSceneCattegoryTypes: UInt32 {
 }
 
 protocol GameSceneDelegate {
-    func getElapsedTime() -> Double
+    func getElapsedTime() -> Double?
     func pauseGame()
     func updatedScore(score: Double)
 }
@@ -63,7 +63,7 @@ class GameScene: SKScene {
     }
     
     //MARK: - Public Methods
-    func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
+    public func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
         let duration = tileInteraction.endTime - tileInteraction.startTime
         var height: Double = 0
         if duration > 0.4 {
@@ -73,7 +73,7 @@ class GameScene: SKScene {
         }
         
         let tile = TileOrbNode(tileInteraction: tileInteraction, height: height)
-        tile.position.y = 130 + GameScene.hitPoint + scrollVelocity*(tileInteraction.startTime + startDelayTime)
+        tile.position.y = GameScene.hitPoint + scrollVelocity * (tileInteraction.startTime + startDelayTime)
         
         let width = UIScreen.main.bounds.width
         switch tileInteraction.xPosition {
@@ -91,8 +91,14 @@ class GameScene: SKScene {
         
         tileOrbs.append(tile)
         hashes.append(tile.physicsBody!.hash)
-        tile.physicsBody?.velocity = CGVector(dx: 0, dy: -scrollVelocity)
         self.addChild(tile)
+    }
+    
+    public func setVelocity(velocity: Float) {
+        let velocity = CGFloat(-velocity)
+        for tile in tileOrbs {
+            tile.physicsBody?.velocity = CGVector(dx: 0, dy: velocity)
+        }
     }
     
     //MARK: - Private Methods
@@ -162,7 +168,9 @@ extension GameScene: SKPhysicsContactDelegate {
             let tile = tileBody.node as! TileOrbNode
             
             if tile.hasTail {
-                tileKiteContactStartTime = delegate.getElapsedTime()
+                if let time = delegate.getElapsedTime() {
+                    tileKiteContactStartTime = time
+                }
             } else {
                 score += tile.tileInteraction.minimumScore
                 hashes = hashes.filter{$0 != tileBody.hash}
@@ -177,7 +185,11 @@ extension GameScene: SKPhysicsContactDelegate {
         //Only the tiles with kite Tail enters this if
         if hashes.contains(tileBody.hash){
             let tile = tileBody.node as! TileOrbNode
-            let actualTime = delegate.getElapsedTime()
+            guard let actualTime = delegate.getElapsedTime() else {
+                tileKiteContactStartTime = 0
+                return
+            }
+            
             score += 2 * tile.tileInteraction.minimumScore * (actualTime - tileKiteContactStartTime)
             tileKiteContactStartTime = 0
         }

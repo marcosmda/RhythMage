@@ -11,20 +11,18 @@ protocol AudioControllerDelegate {
     func audioFinished()
 }
 
-class AudioController {
+class AudioController: NSObject {
     
     private var player: AVAudioPlayer?
     private var started: Bool
     
     var delegates: [AudioControllerDelegate]
     var urlString: String?
-    var isPlaying: Bool
     
-    init() {
+    override init() {
         self.started = false
-        
         self.delegates = [AudioControllerDelegate]()
-        self.isPlaying = false
+        super.init()
         setupSession()
     }
     
@@ -42,10 +40,9 @@ class AudioController {
     }
     
     public func play() {
-        if isPlaying {return}
+        if player?.isPlaying ?? true {return}
         
         if started {
-            isPlaying = true
             player?.play()
         } else {
             dump("Player Not Started")
@@ -53,10 +50,9 @@ class AudioController {
     }
     
     public func pause() {
-        if !isPlaying {return}
+        if !(player?.isPlaying ?? false) {return}
         
         if started {
-            isPlaying = false
             player?.pause()
         } else {
             dump("Player Not Started")
@@ -64,7 +60,7 @@ class AudioController {
     }
     
     public func toggle() {
-        if isPlaying {
+        if player?.isPlaying ?? true {
             pause()
         } else {
             play()
@@ -86,23 +82,25 @@ class AudioController {
         if let urlString = urlString {
             do {
                 player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+                player?.delegate = self
             } catch {
                 //TODO: Manage Error
             }
         }
     }
     
-    @objc private func updateElapsedTime() {
-        if let player = player, isPlaying && !player.isPlaying{
-            started = false
-            isPlaying = false
-            for delegate in delegates {
-                delegate.audioFinished()
-            }
-        }
+    public func getPlayerTime() -> Double? {
+        return player?.currentTime
     }
     
+}
+
+extension AudioController: AVAudioPlayerDelegate {
     
-    
-    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        started = false
+        for delegate in delegates {
+            delegate.audioFinished()
+        }
+    }
 }
