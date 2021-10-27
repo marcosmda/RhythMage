@@ -32,7 +32,7 @@ class SettingsView: UIView{
         switchHapitc.onTintColor = .terciary
         switchHapitc.thumbTintColor = .primary
         switchHapitc.backgroundColor = .terciary
-        switchHapitc.layer.cornerRadius = 13
+        switchHapitc.layer.cornerRadius = switchHapitc.frame.size.height / 2
         switchHapitc.layer.masksToBounds = true
         switchHapitc.addTarget(self, action: #selector(switchValueDidChange(_ :)), for: .valueChanged)
         return switchHapitc
@@ -55,6 +55,32 @@ class SettingsView: UIView{
         
     }()
     
+    let cameraImage: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "CameraAccessSmall")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    ///Create the title that explain the use of the camera
+    var explanationCameraText: DynamicLabel = {
+        let label3 = DynamicLabel()
+        label3.translatesAutoresizingMaskIntoConstraints = false
+        label3.text = "For playing with your face and registering your best moments, go to Settings and allow Camera Access."
+        label3.textColor = .secondary
+        label3.numberOfLines = 0
+        label3.textAlignment = .center
+        label3.font = UIFont(name: "SF Pro Text", size: 14)
+        label3.contentMode = .scaleAspectFill
+        //label3.minimumScaleFactor = 0.1
+        label3.sizeToFit()
+        //label3.fitTextToBounds()
+        return label3
+        
+    }()
+    
     ///Create the subtitle of the rectangle view with the hapticSwitch
     lazy var settingsDescription: UILabel = {
         let label4 = UILabel(frame: .zero)
@@ -68,7 +94,6 @@ class SettingsView: UIView{
         label4.minimumScaleFactor = 0.1
         label4.sizeToFit()
         return label4
-        
     }()
     
     
@@ -113,8 +138,11 @@ class SettingsView: UIView{
         self.addSubview(titleText)
         self.addSubview(settingsDescription)
         self.addSubview(tableView)
+        self.addSubview(explanationCameraText)
         setupRectangleView()
+        self.addSubview(cameraImage)
         setupLayoutTableView()
+        setImageAndTextForCamera()
         
     }
     
@@ -163,15 +191,37 @@ class SettingsView: UIView{
     
     ///Add autolayout of the tableview
     func setupLayoutTableView(){
+        //tableView.backgroundColor = .red
+        
+       
+        
         NSLayoutConstraint.activate([
+            
             tableView.topAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: 20),
-            tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+           tableView.bottomAnchor.constraint(equalTo: cameraImage.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -30),
+            
 
         ])
         
 
+    }
+    
+    func setImageAndTextForCamera(){
+        NSLayoutConstraint.activate([
+            cameraImage.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            cameraImage.widthAnchor.constraint(lessThanOrEqualToConstant: 180),
+            cameraImage.heightAnchor.constraint(lessThanOrEqualToConstant: 180),
+            cameraImage.bottomAnchor.constraint(equalTo: explanationCameraText.topAnchor),
+            cameraImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            explanationCameraText.topAnchor.constraint(equalTo: cameraImage.bottomAnchor),
+            explanationCameraText.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            explanationCameraText.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            explanationCameraText.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            explanationCameraText.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor)
+        ])
     }
     
     func setupBackGround(){

@@ -17,7 +17,7 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     //MARK: Properties
     var ableToPlay = false
     var safeArea: UILayoutGuide!
-    var buttons = ["TERMS OF USE", "ALLOW CAMERA ACCESS", "CREDITS"]
+    var buttons = ["TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
     var user: User {
         if let user = authenticationController.user {
             return user
@@ -74,14 +74,13 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     
 //MARK: - Extension UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate{
-    
     ///Set the division inside the tableView
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         //headerView.backgroundColor = self.view.backgroundColor
         return headerView
     }
-    
+     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -95,14 +94,13 @@ extension SettingsViewController: UITableViewDelegate{
         return cell
     }
     
-    ///Set the height of eaach tableview
+    ///Set the height of each tableview
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54.00
        
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 2
+        return 0
     }
     
     ///Set the numbers of cells we will display
@@ -117,9 +115,15 @@ extension SettingsViewController: UITableViewDelegate{
                 print("Enter Terms Of Use")
 
             case 1:
+            print("Enter Credits")
+            self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
+            
+            
+            case 2:
             print("Enter Allow Camera")
             //Adding the Alert
-                let alertController = UIAlertController (title: "Allow Camera", message: "Go to Settings", preferredStyle: .alert)
+            /*
+                let alertController = UIAlertController (title: "Change Camera Access", message: "For playing with your face and registering your best moments, go to Settings and allow Camera Access.", preferredStyle: .alert)
 
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
 
@@ -127,22 +131,26 @@ extension SettingsViewController: UITableViewDelegate{
                     return
                     }
 
-                    if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    if UIApplication.shared.canOpenURL(URL(string: UIApplication) {
+                    UIApplication.shared.open(URL(string: UIApplication, completionHandler: { (success) in
                         print("Settings opened: \(success)") // Prints true
                     })
-                }
-            }
+                }*/
+            //UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                           if UIApplication.shared.canOpenURL(url) {
+                               UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                           }
+                       }
+            //}
+                                              /*
             alertController.addAction(settingsAction)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
 
             present(alertController, animated: true, completion: nil)
-            
-            case 2:
+            */
                 
-                print("Enter Credits")
-                self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
                 
                 
             default:
@@ -173,9 +181,12 @@ extension SettingsViewController: UITableViewDataSource{
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         cell.accessoryType = UITableViewCell.AccessoryType.none
+        var frame = tableView.frame
+        frame.size.height = tableView.contentSize.height
+        tableView.frame = frame
 
         let selectedView: UIView = UIView(frame: cell.frame)
-        selectedView.layer.cornerRadius = 10
+        selectedView.layer.cornerRadius = 20
         selectedView.layer.masksToBounds = true
         //.backgroundColor = .terciary
         cell.selectedBackgroundView = selectedView
