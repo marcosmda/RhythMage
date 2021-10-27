@@ -15,15 +15,15 @@ class GameViewController: BaseGameViewController<GameScene> {
     let realm: Realm
     let audioController: AudioController
     let level: Level
-    var gameView: GameView
+    var gameDisplayView: GameDisplayView
     
-    typealias Factory = SmileToResumeFactory
+    typealias Factory = SmileToResumeFactory & SummaryFactory
     let factory: Factory
     
     /// Refers to the velocity of the Tiles scrolling
     private let scrollVelocity: Double = 200
     private let startDelayTime: Double = 3
-    private let timerResolution: Double = 0.01
+    private let timerResolution: Double = 0.001
     
     private var timer: Timer?
     private var elapsedTime: Double = 0
@@ -39,15 +39,15 @@ class GameViewController: BaseGameViewController<GameScene> {
         self.realm = realm
         self.audioController = audioController
         self.level = level
-        self.gameView = GameView()
+        self.gameDisplayView = GameDisplayView()
         self.factory = factory
         
         //Calls super.init using teh screen's frame to create an SKView for the SKScene
         super.init(mainScene: GameScene(size: UIScreen.main.bounds.size))
         
-        gameView = GameView(frame: self.mainView.frame)
-        gameView.delegate = self
-        self.mainView.addSubview(gameView)
+        gameDisplayView = GameDisplayView(frame: self.mainView.frame)
+        gameDisplayView.delegate = self
+        self.mainView.addSubview(gameDisplayView)
         //Delegates
         self.audioController.delegates.append(self)
         mainScene.gameDelegate = self
@@ -56,7 +56,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         self.navigationController?.isNavigationBarHidden = true
         
         //ViewControllerSetup
-        debugMode(true)
+        debugMode(false)
         setup()
     }
     
@@ -67,13 +67,14 @@ class GameViewController: BaseGameViewController<GameScene> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        setTimer()
+        createTiles()
     }
     
     //MARK: - Methods
     func setup() {
         setupAudioController()
-        createTiles()
-        setTimer()
+        
     }
     
     func setupAudioController() {
@@ -84,13 +85,13 @@ class GameViewController: BaseGameViewController<GameScene> {
     func createTiles() {
         guard let interactionSequence = level.sequences.first else{return}
         
-        var smallerInteraction = [InteractionProtocol]()
+//        var smallerInteraction = [InteractionProtocol]()
+//
+//        for i in 0...4 {
+//            smallerInteraction.append(interactionSequence.sequence[i])
+//        }
         
-        for i in 0...4 {
-            smallerInteraction.append(interactionSequence.sequence[i])
-        }
-        
-        for interaction in smallerInteraction {
+        for interaction in interactionSequence.sequence {
             guard let tile = interaction as? TileInteraction else {break}
             
             mainScene.addTileOrb(tile: tile, scrollVelocity: scrollVelocity, startDelayTime: startDelayTime)
@@ -103,7 +104,7 @@ class GameViewController: BaseGameViewController<GameScene> {
     }
     
     @objc private func updateElapsedTime() {
-        elapsedTime += 0.01
+        elapsedTime += timerResolution
         
         //Check for song start
         if !isPlaying && elapsedTime >= startDelayTime{
@@ -140,10 +141,14 @@ class GameViewController: BaseGameViewController<GameScene> {
 extension GameViewController: AudioControllerDelegate {
     func audioFinished() {
         isPlaying = false
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(self.factory.createSummaryScene(), animated: true)
+        }
     }
 }
 
 extension GameViewController: GameSceneDelegate {
+    
     func getElapsedTime() -> Double {
         return self.elapsedTime
     }
@@ -154,9 +159,14 @@ extension GameViewController: GameSceneDelegate {
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true, completion: nil)
-        
-        toggleGameStatus()
+        DispatchQueue.main.async {
+            self.present(vc, animated: true, completion: nil)
+            self.toggleGameStatus()
+        }
+    }
+    
+    func updatedScore(score: Double) {
+        gameDisplayView.song.pointsLabel.text = String(Int(score))
     }
 }
 
