@@ -118,6 +118,7 @@ extension SettingsViewController: UITableViewDelegate{
 
             case 1:
             print("Enter Allow Camera")
+            //Adding the Alert
                 let alertController = UIAlertController (title: "Allow Camera", message: "Go to Settings", preferredStyle: .alert)
 
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
