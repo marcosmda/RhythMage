@@ -38,7 +38,7 @@ class TermsOfUseCell:  UITableViewCell{
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondary
-        label.font = .inika(ofSize: 18)
+        label.font = UIFont(name: "SF Pro Text", size: 14)
         label.contentMode = .scaleAspectFit
         label.numberOfLines = 0
         label.textAlignment = .left
