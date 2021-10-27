@@ -52,7 +52,7 @@ class TermsOfUseCell:  UITableViewCell{
         button3.setTitleColor(.secondary, for: .normal)
         button3.titleLabel!.font = .inikaBold(ofSize: 20)
         button3.layer.cornerRadius = 20
-        button3.addTarget(self, action: #selector(onTermsButtonPush), for: .touchUpInside)
+        //button3.addTarget(self, action: #selector(onTermsButtonPush), for: .touchUpInside)
         button3.backgroundColor = .terciary.withAlphaComponent(0.5)
         return button3
     }()
@@ -106,9 +106,9 @@ class TermsOfUseCell:  UITableViewCell{
         ])
     }
     
-    @objc func onTermsButtonPush(){
-        delegate?.onTermsButtonPush()
-    }
+    //@objc func onTermsButtonPush(){
+   //     delegate?.onTermsButtonPush()
+    //}
     
     
     

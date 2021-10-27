@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 
 protocol TermsOfUseDelegate: AnyObject{
-    func onTermsButtonPush()
+    //func onTermsButtonPush()
     func onBackButtonPush()
     
 }

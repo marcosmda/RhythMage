@@ -121,7 +121,7 @@ class SelectedTermOfUseView: UIView {
         NSLayoutConstraint.activate([
             icon.heightAnchor.constraint(equalToConstant: 58),
             icon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            icon.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 40),
+            icon.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50),
             icon.bottomAnchor.constraint(equalTo: title.topAnchor ,constant: -16),
             
             
@@ -132,12 +132,12 @@ class SelectedTermOfUseView: UIView {
             
     
             lastUpdated.topAnchor.constraint(equalTo: title.bottomAnchor),
-            lastUpdated.bottomAnchor.constraint(equalTo: terms.topAnchor, constant: -12),
+            lastUpdated.bottomAnchor.constraint(equalTo: terms.topAnchor, constant: -16),
             lastUpdated.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             lastUpdated.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             
             
-            terms.topAnchor.constraint(equalTo: lastUpdated.bottomAnchor, constant: 12),
+            terms.topAnchor.constraint(equalTo: lastUpdated.bottomAnchor, constant: 16),
             terms.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             terms.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             

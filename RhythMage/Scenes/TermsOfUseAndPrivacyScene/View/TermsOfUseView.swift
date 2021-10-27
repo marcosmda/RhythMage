@@ -34,7 +34,7 @@ class TermsOfUseView: UIView{
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = button.frame.size.height / 2
-        button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -117,5 +117,6 @@ class TermsOfUseView: UIView{
     @objc func onBackButtonPush(){
         delegate?.onBackButtonPush()
     }
+    
 
 }
