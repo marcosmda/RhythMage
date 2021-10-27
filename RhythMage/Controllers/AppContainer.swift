@@ -124,7 +124,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel())
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self)
     }
 }
 

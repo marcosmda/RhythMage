@@ -125,7 +125,7 @@ class SettingsView: UIView{
     func setupRectangleView(){
         
         NSLayoutConstraint.activate([
-            rectangle.topAnchor.constraint(equalTo: self.topAnchor, constant: 130),
+            rectangle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50),
            rectangle.heightAnchor.constraint(lessThanOrEqualToConstant: 80),
             rectangle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
            rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
