@@ -113,7 +113,6 @@ extension SettingsViewController: UITableViewDelegate{
     ///Set navigation afer clicking inside the cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if indexPath.section == 1 {
-            //let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath)
             switch indexPath.row {
             case 0:
                 print("Enter Credits")
@@ -154,8 +153,10 @@ extension SettingsViewController: UITableViewDataSource{
         let selectedView: UIView = UIView(frame: cell.frame)
         selectedView.layer.cornerRadius = 10
         selectedView.layer.masksToBounds = true
-        selectedView.backgroundColor = .terciary
+        //.backgroundColor = .terciary
         cell.selectedBackgroundView = selectedView
+        //selectedView.backgroundColor = .clear
+        
     }
     
     
