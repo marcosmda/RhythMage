@@ -13,7 +13,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
     let authenticatinController = AuthenticationController()
     
     init() {
@@ -151,5 +151,57 @@ protocol CreditsSceneFactory{
 extension AppContainer:CreditsSceneFactory{
     func createCreditsScene() -> CreditsSceneViewController {
         return CreditsSceneViewController(factory: self)
+    }
+}
+
+//MARK: - HeadphoneWarning
+protocol HeadphoneWarningSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createHeadphoneWarningScene() -> HeadphonerViewController
+}
+
+extension AppContainer: HeadphoneWarningSceneFactory{
+    func createHeadphoneWarningScene() -> HeadphonerViewController {
+        return HeadphonerViewController(factory: self)
+    }
+}
+
+//MARK: - Tutorial
+protocol TutorialSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createTutorialScene() -> TutorialViewController
+}
+
+extension AppContainer: TutorialSceneFactory{
+    func createTutorialScene() -> TutorialViewController {
+        return TutorialViewController(factory: self)
+    }
+}
+
+//MARK: - CameraSetupViewController
+protocol CameraSetupSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraSetupScene() -> CameraSetupViewController
+}
+
+extension AppContainer: CameraSetupSceneFactory{
+    func createCameraSetupScene() -> CameraSetupViewController {
+        return CameraSetupViewController(factory: self)
+    }
+}
+
+//MARK: - CameraCaptureViewController
+protocol CameraCaptureSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraCaptureScene() -> CameraCaptureViewController
+}
+
+extension AppContainer: CameraCaptureSceneFactory{
+    func createCameraCaptureScene() -> CameraCaptureViewController {
+        return CameraCaptureViewController(factory: self)
     }
 }
