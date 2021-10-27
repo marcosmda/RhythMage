@@ -13,7 +13,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSettingsScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
     let authenticatinController = AuthenticationController()
     
     init() {
