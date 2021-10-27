@@ -8,10 +8,15 @@
 import UIKit
 
 class CameraSetupViewController: BaseViewController<CameraAccessView> {
-
-    init() {
+    
+    typealias Factory = CameraCaptureSceneFactory
+    let factory: Factory
+    
+    init(factory: Factory) {
+        self.factory = factory
         let view = CameraAccessView()
         super.init(mainView: view)
+        mainView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -20,8 +25,20 @@ class CameraSetupViewController: BaseViewController<CameraAccessView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
+    
+}
 
+extension CameraSetupViewController: CameraAccessDelegate {
+    
+    func didAuthorizeCameraAccess() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.pushViewController(factory.createCameraCaptureScene(), animated: false)
+    }
+    
 }

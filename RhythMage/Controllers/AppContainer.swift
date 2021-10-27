@@ -13,7 +13,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createCameraSetupScene())
     let authenticatinController = AuthenticationController()
     
     init() {
@@ -189,7 +189,19 @@ protocol CameraSetupSceneFactory{
 
 extension AppContainer: CameraSetupSceneFactory{
     func createCameraSetupScene() -> CameraSetupViewController {
-        return CameraSetupViewController()
+        return CameraSetupViewController(factory: self)
     }
 }
 
+//MARK: - CameraCaptureViewController
+protocol CameraCaptureSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraCaptureScene() -> CameraCaptureViewController
+}
+
+extension AppContainer: CameraCaptureSceneFactory{
+    func createCameraCaptureScene() -> CameraCaptureViewController {
+        return CameraCaptureViewController()
+    }
+}

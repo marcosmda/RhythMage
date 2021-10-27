@@ -54,6 +54,8 @@
 		CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E9627209D8D00B7F2DE /* PointsView.swift */; };
 		CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E992720A5DA00B7F2DE /* SummaryImageSetup.swift */; };
 		CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */; };
+		CFB113B32729AC4F001A5447 /* CameraCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB113B22729AC4F001A5447 /* CameraCaptureViewController.swift */; };
+		CFB113B52729AC69001A5447 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB113B42729AC69001A5447 /* CameraCapture.swift */; };
 		CFC99B5527286EE600773C92 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5427286EE600773C92 /* Video.swift */; };
 		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
 		CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B592728906700773C92 /* CameraAccessView.swift */; };
@@ -141,6 +143,8 @@
 		CF746E9627209D8D00B7F2DE /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
 		CF746E992720A5DA00B7F2DE /* SummaryImageSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageSetup.swift; sourceTree = "<group>"; };
 		CF746E9B2720A75B00B7F2DE /* SummaryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryImageView.swift; sourceTree = "<group>"; };
+		CFB113B22729AC4F001A5447 /* CameraCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureViewController.swift; sourceTree = "<group>"; };
+		CFB113B42729AC69001A5447 /* CameraCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCapture.swift; sourceTree = "<group>"; };
 		CFC99B5427286EE600773C92 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
 		CFC99B592728906700773C92 /* CameraAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAccessView.swift; sourceTree = "<group>"; };
@@ -396,9 +400,10 @@
 		CF1F0238272785A2004A1FAD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CFE760592728B71D0059F245 /* HeadphonerViewController.swift */,
 				CF1F02342727858D004A1FAD /* TutorialViewController.swift */,
 				CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */,
-				CFE760592728B71D0059F245 /* HeadphonerViewController.swift */,
+				CFB113B22729AC4F001A5447 /* CameraCaptureViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -406,9 +411,10 @@
 		CF1F0239272785A8004A1FAD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */,
 				CF1F02362727859D004A1FAD /* TutorialView.swift */,
 				CFC99B592728906700773C92 /* CameraAccessView.swift */,
-				CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */,
+				CFB113B42729AC69001A5447 /* CameraCapture.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -789,6 +795,7 @@
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
+				CFB113B52729AC69001A5447 /* CameraCapture.swift in Sources */,
 				CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
@@ -804,6 +811,7 @@
 				DB1A410F2723220F00F7EDD1 /* SongLibraryViewController.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
 				CFC99B5527286EE600773C92 /* Video.swift in Sources */,
+				CFB113B32729AC4F001A5447 /* CameraCaptureViewController.swift in Sources */,
 				CF577A6F2720D85300BF82E3 /* SummaryImageViewCollection.swift in Sources */,
 				F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */,
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,

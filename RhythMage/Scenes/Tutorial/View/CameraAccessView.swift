@@ -8,9 +8,15 @@
 import UIKit
 import Photos
 
+protocol CameraAccessDelegate {
+    func didAuthorizeCameraAccess()
+}
+
 class CameraAccessView: UIView {
     
     let gradientView = GradientBackgroundView()
+    
+    var delegate: CameraAccessDelegate?
     
     lazy var topMessage: UILabel = {
         let label = UILabel()
@@ -66,10 +72,12 @@ class CameraAccessView: UIView {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized: // The user has previously granted access to the camera.
             print("SYSTEM RESPONSE: This device's camera authorization was already granted.")
+            delegate?.didAuthorizeCameraAccess()
             return
         case .notDetermined: // The user has not yet been asked for camera access.
             AVCaptureDevice.requestAccess(for: .video) { granted in
                 if granted {
+                    self.delegate?.didAuthorizeCameraAccess()
                 }
             }
         case .denied: // The user has previously denied access.
