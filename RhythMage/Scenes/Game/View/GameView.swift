@@ -64,7 +64,10 @@ class GameView: UIView {
         self.song.iconImageView.addGestureRecognizer(tapGestureRecognizer)
                 self.frame = UIScreen.main.bounds
         
+        
         setupHiararchy()
+        setupLayout()
+
     }
     
     required init?(coder: NSCoder) {
@@ -78,41 +81,45 @@ class GameView: UIView {
     }
     
     //MARK: - Layout Subviews
+    func setupLayout(){
+       
+      NSLayoutConstraint.activate([
+          ///Constraints - container
+          container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
+          container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
+          container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+                      
+          ///Constraints - song view
+          song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
+          song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+          song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+          song.topAnchor.constraint(equalTo: container.topAnchor),
+          
+          ///Constraints - progress view
+          progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
+          progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
+          progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+          progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+          
+          previewCameraLayer.trailingAnchor.constraint(equalTo: container.leadingAnchor, constant: -10),
+          previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+          previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+
+      ])
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-//        let window = UIApplication.shared.windows.first
         let window = self.window?.windowScene?.keyWindow
         let topPadding = window?.safeAreaInsets.top
         
-        NSLayoutConstraint.activate([
-            ///Constraints - container
-            container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
-            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
-            container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-                        
-            ///Constraints - song view
-            song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
-            song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            song.topAnchor.constraint(equalTo: container.topAnchor),
-            
-            ///Constraints - progress view
-            progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
-            progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
-            progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
-            progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-            
-            previewCameraLayer.trailingAnchor.constraint(equalTo: container.leadingAnchor, constant: -10),
-            previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
-            previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!),
+        container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!).isActive = true
+        previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
 
-        ])
-        print(progressView.frame.height)
+        delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
     }
     
+  
     //MARK: - Hierarchy
     func setupHiararchy(){
         self.addSubview(container)

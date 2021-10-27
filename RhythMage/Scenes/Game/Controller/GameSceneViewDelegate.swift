@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol GameSceneDelegate {
     func getElapsedTime() -> Double
     func pauseGame()
+    func updateCamera(cameraView: UIView)
 }

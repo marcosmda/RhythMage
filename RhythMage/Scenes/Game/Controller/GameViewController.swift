@@ -9,6 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import RealmSwift
+import AVFoundation
 
 class GameViewController: BaseGameViewController<GameScene> {
     //MARK: - Properties
@@ -17,6 +18,12 @@ class GameViewController: BaseGameViewController<GameScene> {
     let level: Level
     var gameView: GameView
     
+    ///camera capture
+    private var captureSession: AVCaptureSession!
+    private var stillImageOutput: AVCapturePhotoOutput!
+    private var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    
+    //MARK: - Factory
     typealias Factory = SmileToResumeFactory
     let factory: Factory
     
@@ -69,6 +76,7 @@ class GameViewController: BaseGameViewController<GameScene> {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        setupCameraCaptureSession()
     }
     
     //MARK: - Methods
@@ -98,6 +106,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         }
     }
     
+    
     //MARK: - Private Methods
     private func setTimer() {
         timer = Timer.scheduledTimer(timeInterval: timerResolution, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
@@ -119,6 +128,9 @@ class GameViewController: BaseGameViewController<GameScene> {
         mainView.showsNodeCount = true
         mainView.showsFPS = true
     }
+    
+    private func setupCameraCaptureSession() {
+    }
 }
 
 extension GameViewController: AudioControllerDelegate {
@@ -128,6 +140,40 @@ extension GameViewController: AudioControllerDelegate {
 }
 
 extension GameViewController: GameSceneDelegate {
+    
+    func updateCamera(cameraView: UIView) {
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .medium
+        
+        guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else { fatalError("no front camera. but don't all iOS 15 devices have them? Check if you are running on the iOS Simulator. You need a physical device ;)") }
+        
+        do {
+            let input = try AVCaptureDeviceInput(device: frontCamera)
+            stillImageOutput = AVCapturePhotoOutput()
+            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
+                captureSession.addInput(input)
+                captureSession.addOutput(stillImageOutput)
+
+                videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                videoPreviewLayer.videoGravity = .resizeAspectFill
+                videoPreviewLayer.connection?.videoOrientation = .portrait
+                cameraView.layer.insertSublayer(videoPreviewLayer, at: 0)
+                
+                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                    self?.captureSession.startRunning()
+                    DispatchQueue.main.async {
+                        self?.videoPreviewLayer.frame = cameraView.bounds
+                    }
+                }
+                
+            }
+        }
+        catch let error  {
+            print("Error Unable to initialize front camera:  \(error.localizedDescription)")
+        }
+
+    }
+    
     func getElapsedTime() -> Double {
         return self.elapsedTime
     }
