@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import MessageUI
 
-class TermsOfUseViewController: BaseViewController<TermsOfUseView>{
+class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailComposeViewControllerDelegate{
     
     var model = TermsOfUseCellModel()
     //var index = 0
@@ -20,6 +21,11 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>{
       super.viewDidLoad()
         //mainView.delegate = self
         self.navigationItem.leftBarButtonItem = self.mainView.backButton
+        
+        if !MFMailComposeViewController.canSendMail() {
+                print("Mail services are not available")
+                return
+            }
         
     }
     
@@ -144,7 +150,12 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
             print("failed to get index path for cell containing button")
             return
         }
+        if indexPath[0] == 5{
+            
+            
         
+        }
+        else{
             //vc.username = "Ford Prefect"
         vc.mainView.icon.image = UIImage(systemName: model.data[indexPath[0]].termsImage)
         vc.mainView.title.text =  model.data[indexPath[0]].termsTitle.uppercased()
@@ -153,15 +164,19 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
            
         
         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func onBackButtonPush(){
         self.navigationController?.popViewController(animated: true)
     }
     
+
+    }
+    
      
 
-}
+
 
 //MARK: - Extension UITableViewDataSource
 extension TermsOfUseViewController: UITableViewDataSource{
