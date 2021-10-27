@@ -39,7 +39,7 @@ class TermsOfUseView: UIView{
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
-    
+        
     ///Create the scroll view of the Terms Of Use View
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -96,11 +96,15 @@ class TermsOfUseView: UIView{
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+
             scrollView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+
+            
         ])
+        
     }
     
     func setupBackGround(){

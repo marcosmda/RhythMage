@@ -29,7 +29,7 @@ class TermsOfUseCell:  UITableViewCell{
         label.textColor = .secondary
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .inikaBold(ofSize: 25)
+        label.font = .inikaBold(ofSize: 24)
         return label
     }()
     
@@ -38,7 +38,7 @@ class TermsOfUseCell:  UITableViewCell{
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondary
-        label.font = .inika(ofSize: 16)
+        label.font = .inika(ofSize: 18)
         label.contentMode = .scaleAspectFit
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -50,7 +50,7 @@ class TermsOfUseCell:  UITableViewCell{
         button3.tintColor = .secondary
         button3.contentVerticalAlignment = .center
         button3.setTitleColor(.secondary, for: .normal)
-        button3.titleLabel!.font = .inikaBold(ofSize: 20)
+        button3.titleLabel!.font = .inikaBold(ofSize: 18)
         button3.layer.cornerRadius = 20
         //button3.addTarget(self, action: #selector(onTermsButtonPush), for: .touchUpInside)
         button3.backgroundColor = .terciary.withAlphaComponent(0.5)

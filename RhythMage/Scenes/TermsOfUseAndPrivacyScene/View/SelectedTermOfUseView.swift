@@ -57,7 +57,7 @@ class SelectedTermOfUseView: UIView {
         label.textColor = .secondary
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = .inikaBold(ofSize: 25)
+        label.font = .inikaBold(ofSize: 24)
         //label.text = "title"
         return label
     }()
@@ -68,7 +68,7 @@ class SelectedTermOfUseView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         //label.text = "AAAA"
         label.textColor = .secondary
-        label.font = .inika(ofSize: 14)
+        label.font = .inika(ofSize: 18)
         label.contentMode = .scaleAspectFit
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -81,7 +81,7 @@ class SelectedTermOfUseView: UIView {
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondary
-        label.font = .inika(ofSize: 14)
+        label.font = .inika(ofSize: 18)
         label.contentMode = .scaleAspectFit
         label.numberOfLines = 0
         label.textAlignment = .left
@@ -96,8 +96,18 @@ class SelectedTermOfUseView: UIView {
         scroll.backgroundColor = .clear
         return scroll
     }()
-
     
+    /*
+    ///Create the rectangle view of the haptic button
+    let rectangle: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .terciary.withAlphaComponent(0.4)
+        view.layer.cornerRadius = 20
+        return view
+    }()
+
+    */
     //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,6 +117,7 @@ class SelectedTermOfUseView: UIView {
         self.addSubview(title)
         self.addSubview(lastUpdated)
         self.addSubview(terms)
+        //self.addSubview(rectangle)
         self.addSubview(scrollView)
         setElementsInView()
         setLayoutScrollView()
@@ -155,8 +166,20 @@ class SelectedTermOfUseView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
+        //rectangle.addSubview(scrollView)
     }
-    
+    /*
+    func setLayoutRectangle(){
+        rectangle.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            rectangle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            rectangle.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            rectangle.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
+    */
     func setupBackGround(){
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         
