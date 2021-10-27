@@ -17,7 +17,7 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     //MARK: Properties
     var ableToPlay = false
     var safeArea: UILayoutGuide!
-    var buttons = ["TERMS OF USE", "CREDITS"]
+    var buttons = ["TERMS OF USE", "ALLOW CAMERA ACCESS", "CREDITS"]
     var user: User {
         if let user = authenticationController.user {
             return user
@@ -112,18 +112,41 @@ extension SettingsViewController: UITableViewDelegate{
     
     ///Set navigation afer clicking inside the cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 1 {
-            switch indexPath.row {
+        switch indexPath.section {
             case 0:
-                print("Enter Credits")
-                self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
+                print("Enter Terms Of Use")
 
             case 1:
-                print("Enter Terms Of Use")
+            print("Enter Allow Camera")
+                let alertController = UIAlertController (title: "Allow Camera", message: "Go to Settings", preferredStyle: .alert)
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                    }
+
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+
+            present(alertController, animated: true, completion: nil)
+            
+            case 2:
+                
+                print("Enter Credits")
+                self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
+                
                 
             default:
                 return nil
-            }
+            
         }
     return indexPath
     }
@@ -146,7 +169,7 @@ extension SettingsViewController: UITableViewDataSource{
 
     ///Set the layout of tableview
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
         cell.accessoryType = UITableViewCell.AccessoryType.none
 
