@@ -41,10 +41,12 @@ class AudioController {
         prepareToPlay()
     }
     
-    public func start() {
+    public func start(playing: Bool) {
         started = true
-        play()
-        setTimer()
+        if playing {
+            play()
+            setTimer()
+        }
     }
     
     public func play() {

@@ -22,16 +22,12 @@ class GameViewController: BaseGameViewController<GameScene> {
     
     /// Refers to the velocity of the Tiles scrolling
     private let scrollVelocity: Double = 200
-    private let startDelayTime: Double = 5
+    private let startDelayTime: Double = 3
     private let timerResolution: Double = 0.01
     
     private var timer: Timer?
     private var elapsedTime: Double = 0
-    private var isPlaying: Bool = false {
-        didSet {
-            if isPlaying {audioController.start()}
-        }
-    }
+    private var isPlaying: Bool = false
     /// The height where the center of the HitLineNode is placed
     private var hitPoint: CGFloat {
         return GameScene.hitPoint
@@ -55,6 +51,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         //Delegates
         self.audioController.delegates.append(self)
         mainScene.gameDelegate = self
+        
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -81,6 +78,7 @@ class GameViewController: BaseGameViewController<GameScene> {
     
     func setupAudioController() {
         audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
+        audioController.start(playing: false)
     }
 
     func createTiles() {
@@ -110,6 +108,23 @@ class GameViewController: BaseGameViewController<GameScene> {
         //Check for song start
         if !isPlaying && elapsedTime >= startDelayTime{
             isPlaying = true
+            audioController.play()
+        }
+    }
+    
+    private func toggleGameStatus() {
+        guard let scene = mainView.scene else {return}
+        if !scene.isPaused {
+            mainView.scene?.isPaused = true
+            audioController.pause()
+            
+            timer?.invalidate()
+            timer = nil
+        } else if scene.isPaused {
+            mainView.scene?.isPaused = false
+            audioController.play()
+            
+            setTimer()
         }
     }
     
@@ -136,8 +151,18 @@ extension GameViewController: GameSceneDelegate {
     func pauseGame() {
         guard let navController = self.navigationController else {return}
         let vc = factory.createSmileToResumeScene(rootNavigationController: navController)
+        vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         present(vc, animated: true, completion: nil)
+        
+        toggleGameStatus()
+    }
+}
+
+extension GameViewController: SmileToResumeDelegate {
+    func resumed() {
+        audioController.start(playing: true)
+        toggleGameStatus()
     }
 }

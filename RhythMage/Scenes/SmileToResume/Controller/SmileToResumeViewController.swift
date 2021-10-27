@@ -8,6 +8,10 @@
 import UIKit
 import ARKit
 
+protocol SmileToResumeDelegate {
+    func resumed()
+}
+
 class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     
     private let rootNavigationController: UINavigationController
@@ -17,6 +21,8 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     
     typealias Factory = SmileToUnlockFactory
     let factory: Factory
+    
+    var delegate: SmileToResumeDelegate?
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
@@ -76,6 +82,7 @@ extension SmileToResumeViewController: FaceTrackingControllerDelegate {
         }
         if !initiatedGameScene && time >= 2 {
             initiatedGameScene = true
+            self.delegate?.resumed()
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
                 self.faceTrackingController.kill()
