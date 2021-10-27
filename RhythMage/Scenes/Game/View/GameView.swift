@@ -13,6 +13,18 @@ class GameView: UIView {
     public var song: SongContainerView
     var delegate: GameSceneDelegate?
     
+    var previewCameraLayer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 30
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 5
+        view.clipsToBounds = true
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return view
+    }()
+    
     ///progress bar
     private lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
@@ -62,7 +74,6 @@ class GameView: UIView {
     //setuplayout
     
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
-        print("pausou")
         delegate?.pauseGame()
     }
     
@@ -77,7 +88,7 @@ class GameView: UIView {
         NSLayoutConstraint.activate([
             ///Constraints - container
             container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
             container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
                         
@@ -92,7 +103,14 @@ class GameView: UIView {
             progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
             progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
             progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            
+            previewCameraLayer.trailingAnchor.constraint(equalTo: container.leadingAnchor, constant: -10),
+            previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+            previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!),
+
         ])
+        print(progressView.frame.height)
     }
     
     //MARK: - Hierarchy
@@ -100,6 +118,7 @@ class GameView: UIView {
         self.addSubview(container)
         container.addSubview(progressView)
         container.addSubview(song)
+        self.addSubview(previewCameraLayer)
     }
     
 }

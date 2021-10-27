@@ -57,7 +57,6 @@ class GameViewController: BaseGameViewController<GameScene> {
         mainScene.gameDelegate = self
         
         self.navigationController?.isNavigationBarHidden = true
-        
         //ViewControllerSetup
         debugMode(true)
         setup()
