@@ -10,8 +10,11 @@ import UIKit
 
 class TermsOfUseViewController: BaseViewController<TermsOfUseView>{
     
-    var buttons = ["TERMS OF USE", "CREDITS"]
     var model = TermsOfUseCellModel()
+    var index = 0
+
+    typealias Factory = SelectedTermsOfUseSceneFactory
+    let factory: Factory
     
     override func viewDidLoad() {
       super.viewDidLoad()
@@ -28,8 +31,9 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>{
         
         }
     
-    init ()
+    init (factory: Factory)
     {
+        self.factory = factory
         super.init(mainView: TermsOfUseView(frame: .zero))
         //mainView.delegate = self
         mainView.tableView.delegate = self
@@ -43,7 +47,11 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>{
 }
 
 //MARK: - Extension UITableViewDelegate
-extension TermsOfUseViewController: UITableViewDelegate{
+extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
+
+    
+
+    
     
     ///Set the division inside the tableView
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -62,20 +70,17 @@ extension TermsOfUseViewController: UITableViewDelegate{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TermsOfUseCell.reusableIdentifier, for: indexPath) as? TermsOfUseCell else {
             return UITableViewCell()
         }
-        cell.sinopse.text =  model.termsSinopse[indexPath.section]
-        cell.title.text =  model.termsTitle[indexPath.section].uppercased()
-        cell.icon.image = UIImage(systemName: model.termsImage[indexPath.section])
-        cell.button.setTitle(model.termsButtonText[indexPath.section], for: .normal)
-        cell.button.setImage(UIImage(systemName: model.termsButtonImage[indexPath.section]), for: .normal)
-        
+
+        cell.sinopse.text =  model.data[indexPath.section].termsSinopse
+            //.termsSinopse[indexPath.section]
+        cell.title.text =  model.data[indexPath.section].termsTitle.uppercased()
+        cell.icon.image = UIImage(systemName: model.data[indexPath.section].termsImage)
+        cell.button.setTitle(model.data[indexPath.section].termsButtonText, for: .normal)
+        cell.button.setImage(UIImage(systemName: model.data[indexPath.section].termsButtonImage), for: .normal)
+        cell.delegate = self
         return cell
     }
-    
-   /* ///Set the height of eaach tableview
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 10
-       
-    }*/
+
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -90,24 +95,30 @@ extension TermsOfUseViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         switch indexPath.section {
-                
+            
             case 0:
+                index = 0
                 print("Enter privacy policy")
                 
                 //self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
             case 1:
+                index = 1
                 print("Enter Interpretation &\nDefinitions")
                 
             case 2:
+                index = 2
                 print("Enter Collecting & Using\nYour Personal Data")
             
             case 3:
+                index = 3
                 print("Enter Disclosure of Your\nPersonal Data")
                 
             case 4:
+                index = 4
                 print("Enter Access of the Services")
                 
             case 5:
+                index = 5
                 print("Enter Contact Us")
                 
             default:
@@ -117,8 +128,25 @@ extension TermsOfUseViewController: UITableViewDelegate{
     return indexPath
     }
     
-}
+    func onTermsButtonPush() {
+        let vc = SelectedTermsOfUseViewController()
+            //vc.username = "Ford Prefect"
+            vc.mainView.icon.image = UIImage(systemName: model.data[index].termsImage)
+            vc.mainView.title.text =  model.data[index].termsTitle.uppercased()
+            vc.mainView.lastUpdated.text = model.data[index].termsUpdated
+            vc.mainView.terms.text = model.data[index].termsText
+           
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func onBackButtonPush(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+     
 
+}
 
 //MARK: - Extension UITableViewDataSource
 extension TermsOfUseViewController: UITableViewDataSource{
@@ -129,11 +157,11 @@ extension TermsOfUseViewController: UITableViewDataSource{
         cell.layer.masksToBounds = true
         cell.accessoryType = UITableViewCell.AccessoryType.none
 
-        //let selectedView: UIView = UIView(frame: cell.frame)
+        let selectedView: UIView = UIView(frame: cell.frame)
         //selectedView.layer.cornerRadius = 10
-        //selectedView.layer.masksToBounds = true
-        //selectedView.backgroundColor = .terciary
-        //cell.selectedBackgroundView = selectedView
+        selectedView.layer.masksToBounds = true
+        selectedView.backgroundColor = .clear
+        cell.selectedBackgroundView = selectedView
     }
     
     
@@ -143,3 +171,4 @@ extension TermsOfUseViewController: UITableViewDataSource{
 
 
 }
+

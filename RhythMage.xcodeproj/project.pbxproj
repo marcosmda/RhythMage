@@ -90,6 +90,7 @@
 		F18C285A27288B8A004E5075 /* TermsOfUseCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285927288B8A004E5075 /* TermsOfUseCellModel.swift */; };
 		F18C285C2728A004004E5075 /* SelectedTermOfUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285B2728A004004E5075 /* SelectedTermOfUseView.swift */; };
 		F18C285E2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285D2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift */; };
+		F19F13102729BE5100B9F420 /* SelectedTermsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F130F2729BE5100B9F420 /* SelectedTermsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,7 @@
 		F18C285927288B8A004E5075 /* TermsOfUseCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseCellModel.swift; sourceTree = "<group>"; };
 		F18C285B2728A004004E5075 /* SelectedTermOfUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermOfUseView.swift; sourceTree = "<group>"; };
 		F18C285D2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermsOfUseViewController.swift; sourceTree = "<group>"; };
+		F19F130F2729BE5100B9F420 /* SelectedTermsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -645,6 +647,7 @@
 				F18C285227286842004E5075 /* TermsOfUseViewController.swift */,
 				F18C285D2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift */,
 				F18C2856272876F6004E5075 /* TermsOfUseDelegate.swift */,
+				F19F130F2729BE5100B9F420 /* SelectedTermsDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 			files = (
 				8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */,
 				CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */,
+				F19F13102729BE5100B9F420 /* SelectedTermsDelegate.swift in Sources */,
 				8D00CA252722D45000DCBA84 /* UIView.swift in Sources */,
 				CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */,
 				CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */,

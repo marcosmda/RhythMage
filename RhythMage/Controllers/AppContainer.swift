@@ -163,7 +163,20 @@ protocol TermsOfUseSceneFactory{
 
 extension AppContainer:TermsOfUseSceneFactory{
     func createTermsOfUseScene() -> TermsOfUseViewController {
-        return TermsOfUseViewController()
+        return TermsOfUseViewController(factory: self)
+    }
+}
+
+//MARK: - CreditsScene
+protocol SelectedTermsOfUseSceneFactory{
+    /// Creates an instance of SelectedTermsOfUseViewController to be used
+    /// - Returns: An instance of SelectedTermsOfUseViewController
+    func createSelectedTermsOfUseScene() -> SelectedTermsOfUseViewController
+}
+
+extension AppContainer:SelectedTermsOfUseSceneFactory{
+    func createSelectedTermsOfUseScene() -> SelectedTermsOfUseViewController {
+        return SelectedTermsOfUseViewController()
     }
 }
 

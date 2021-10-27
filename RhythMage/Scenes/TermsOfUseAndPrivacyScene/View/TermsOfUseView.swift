@@ -18,11 +18,11 @@ class TermsOfUseView: UIView{
         let label = DynamicLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondary
-        label.text = "TERMS OF USE AND\nPRIVACY"
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = .inikaBold(ofSize: 25)
         label.contentMode = .scaleAspectFit
+        label.text = "terms of use and privacy".uppercased()
         return label
     }()
     
@@ -34,7 +34,7 @@ class TermsOfUseView: UIView{
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = button.frame.size.height / 2
-        //button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -114,6 +114,8 @@ class TermsOfUseView: UIView{
         gradientView.setupCircleBackgroundBlur()
     }
     
-    
+    @objc func onBackButtonPush(){
+        delegate?.onBackButtonPush()
+    }
 
 }

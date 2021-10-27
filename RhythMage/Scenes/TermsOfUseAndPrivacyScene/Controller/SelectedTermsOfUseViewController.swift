@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView>{
+
+    var model = TermsOfUseCellModel()
     
     
     override func viewDidLoad() {
@@ -23,16 +25,24 @@ class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView
         
         ///Set the navigationBar Title
         self.navigationItem.titleView = mainView.titleNavBar
+       
         
         }
     
     init ()
     {
+       
         super.init(mainView: SelectedTermOfUseView(frame: .zero))
-        
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func onBackButtonPush() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
