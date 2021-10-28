@@ -40,7 +40,7 @@ class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onBackButtonPush() {
+    func onBackButtonPushTerms() {
         self.navigationController?.popViewController(animated: true)
     }
     

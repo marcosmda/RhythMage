@@ -11,7 +11,6 @@ import UIKit
 class SelectedTermOfUseView: UIView {
     
     var gradientView = GradientBackgroundView()
-    
     var delegate:SelectedTermsDelegate?
     
     ///Create the layout of back button on the Navigation Bar
@@ -21,7 +20,7 @@ class SelectedTermOfUseView: UIView {
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = button.frame.size.height / 2
-        button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
+        button.addTarget(self, action: #selector(onBackButtonPushTerms), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -44,7 +43,7 @@ class SelectedTermOfUseView: UIView {
     var icon: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.image = UIImage(systemName: "envelope")
+        imageView.image = UIImage(systemName: "envelope")
         imageView.tintColor = .secondary
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -58,7 +57,7 @@ class SelectedTermOfUseView: UIView {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.font = .inikaBold(ofSize: 24)
-        //label.text = "title"
+        label.text = "title"
         return label
     }()
     
@@ -90,96 +89,76 @@ class SelectedTermOfUseView: UIView {
     }()
     
     ///Create the scroll view of the Terms Of Use View
-    let scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.backgroundColor = .clear
-        return scroll
-    }()
+    let scrollView = UIScrollView()
+    let contentView = UIView()
     
-    /*
-    ///Create the rectangle view of the haptic button
-    let rectangle: UIView = {
-        let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .terciary.withAlphaComponent(0.4)
-        view.layer.cornerRadius = 20
-        return view
-    }()
-
-    */
+    
+    
     //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(gradientView)
         setupBackGround()
-        self.addSubview(icon)
-        self.addSubview(title)
-        self.addSubview(lastUpdated)
-        self.addSubview(terms)
-        //self.addSubview(rectangle)
-        self.addSubview(scrollView)
-        setElementsInView()
-        setLayoutScrollView()
+        setupScrollView()
+        setupViews()
+        
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setElementsInView(){
-       
-        NSLayoutConstraint.activate([
-            icon.heightAnchor.constraint(equalToConstant: 58),
-            icon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            icon.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 50),
-            icon.bottomAnchor.constraint(equalTo: title.topAnchor ,constant: -16),
-            
-            
-            title.topAnchor.constraint(equalTo: icon.bottomAnchor ,constant: 16),
-            title.bottomAnchor.constraint(equalTo: lastUpdated.topAnchor),
-            title.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            title.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            
     
-            lastUpdated.topAnchor.constraint(equalTo: title.bottomAnchor),
-            lastUpdated.bottomAnchor.constraint(equalTo: terms.topAnchor, constant: -16),
-            lastUpdated.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            lastUpdated.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            
-            
-            terms.topAnchor.constraint(equalTo: lastUpdated.bottomAnchor, constant: 16),
-            terms.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            terms.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            
-            
-        ])
+    func setupScrollView(){
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            contentView.translatesAutoresizingMaskIntoConstraints = false
         
-    }
+            self.addSubview(scrollView)
+            scrollView.addSubview(contentView)
+            
+            scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            scrollView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+            contentView.leadingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.leadingAnchor).isActive = true
+            contentView.trailingAnchor.constraint(equalTo: scrollView.layoutMarginsGuide.trailingAnchor).isActive = true
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        }
     
-    func setLayoutScrollView(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
-        //rectangle.addSubview(scrollView)
-    }
-    /*
-    func setLayoutRectangle(){
-        rectangle.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            rectangle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            rectangle.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            rectangle.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
-    }
-    */
+    
+    func setupViews(){
+        
+        contentView.addSubview(icon)
+        contentView.addSubview(title)
+        contentView.addSubview(terms)
+        contentView.addSubview(lastUpdated)
+        
+        icon.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        icon.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 80).isActive = true
+        icon.widthAnchor.constraint(equalToConstant: 80).isActive = true
+           
+           
+        title.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 50).isActive = true
+        title.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
+        title.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+       
+        
+        lastUpdated.topAnchor.constraint(equalTo: title.bottomAnchor).isActive = true
+        lastUpdated.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
+        lastUpdated.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+        
+        terms.topAnchor.constraint(equalTo: lastUpdated.bottomAnchor, constant: 25).isActive = true
+        terms.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
+        terms.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+        terms.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
+       }
+ 
     func setupBackGround(){
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -191,8 +170,8 @@ class SelectedTermOfUseView: UIView {
         gradientView.setupCircleBackgroundBlur()
     }
     
-    @objc func onBackButtonPush(){
-        delegate?.onBackButtonPush()
+    @objc func onBackButtonPushTerms(){
+        delegate?.onBackButtonPushTerms()
     }
 
     

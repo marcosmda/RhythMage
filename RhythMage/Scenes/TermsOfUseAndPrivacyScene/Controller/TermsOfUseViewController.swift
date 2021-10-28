@@ -50,6 +50,31 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
         fatalError("init(coder:) has not been implemented")
     }
     
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            
+            let mail = MFMailComposeViewController()
+            mail.setToRecipients(["rhythmages.contato@gmail.com"])
+            mail.setSubject((NSLocalizedString("Report Issue:", comment: "")))
+            mail.setMessageBody("<html><strong><p>This is your message:</p></strong>Bug report, question, feedback, feature request or other\n\n<strong><p>Subject:</p></strong>\n\n\n<strong><p>Full description:</p></strong>\n\nObservation:  You can include files (documents, screen recordings, screenshots, crash logs, etc.) by uploading them to any third-party file-sharing service, such as Dropbox, Google Drive, Microsoft OneDrive or similar, and pasting the URLs above. Please make sure the correct sharing permissions have been set. All files sent to us are 100% confidential.</html>"
+                                , isHTML: true)
+            
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+            print("error sending e-mail")
+            let alert = UIAlertController(title: "Your request could not be completed", message: "Make sure you have an e-mail account set up on your iPhone", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
 }
 
 //MARK: - Extension UITableViewDelegate
@@ -152,7 +177,7 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
         }
         if indexPath[0] == 5{
             
-            
+            sendEmail()
         
         }
         else{

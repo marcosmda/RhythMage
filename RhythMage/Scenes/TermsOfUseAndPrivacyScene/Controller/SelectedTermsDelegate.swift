@@ -9,6 +9,5 @@ import Foundation
 import UIKit
 
 protocol SelectedTermsDelegate{
-    func onBackButtonPush()
-    
+    func onBackButtonPushTerms()
 }
