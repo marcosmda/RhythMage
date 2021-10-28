@@ -124,43 +124,6 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
         return 6
     }
     
-    ///Set navigation afer clicking inside the cell
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        
-        switch indexPath.section {
-           
-            case 0:
-                //index = 0
-                print("Enter privacy policy")
-                
-                //self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
-            case 1:
-                //index = 1
-                print("Enter Interpretation &\nDefinitions")
-                
-            case 2:
-                //index = 2
-                print("Enter Collecting & Using\nYour Personal Data")
-            
-            case 3:
-                //index = 3
-                print("Enter Disclosure of Your\nPersonal Data")
-                
-            case 4:
-                //index = 4
-                print("Enter Access of the Services")
-                
-            case 5:
-                //index = 5
-                print("Enter Contact Us")
-                
-            default:
-                return nil
-            }
-        
-    return indexPath
-    }
-    
     @objc func onTermsButtonPush(sender: UIButton) {
         let vc = SelectedTermsOfUseViewController()
         var superview = sender.superview
@@ -182,6 +145,7 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
         }
         else{
             //vc.username = "Ford Prefect"
+            
         vc.mainView.icon.image = UIImage(systemName: model.data[indexPath[0]].termsImage)
         vc.mainView.title.text =  model.data[indexPath[0]].termsTitle.uppercased()
         vc.mainView.lastUpdated.text = model.data[indexPath[0]].termsUpdated

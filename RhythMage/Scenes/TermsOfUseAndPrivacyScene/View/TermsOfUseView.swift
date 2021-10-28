@@ -38,15 +38,6 @@ class TermsOfUseView: UIView{
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
-        
-    ///Create the scroll view of the Terms Of Use View
-    let scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.backgroundColor = .clear
-        return scroll
-    }()
-
     
     ///Create the table view of the buttons bellow the haptic button
     let tableView: UITableView = {
@@ -57,6 +48,11 @@ class TermsOfUseView: UIView{
         table.separatorStyle = .none
         return table
     }()
+    
+    ///Create the scroll view of the Terms Of Use View
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     
     //MARK: - Initializers
     
@@ -82,8 +78,8 @@ class TermsOfUseView: UIView{
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -20),
+            tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
             
 
         ])
@@ -105,6 +101,19 @@ class TermsOfUseView: UIView{
         ])
         
     }
+    
+   
+    
+    func setupViews(){
+        
+        contentView.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+         
+       }
     
     func setupBackGround(){
         gradientView.translatesAutoresizingMaskIntoConstraints = false
