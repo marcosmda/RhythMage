@@ -212,6 +212,7 @@ extension FaceTrackingController: ARSCNViewDelegate {
     }
     
     private func resetHeldTime() {
+        timer?.invalidate()
         timer = nil
         heldTime = 0
     }

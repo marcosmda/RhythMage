@@ -92,6 +92,7 @@ class SettingsView: UIView{
         table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
+        //table.layer.cornerRadius = 20
         return table
     }()
     

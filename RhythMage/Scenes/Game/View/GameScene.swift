@@ -19,6 +19,13 @@ enum GameSceneCattegoryTypes: UInt32 {
     case tileOrb = 0x3
 }
 
+protocol GameSceneDelegate {
+    func getElapsedTime() -> Double?
+    func pauseGame()
+    func updatedScore(score: Double)
+    func updateCamera(cameraView: UIView)
+}
+
 class GameScene: SKScene {
     //MARK: - Properties
     static let mainOrbHeight: CGFloat = 88
@@ -33,7 +40,11 @@ class GameScene: SKScene {
     
     var tileOrbs = [TileOrbNode]()
     var hashes = [Int]()
-    var score: Double = 0
+    var score: Double = 0 {
+        didSet {
+            gameDelegate?.updatedScore(score: score.rounded())
+        }
+    }
     var gameDelegate: GameSceneDelegate?
     
     private var currentNode: SKNode?
@@ -53,11 +64,17 @@ class GameScene: SKScene {
     }
     
     //MARK: - Public Methods
-    func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
+    public func addTileOrb(tile tileInteraction: TileInteraction, scrollVelocity: Double, startDelayTime: Double) {
         let duration = tileInteraction.endTime - tileInteraction.startTime
-        let height = duration * scrollVelocity
+        var height: Double = 0
+        if duration > 0.4 {
+            height = duration * scrollVelocity
+        } else {
+            height = 0
+        }
+        
         let tile = TileOrbNode(tileInteraction: tileInteraction, height: height)
-        tile.position.y = GameScene.hitPoint + scrollVelocity*(tileInteraction.startTime + startDelayTime)
+        tile.position.y = GameScene.hitPoint + scrollVelocity * (tileInteraction.startTime + startDelayTime)
         
         let width = UIScreen.main.bounds.width
         switch tileInteraction.xPosition {
@@ -75,8 +92,14 @@ class GameScene: SKScene {
         
         tileOrbs.append(tile)
         hashes.append(tile.physicsBody!.hash)
-        tile.physicsBody?.velocity = CGVector(dx: 0, dy: -scrollVelocity)
         self.addChild(tile)
+    }
+    
+    public func setVelocity(velocity: Float) {
+        let velocity = CGFloat(-velocity)
+        for tile in tileOrbs {
+            tile.physicsBody?.velocity = CGVector(dx: 0, dy: velocity)
+        }
     }
     
     //MARK: - Private Methods
@@ -98,7 +121,7 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < 0{
+        if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < -tileOrbs[0].height{
             tileOrbs[0].removeFromParent()
             tileOrbs.remove(at: 0)
         } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y + tileOrbs[0].height) < 0 {
@@ -146,7 +169,9 @@ extension GameScene: SKPhysicsContactDelegate {
             let tile = tileBody.node as! TileOrbNode
             
             if tile.hasTail {
-                tileKiteContactStartTime = delegate.getElapsedTime()
+                if let time = delegate.getElapsedTime() {
+                    tileKiteContactStartTime = time
+                }
             } else {
                 score += tile.tileInteraction.minimumScore
                 hashes = hashes.filter{$0 != tileBody.hash}
@@ -161,8 +186,12 @@ extension GameScene: SKPhysicsContactDelegate {
         //Only the tiles with kite Tail enters this if
         if hashes.contains(tileBody.hash){
             let tile = tileBody.node as! TileOrbNode
-            let actualTime = delegate.getElapsedTime()
-            score = 2 * tile.tileInteraction.minimumScore * (actualTime - tileKiteContactStartTime)
+            guard let actualTime = delegate.getElapsedTime() else {
+                tileKiteContactStartTime = 0
+                return
+            }
+            
+            score += 2 * tile.tileInteraction.minimumScore * (actualTime - tileKiteContactStartTime)
             tileKiteContactStartTime = 0
         }
     }

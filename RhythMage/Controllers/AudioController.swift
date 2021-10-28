@@ -11,27 +11,18 @@ protocol AudioControllerDelegate {
     func audioFinished()
 }
 
-class AudioController {
+class AudioController: NSObject {
     
     private var player: AVAudioPlayer?
-    private var timer: Timer?
     private var started: Bool
-    private let timerResolution: Double
     
     var delegates: [AudioControllerDelegate]
     var urlString: String?
-    var isPlaying: Bool
-    var elapsedTime: Double {
-        guard let player = player else {return 0}
-        return player.currentTime
-    }
     
-    init() {
+    override init() {
         self.started = false
-        self.timerResolution = 0.01
-        
         self.delegates = [AudioControllerDelegate]()
-        self.isPlaying = false
+        super.init()
         setupSession()
     }
     
@@ -41,30 +32,35 @@ class AudioController {
         prepareToPlay()
     }
     
-    public func start() {
+    public func start(playing: Bool) {
         started = true
-        play()
-        setTimer()
+        if playing {
+            play()
+        }
     }
     
     public func play() {
+        if player?.isPlaying ?? true {return}
+        
         if started {
-            isPlaying = true
             player?.play()
-            setTimer()
         } else {
             dump("Player Not Started")
         }
     }
     
     public func pause() {
-        isPlaying = false
-        player?.pause()
-        timer?.invalidate()
+        if !(player?.isPlaying ?? false) {return}
+        
+        if started {
+            player?.pause()
+        } else {
+            dump("Player Not Started")
+        }
     }
     
     public func toggle() {
-        if isPlaying {
+        if player?.isPlaying ?? true {
             pause()
         } else {
             play()
@@ -86,28 +82,25 @@ class AudioController {
         if let urlString = urlString {
             do {
                 player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+                player?.delegate = self
             } catch {
                 //TODO: Manage Error
             }
         }
     }
     
-    private func setTimer() {
-        timer = Timer.scheduledTimer(timeInterval: timerResolution, target: self, selector: #selector(updateElapsedTime), userInfo: nil, repeats: true)
+    public func getPlayerTime() -> Double? {
+        return player?.currentTime
     }
     
-    @objc private func updateElapsedTime() {
-        if let player = player, player.currentTime == 0 && started{
-            timer?.invalidate()
-            started = false
-            isPlaying = false
-            for delegate in delegates {
-                delegate.audioFinished()
-            }
+}
+
+extension AudioController: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        started = false
+        for delegate in delegates {
+            delegate.audioFinished()
         }
     }
-    
-    
-    
-    
 }

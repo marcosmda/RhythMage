@@ -7,13 +7,8 @@
 
 import UIKit
 
-protocol HeadphoneRecomendationDelegate {
-    func didFinishHeadphoneScreen()
-}
-
 class HeadphoneRecomendationView: UIView {
 
-    var headphoneDelegate: HeadphoneRecomendationDelegate?
     let gradientView = GradientBackgroundView()
     var transitionTimer: Timer?
     private var isReadyToSegue: Bool = false
@@ -46,11 +41,6 @@ class HeadphoneRecomendationView: UIView {
         addSubview(bottomMessage)
         addSubview(cameraAccessImage)
         setupLayout()
-        transitionTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(authorizeSegue), userInfo: nil, repeats: false)
-    }
-    
-    @objc func authorizeSegue() {
-        headphoneDelegate?.didFinishHeadphoneScreen()
     }
     
     required init?(coder: NSCoder) {

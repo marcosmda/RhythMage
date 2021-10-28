@@ -89,7 +89,7 @@ class SongContainerView:UIView {
         return label
     }()
     ///"xxxx points" Label
-    private let pointsLabel: DynamicLabel = {
+    let pointsLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 2
@@ -163,7 +163,7 @@ class SongContainerView:UIView {
             setupHiararchyLockedSong()
             break
         case .playingSong:
-            setEncouragementLabelAndMultiplier(with: 6)
+            setEncouragementLabelAndMultiplier(with: 1)
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
             
             backgroundView.backgroundColor = .clear
