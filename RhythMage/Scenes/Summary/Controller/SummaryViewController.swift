@@ -24,14 +24,16 @@ class SummaryViewController: BaseViewController<SummaryView> {
     
     private let score: Int
     private let level: Level
+    private let images: [UIImage]
     
     
     //MARK: - Initializers
-    init(factory:Factory, score: Int, level: Level){
+    init(factory:Factory, score: Int, level: Level, images: [UIImage]){
         self.factory = factory
         self.score = score
         self.level = level
-        let view = SummaryView(with: [UIImage(named:"UserPhoto-Test")!, UIImage(named:"UserPhoto-Test")!, UIImage(named:"UserPhoto-Test")!], points: score, message: "Magic in the air!")
+        self.images = images
+        let view = SummaryView(with: images, points: score, message: "Magic in the air!")
         super.init(mainView: view)
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
