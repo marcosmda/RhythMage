@@ -29,7 +29,7 @@ class TermsOfUseView: UIView{
     
     ///Create the layout of back button on the Navigation Bar
     lazy var backButton: UIBarButtonItem = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         button.backgroundColor = .secondary
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .label

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import MessageUI
 
-class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailComposeViewControllerDelegate{
+class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate{
     
     var model = TermsOfUseCellModel()
     typealias Factory = SettingsSceneFactory
@@ -19,6 +19,7 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
     override func viewDidLoad() {
       super.viewDidLoad()
         //mainView.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.leftBarButtonItem = self.mainView.backButton
         
         if !MFMailComposeViewController.canSendMail() {

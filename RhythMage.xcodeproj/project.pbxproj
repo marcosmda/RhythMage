@@ -94,6 +94,8 @@
 		F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UseSettings.swift */; };
 		F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0827232FD400A2DC09 /* CreditsView.swift */; };
 		F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */; };
+		F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */; };
+		F17AFFB9272ADB81007D3C73 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */; };
 		F18C28512728681A004E5075 /* TermsOfUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C28502728681A004E5075 /* TermsOfUseView.swift */; };
 		F18C285327286842004E5075 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285227286842004E5075 /* TermsOfUseViewController.swift */; };
 		F18C285527286914004E5075 /* TermsOfUseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285427286914004E5075 /* TermsOfUseCell.swift */; };
@@ -102,8 +104,6 @@
 		F18C285C2728A004004E5075 /* SelectedTermOfUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285B2728A004004E5075 /* SelectedTermOfUseView.swift */; };
 		F18C285E2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C285D2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift */; };
 		F19F13102729BE5100B9F420 /* SelectedTermsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19F130F2729BE5100B9F420 /* SelectedTermsDelegate.swift */; };
-		F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */; };
-		F17AFFB9272ADB81007D3C73 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +194,8 @@
 		F1587F0327232F2C00A2DC09 /* UseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseSettings.swift; sourceTree = "<group>"; };
 		F1587F0827232FD400A2DC09 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneDelegate.swift; sourceTree = "<group>"; };
+		F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticCell.swift; sourceTree = "<group>"; };
+		F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
 		F18C28502728681A004E5075 /* TermsOfUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseView.swift; sourceTree = "<group>"; };
 		F18C285227286842004E5075 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		F18C285427286914004E5075 /* TermsOfUseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseCell.swift; sourceTree = "<group>"; };
@@ -202,9 +204,6 @@
 		F18C285B2728A004004E5075 /* SelectedTermOfUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermOfUseView.swift; sourceTree = "<group>"; };
 		F18C285D2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermsOfUseViewController.swift; sourceTree = "<group>"; };
 		F19F130F2729BE5100B9F420 /* SelectedTermsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTermsDelegate.swift; sourceTree = "<group>"; };
-		F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticCell.swift; sourceTree = "<group>"; };
-		F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1053,7 +1052,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z9QZ625W6Q;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs access to your camera for gameplay.";
@@ -1070,7 +1069,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Juliana;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADA.RhythMage.Juliana-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1086,7 +1085,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z9QZ625W6Q;
+				DEVELOPMENT_TEAM = 8435JRD5SK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs access to your camera for gameplay.";
@@ -1103,7 +1102,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Juliana;
+				PRODUCT_BUNDLE_IDENTIFIER = "ADA.RhythMage.Juliana-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
