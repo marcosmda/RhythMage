@@ -12,6 +12,7 @@ import GameplayKit
 
 protocol SmileToUnlockDelegate {
     func onSongLibraryButtonPush()
+    func onLeaderboardButtonPush()
     func onSettingsButtonPush()
     func updateProgressBar()
 }
@@ -158,6 +159,18 @@ class SmileToUnlockView: UIView {
         return barButtonItem
     }()
     
+    lazy var leaderboardButton: UIBarButtonItem = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.backgroundColor = .white
+        button.setImage(UIImage(named: "podium"), for: .normal)
+        button.tintColor = .label
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(onLeaderboardLibraryButtonPush), for: .touchUpInside)
+        button.clipsToBounds = true
+        let barButtonItem = UIBarButtonItem(customView: button)
+        return barButtonItem
+    }()
+    
     let buttonSongLibrary: UIButton = {
         let button3 = UIButton(frame: .zero)
         var songText = " Song Library"
@@ -246,6 +259,10 @@ class SmileToUnlockView: UIView {
     
     @objc func onSongLibraryButtonPush(){
         delegate?.onSongLibraryButtonPush()
+    }
+    
+    @objc func onLeaderboardLibraryButtonPush() {
+        delegate?.onLeaderboardButtonPush()
     }
     
     func handleAutoResizingMasks() {
