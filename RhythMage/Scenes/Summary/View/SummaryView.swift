@@ -10,7 +10,7 @@ import UIKit
 class SummaryView: UIView {
 
     var delegate: SummaryDelegate?
-    private var score: Int = 0
+    private var score: Int?
     
     //MARK: - Init
     override init(frame: CGRect) {
@@ -18,19 +18,18 @@ class SummaryView: UIView {
         self.addSubview(gradientView)
         self.addSubview(interactionsButtonView)
         setupInteractionButtonViewActions()
-        self.addSubview(pointsView)
-        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
     }
     
     convenience init(with images: [UIImage], points: Int, message: String) {
         self.init(frame: .zero)
         self.score = points
         summaryImageViewCollection = SummaryImageViewCollection(frame: frame, with: images)
+        self.addSubview(pointsView)
+        setupLayout()
         configureSummaryImage()
     }
     
@@ -47,7 +46,7 @@ class SummaryView: UIView {
     let gradientView = GradientBackgroundView()
     
     //MARK: - Views
-    lazy var pointsView = PointsView(points: self.score, message: "OH, SO MAGIC!")
+    lazy var pointsView = PointsView(points: self.score ?? 1790, message: "OH, SO MAGIC!")
     var interactionsButtonView = InteractionButtonsView()
     var summaryImageViewCollection = SummaryImageViewCollection()
     
