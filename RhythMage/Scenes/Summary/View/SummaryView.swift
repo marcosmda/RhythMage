@@ -10,6 +10,7 @@ import UIKit
 class SummaryView: UIView {
 
     var delegate: SummaryDelegate?
+    private var score: Int = 0
     
     //MARK: - Init
     override init(frame: CGRect) {
@@ -26,8 +27,9 @@ class SummaryView: UIView {
         
     }
     
-    convenience init(with images: [String], points: Int, message: String) {
+    convenience init(with images: [UIImage], points: Int, message: String) {
         self.init(frame: .zero)
+        self.score = points
         summaryImageViewCollection = SummaryImageViewCollection(frame: frame, with: images)
         configureSummaryImage()
     }
@@ -45,14 +47,14 @@ class SummaryView: UIView {
     let gradientView = GradientBackgroundView()
     
     //MARK: - Views
-    var pointsView = PointsView(points: 206373, message: "Magic!")
+    lazy var pointsView = PointsView(points: self.score, message: "OH, SO MAGIC!")
     var interactionsButtonView = InteractionButtonsView()
     var summaryImageViewCollection = SummaryImageViewCollection()
     
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
-        button.setImage(UIImage(named: "podium"), for: .normal)
+        button.setImage(UIImage(named: "Podium"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(onLeaderboardButtonPush), for: .touchUpInside)
@@ -119,7 +121,9 @@ class SummaryView: UIView {
         interactionsButtonView.translatesAutoresizingMaskIntoConstraints = false
         interactionsButtonView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -30).isActive = true
         interactionsButtonView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
-        interactionsButtonView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true  
+        interactionsButtonView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
     }
     
 

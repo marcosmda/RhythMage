@@ -138,7 +138,7 @@ class GameViewController: BaseGameViewController<GameScene> {
 extension GameViewController: AudioControllerDelegate {
     func audioFinished() {
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(self.factory.createSummaryScene(), animated: true)
+            self.navigationController?.pushViewController(self.factory.createSummaryScene(score: Int(self.mainScene.score), level: self.level), animated: true)
         }
     }
 }

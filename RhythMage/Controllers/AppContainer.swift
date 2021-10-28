@@ -14,7 +14,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createSummaryScene(score: 99999, level: Level.mockedLevel()))
     let authenticatinController = AuthenticationController()
     
     init() {
@@ -107,12 +107,12 @@ extension AppContainer:SmileToResumeFactory{
 protocol SummaryFactory {
     /// Creates an instance of SummaryViewController to be used
     /// - Returns: An instance of SummaryViewController
-    func createSummaryScene() -> SummaryViewController
+    func createSummaryScene(score: Int, level: Level) -> SummaryViewController
 }
 
 extension AppContainer: SummaryFactory {
-    func createSummaryScene() -> SummaryViewController {
-        return SummaryViewController(factory: self)
+    func createSummaryScene(score: Int, level: Level) -> SummaryViewController {
+        return SummaryViewController(factory: self, score: score, level: level)
     }
 }
 

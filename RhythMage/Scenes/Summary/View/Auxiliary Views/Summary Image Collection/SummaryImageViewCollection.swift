@@ -19,11 +19,11 @@ class SummaryImageViewCollection: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(frame: CGRect, with images: [String]) {
+    convenience init(frame: CGRect, with images: [UIImage]) {
         self.init(frame: frame)
         
         for image in images {
-            summaryViews.append(SummaryImageView(summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: UIImage(named: image)!))
+            summaryViews.append(SummaryImageView(summarySetup: SummaryImageSetup(scale: 0, rotation: 10), with: image))
         }
         
         setupHierarchy()
