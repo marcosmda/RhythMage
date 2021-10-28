@@ -54,6 +54,16 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationController?.navigationBar.isHidden = false
         
     }
+    
+    private func submitScoreToLB() {
+        // Submitting to a specific occurrence of a recurring leaderboard
+        GKLeaderboard.loadLeaderboards(IDs:["rhythmage.bestscores"]) { (fetchedLBs, error) in
+            if let lb = fetchedLBs?.first {
+                lb.submitScore(self.score, context: 0, player: GKLocalPlayer.local) { error in
+               }
+            }
+        }
+    }
 }
 
 extension SummaryViewController: SummaryDelegate {
@@ -67,10 +77,6 @@ extension SummaryViewController: SummaryDelegate {
     }
     
     func goToLeaderboards() {
-        GKLeaderboard.loadLeaderboards(IDs: ["rhythmage.bestscores"]) { leaderboards, _ in
-            leaderboards?[0].submitScore(self.score, context: 0, player: GKLocalPlayer.local) {_ in}
-            
-        }
         
         let viewController = GKGameCenterViewController(leaderboardID: "rhythmage.bestscores",
                                                         playerScope: .global,
@@ -123,6 +129,7 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
                 // Disable in game communication UI.
             }
             
+            self.submitScoreToLB()
             GKAccessPoint.shared.isActive = false
             
         }

@@ -988,7 +988,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs access to your camera for gameplay.";
@@ -1021,7 +1021,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs access to your camera for gameplay.";

@@ -54,7 +54,7 @@ class SummaryView: UIView {
     lazy var rankingButton: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
-        button.setImage(UIImage(named: "Podium"), for: .normal)
+        button.setImage(UIImage(named: "podium"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(onLeaderboardButtonPush), for: .touchUpInside)

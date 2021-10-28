@@ -14,7 +14,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSummaryScene(score: 99999, level: Level.mockedLevel()))
+    lazy var navigationController = MainNavigationController(rootViewController: self.createSummaryScene(score: 1000000, level: Level.mockedLevel()))
     let authenticatinController = AuthenticationController()
     
     init() {
