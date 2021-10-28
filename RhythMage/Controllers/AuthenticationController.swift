@@ -7,7 +7,7 @@
 
 import GameKit
 
-class AuthenticationController {
+class AuthenticationController: GKGameCenterViewController {
     
     public var user: User?
     
@@ -30,7 +30,7 @@ class AuthenticationController {
                     return
                 }
                 
-                GKAccessPoint.shared.isActive = true
+                GKAccessPoint.shared.isActive = false
                 
                 let id = GKLocalPlayer.local.gamePlayerID
                 let name = GKLocalPlayer.local.displayName
@@ -40,5 +40,23 @@ class AuthenticationController {
             }
         }
         
+    }
+    
+    
+    
+}
+
+extension AuthenticationController: GKGameCenterControllerDelegate {
+    
+    func openLeaderboard(with vc: UIViewController) {
+        let viewController = GKGameCenterViewController(leaderboardID: "rhythmage.bestscores",
+                                                        playerScope: .global,
+                                                        timeScope: .allTime)
+        viewController.gameCenterDelegate = self
+        vc.present(viewController, animated: true, completion: nil)
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true)
     }
 }
