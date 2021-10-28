@@ -100,6 +100,7 @@ class GameScene: SKScene {
         for tile in tileOrbs {
             tile.physicsBody?.velocity = CGVector(dx: 0, dy: velocity)
         }
+
     }
     
     //MARK: - Private Methods
@@ -118,6 +119,7 @@ class GameScene: SKScene {
         mainOrb.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition)
         mainOrb.zPosition = 999999
         hitLine.position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition + mainOrb.radius + 3)
+        hitLine.isHidden = true //Remove is hitLine should be visible
     }
     
     override func update(_ currentTime: TimeInterval) {

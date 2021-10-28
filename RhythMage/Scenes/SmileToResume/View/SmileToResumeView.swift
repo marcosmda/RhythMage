@@ -118,6 +118,7 @@ class SmileToResumeView: UIView{
         container.addSubview(progressView)
         container.addSubview(buttonMainMenu)
         self.addSubview(container)
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -148,7 +149,7 @@ class SmileToResumeView: UIView{
     override func layoutSubviews() {
         
         handleAutoResizingMasks()
-        setupLayout()
+       
         gradientView.setupGradient(with: self.container)
 
     }

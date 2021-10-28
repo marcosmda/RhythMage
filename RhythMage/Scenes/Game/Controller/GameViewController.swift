@@ -76,6 +76,17 @@ class GameViewController: BaseGameViewController<GameScene> {
         mainScene.setVelocity(velocity: Float(scrollVelocity))
     }
     
+    override func viewDidLayoutSubviews() {
+        
+        let position = mainScene.convertPoint(toView: CGPoint(x: mainScene.hitLine.position.x, y: mainScene.hitLine.position.y))
+        
+        let width = mainView.frame.width - 20
+        let height: CGFloat = 23.00
+        
+        gameDisplayView.hitBarImage.frame = CGRect(x: position.x - width/2, y:  position.y - height / 2, width: width, height: height)
+        
+    }
+    
     //MARK: - Methods
     private func setup() {
         setupAudioController()
@@ -94,7 +105,6 @@ class GameViewController: BaseGameViewController<GameScene> {
             mainScene.addTileOrb(tile: tile, scrollVelocity: scrollVelocity, startDelayTime: startDelayTime)
         }
     }
-    
     
     //MARK: - Private Methods
     @objc private func startAudio() {
@@ -164,7 +174,6 @@ extension GameViewController: GameSceneDelegate {
         catch let error  {
             print("Error Unable to initialize front camera:  \(error.localizedDescription)")
         }
-
     }
 
     func getElapsedTime() -> Double? {

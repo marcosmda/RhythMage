@@ -30,7 +30,5 @@
 	</dict>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDarkContent</string>
-	<key>NSCameraUsageDescription</key>
-	<string>RhythMage needs access to your camera for gameplay.</string>
 </dict>
 </plist>

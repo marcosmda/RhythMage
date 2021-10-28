@@ -29,7 +29,7 @@ class TileOrbNode: SKNode {
         self.height = height > defaultHeight/2 ? height : defaultHeight/2
         super.init()
         setupNode()
-        self.showCenter()
+//        self.showCenter()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,6 +43,30 @@ class TileOrbNode: SKNode {
         if hasTail {
             addKiteTail()
         }
+        
+        var orb = SKSpriteNode()
+        
+        switch color {
+        case .yellowOrb:
+            orb = SKSpriteNode(imageNamed: "yellowOrb")
+            break
+        case .orangeOrb:
+            orb = SKSpriteNode(imageNamed: "orangeOrb")
+            break
+        case .greenOrb:
+            orb = SKSpriteNode(imageNamed: "greenOrb")
+            break
+        case .blueOrb:
+            orb = SKSpriteNode(imageNamed: "blueOrb")
+            break
+        case .pinkOrb:
+            orb = SKSpriteNode(imageNamed: "pinkOrb")
+            break
+        default:
+            break
+        }
+        
+        self.addChild(orb)
     }
     
     func addShape() {
