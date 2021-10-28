@@ -96,7 +96,7 @@ extension SettingsViewController: UITableViewDelegate{
                 return UITableViewCell()
             }
             cell.setupCell(currentSetting: buttons[indexPath.row])
-            //cell.selectionStyle = .none
+            cell.selectionStyle = .none
             return cell
             
         case 2:
