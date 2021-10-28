@@ -155,6 +155,33 @@ extension AppContainer:CreditsSceneFactory{
     }
 }
 
+
+//MARK: - CreditsScene
+protocol TermsOfUseSceneFactory{
+    /// Creates an instance of TermsOfUseViewController to be used
+    /// - Returns: An instance of TermsOfUseViewController
+    func createTermsOfUseScene() -> TermsOfUseViewController
+}
+
+extension AppContainer:TermsOfUseSceneFactory{
+    func createTermsOfUseScene() -> TermsOfUseViewController {
+        return TermsOfUseViewController(factory: self)
+    }
+}
+
+//MARK: - CreditsScene
+protocol SelectedTermsOfUseSceneFactory{
+    /// Creates an instance of SelectedTermsOfUseViewController to be used
+    /// - Returns: An instance of SelectedTermsOfUseViewController
+    func createSelectedTermsOfUseScene() -> SelectedTermsOfUseViewController
+}
+
+extension AppContainer:SelectedTermsOfUseSceneFactory{
+    func createSelectedTermsOfUseScene() -> SelectedTermsOfUseViewController {
+        return SelectedTermsOfUseViewController()
+    }
+}
+
 //MARK: - HeadphoneWarning
 protocol HeadphoneWarningSceneFactory{
     /// Creates an instance of TutorialViewController to be used
@@ -206,3 +233,4 @@ extension AppContainer: CameraCaptureSceneFactory{
         return CameraCaptureViewController(factory: self)
     }
 }
+

@@ -13,6 +13,14 @@ class GameDisplayView: UIView {
     public var song: SongContainerView
     var delegate: GameSceneDelegate?
     
+    var hitBarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "bar")
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
+    ///user camera view
     var previewCameraLayer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,13 +56,10 @@ class GameDisplayView: UIView {
         return view
     }()
     
-    
     //MARK: - Initializers
     override init(frame: CGRect) {
         self.song = SongContainerView(type: .playingSong)
         self.song.translatesAutoresizingMaskIntoConstraints = false
-        self.song.pointsLabel.text = "0"
-        
         
         super.init(frame: frame)
         progressView.setProgress(0.5, animated: false)
@@ -65,9 +70,9 @@ class GameDisplayView: UIView {
         self.song.iconImageView.addGestureRecognizer(tapGestureRecognizer)
                 self.frame = UIScreen.main.bounds
         
-        
         setupHiararchy()
         setupLayout()
+        
 
     }
     
@@ -83,7 +88,9 @@ class GameDisplayView: UIView {
     
     //MARK: - Layout Subviews
     func setupLayout(){
-       
+    
+        
+        
       NSLayoutConstraint.activate([
           ///Constraints - container
           container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
@@ -105,9 +112,11 @@ class GameDisplayView: UIView {
           previewCameraLayer.trailingAnchor.constraint(equalTo: container.leadingAnchor, constant: -10),
           previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
           previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-
+    
       ])
+        
     }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -118,6 +127,8 @@ class GameDisplayView: UIView {
         previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
 
         delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
+        
+
     }
     
   
@@ -127,6 +138,7 @@ class GameDisplayView: UIView {
         container.addSubview(progressView)
         container.addSubview(song)
         self.addSubview(previewCameraLayer)
+        self.addSubview(hitBarImage)
     }
     
 }

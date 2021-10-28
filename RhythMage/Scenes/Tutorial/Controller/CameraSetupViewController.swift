@@ -37,8 +37,10 @@ extension CameraSetupViewController: CameraAccessDelegate {
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.fade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.pushViewController(factory.createCameraCaptureScene(), animated: false)
+        DispatchQueue.main.async {
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.pushViewController(self.factory.createCameraCaptureScene(), animated: false)
+        }
     }
     
 }
