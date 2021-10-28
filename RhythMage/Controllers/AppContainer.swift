@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 class AppContainer {
     let realm = try! Realm()
@@ -93,12 +94,12 @@ extension AppContainer:SmileToUnlockFactory{
 protocol SmileToResumeFactory{
     /// Creates an instance of SmileToResumeViewController to be used
     /// - Returns: An instance of SmileToResumeViewController
-    func createSmileToResumeScene() -> SmileToResumeViewController
+    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController
 }
 
 extension AppContainer:SmileToResumeFactory{
-    func createSmileToResumeScene() -> SmileToResumeViewController {
-        return SmileToResumeViewController(factory: self)
+    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController {
+        return SmileToResumeViewController(factory: self, rootNavigationController: rootNavigationController)
     }
 }
 
@@ -151,5 +152,57 @@ protocol CreditsSceneFactory{
 extension AppContainer:CreditsSceneFactory{
     func createCreditsScene() -> CreditsSceneViewController {
         return CreditsSceneViewController(factory: self)
+    }
+}
+
+//MARK: - HeadphoneWarning
+protocol HeadphoneWarningSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createHeadphoneWarningScene() -> HeadphonerViewController
+}
+
+extension AppContainer: HeadphoneWarningSceneFactory{
+    func createHeadphoneWarningScene() -> HeadphonerViewController {
+        return HeadphonerViewController(factory: self)
+    }
+}
+
+//MARK: - Tutorial
+protocol TutorialSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createTutorialScene() -> TutorialViewController
+}
+
+extension AppContainer: TutorialSceneFactory{
+    func createTutorialScene() -> TutorialViewController {
+        return TutorialViewController(factory: self)
+    }
+}
+
+//MARK: - CameraSetupViewController
+protocol CameraSetupSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraSetupScene() -> CameraSetupViewController
+}
+
+extension AppContainer: CameraSetupSceneFactory{
+    func createCameraSetupScene() -> CameraSetupViewController {
+        return CameraSetupViewController(factory: self)
+    }
+}
+
+//MARK: - CameraCaptureViewController
+protocol CameraCaptureSceneFactory{
+    /// Creates an instance of TutorialViewController to be used
+    /// - Returns: An instance of TutorialViewController
+    func createCameraCaptureScene() -> CameraCaptureViewController
+}
+
+extension AppContainer: CameraCaptureSceneFactory{
+    func createCameraCaptureScene() -> CameraCaptureViewController {
+        return CameraCaptureViewController(factory: self)
     }
 }

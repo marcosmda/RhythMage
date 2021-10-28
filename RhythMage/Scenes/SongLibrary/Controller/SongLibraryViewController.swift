@@ -127,7 +127,6 @@ extension SongLibraryViewController: UITableViewDelegate{
             return 2
         }
         
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,6 +142,7 @@ extension SongLibraryViewController: UITableViewDelegate{
             return 61.00
         }
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let song = models[indexPath.section].getUnlock()
@@ -151,6 +151,7 @@ extension SongLibraryViewController: UITableViewDelegate{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
+            cell.song.libraryDelegate = self
             cell.song.configure(with: models[indexPath.section], and: user)
             return cell
         case false:
@@ -194,6 +195,16 @@ extension SongLibraryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected a row")
     }
+}
 
-
+extension SongLibraryViewController: SongLibraryViewDelegate{
+    func didPlaySong(songName: String) {
+        let cells = mainView.tableView.visibleCells
+        for cell in cells {
+            guard let cell = cell as? SongLibraryUnlockedSongCell else { return}
+            if cell.song.isPlaying && cell.song.songTitleLabel.text != songName {
+                    cell.song.togglePlaySong()
+                }
+            }
+        }
 }
