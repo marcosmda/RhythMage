@@ -50,7 +50,7 @@ class TermsOfUseCellModel{
         
         CellDataModel(termsImage: "folder.badge.person.crop",
                       termsTitle: "Disclosure of Your\nPersonal Data",
-                      termsSinopse:  "PRECISA DE TEXTO",
+                      termsSinopse:  "The RhythMage game may use your Personal Data if the following procedures happen.",
                       termsButtonImage: "info.circle",
                       termsButtonText: " SEE DETAILS",
                       termsUpdated: "Last updated: October 22, 2021",
