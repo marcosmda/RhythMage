@@ -17,7 +17,6 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     //MARK: Properties
     var safeArea: UILayoutGuide!
     var buttons = ["TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
-    var tableHeight: NSLayoutConstraint!
     var user: User {
         if let user = authenticationController.user {
             return user
@@ -64,10 +63,7 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
         
         
     }
-    override func viewWillLayoutSubviews() {
-        super.updateViewConstraints()
-        self.tableHeight?.constant = self.mainView.tableView.contentSize.height
-    }
+
     
 }
     
@@ -93,12 +89,14 @@ extension SettingsViewController: UITableViewDelegate{
     
     ///Set the content of the tableview
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.section{
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath) as? SettingsButtonCell else {
                 return UITableViewCell()
             }
             cell.setupCell(currentSetting: buttons[indexPath.row])
+            //cell.selectionStyle = .none
             return cell
             
         case 2:
@@ -106,6 +104,8 @@ extension SettingsViewController: UITableViewDelegate{
                 return UITableViewCell()
             }
             cell.setupCell()
+            cell.selectionStyle = .none
+           
             return cell
             
         default:
@@ -124,13 +124,13 @@ extension SettingsViewController: UITableViewDelegate{
         case 0:
             return 80
         case 1:
-            return 60.00
+            return 60
             
         case 2:
             return 180
         
         default:
-            return 54
+            return 60
         }
        
     }
@@ -145,9 +145,11 @@ extension SettingsViewController: UITableViewDelegate{
     
     ///Set navigation afer clicking inside the cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if mainView.tableView.indexPathForSelectedRow == indexPath{
+            mainView.tableView.deselectRow(at: indexPath, animated: true)
+        }
         switch indexPath.section {
             case 0:
-            //mainView.tableView.deselectRow(at: indexPath, animated: true)
                 print("Haptic Feedback")
             case 1:
             switch indexPath.row{
@@ -205,12 +207,15 @@ extension SettingsViewController: SettingsDelegate {
 extension SettingsViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        mainView.tableView.deselectRow(at: indexPath, animated: true)
+       
+        //mainView.tableView.deselectRow(at: indexPath, animated: true)
+        
         switch indexPath.section {
             case 0:
            // mainView.tableView.allowsSelection = false
                 print("Haptic Feedback")
             case 1:
+            
             switch indexPath.row{
             case 0:
                 print("Terms Of Use")
@@ -222,17 +227,15 @@ extension SettingsViewController: UITableViewDataSource{
                 
 
             default:
-                print("a")
+                break
             }
 
             
-        default:
-            print("a")
+        default: break
+            
         }
    
     }
-    
-
 
 }
 

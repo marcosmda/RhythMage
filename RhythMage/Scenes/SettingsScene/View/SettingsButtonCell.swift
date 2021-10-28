@@ -55,6 +55,7 @@ class SettingsButtonCell:  UITableViewCell{
         self.layer.cornerRadius = 20
         self.clipsToBounds = true
         
+        
         self.addSubview(rectangle)
         rectangle.addSubview(accessory)
         rectangle.addSubview(settingLabel)
