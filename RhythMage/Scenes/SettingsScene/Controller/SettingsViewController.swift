@@ -147,7 +147,7 @@ extension SettingsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch indexPath.section {
             case 0:
-            mainView.tableView.deselectRow(at: indexPath, animated: true)
+            //mainView.tableView.deselectRow(at: indexPath, animated: true)
                 print("Haptic Feedback")
             case 1:
             switch indexPath.row{
@@ -159,44 +159,28 @@ extension SettingsViewController: UITableViewDelegate{
             case 2:
                 print("Enter Allow Camera")
             //Adding the Alert
-            /*
                 let alertController = UIAlertController (title: "Change Camera Access", message: "For playing with your face and registering your best moments, go to Settings and allow Camera Access.", preferredStyle: .alert)
 
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
 
                     guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                    return
+                        return
                     }
 
-                    if UIApplication.shared.canOpenURL(URL(string: UIApplication) {
-                    UIApplication.shared.open(URL(string: UIApplication, completionHandler: { (success) in
-                        print("Settings opened: \(success)") // Prints true
-                    })
-                }*/
-            //UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                           if UIApplication.shared.canOpenURL(url) {
-                               UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                           }
-                       }
-            //}
-                                              /*
-            alertController.addAction(settingsAction)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") // Prints true
+                        })
+                    }
+                }
+                alertController.addAction(settingsAction)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
 
-            present(alertController, animated: true, completion: nil)
-            */
-                
-                
-                
-                
+                present(alertController, animated: true, completion: nil)
             default:
                 return nil
             }
-       // case 2:
-                
-        
             default:
                 return nil
             

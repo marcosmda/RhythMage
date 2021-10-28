@@ -29,6 +29,10 @@ class SettingsButtonCell:  UITableViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .secondary
         label.font = .inikaBold(ofSize: 18)
+        label.contentMode = .scaleAspectFit
+        label.sizeToFit()
+        //label.fitTextToBounds()
+        //label.minimumScaleFactor = 0.1
         return label
     }()
     

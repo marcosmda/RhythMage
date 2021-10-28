@@ -69,7 +69,7 @@ class SettingsView: UIView{
        
         NSLayoutConstraint.activate([
             
-            tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 30),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),

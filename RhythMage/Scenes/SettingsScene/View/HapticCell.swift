@@ -113,7 +113,6 @@ class HapticCell: UITableViewCell{
     func setupElementsInRectangleView(){
         NSLayoutConstraint.activate([
         hapticSwitch.topAnchor.constraint(equalTo: rectangle.topAnchor, constant: 20),
-        hapticSwitch.bottomAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: -20),
         hapticSwitch.centerXAnchor.constraint(equalTo: rectangle.rightAnchor, constant: -50),
         
         titleText.topAnchor.constraint(equalTo: rectangle.topAnchor, constant: 10),
