@@ -8,14 +8,15 @@
 import Foundation
 import UIKit
 
-class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView>{
+class SelectedTermsOfUseViewController: BaseViewController <SelectedTermOfUseView>,UIGestureRecognizerDelegate,SelectedTermsDelegate{
 
-    var model = TermsOfUseCellModel()
     
+    var model = TermsOfUseCellModel()
     
     override func viewDidLoad() {
       super.viewDidLoad()
-        //mainView.delegate = self
+        mainView.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.leftBarButtonItem = self.mainView.backButton
         
     }
@@ -25,13 +26,12 @@ class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView
         
         ///Set the navigationBar Title
         self.navigationItem.titleView = mainView.titleNavBar
-       
         
         }
     
     init ()
     {
-       
+        
         super.init(mainView: SelectedTermOfUseView(frame: .zero))
 
     }
@@ -41,7 +41,9 @@ class SelectedTermsOfUseViewController: BaseViewController<SelectedTermOfUseView
     }
     
     func onBackButtonPushTerms() {
+        
         self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
     }
     
     

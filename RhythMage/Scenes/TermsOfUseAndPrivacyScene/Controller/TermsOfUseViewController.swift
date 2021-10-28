@@ -12,10 +12,9 @@ import MessageUI
 class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailComposeViewControllerDelegate{
     
     var model = TermsOfUseCellModel()
-    //var index = 0
-
-    typealias Factory = SelectedTermsOfUseSceneFactory
+    typealias Factory = SettingsSceneFactory
     let factory: Factory
+    //var index = 0
     
     override func viewDidLoad() {
       super.viewDidLoad()
@@ -39,6 +38,7 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
     
     init (factory: Factory)
     {
+        
         self.factory = factory
         super.init(mainView: TermsOfUseView(frame: .zero))
         //mainView.delegate = self
@@ -150,7 +150,6 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
         vc.mainView.title.text =  model.data[indexPath[0]].termsTitle.uppercased()
         vc.mainView.lastUpdated.text = model.data[indexPath[0]].termsUpdated
         vc.mainView.terms.text = model.data[indexPath[0]].termsText
-           
         
         self.navigationController?.pushViewController(vc, animated: true)
         }
