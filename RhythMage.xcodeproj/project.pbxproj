@@ -58,6 +58,7 @@
 		CFB113B32729AC4F001A5447 /* CameraCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB113B22729AC4F001A5447 /* CameraCaptureViewController.swift */; };
 		CFB113B52729AC69001A5447 /* CameraCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB113B42729AC69001A5447 /* CameraCapture.swift */; };
 		CFB113B72729BA77001A5447 /* cameraCaptureAudio.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CFB113B62729BA77001A5447 /* cameraCaptureAudio.m4a */; };
+		CFB113B92729CAB2001A5447 /* TutorialInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB113B82729CAB2001A5447 /* TutorialInstructionView.swift */; };
 		CFC99B5527286EE600773C92 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5427286EE600773C92 /* Video.swift */; };
 		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
 		CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B592728906700773C92 /* CameraAccessView.swift */; };
@@ -149,6 +150,7 @@
 		CFB113B22729AC4F001A5447 /* CameraCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureViewController.swift; sourceTree = "<group>"; };
 		CFB113B42729AC69001A5447 /* CameraCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCapture.swift; sourceTree = "<group>"; };
 		CFB113B62729BA77001A5447 /* cameraCaptureAudio.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cameraCaptureAudio.m4a; sourceTree = "<group>"; };
+		CFB113B82729CAB2001A5447 /* TutorialInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialInstructionView.swift; sourceTree = "<group>"; };
 		CFC99B5427286EE600773C92 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
 		CFC99B592728906700773C92 /* CameraAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAccessView.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				CFF5B043271E0DF400E5CCE8 /* GradientBackgroundView.swift */,
 				CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */,
 				CF3C024A271F3E070046D529 /* CircularGradientView.swift */,
+				CFB113B82729CAB2001A5447 /* TutorialInstructionView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
 				8D00CA1C2722D39D00DCBA84 /* GameSceneDisplayView.swift in Sources */,
+				CFB113B92729CAB2001A5447 /* TutorialInstructionView.swift in Sources */,
 				8D05DD86270F0DA10078F2D8 /* BaseGameViewController.swift in Sources */,
 				8D09841B27175233007477F3 /* GameViewController.swift in Sources */,
 				F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */,

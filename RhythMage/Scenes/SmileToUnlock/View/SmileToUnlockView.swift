@@ -18,6 +18,7 @@ protocol SmileToUnlockDelegate {
 
 class SmileToUnlockView: UIView {
     
+    var tutorialInstruction = TutorialInstructionView()
     var songPlaying:String?
     var bestScore: String?
     public var buttonSelected: Bool = false
@@ -37,8 +38,10 @@ class SmileToUnlockView: UIView {
         self.addSubview(progressView)
         progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
-        layoutSubviews()
+        self.addSubview(tutorialInstruction)
         gradientView.setupCircleBackgroundBlur()
+        setupLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -171,7 +174,6 @@ class SmileToUnlockView: UIView {
         return button3
     }()
     
-    
     func assignbackground(){
         let background = UIImage(named: "background")
         
@@ -185,15 +187,12 @@ class SmileToUnlockView: UIView {
         self.sendSubviewToBack(imageView)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    func setupLayout() {
         handleAutoResizingMasks()
         
         nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
         nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
         nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
         
         nameSongTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         nameSongTitle.topAnchor.constraint(equalTo: nameGameTitle.bottomAnchor).isActive = true
@@ -229,8 +228,6 @@ class SmileToUnlockView: UIView {
         gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        
         
     }
     

@@ -90,6 +90,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         }
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+    }
 }
 
 extension SmileToUnlockController: FaceTrackingControllerDelegate {
