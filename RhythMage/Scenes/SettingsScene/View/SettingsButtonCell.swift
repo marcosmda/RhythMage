@@ -59,6 +59,7 @@ class SettingsButtonCell:  UITableViewCell{
         self.addSubview(rectangle)
         rectangle.addSubview(accessory)
         rectangle.addSubview(settingLabel)
+    
     }
     
     required init?(coder: NSCoder) {
@@ -100,6 +101,16 @@ class SettingsButtonCell:  UITableViewCell{
             accessory.trailingAnchor.constraint(equalTo: rectangle.trailingAnchor, constant: -20)
         ])
     }
+    
+    public func didHighlightButton(){
+        rectangle.backgroundColor = .terciary.withAlphaComponent(0.8)
+    }
+    
+    public func didUnhighlightButton(){
+        rectangle.backgroundColor = .terciary.withAlphaComponent(0.5)
+        
+    }
+
     
     ///Function to call inside the controler to set the objects of the table view
     func setupCell(currentSetting: String) {

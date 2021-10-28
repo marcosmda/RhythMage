@@ -96,7 +96,7 @@ extension SettingsViewController: UITableViewDelegate{
                 return UITableViewCell()
             }
             cell.setupCell(currentSetting: buttons[indexPath.row])
-            cell.selectionStyle = .none
+            //cell.selectionStyle = .none
             return cell
             
         case 2:
@@ -105,7 +105,7 @@ extension SettingsViewController: UITableViewDelegate{
             }
             cell.setupCell()
             cell.selectionStyle = .none
-           
+            
             return cell
             
         default:
@@ -205,10 +205,10 @@ extension SettingsViewController: SettingsDelegate {
 
 //MARK: - Extension UITableViewDataSource
 extension SettingsViewController: UITableViewDataSource{
-    
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-        //mainView.tableView.deselectRow(at: indexPath, animated: true)
+        
+        mainView.tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.section {
             case 0:
@@ -217,8 +217,10 @@ extension SettingsViewController: UITableViewDataSource{
             case 1:
             
             switch indexPath.row{
+                
             case 0:
                 print("Terms Of Use")
+                
             case 1:
                 print("Credits")
               
@@ -236,6 +238,7 @@ extension SettingsViewController: UITableViewDataSource{
         }
    
     }
+    
 
 }
 
