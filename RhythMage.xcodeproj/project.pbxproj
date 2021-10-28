@@ -84,6 +84,8 @@
 		F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UseSettings.swift */; };
 		F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0827232FD400A2DC09 /* CreditsView.swift */; };
 		F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */; };
+		F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */; };
+		F17AFFB9272ADB81007D3C73 /* CameraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +166,8 @@
 		F1587F0327232F2C00A2DC09 /* UseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseSettings.swift; sourceTree = "<group>"; };
 		F1587F0827232FD400A2DC09 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneDelegate.swift; sourceTree = "<group>"; };
+		F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticCell.swift; sourceTree = "<group>"; };
+		F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +581,8 @@
 			children = (
 				F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */,
 				F1587EFD27232ED000A2DC09 /* SettingsView.swift */,
+				F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */,
+				F17AFFB8272ADB81007D3C73 /* CameraTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 			files = (
 				8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */,
 				CF746E9C2720A75B00B7F2DE /* SummaryImageView.swift in Sources */,
+				F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */,
 				8D00CA252722D45000DCBA84 /* UIView.swift in Sources */,
 				CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */,
 				CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */,
@@ -745,6 +752,7 @@
 				8D00CA282722D4C000DCBA84 /* HitLineNode.swift in Sources */,
 				CF746E8C2720865700B7F2DE /* SummaryView.swift in Sources */,
 				DB1A4105272321D300F7EDD1 /* SmileToResumeDelegate.swift in Sources */,
+				F17AFFB9272ADB81007D3C73 /* CameraTableViewCell.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
 				CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */,
 				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,

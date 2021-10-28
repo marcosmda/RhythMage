@@ -15,9 +15,9 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     let authenticationController: AuthenticationController
     
     //MARK: Properties
-    var ableToPlay = false
     var safeArea: UILayoutGuide!
     var buttons = ["TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
+    var tableHeight: NSLayoutConstraint!
     var user: User {
         if let user = authenticationController.user {
             return user
@@ -56,18 +56,17 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        ableToPlay = true
-        
-        ///Set the navigationBar Layout
-        let bool = true
-        if bool {
+
             self.navigationItem.title = "Settings"
             let attributes = [NSAttributedString.Key.font: UIFont(name: "Inika-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.white]
             self.navigationController?.navigationBar.titleTextAttributes = attributes
-        }
         
         
+        
+    }
+    override func viewWillLayoutSubviews() {
+        super.updateViewConstraints()
+        self.tableHeight?.constant = self.mainView.tableView.contentSize.height
     }
     
 }
@@ -82,21 +81,57 @@ extension SettingsViewController: UITableViewDelegate{
     }
      
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section{
+        case 1:
+            return buttons.count
+        case 2:
+            return 1
+        default:
+            return 1
+        }
     }
     
     ///Set the content of the tableview
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath) as? SettingsButtonCell else {
-            return UITableViewCell()
+        switch indexPath.section{
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsButtonCell.reusableIdentifier, for: indexPath) as? SettingsButtonCell else {
+                return UITableViewCell()
+            }
+            cell.setupCell(currentSetting: buttons[indexPath.row])
+            return cell
+            
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CameraTableViewCell.reusableIdentifier, for: indexPath) as? CameraTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setupCell()
+            return cell
+            
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HapticCell.reusableIdentifier, for: indexPath) as? HapticCell else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.setupCell()
+            return cell
         }
-        cell.setupCell(currentSetting: buttons[indexPath.section])
-        return cell
     }
     
     ///Set the height of each tableview
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 54.00
+        switch indexPath.section{
+        case 0:
+            return 80
+        case 1:
+            return 60.00
+            
+        case 2:
+            return 180
+        
+        default:
+            return 54
+        }
        
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -105,22 +140,24 @@ extension SettingsViewController: UITableViewDelegate{
     
     ///Set the numbers of cells we will display
     func numberOfSections(in tableView: UITableView) -> Int {
-        return buttons.count
+        return 3
     }
     
     ///Set navigation afer clicking inside the cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch indexPath.section {
             case 0:
-                print("Enter Terms Of Use")
-
+            mainView.tableView.deselectRow(at: indexPath, animated: true)
+                print("Haptic Feedback")
             case 1:
-            print("Enter Credits")
-            self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
-            
-            
+            switch indexPath.row{
+            case 0:
+                print("Terms Of Use")
+            case 1:
+                print("Credits")
+                self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
             case 2:
-            print("Enter Allow Camera")
+                print("Enter Allow Camera")
             //Adding the Alert
             /*
                 let alertController = UIAlertController (title: "Change Camera Access", message: "For playing with your face and registering your best moments, go to Settings and allow Camera Access.", preferredStyle: .alert)
@@ -153,6 +190,13 @@ extension SettingsViewController: UITableViewDelegate{
                 
                 
                 
+                
+            default:
+                return nil
+            }
+       // case 2:
+                
+        
             default:
                 return nil
             
@@ -175,29 +219,35 @@ extension SettingsViewController: SettingsDelegate {
 
 //MARK: - Extension UITableViewDataSource
 extension SettingsViewController: UITableViewDataSource{
-
-    ///Set the layout of tableview
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.cornerRadius = 20
-        cell.layer.masksToBounds = true
-        cell.accessoryType = UITableViewCell.AccessoryType.none
-        var frame = tableView.frame
-        frame.size.height = tableView.contentSize.height
-        tableView.frame = frame
-
-        let selectedView: UIView = UIView(frame: cell.frame)
-        selectedView.layer.cornerRadius = 20
-        selectedView.layer.masksToBounds = true
-        //.backgroundColor = .terciary
-        cell.selectedBackgroundView = selectedView
-        //selectedView.backgroundColor = .clear
-        
-    }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected a row")
+        mainView.tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.section {
+            case 0:
+           // mainView.tableView.allowsSelection = false
+                print("Haptic Feedback")
+            case 1:
+            switch indexPath.row{
+            case 0:
+                print("Terms Of Use")
+            case 1:
+                print("Credits")
+              
+            case 2:
+                print("Enter Allow Camera")
+                
+
+            default:
+                print("a")
+            }
+
+            
+        default:
+            print("a")
+        }
+   
     }
+    
 
 
 }
