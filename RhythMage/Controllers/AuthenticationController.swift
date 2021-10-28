@@ -10,9 +10,10 @@ import GameKit
 class AuthenticationController {
     
     public var user: User?
-     
+    
     //MARK: - Methods
     func authenticateGKLocalPlayer(navigationController: UINavigationController){
+        DispatchQueue.main.async {
             GKLocalPlayer.local.authenticateHandler = { viewController, error in
                 
                 if let viewController = viewController {
@@ -38,4 +39,6 @@ class AuthenticationController {
                 return
             }
         }
+        
     }
+}

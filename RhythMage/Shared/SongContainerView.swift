@@ -16,8 +16,9 @@ enum SongContainerType {
 }
 
 class SongContainerView:UIView {
+    
     var highestScore = 0.0
-    var score: Int = 9999
+    var score: Int = 99999
     
     var player: AVAudioPlayer!
     
@@ -27,19 +28,22 @@ class SongContainerView:UIView {
     
     var isPlaying = false
     
+    var gameDelegate: GameSceneDelegate?
+    var libraryDelegate: SongLibraryViewDelegate?
+    
+    var encouragements = ["Ready, Set, Face Magic!","Excellent!","That's great!","Good!", "Don't give up!", "You are really struggling!"]
+    
     var type: SongContainerType = {
         return .buyableSong
     }()
     
     ///icon with the play symbol
-    private let iconImageView: UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .white
-
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
     ///highest score label
     private let backgroundView: UIView = {
         let view = UIView()
@@ -50,7 +54,6 @@ class SongContainerView:UIView {
         view.layer.masksToBounds = true
         return view
     }()
-    
     ///highest score label
     private let highestScoreLabel: DynamicLabel = {
        let label = DynamicLabel()
@@ -60,7 +63,7 @@ class SongContainerView:UIView {
         return label
     }()
     ///Song title Label
-    private let songTitleLabel: DynamicLabel = {
+    let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
@@ -86,12 +89,35 @@ class SongContainerView:UIView {
         return label
     }()
     ///"xxxx points" Label
-    private let pointsLabel: DynamicLabel = {
+    let pointsLabel: DynamicLabel = {
        let label = DynamicLabel()
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 2
         label.textColor = .white
         return label
+    }()
+    ///StackView containing the Labels
+    var encouragementLabel: DynamicLabel = {
+        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .inika(ofSize: 18)
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        label.textColor = .white
+        return label
+    }()
+    ///Multiplier label
+    let multiplierTitle: UILabel = {
+        let label4 = UILabel(frame: .zero)
+        label4.translatesAutoresizingMaskIntoConstraints = false
+        label4.textColor = .white
+        label4.numberOfLines = 0
+        label4.textAlignment = .center
+        label4.font = .inikaBold(ofSize: 20)
+        label4.contentMode = .scaleAspectFill
+        label4.sizeToFit()
+        label4.fitTextToBounds()
+        return label4
     }()
     ///StackView containing the Labels
     var labelsStackView: UIStackView = {
@@ -101,11 +127,22 @@ class SongContainerView:UIView {
         stackView.distribution = .fill
         return stackView
     }()
-    
+    ///progress bar
+    private lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.trackTintColor = .white
+        progressView.progressTintColor = .clear
+        progressView.layer.cornerRadius = 8.4
+        progressView.clipsToBounds = true
+        progressView.layer.borderWidth = 1
+        progressView.layer.borderColor = UIColor.white.cgColor
+        return progressView
+    }()
+  
     init(type: SongContainerType) {
         super.init(frame: .zero)
 
-        
         self.type = type
         
         switch type {
@@ -117,7 +154,7 @@ class SongContainerView:UIView {
         case .unlockedSong:
             setupHiararchyUnlockedSong()
             iconImageView.image = UIImage(systemName: "play.circle.fill")
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlay(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlaySong))
             iconImageView.isUserInteractionEnabled = true
             iconImageView.addGestureRecognizer(tapGestureRecognizer)
             break
@@ -126,14 +163,15 @@ class SongContainerView:UIView {
             setupHiararchyLockedSong()
             break
         case .playingSong:
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            setEncouragementLabelAndMultiplier(with: 1)
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            
+            backgroundView.backgroundColor = .clear
+            backgroundView.layer.borderWidth = 0
+            pointsLabel.text = String(score.formattedWithSeparator)
+            setupHierarchyPlayingSong()
             break
         }
-        
-       
-        backgroundView.backgroundColor = .clear
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -142,7 +180,6 @@ class SongContainerView:UIView {
     
     //MARK: - LayoutSubviews
     override func layoutSubviews() {
-        
         switch self.type {
         case .unlockedSong:
             layoutSubviewsUnlockedSong()
@@ -151,15 +188,15 @@ class SongContainerView:UIView {
             layoutSubviewsLockedSong()
             break
         case .playingSong:
+            layoutSubviewsPlayingSong()
             break
         case .buyableSong:
             break
         }
     }
     
+    //MARK: - Layout Subviews of Locked Song Container
     func layoutSubviewsLockedSong(){
-        
-        
         NSLayoutConstraint.activate([
             unlockByLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 20),
             unlockByLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -20),
@@ -169,8 +206,8 @@ class SongContainerView:UIView {
         iconImageView.frame = CGRect(x: 20, y: (self.frame.size.height - imageSize - 5) / 2, width: imageSize, height: imageSize)
     }
     
+    //MARK: - Layout Subviews of Unlocked Song Container
     func layoutSubviewsUnlockedSong(){
-    
         height = self.frame.size.height
         xPosition = self.frame.size.width - 24
         iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
@@ -180,26 +217,55 @@ class SongContainerView:UIView {
             labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 24),
             labelsStackView.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor),
             
+            backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
+        ])
+    }
+    
+    //MARK: - Layout Subviews of Playing Song Container
+    func layoutSubviewsPlayingSong(){
+        height = self.frame.size.height
+        xPosition = self.frame.size.width - 14
+        iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 7, width: imageSize, height: imageSize)
+        
+        NSLayoutConstraint.activate([
+            labelsStackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
+            labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 12),
+            labelsStackView.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor, constant: -10),
+            labelsStackView.bottomAnchor.constraint(equalTo: multiplierTitle.bottomAnchor),
+            
+            multiplierTitle.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -14),
+            multiplierTitle.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 6),
             
             backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
             backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
         ])
-    
     }
     
-    //MARK: - Hierarchy Functions
+    //MARK: - Hierarchy Function of Locked Song Container
     func setupHiararchyLockedSong(){
         addSubview(unlockByLabel)
         addSubview(iconImageView)
         addSubview(pointsLabel)
     }
     
+    //MARK: - Hierarchy Function of Unlocked Song Container
     func setupHiararchyUnlockedSong(){
         self.addSubview(backgroundView)
         labelsStackView.addArrangedSubview(highestScoreLabel)
         labelsStackView.addArrangedSubview(songTitleLabel)
         labelsStackView.addArrangedSubview(artistNameLabel)
         backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(iconImageView)
+    }
+    
+    //MARK: - Hierarchy Function of Playing Song Container
+    func setupHierarchyPlayingSong(){
+        self.addSubview(backgroundView)
+        labelsStackView.addArrangedSubview(encouragementLabel)
+        labelsStackView.addArrangedSubview(pointsLabel)
+        backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(multiplierTitle)
         backgroundView.addSubview(iconImageView)
     }
     
@@ -213,6 +279,47 @@ class SongContainerView:UIView {
         pointsLabel.text = nil
     }
     
+    ///Sets the encouragement label text based on the multiplier
+    ///Sets the multiplier label text
+    public func setEncouragementLabelAndMultiplier(with multiplier: Int){
+        let attachment = NSTextAttachment()
+        let myString = NSMutableAttributedString(string: "")
+        attachment.image = UIImage(systemName: "star.fill")?.withTintColor(.white)
+        let imageOffsetY: CGFloat = -1.0
+        attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        myString.append(attachmentString)
+        switch multiplier{
+       
+        case 1:
+            encouragementLabel.text = encouragements[5]
+            myString.append(NSAttributedString(string: "1X"))
+            break
+        case 2:
+            encouragementLabel.text = encouragements[4]
+            myString.append(NSAttributedString(string: "2X"))
+            break
+        case 4:
+            encouragementLabel.text = encouragements[3]
+            myString.append(NSAttributedString(string: "4X"))
+            break
+        case 6:
+            encouragementLabel.text = encouragements[2]
+            myString.append(NSAttributedString(string: "6X"))
+            break
+        case 8:
+            encouragementLabel.text = encouragements[1]
+            myString.append(NSAttributedString(string: "8X"))
+            break
+        case 10:
+            encouragementLabel.text = encouragements[0]
+            myString.append(NSAttributedString(string: "10X"))
+            break
+        default:
+            print("Unrecognized Multiplier.")
+        }
+        multiplierTitle.attributedText = myString
+    }
     
     ///Configures the cell for usage
     public func configure(with model: Level, and userModel: User){
@@ -227,20 +334,28 @@ class SongContainerView:UIView {
             }
             highestScoreLabel.text = "Highest Score: "+String(highestScore)
         case .playingSong:
+            pointsLabel.text = String(score)
             break
         case .buyableSong:
             break
         }
-        
     }
     
-    @objc func togglePlay(_ sender: UITapGestureRecognizer){
-        isPlaying = !isPlaying
-        if isPlaying{
+    @objc func togglePlaySong(){
+        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
+        isPlaying.toggle()
+        
+        if !isPlaying {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            player.stop()
+        }
+        
+        else {
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: songTitleLabel.text, ofType: "mp3") else {
+            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
                 print("No file.")
-                return}
+                return
+            }
             let url = URL(fileURLWithPath: path)
             do {
                 player = try AVAudioPlayer(contentsOf: url)
@@ -250,12 +365,26 @@ class SongContainerView:UIView {
             catch let error{
                 print(error.localizedDescription)
             }
-        } else {
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
-           
         }
-        
-        
     }
-    
+   
+    @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
+        gameDelegate?.pauseGame()
+    }
+}
+
+//MARK: - Extention for Int Formatter
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
+extension Numeric {
+    var formattedWithSeparator: String {
+        Formatter.withSeparator.string(for: self) ?? ""
+    }
 }

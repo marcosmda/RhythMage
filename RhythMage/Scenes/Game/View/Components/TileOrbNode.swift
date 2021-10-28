@@ -29,6 +29,7 @@ class TileOrbNode: SKNode {
         self.height = height > defaultHeight/2 ? height : defaultHeight/2
         super.init()
         setupNode()
+        self.showCenter()
     }
     
     required init?(coder aDecoder: NSCoder) {

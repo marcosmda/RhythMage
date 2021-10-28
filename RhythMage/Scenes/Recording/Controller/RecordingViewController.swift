@@ -29,7 +29,7 @@ class RecordingViewController: BaseGameViewController<RecordingScene> {
         
         //AudioController delegate setup and start
         self.audioController.delegates.append(self)
-        audioController.start()
+        audioController.start(playing: true)
         
         self.mainScene.sceneDelegate = self
     }
