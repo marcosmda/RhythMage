@@ -17,7 +17,8 @@ class GameViewController: BaseGameViewController<GameScene> {
     let audioController: AudioController
     let level: Level
     var gameDisplayView: GameDisplayView
-    
+    var images = [UIImage]()
+    var counter = 3
     ///camera capture
     private var captureSession: AVCaptureSession!
     private var stillImageOutput: AVCapturePhotoOutput!
@@ -55,6 +56,7 @@ class GameViewController: BaseGameViewController<GameScene> {
         //Delegates
         self.audioController.delegates.append(self)
         mainScene.gameDelegate = self
+        
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -100,6 +102,14 @@ class GameViewController: BaseGameViewController<GameScene> {
     //MARK: - Private Methods
     @objc private func startAudio() {
         audioController.play()
+        Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(takePrint), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func takePrint() {
+        if counter > 0 {
+            stillImageOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+            counter -= 1
+        }
     }
     
     private func toggleGameStatus() {
@@ -138,7 +148,7 @@ class GameViewController: BaseGameViewController<GameScene> {
 extension GameViewController: AudioControllerDelegate {
     func audioFinished() {
         DispatchQueue.main.async {
-            self.navigationController?.pushViewController(self.factory.createSummaryScene(), animated: true)
+            self.navigationController?.pushViewController(self.factory.createSummaryScene(score: Int(self.mainScene.score), level: self.level, images: self.images), animated: true)
         }
     }
 }
@@ -203,5 +213,19 @@ extension GameViewController: SmileToResumeDelegate {
     func resumed() {
         audioController.start(playing: false)
         toggleGameStatus()
+    }
+}
+
+extension GameViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput,
+                                     didFinishProcessingPhoto photo: AVCapturePhoto,
+                                     error: Error?)
+    {
+        // capture image finished
+        print("Image captured.")
+
+        guard let imageData = photo.fileDataRepresentation() else {return}
+        guard let uiImage = UIImage(data: imageData) else {return}
+        images.append(uiImage)
     }
 }
