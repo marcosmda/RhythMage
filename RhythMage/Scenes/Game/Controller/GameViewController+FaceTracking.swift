@@ -14,4 +14,8 @@ extension GameViewController {
         mainView.addSubview(faceTrackingController)
     }
     
+    func viewWillAppearFaceTracking(){
+        faceTrackingController.isViewHidden = false
+    }
+    
 }

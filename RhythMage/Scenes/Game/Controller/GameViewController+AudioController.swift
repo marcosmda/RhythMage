@@ -12,6 +12,7 @@ extension GameViewController: AudioControllerDelegate {
     func initAudioController() {
         
         self.audioController.delegates.append(self)
+        setupAudioController()
     }
     
     func setupAudioController() {
@@ -27,6 +28,5 @@ extension GameViewController: AudioControllerDelegate {
     
     @objc func startAudio() {
         audioController.play()
-        Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(takePrint), userInfo: nil, repeats: true)
     }
 }

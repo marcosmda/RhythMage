@@ -97,7 +97,7 @@ class FaceTrackingController: UIView {
         arScene.automaticallyUpdatesLighting = true
         arScene.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         arScene.delegate = self
-        arScene.isHidden = true
+        arScene.isHidden = true 
         sceneView = arScene
         guard sceneView != nil else {fatalError("Could not create a Face Tracking Controller")}
         addSubview(sceneView!)

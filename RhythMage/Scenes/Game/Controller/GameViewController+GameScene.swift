@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 
 extension GameViewController: GameSceneDelegate {
+    
     func updateCamera(cameraView: UIView) {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
@@ -59,5 +60,14 @@ extension GameViewController: GameSceneDelegate {
     
     func updatedScore(score: Double) {
         gameDisplayView.song.pointsLabel.text = String(Int(score))
+    }
+    
+    func createTiles() {
+        guard let interactionSequence = level.sequences.first else{return}
+        
+        for interaction in interactionSequence.sequence {
+            guard let tile = interaction as? TileInteraction else {break}
+            mainScene.addTileOrb(tile: tile, scrollVelocity: scrollVelocity, startDelayTime: startDelayTime)
+        }
     }
 }
