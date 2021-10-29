@@ -45,10 +45,9 @@ class GameCameraDisplayView: UIView{
         
       NSLayoutConstraint.activate([
           ///Constraints - container
-          //previewCameraLayer.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide
-                                                      //  .leadingAnchor, constant: -10),
-          //previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
-          //previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+          previewCameraLayer.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: -10),
+          previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+          previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
           previewCameraLayer.centerXAnchor.constraint(equalTo: self.centerXAnchor)
     
       ])
