@@ -15,7 +15,7 @@ class TutorialViewController: BaseViewController<TutorialView> {
     
     var ellapsedKeys: [Double] = []
     
-    typealias Factory = CameraSetupSceneFactory
+    typealias Factory = CameraSetupSceneFactory & SmileToUnlockFactory
     let factory: Factory
     
     init(factory: Factory) {
@@ -36,8 +36,6 @@ class TutorialViewController: BaseViewController<TutorialView> {
             ellapsedKeys.append(element.key)
             
         }
-        
-        print(ellapsedKeys)
         
     }
     
@@ -64,6 +62,15 @@ class TutorialViewController: BaseViewController<TutorialView> {
 
 extension TutorialViewController: TutorialViewDelegate {
    
+    func didTapSkipButton() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: false)
+    }
+    
     func updateSubtitles(currentTime: Double) {
 
         if ellapsedKeys.count == 0 {return}
