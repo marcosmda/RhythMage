@@ -63,7 +63,7 @@ extension AppContainer: LoadingSceneFactory {
         return LoadingScreenViewController(authenticationController: authenticatinController)
     }
 }
-
+/*
 //MARK: - RecordingScene
 protocol RecordingSceneFactory {
     /// Creates an instance of RecordingViewController to be used
@@ -76,7 +76,7 @@ extension AppContainer: RecordingSceneFactory {
         return RecordingViewController(realm: realm, audioController: self.audioController)
     }
 }
-
+*/
 //MARK: - SmileToUnlock
 protocol SmileToUnlockFactory{
     /// Creates an instance of SmileToUnlockViewController to be used

@@ -9,10 +9,10 @@ import UIKit
 import SpriteKit
 
 /// A BaseViewController class that is used to implement new ViewControllers. It is based on a view that is received at init that is the main container of other subviews.
-class BaseGameViewController<S: SKScene>: UIViewController {
+class BaseGameViewController<S: SKScene, V: SKView>: UIViewController {
     
     // MARK:- Properties
-    var mainView: SKView
+    var mainView: V
     var mainScene: S
     
     // MARK:- Initializers
@@ -20,8 +20,8 @@ class BaseGameViewController<S: SKScene>: UIViewController {
     /// Parameters:
     ///    - mainView: The View displayed by the ViewController
     /// - Returns: A new ViewController with the provided View.
-    init(mainScene: S) {
-        self.mainView = SKView(frame: UIScreen.main.bounds)
+    init(mainScene: S, mainView: V) {
+        self.mainView = mainView
         self.mainScene = mainScene
         super.init(nibName: nil, bundle: nil)
     }
