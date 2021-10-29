@@ -46,6 +46,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
+        self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.rightBarButtonItem = self.mainView.buttonSettings
         self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
         if let navigation = navigationController {

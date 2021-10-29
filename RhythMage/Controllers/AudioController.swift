@@ -104,3 +104,11 @@ extension AudioController: AVAudioPlayerDelegate {
         }
     }
 }
+
+//MARK: - AVPlayer Extensions
+extension AVPlayer {
+    func stop(){
+        self.seek(to: CMTime.zero)
+        self.pause()
+    }
+}
