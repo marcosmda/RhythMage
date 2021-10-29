@@ -32,6 +32,10 @@
 		8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8D270B8487000B43C8 /* TileInteraction.swift */; };
 		8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */; };
 		8DB1CFC92729E7C90015B113 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB1CFC82729E7C90015B113 /* UINavigationController.swift */; };
+		8DCFE344272C774A00064DE7 /* GameViewController+FaceTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFE343272C774A00064DE7 /* GameViewController+FaceTracking.swift */; };
+		8DCFE346272C7A0500064DE7 /* GameViewController+AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFE345272C7A0500064DE7 /* GameViewController+AudioController.swift */; };
+		8DCFE348272C7B2400064DE7 /* GameViewController+GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFE347272C7B2400064DE7 /* GameViewController+GameScene.swift */; };
+		8DCFE34A272C7B8400064DE7 /* GameViewController+SmileToResume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCFE349272C7B8400064DE7 /* GameViewController+SmileToResume.swift */; };
 		8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCA7F227078441002E9925 /* AppDelegate.swift */; };
 		8DDCA80027078443002E9925 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA7FF27078443002E9925 /* Assets.xcassets */; };
 		8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DDCA80127078443002E9925 /* LaunchScreen.storyboard */; };
@@ -133,6 +137,10 @@
 		8DA09D8D270B8487000B43C8 /* TileInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileInteraction.swift; sourceTree = "<group>"; };
 		8DA09D8F270B87EF000B43C8 /* FaceInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceInteraction.swift; sourceTree = "<group>"; };
 		8DB1CFC82729E7C90015B113 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		8DCFE343272C774A00064DE7 /* GameViewController+FaceTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+FaceTracking.swift"; sourceTree = "<group>"; };
+		8DCFE345272C7A0500064DE7 /* GameViewController+AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+AudioController.swift"; sourceTree = "<group>"; };
+		8DCFE347272C7B2400064DE7 /* GameViewController+GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+GameScene.swift"; sourceTree = "<group>"; };
+		8DCFE349272C7B8400064DE7 /* GameViewController+SmileToResume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+SmileToResume.swift"; sourceTree = "<group>"; };
 		8DDCA7EF27078441002E9925 /* RhythMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RhythMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDCA7F227078441002E9925 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDCA7FF27078443002E9925 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,6 +272,10 @@
 			isa = PBXGroup;
 			children = (
 				8D09841A27175233007477F3 /* GameViewController.swift */,
+				8DCFE343272C774A00064DE7 /* GameViewController+FaceTracking.swift */,
+				8DCFE345272C7A0500064DE7 /* GameViewController+AudioController.swift */,
+				8DCFE347272C7B2400064DE7 /* GameViewController+GameScene.swift */,
+				8DCFE349272C7B8400064DE7 /* GameViewController+SmileToResume.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -827,6 +839,7 @@
 				F19F13102729BE5100B9F420 /* SelectedTermsDelegate.swift in Sources */,
 				F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */,
 				8D00CA252722D45000DCBA84 /* UIView.swift in Sources */,
+				8DCFE344272C774A00064DE7 /* GameViewController+FaceTracking.swift in Sources */,
 				CF746E922720910200B7F2DE /* InteractionButtonsView.swift in Sources */,
 				CF746E9A2720A5DA00B7F2DE /* SummaryImageSetup.swift in Sources */,
 				8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */,
@@ -866,6 +879,7 @@
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
 				CFB113B52729AC69001A5447 /* CameraCapture.swift in Sources */,
+				8DCFE346272C7A0500064DE7 /* GameViewController+AudioController.swift in Sources */,
 				CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */,
 				8DDFF099270CD5F000139FE2 /* SceneDelegate.swift in Sources */,
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
@@ -883,11 +897,13 @@
 				DB1A41112723220F00F7EDD1 /* SongLibraryView.swift in Sources */,
 				DB1A410F2723220F00F7EDD1 /* SongLibraryViewController.swift in Sources */,
 				8DA09D80270B7564000B43C8 /* User.swift in Sources */,
+				8DCFE34A272C7B8400064DE7 /* GameViewController+SmileToResume.swift in Sources */,
 				CFC99B5527286EE600773C92 /* Video.swift in Sources */,
 				CFB113B32729AC4F001A5447 /* CameraCaptureViewController.swift in Sources */,
 				CF577A6F2720D85300BF82E3 /* SummaryImageViewCollection.swift in Sources */,
 				F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */,
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
+				8DCFE348272C7B2400064DE7 /* GameViewController+GameScene.swift in Sources */,
 				F18C285E2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				F1587EFE27232ED000A2DC09 /* SettingsView.swift in Sources */,
