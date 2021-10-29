@@ -80,7 +80,7 @@ extension InteractionSequence {
               endTime: 3.4644767330028117
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 3.814476739964448,
               endTime: 3.9144767420366406
             ),
@@ -115,7 +115,7 @@ extension InteractionSequence {
               endTime: 6.214476787950844
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 6.564476795028895,
               endTime: 6.614476796006784
             ),
@@ -145,7 +145,7 @@ extension InteractionSequence {
               endTime: 8.61447683593724
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 8.931143508991227,
               endTime: 8.997810177039355
             ),
@@ -175,7 +175,7 @@ extension InteractionSequence {
               endTime: 10.99781021696981
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 11.381143557955511,
               endTime: 11.464476892957464
             ),
@@ -195,7 +195,7 @@ extension InteractionSequence {
               endTime: 12.564476914936677
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 12.897810254944488,
               endTime: 12.981143589946441
             ),
@@ -240,7 +240,7 @@ extension InteractionSequence {
               endTime: 16.147810320020653
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 16.514476993936114,
               endTime: 16.564476995030418
             ),
@@ -265,7 +265,7 @@ extension InteractionSequence {
               endTime: 18.16447702702135
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 18.54781036800705,
               endTime: 18.647810369962826
             ),
@@ -295,7 +295,7 @@ extension InteractionSequence {
               endTime: 20.614477075985633
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 20.98114375001751,
               endTime: 21.031143750995398
             ),
@@ -325,7 +325,7 @@ extension InteractionSequence {
               endTime: 22.997810457018204
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 23.29781046300195,
               endTime: 23.381143798003905
             ),
@@ -365,7 +365,7 @@ extension InteractionSequence {
               endTime: 26.164477186976
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 26.531143861007877,
               endTime: 26.631143862963654
             ),
@@ -375,7 +375,7 @@ extension InteractionSequence {
               endTime: 26.964477202971466
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 27.331143877003342,
               endTime: 27.414477212005295
             ),
@@ -415,7 +415,7 @@ extension InteractionSequence {
               endTime: 30.181143934023567
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 30.49781060696114,
               endTime: 30.564477275009267
             ),
@@ -450,12 +450,12 @@ extension InteractionSequence {
               endTime: 32.98114398994949
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 33.3144773299573,
               endTime: 33.41447733202949
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 33.71447733801324,
               endTime: 33.79781067301519
             ),
@@ -490,12 +490,12 @@ extension InteractionSequence {
               endTime: 36.19781072100159
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 36.547810727963224,
               endTime: 36.63114406296518
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 36.931144068948925,
               endTime: 37.01447740395088
             ),
@@ -545,7 +545,7 @@ extension InteractionSequence {
               endTime: 40.597810809034854
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 40.914477481972426,
               endTime: 40.99781081697438
             ),
@@ -575,7 +575,7 @@ extension InteractionSequence {
               endTime: 42.98114418995101
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 43.38114419800695,
               endTime: 44.16447754704859
             ),
@@ -610,12 +610,12 @@ extension InteractionSequence {
               endTime: 47.064477605046704
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 47.381144277984276,
               endTime: 47.46447761298623
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 47.73114428494591,
               endTime: 47.814477619947866
             ),
@@ -645,7 +645,7 @@ extension InteractionSequence {
               endTime: 50.21447766805068
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 50.53114434098825,
               endTime: 50.9978110169759
             ),
@@ -685,7 +685,7 @@ extension InteractionSequence {
               endTime: 53.8311444070423
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 54.164477747050114,
               endTime: 54.23114441498183
             ),
@@ -735,7 +735,7 @@ extension InteractionSequence {
               endTime: 58.24781116202939
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 58.64781116996892,
               endTime: 58.764477838994935
             ),
@@ -765,7 +765,7 @@ extension InteractionSequence {
               endTime: 61.197811221005395
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 61.431144558941014,
               endTime: 61.51447789394297
             ),
@@ -795,7 +795,7 @@ extension InteractionSequence {
               endTime: 64.16447794705164
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 64.51447795401327,
               endTime: 64.59781128901523
             ),
@@ -835,7 +835,7 @@ extension InteractionSequence {
               endTime: 69.1644780470524
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 69.43114471901208,
               endTime: 69.53114472096786
             ),
@@ -865,7 +865,7 @@ extension InteractionSequence {
               endTime: 71.38114475796465
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 1,
               startTime: 71.6811447639484,
               endTime: 71.76447809895035
             ),
@@ -905,7 +905,7 @@ extension InteractionSequence {
               endTime: 74.58114482194651
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 2,
               startTime: 74.96447816304862,
               endTime: 75.04781149805058
             ),
@@ -945,7 +945,7 @@ extension InteractionSequence {
               endTime: 77.74781155202072
             ),
             TileInteraction(minimumScore: 10,
-              xPosition: 3,
+              xPosition: 0,
               startTime: 78.19781156093813,
               endTime: 78.29781156301033
             )
