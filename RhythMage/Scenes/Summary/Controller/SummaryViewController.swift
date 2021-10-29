@@ -52,9 +52,10 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationItem.titleView = headerView
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
-        
+        self.navigationController?.isNavigationBarHidden = false
+        self.headerView?.layer.masksToBounds = false
     }
     
     private func submitScoreToLB() {
