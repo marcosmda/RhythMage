@@ -74,9 +74,10 @@ class FaceTrackingController: UIView {
     
     //MARK: - Initialization
     init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         initialConfiguration()
         sceneView?.delegate = self
+        sceneView?.alpha = 0.2
     }
     
     required init?(coder: NSCoder) {

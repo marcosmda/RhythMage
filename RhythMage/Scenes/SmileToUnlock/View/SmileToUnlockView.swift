@@ -142,7 +142,7 @@ class SmileToUnlockView: UIView {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "Mage")
+        imageView.image = UIImage(named: "mageWithOrbs")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -217,7 +217,7 @@ class SmileToUnlockView: UIView {
         bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
         bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
