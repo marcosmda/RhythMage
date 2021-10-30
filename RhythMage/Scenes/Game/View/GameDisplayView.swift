@@ -20,7 +20,6 @@ class GameDisplayView: UIView {
         return image
     }()
     
-
     ///progress bar
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
@@ -81,9 +80,10 @@ class GameDisplayView: UIView {
         
       NSLayoutConstraint.activate([
           ///Constraints - container
-          container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
+          //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
           container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
           container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+          container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
                       
           ///Constraints - song view
           song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),

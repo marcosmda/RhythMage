@@ -20,19 +20,15 @@ class GameCameraDisplayView: UIView{
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 5
         view.clipsToBounds = true
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
-        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return view
     }()
     
     //MARK: - Initializers
     init(faceTrackingView: FaceTrackingController) {
-        
         super.init(frame: .zero)
         self.previewCameraLayer.addSubview(faceTrackingView)
         setupHiararchy()
         setupLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -43,29 +39,25 @@ class GameCameraDisplayView: UIView{
     //MARK: - Layout Subviews
     func setupLayout(){
         
-      NSLayoutConstraint.activate([
-          ///Constraints - container
-          //previewCameraLayer.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide
-                                                      //  .leadingAnchor, constant: -10),
-          //previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
-          //previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-          previewCameraLayer.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-    
-      ])
+      
         
     }
     
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let window = self.window?.windowScene?.keyWindow
-        let topPadding = window?.safeAreaInsets.top
-    
-        previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
-
+        
+        NSLayoutConstraint.activate([
+            ///Constraints - container
+            previewCameraLayer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            previewCameraLayer.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            previewCameraLayer.widthAnchor.constraint(equalTo: self.widthAnchor),
+            previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor)
+      
+        ])
+        
         delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
         
-
     }
     
   
