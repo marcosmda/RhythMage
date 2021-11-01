@@ -90,7 +90,7 @@ class GameDisplayView: UIView {
           song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
           song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
           song.topAnchor.constraint(equalTo: container.topAnchor),
-          
+         
           ///Constraints - progress view
           progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
           progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
