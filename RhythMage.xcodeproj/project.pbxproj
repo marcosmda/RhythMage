@@ -48,6 +48,8 @@
 		CF1F02372727859D004A1FAD /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1F02362727859D004A1FAD /* TutorialView.swift */; };
 		CF2192E4271778490078A93D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2192E3271778490078A93D /* GameKit.framework */; };
 		CF25FABB271EF19700E3A8D7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */; };
+		CF27C5842730201C002D7CDE /* FaceExpressionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF27C5832730201C002D7CDE /* FaceExpressionNode.swift */; };
+		CF27C58627302981002D7CDE /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF27C58527302981002D7CDE /* Haptic.swift */; };
 		CF36F115271F113F00DE0604 /* SongLibraryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */; };
 		CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C024A271F3E070046D529 /* CircularGradientView.swift */; };
 		CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF573B79272336AA00FE1C35 /* CreditsSceneViewController.swift */; };
@@ -160,6 +162,8 @@
 		CF1F02362727859D004A1FAD /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		CF2192E3271778490078A93D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CF25FABA271EF19700E3A8D7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		CF27C5832730201C002D7CDE /* FaceExpressionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceExpressionNode.swift; sourceTree = "<group>"; };
+		CF27C58527302981002D7CDE /* Haptic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
 		CF36F114271F113F00DE0604 /* SongLibraryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongLibraryHeaderView.swift; sourceTree = "<group>"; };
 		CF3C024A271F3E070046D529 /* CircularGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGradientView.swift; sourceTree = "<group>"; };
 		CF573B79272336AA00FE1C35 /* CreditsSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsSceneViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 		8D00CA262722D4B500DCBA84 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CF27C5832730201C002D7CDE /* FaceExpressionNode.swift */,
 				8D00CA272722D4C000DCBA84 /* HitLineNode.swift */,
 				8D00CA292722D4D800DCBA84 /* MainOrbNode.swift */,
 				8D00CA2B2722D4EE00DCBA84 /* TileOrbNode.swift */,
@@ -486,6 +491,7 @@
 		CF36F113271F112200DE0604 /* Defaults */ = {
 			isa = PBXGroup;
 			children = (
+				CF27C58527302981002D7CDE /* Haptic.swift */,
 				CFF5B03F271DFEA500E5CCE8 /* Colors.swift */,
 				CFF5B041271E033700E5CCE8 /* TextStyles.swift */,
 			);
@@ -914,6 +920,7 @@
 				8DA09D90270B87EF000B43C8 /* FaceInteraction.swift in Sources */,
 				DBB4A1DB271756F90037BCB1 /* LoadingScreenViewController.swift in Sources */,
 				8D0984222717540A007477F3 /* AudioController.swift in Sources */,
+				CF27C5842730201C002D7CDE /* FaceExpressionNode.swift in Sources */,
 				CFB113B52729AC69001A5447 /* CameraCapture.swift in Sources */,
 				8DCFE346272C7A0500064DE7 /* GameViewController+AudioController.swift in Sources */,
 				CF746E9027208C5F00B7F2DE /* SummaryHeaderView.swift in Sources */,
@@ -921,6 +928,7 @@
 				CF746E8E2720866700B7F2DE /* SummaryViewController.swift in Sources */,
 				F18C285527286914004E5075 /* TermsOfUseCell.swift in Sources */,
 				DB1A41192723235700F7EDD1 /* RecordingSceneViewDelegate.swift in Sources */,
+				CF27C58627302981002D7CDE /* Haptic.swift in Sources */,
 				CF573B7A272336AA00FE1C35 /* CreditsSceneViewController.swift in Sources */,
 				CFE7605A2728B71D0059F245 /* HeadphonerViewController.swift in Sources */,
 				CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */,
