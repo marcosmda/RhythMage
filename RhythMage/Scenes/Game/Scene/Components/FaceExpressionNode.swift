@@ -146,6 +146,7 @@ extension FaceExpressionNode {
         
         circle.addChild(animation)
         
+        
         animation.zPosition = -1000
         animation.alpha = 0.0
         animation.position.x = circle.position.x
@@ -171,9 +172,16 @@ extension FaceExpressionNode {
             return t*t*t*t*t
         }
         
+        let hapticAction = SKAction.customAction(withDuration: 0) { _, _ in
+            haptic.setupImpactHaptic(style: .heavy)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                haptic.setupImpactHaptic(style: .light)
+            }
+        }
+        
         let fadeInAndScaleUp = SKAction.group([scaleUp, fadeIn, rotation])
         let scaleDownAndFadeOut = SKAction.group([rotation, scaleDown, fadeOut])
-        animation.run(SKAction.sequence([fadeInAndScaleUp, scaleDownAndFadeOut])) {
+        animation.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut])) {
             animation.removeFromParent()
         }
         
@@ -184,8 +192,9 @@ extension FaceExpressionNode {
 //MARK: - Active Circle Animation
 extension FaceExpressionNode {
     
-    func setCircleAsActive(with status: Bool) {
+    func checkIfCircleIsActive(with status: Bool) {
         
+        haptic.setupImpactHaptic(style: .light)
         
         switch positions {
         case .left:
