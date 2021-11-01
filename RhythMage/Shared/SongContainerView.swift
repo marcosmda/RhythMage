@@ -18,7 +18,7 @@ enum SongContainerType {
 class SongContainerView:UIView {
     
     var highestScore = 0.0
-    var score: Int = 99999
+    var score: Int = 0
     
     var player: AVAudioPlayer!
     
