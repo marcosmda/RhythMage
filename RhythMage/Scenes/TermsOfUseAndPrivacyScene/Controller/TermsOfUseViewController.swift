@@ -42,7 +42,7 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
         
         self.factory = factory
         super.init(mainView: TermsOfUseView(frame: .zero))
-        //mainView.delegate = self
+        mainView.delegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
     }
@@ -157,7 +157,8 @@ extension TermsOfUseViewController: UITableViewDelegate, TermsOfUseDelegate{
     }
     
     func onBackButtonPush(){
-        self.navigationController?.popViewController(animated: true)
+        print("Popping to SettingsViewController")
+        navigationController?.popViewController(animated: true)
     }
     
 

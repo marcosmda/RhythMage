@@ -35,6 +35,7 @@ class TermsOfUseView: UIView{
         button.tintColor = .label
         button.layer.cornerRadius = button.frame.size.height / 2
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
