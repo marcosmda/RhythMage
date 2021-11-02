@@ -85,6 +85,7 @@
 		DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
+		F135FEB12731953300918BEE /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F135FEB02731953300918BEE /* Delete.swift */; };
 		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 		F1587EFC27232EB300A2DC09 /* SettingsButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */; };
@@ -185,6 +186,7 @@
 		DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewDelegate.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		F135FEB02731953300918BEE /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 		F1587EFB27232EB300A2DC09 /* SettingsButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButtonCell.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 				F18C28502728681A004E5075 /* TermsOfUseView.swift */,
 				F18C285B2728A004004E5075 /* SelectedTermOfUseView.swift */,
 				F18C285427286914004E5075 /* TermsOfUseCell.swift */,
+				F135FEB02731953300918BEE /* Delete.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -891,6 +894,7 @@
 				F18C285E2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift in Sources */,
 				8DA09D8B270B7F97000B43C8 /* Book.swift in Sources */,
 				F1587EFE27232ED000A2DC09 /* SettingsView.swift in Sources */,
+				F135FEB12731953300918BEE /* Delete.swift in Sources */,
 				F18C285327286842004E5075 /* TermsOfUseViewController.swift in Sources */,
 				8DA09D8E270B8487000B43C8 /* TileInteraction.swift in Sources */,
 				8D00CA282722D4C000DCBA84 /* HitLineNode.swift in Sources */,
