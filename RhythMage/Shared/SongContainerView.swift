@@ -169,6 +169,7 @@ class SongContainerView:UIView {
             
             backgroundView.backgroundColor = .clear
             backgroundView.layer.borderWidth = 0
+            pointsLabel.text = String(0)
             setupHierarchyPlayingSong()
             break
         }
@@ -223,13 +224,15 @@ class SongContainerView:UIView {
             highestScoreLabel.text = "Highest Score: "+String(highestScore)
         case .playingSong:
             songTitleLabel.text = model.songName.uppercased()
-            pointsLabel.text = String(score.formattedWithSeparator)
+            //
             break
         case .buyableSong:
             break
         }
     }
    
+    
+    
 }
 
 //MARK: - Locked Song Container Type
@@ -447,6 +450,10 @@ extension SongContainerView {
     /// - Parameter sender: UITapGestureRecognizer
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
         gameDelegate?.pauseGame()
+    }
+    
+    public func setScore(score: Int){
+        pointsLabel.text = String(score.formattedWithSeparator)
     }
     
 }
