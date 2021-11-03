@@ -18,7 +18,7 @@ enum SongContainerType {
 class SongContainerView:UIView {
     
     var highestScore = 0.0
-    var score: Int = 0
+    var score: Int = 99999
     
     var player: AVAudioPlayer!
     
@@ -65,6 +65,7 @@ class SongContainerView:UIView {
     ///Song title Label
     let songTitleLabel: DynamicLabel = {
        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .inikaBold(ofSize: 18)
         label.numberOfLines = 1
         label.textColor = .secondary
@@ -168,10 +169,12 @@ class SongContainerView:UIView {
             
             backgroundView.backgroundColor = .clear
             backgroundView.layer.borderWidth = 0
-            pointsLabel.text = String(score.formattedWithSeparator)
             setupHierarchyPlayingSong()
             break
         }
+        
+       
+        
     }
     
     required init?(coder: NSCoder) {
@@ -194,8 +197,45 @@ class SongContainerView:UIView {
             break
         }
     }
+
+    //MARK: - Configuration
+    ///Prepares the cell to be reused
+    func prepareForReuse() {
+        highestScoreLabel.text = nil
+        songTitleLabel.text = nil
+        artistNameLabel.text = nil
+        unlockByLabel.text = nil
+        pointsLabel.text = nil
+    }
     
-    //MARK: - Layout Subviews of Locked Song Container
+
+    ///Configures the cell for usage
+    public func configure(with model: Level, userModel: User?){
+        switch type {
+        case .lockedSong:
+            break
+        case .unlockedSong:
+            artistNameLabel.text = model.artistName.uppercased()
+            songTitleLabel.text = model.songName.uppercased()
+            if let user = userModel?.completed[model.getId()] {
+                highestScore = user
+            }
+            highestScoreLabel.text = "Highest Score: "+String(highestScore)
+        case .playingSong:
+            songTitleLabel.text = model.songName.uppercased()
+            pointsLabel.text = String(score.formattedWithSeparator)
+            break
+        case .buyableSong:
+            break
+        }
+    }
+   
+}
+
+//MARK: - Locked Song Container Type
+extension SongContainerView{
+    
+    /// layoutSubviewsLockedSong
     func layoutSubviewsLockedSong(){
         NSLayoutConstraint.activate([
             unlockByLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 20),
@@ -206,7 +246,29 @@ class SongContainerView:UIView {
         iconImageView.frame = CGRect(x: 20, y: (self.frame.size.height - imageSize - 5) / 2, width: imageSize, height: imageSize)
     }
     
-    //MARK: - Layout Subviews of Unlocked Song Container
+    /// setupHiararchyLockedSong
+    func setupHiararchyLockedSong(){
+        addSubview(unlockByLabel)
+        addSubview(iconImageView)
+        addSubview(pointsLabel)
+    }
+    
+}
+
+//MARK: - Unlocked Song Contaniner Type
+extension SongContainerView {
+    
+    /// setupHiararchyUnlockedSong
+    func setupHiararchyUnlockedSong(){
+        self.addSubview(backgroundView)
+        labelsStackView.addArrangedSubview(highestScoreLabel)
+        labelsStackView.addArrangedSubview(songTitleLabel)
+        labelsStackView.addArrangedSubview(artistNameLabel)
+        backgroundView.addSubview(labelsStackView)
+        backgroundView.addSubview(iconImageView)
+    }
+    
+    /// layoutSubviewsUnlockedSong
     func layoutSubviewsUnlockedSong(){
         height = self.frame.size.height
         xPosition = self.frame.size.width - 24
@@ -222,7 +284,40 @@ class SongContainerView:UIView {
         ])
     }
     
-    //MARK: - Layout Subviews of Playing Song Container
+    /// Toggle Play used by Unlocked Song Container
+    @objc func togglePlaySong(){
+        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
+        isPlaying.toggle()
+        
+        if !isPlaying {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            player.stop()
+        }
+        
+        else {
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
+                print("No file.")
+                return
+            }
+            let url = URL(fileURLWithPath: path)
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else {return}
+                player.play()
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+//MARK: - Playing Song Container Type
+extension SongContainerView {
+    
+    /// layoutSubviewsPlayingSong
     func layoutSubviewsPlayingSong(){
         height = self.frame.size.height
         xPosition = self.frame.size.width - 14
@@ -242,45 +337,20 @@ class SongContainerView:UIView {
         ])
     }
     
-    //MARK: - Hierarchy Function of Locked Song Container
-    func setupHiararchyLockedSong(){
-        addSubview(unlockByLabel)
-        addSubview(iconImageView)
-        addSubview(pointsLabel)
-    }
-    
-    //MARK: - Hierarchy Function of Unlocked Song Container
-    func setupHiararchyUnlockedSong(){
-        self.addSubview(backgroundView)
-        labelsStackView.addArrangedSubview(highestScoreLabel)
-        labelsStackView.addArrangedSubview(songTitleLabel)
-        labelsStackView.addArrangedSubview(artistNameLabel)
-        backgroundView.addSubview(labelsStackView)
-        backgroundView.addSubview(iconImageView)
-    }
-    
-    //MARK: - Hierarchy Function of Playing Song Container
+    /// setupHierarchyPlayingSong
     func setupHierarchyPlayingSong(){
         self.addSubview(backgroundView)
-        labelsStackView.addArrangedSubview(encouragementLabel)
+        labelsStackView.addArrangedSubview(songTitleLabel)
+        //labelsStackView.addArrangedSubview(encouragementLabel) //TODO: Change back do encouragement Label when needed
         labelsStackView.addArrangedSubview(pointsLabel)
         backgroundView.addSubview(labelsStackView)
         backgroundView.addSubview(multiplierTitle)
         backgroundView.addSubview(iconImageView)
     }
     
-    //MARK: - Configuration
-    ///Prepares the cell to be reused
-    func prepareForReuse() {
-        highestScoreLabel.text = nil
-        songTitleLabel.text = nil
-        artistNameLabel.text = nil
-        unlockByLabel.text = nil
-        pointsLabel.text = nil
-    }
-    
-    ///Sets the encouragement label text based on the multiplier
-    ///Sets the multiplier label text
+    /// Sets the encouragement label based on the multiplier recieved
+    /// Sets multiplier label based on the multiplier recieved
+    /// - Parameter multiplier: Multiplier (Int) is the amount of times a player has consecutively won points
     public func setEncouragementLabelAndMultiplier(with multiplier: Int){
         let attachment = NSTextAttachment()
         let myString = NSMutableAttributedString(string: "")
@@ -321,57 +391,14 @@ class SongContainerView:UIView {
         multiplierTitle.attributedText = myString
     }
     
-    ///Configures the cell for usage
-    public func configure(with model: Level, and userModel: User){
-        switch type {
-        case .lockedSong:
-            break
-        case .unlockedSong:
-            artistNameLabel.text = model.artistName.uppercased()
-            songTitleLabel.text = model.songName.uppercased()
-            if let highest = userModel.completed[model.getId()] {
-                highestScore = highest
-            }
-            highestScoreLabel.text = "Highest Score: "+String(highestScore)
-        case .playingSong:
-            pointsLabel.text = String(score)
-            break
-        case .buyableSong:
-            break
-        }
-    }
-    
-    @objc func togglePlaySong(){
-        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
-        isPlaying.toggle()
-        
-        if !isPlaying {
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
-            player.stop()
-        }
-        
-        else {
-            iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
-                print("No file.")
-                return
-            }
-            let url = URL(fileURLWithPath: path)
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                guard let player = player else {return}
-                player.play()
-            }
-            catch let error{
-                print(error.localizedDescription)
-            }
-        }
-    }
-   
+    /// Pauses the game when the Icon Image is tapped
+    /// - Parameter sender: UITapGestureRecognizer
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
         gameDelegate?.pauseGame()
     }
+    
 }
+
 
 //MARK: - Extention for Int Formatter
 extension Formatter {

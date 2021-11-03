@@ -12,6 +12,7 @@ class GameDisplayView: UIView {
     //MARK: - Properties
     public var song: SongContainerView
     var delegate: GameSceneDelegate?
+    var level: Level?
     
     var hitBarImage: UIImageView = {
         let image = UIImageView()
@@ -35,7 +36,7 @@ class GameDisplayView: UIView {
     
     ///container for the song view and progress bar
     fileprivate let container: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.quaternaryBackground
         view.clipsToBounds = true
@@ -43,63 +44,60 @@ class GameDisplayView: UIView {
         return view
     }()
     
-    //MARK: - Initializers
-    override init(frame: CGRect) {
-        self.song = SongContainerView(type: .playingSong)
-        self.song.translatesAutoresizingMaskIntoConstraints = false
+    //  MARK: - Initializers
+    
+    convenience init(frame: CGRect, level: Level){
         
-        super.init(frame: frame)
-        progressView.setProgress(0.5, animated: false)
-        self.backgroundColor = .clear
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlayGame(_:)))
-        self.song.iconImageView.isUserInteractionEnabled = true
-        self.song.iconImageView.addGestureRecognizer(tapGestureRecognizer)
-                self.frame = UIScreen.main.bounds
-        
+        self.init(frame: frame)
+        self.level = level
+
+        self.song.configure(with: level, userModel:   nil)
         setupHiararchy()
         setupLayout()
-        
-
+    }
+    
+    override init(frame: CGRect) {
+        self.song = SongContainerView(type: .playingSong)
+        super.init(frame: frame)
+        self.song.translatesAutoresizingMaskIntoConstraints = false
+        progressView.setProgress(0.5, animated: false)
+        self.backgroundColor = .clear
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector  (togglePlayGame(_:)))
+        self.song.iconImageView.isUserInteractionEnabled = true
+        self.song.iconImageView.addGestureRecognizer(tapGestureRecognizer)
+        self.frame = UIScreen.main.bounds  
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    //setuplayout
-    
+        
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
         delegate?.pauseGame()
     }
     
     //MARK: - Layout Subviews
     func setupLayout(){
-    
-        
-        
-      NSLayoutConstraint.activate([
-          ///Constraints - container
-          //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
-          container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
-          container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-          container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-                      
-          ///Constraints - song view
-          song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
-          song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-          song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-          song.topAnchor.constraint(equalTo: container.topAnchor),
-         
-          ///Constraints - progress view
-          progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
-          progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
-          progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
-          progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
-          
-    
-      ])
-        
+
+        NSLayoutConstraint.activate([
+            ///Constraints - container
+            //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
+            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
+            container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            
+            ///Constraints - song view
+            song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
+            song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            song.topAnchor.constraint(equalTo: container.topAnchor),
+            
+            ///Constraints - progress view
+            progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
+            progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
+            progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
+            progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+        ])
     }
     
     
@@ -109,14 +107,12 @@ class GameDisplayView: UIView {
         let topPadding = window?.safeAreaInsets.top
         
         container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!).isActive = true
-      //  previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
-
-      //  delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
+        //  previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
         
-
+        //  delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
     }
     
-  
+    
     //MARK: - Hierarchy
     func setupHiararchy(){
         self.addSubview(container)

@@ -11,7 +11,7 @@ import UIKit
 extension GameViewController {
     
     func initGameDisplayView(){
-        gameDisplayView = GameDisplayView(frame: self.mainView.frame)
+        gameDisplayView = GameDisplayView(frame: self.mainView.frame, level: level)
         gameDisplayView.delegate = self
         self.mainView.addSubview(gameDisplayView)
         gameDisplayView.backgroundColor = .clear
