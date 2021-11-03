@@ -12,18 +12,11 @@ import SpriteKit
 class GameView: SKView {
     
     let faceTrackingView: FaceTrackingController
-    let displayView: GameDisplayView
-    let cameraView: GameCameraDisplayView
     
     init(frame: CGRect, faceTrackingView: FaceTrackingController){
         self.faceTrackingView = faceTrackingView
-        self.cameraView = GameCameraDisplayView(faceTrackingView: self.faceTrackingView)
-        self.displayView = GameDisplayView()
         
         super.init(frame: frame)
-        
-        self.addSubview(displayView)
-        self.addSubview(cameraView)
         
     }
     

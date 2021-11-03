@@ -90,8 +90,8 @@ class FaceExpressionNode: SKNode {
         body.friction = 0
         body.linearDamping = 0
         
-        body.categoryBitMask = GameSceneCattegoryTypes.tileOrb.rawValue
-        body.contactTestBitMask = GameSceneCattegoryTypes.faceExpression.rawValue
+        body.categoryBitMask = GameSceneCattegoryTypes.faceExpression.rawValue
+        body.contactTestBitMask = GameSceneCattegoryTypes.tileOrb.rawValue
         body.collisionBitMask = 0
         
         self.physicsBody = body

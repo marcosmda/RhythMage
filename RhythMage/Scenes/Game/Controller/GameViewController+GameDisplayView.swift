@@ -14,6 +14,6 @@ extension GameViewController {
         gameDisplayView = GameDisplayView(frame: self.mainView.frame)
         gameDisplayView.delegate = self
         self.mainView.addSubview(gameDisplayView)
-        
+        gameDisplayView.backgroundColor = .clear
     }
 }

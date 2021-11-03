@@ -25,13 +25,11 @@ extension GameScene {
         let width = UIScreen.main.bounds.width
         switch tileInteraction.xPosition {
         case ScreenScrollArea.left.rawValue:
-            tile.position.x = width/8
-        case ScreenScrollArea.middleLeft.rawValue:
-            tile.position.x = 3*width/8
-        case ScreenScrollArea.middleRight.rawValue:
-            tile.position.x = 5*width/8
+            tile.position.x = width/6
+        case ScreenScrollArea.middle.rawValue:
+            tile.position.x = 3*width/6
         case ScreenScrollArea.right.rawValue:
-            tile.position.x = 7*width/8
+            tile.position.x = 5*width/6
         default:
             tile.position.x = width/2
         }

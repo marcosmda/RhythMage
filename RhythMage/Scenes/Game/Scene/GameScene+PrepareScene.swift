@@ -13,7 +13,7 @@ extension GameScene {
     func setupScene() {
         addChildren()
         setupPositions()
-        self.backgroundColor = .label
+        self.backgroundColor = .clear
     }
     
     func addChildren() {

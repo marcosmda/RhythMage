@@ -45,8 +45,6 @@ class SummaryImageViewCollection: UIView {
             view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9).isActive = true
             view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.67).isActive = true
         }
-        
-        
     }
     
     func setupLayout() {
@@ -73,11 +71,7 @@ class SummaryImageViewCollection: UIView {
             } else {
                 summaryViews[2].trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
             }
-            
-            
         }
-        
     }
     
-
 }

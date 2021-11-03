@@ -88,9 +88,7 @@ class RecordingScene: SKScene {
         case ScreenAreaButtons.leftButton.rawValue:
             createTile(area: .left)
         case ScreenAreaButtons.middleLeftButton.rawValue:
-            createTile(area: .middleLeft)
-        case ScreenAreaButtons.middleRightButton.rawValue:
-            createTile(area: .middleRight)
+            createTile(area: .middle)
         case ScreenAreaButtons.rightButton.rawValue:
             createTile(area: .right)
         case ScreenAreaButtons.pauseButton.rawValue:
