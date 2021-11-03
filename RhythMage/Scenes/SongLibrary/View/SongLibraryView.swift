@@ -59,7 +59,7 @@ class SongLibraryView: UIView {
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        gradientView.setupGradient(with: self)
+        gradientView.setupCircleBackgroundBlur()
     }
     
     lazy var buttonBack: UIBarButtonItem = {
@@ -76,9 +76,7 @@ class SongLibraryView: UIView {
     
     
     func didPlaySong(){
-        
         currentPlayingCell?.song.togglePlaySong()
-        
     }
     
     @objc func backButtonAction(_sender: UIBarButtonItem) {
