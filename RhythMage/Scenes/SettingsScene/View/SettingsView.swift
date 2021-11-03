@@ -30,6 +30,19 @@ class SettingsView: UIView{
         return barButtonItem
     }()
     
+    ///Create a title of the section of the terms of use to appear in the nav bar
+    let titleNavBar: DynamicLabel = {
+        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = .inikaBold(ofSize: 25)
+        label.contentMode = .scaleAspectFit
+        label.text = "Settings".uppercased()
+        return label
+    }()
+    
     ///Create the table view of the buttons bellow the haptic button
     let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)

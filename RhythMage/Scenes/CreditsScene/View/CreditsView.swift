@@ -37,6 +37,19 @@ class CreditsView: UIView{
         return barButtonItem
     }()
     
+    ///Create a title of the section of the terms of use to appear in the nav bar
+    let titleNavBar: DynamicLabel = {
+        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = .inikaBold(ofSize: 25)
+        label.contentMode = .scaleAspectFit
+        label.text = "CREDITS".uppercased()
+        return label
+    }()
+    
     let creditsText: DynamicLabel = {
         let label1 = DynamicLabel()
         label1.translatesAutoresizingMaskIntoConstraints = false
