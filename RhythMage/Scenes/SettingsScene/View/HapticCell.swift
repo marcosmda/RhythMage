@@ -54,12 +54,13 @@ class HapticCell: UITableViewCell{
     }()
     
     ///Create the subtitle of the rectangle view with the hapticSwitch
-    lazy var settingsDescription: UILabel = {
-        let label4 = UILabel(frame: .zero)
+    lazy var settingsDescription: DynamicLabel = {
+        let label4 = DynamicLabel()
         label4.translatesAutoresizingMaskIntoConstraints = false
         label4.text = "Enables a more immersive experience for RhythMage."
         label4.textColor = .secondary
-        label4.numberOfLines = 0
+        label4.numberOfLines = 1
+        //label4.lineBreakMode = .byClipping
         label4.textAlignment = .left
         label4.font = .inika(ofSize: 15)
         return label4
@@ -119,7 +120,7 @@ class HapticCell: UITableViewCell{
         
         settingsDescription.topAnchor.constraint(equalTo: titleText.bottomAnchor),
         settingsDescription.bottomAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: -10),
-        settingsDescription.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor),
+        settingsDescription.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
         settingsDescription.leadingAnchor.constraint(equalTo: rectangle.leadingAnchor, constant: 20),
         
         ])

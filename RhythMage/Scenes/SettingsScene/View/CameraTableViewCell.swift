@@ -68,10 +68,11 @@ class CameraTableViewCell: UITableViewCell {
             cameraImage.topAnchor.constraint(equalTo: self.topAnchor),
             cameraImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             cameraImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            cameraImage.heightAnchor.constraint(equalToConstant: 180),
             //cameraImage.bottomAnchor.constraint(equalTo: explanationCameraText.topAnchor),
 
             explanationCameraText.topAnchor.constraint(equalTo: cameraImage.bottomAnchor),
-            explanationCameraText.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            //explanationCameraText.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             explanationCameraText.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             explanationCameraText.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
