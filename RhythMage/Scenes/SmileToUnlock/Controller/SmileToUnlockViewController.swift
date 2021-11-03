@@ -36,9 +36,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.audioController = audioController
         self.authenticationController = authenticationController
         super.init(mainView: SmileToUnlockView())
-        mainView.addSubview(faceTrackingController)
-        
-
+        mainView.delegate = self
+        mainView.insertSubview(faceTrackingController, at: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -48,7 +47,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.delegate = self
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.rightBarButtonItem = self.mainView.buttonSettings
         self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton

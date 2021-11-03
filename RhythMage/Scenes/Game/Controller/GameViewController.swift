@@ -32,7 +32,7 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
     let factory: Factory
     
     /// Refers to the velocity of the Tiles scrolling
-     let scrollVelocity: Double = 400
+     let scrollVelocity: Double = 300
      let startDelayTime: Double = 3
      var timer: Timer?
      var remainingTime: Double = 0

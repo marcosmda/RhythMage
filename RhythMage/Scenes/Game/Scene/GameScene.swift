@@ -47,15 +47,13 @@ class GameScene: SKScene {
     
     var tileOrbs = [TileOrbNode]()
     var hashes = [Int]()
-    var score: Double = 0 {
-        didSet {
-            gameDelegate?.updatedScore(score: score.rounded())
-        }
-    }
+    var score: Double = 0 
     var gameDelegate: GameSceneDelegate?
     
     var currentNode: SKNode?
     var tileKiteContactStartTime: Double = 0
+    //The array of tiles that are currently on contact, containing the hash of each one and teh node
+    var tilesInContact = [Int: TileOrbNode]()
     
     //MARK: - Initialization
     override init(size: CGSize) {

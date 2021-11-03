@@ -341,6 +341,11 @@ class SongContainerView:UIView {
         }
     }
     
+    func stopSong() {
+        player.stop()
+        libraryDelegate?.didStopSong()
+    }
+    
     @objc func togglePlaySong(){
         libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
         isPlaying.toggle()
