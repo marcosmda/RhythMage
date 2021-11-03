@@ -74,6 +74,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.audioController.pause()
+    }
+    
     @objc private func setFaceTrackingController() {
         faceTrackingController.initialConfiguration()
         faceTrackingController.isEnabled = true
@@ -98,7 +102,7 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(self.factory.createGameScene(), animated: true)
                 self.faceTrackingController.kill()
-                self.audioController.pause()
+                
             }
         }
     }
@@ -118,7 +122,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     func onLeaderboardButtonPush() {
         authenticationController.openLeaderboard(with: self)
-        self.audioController.pause()
+       
     }
     
     func updateProgressBar() {
@@ -128,13 +132,13 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     @objc func onSettingsButtonPush() {
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
-        self.audioController.pause()
+
         
     }
     
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
-        self.audioController.pause()
+        
         
     }
     
