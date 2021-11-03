@@ -29,18 +29,24 @@ extension GameViewController: FaceTrackingControllerDelegate {
             for tile in mainScene.tilesInContact {
                 if (tile.value.tileInteraction.xPosition == ScreenScrollArea.left.rawValue) {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
+                    mainScene.leftFaceExpression.runHitAnimation()
+                    tile.value.runHitAnimation()
                 }
             }
         case .jawOpen:
             for tile in mainScene.tilesInContact {
                 if (tile.value.tileInteraction.xPosition == ScreenScrollArea.middle.rawValue) {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
+                    mainScene.middleFaceExpression.runHitAnimation()
+                    tile.value.runHitAnimation()
                 }
             }
         case .mouthLeft: //Sim, é invertido
             for tile in mainScene.tilesInContact {
                 if (tile.value.tileInteraction.xPosition == ScreenScrollArea.right.rawValue) {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
+                    mainScene.rightFaceExpression.runHitAnimation()
+                    tile.value.runHitAnimation()
                 }
             }
         default:

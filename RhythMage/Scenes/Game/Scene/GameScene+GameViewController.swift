@@ -36,6 +36,7 @@ extension GameScene {
         
         tileOrbs.append(tile)
         hashes.append(tile.physicsBody!.hash)
+        tile.setAnimations(screenCenter: screenCenter.x, mainOrbRadius: mainOrb.radius)
         self.addChild(tile)
     }
     

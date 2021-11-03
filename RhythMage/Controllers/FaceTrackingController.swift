@@ -44,7 +44,7 @@ class FaceTrackingController: UIView {
     var timeSinceLastDelegateHeldUpdate: Double = 0
     
     /// The factor value that a face must have to trigger as predominant.
-    var factorValue: Float = 0.5
+    var factorValue: Float = 0.4
     
     /// The value describing if the delegate is supposed to be called for every face change. If true might consume more of the processor.
     var updateForEveryFaceChange: Bool = true
