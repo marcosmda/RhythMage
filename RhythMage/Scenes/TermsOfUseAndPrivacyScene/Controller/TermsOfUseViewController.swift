@@ -57,8 +57,7 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
             let mail = MFMailComposeViewController()
             mail.setToRecipients(["rhythmages.contato@gmail.com"])
             mail.setSubject((NSLocalizedString("Report Issue:", comment: "")))
-            mail.setMessageBody("<html><strong><p>This is your message:</p></strong>Bug report, question, feedback, feature request or other\n\n<strong><p>Subject:</p></strong>\n\n\n<strong><p>Full description:</p></strong>\n\nObservation:  You can include files (documents, screen recordings, screenshots, crash logs, etc.) by uploading them to any third-party file-sharing service, such as Dropbox, Google Drive, Microsoft OneDrive or similar, and pasting the URLs above. Please make sure the correct sharing permissions have been set. All files sent to us are 100% confidential.</html>"
-                                , isHTML: true)
+            mail.setMessageBody("<html><strong><p>This is your message:</p></strong><br><br><strong><p>Subject:</p></strong>\n<br>\n<br>\n<strong><p>Full description:</p></strong>\n<br>\n<br><p><strong>Observations:</p></strong>\n\n<ul><li>Topics can be: Bug report, question, feedback, feature request or other.</li>\n<li>Topics can be: Bug report, question, feedback, feature request or other.</li>\n<li>Please make sure the correct sharing permissions have been set.\n<li>All files sent to us are 100% confidential.</li></html>",isHTML: true)
             
             
             present(mail, animated: true)
