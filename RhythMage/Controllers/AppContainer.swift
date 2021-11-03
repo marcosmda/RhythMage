@@ -8,13 +8,20 @@
 import Foundation
 import RealmSwift
 import UIKit
+import SwiftUI
+
+struct userState{
+    let skipped = "Skipped"
+    let firstTime = "First"
+}
 
 class AppContainer {
     let realm = try! Realm()
     let audioController = AudioController()
+    @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
+    lazy var navigationController = didSkip ? MainNavigationController(rootViewController: self.createSmileToUnlockScene()) :MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
     let authenticatinController = AuthenticationController()
     
     init() {
@@ -86,7 +93,7 @@ protocol SmileToUnlockFactory{
 
 extension AppContainer:SmileToUnlockFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
-        return SmileToUnlockController(factory: self, authenticationController: authenticatinController)
+        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController)
     }
 }
 
