@@ -11,6 +11,7 @@ import AVFoundation
 import GameKit
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
+    
     //MARK: Injected Properties
     typealias Factory = SongLibrarySceneFactory & SettingsSceneFactory & GameSceneFactory
     let factory: Factory
@@ -45,7 +46,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.delegate = self
-        self.navigationItem.leftBarButtonItem = self.mainView.buttonSettings
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.rightBarButtonItem = self.mainView.buttonSettings
+        self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
         if let navigation = navigationController {
             authenticationController.authenticateGKLocalPlayer(navigationController: navigation)
         }
@@ -59,12 +62,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        GKAccessPoint.shared.isActive = true
         Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        GKAccessPoint.shared.isActive = false
     }
     
     @objc private func setFaceTrackingController() {
@@ -122,6 +120,10 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
 
 //MARK: - SmileToUnlockDelegate
 extension SmileToUnlockController: SmileToUnlockDelegate {
+    
+    func onLeaderboardButtonPush() {
+        authenticationController.openLeaderboard(with: self)
+    }
     
     func updateProgressBar() {
         //self.mainView.progressView.setProgress(Float(self.progressTime), animated: true)

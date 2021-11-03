@@ -20,19 +20,6 @@ class GameDisplayView: UIView {
         return image
     }()
     
-    ///user camera view
-    var previewCameraLayer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 30
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 5
-        view.clipsToBounds = true
-        view.setContentHuggingPriority(.defaultLow, for: .vertical)
-        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return view
-    }()
-    
     ///progress bar
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
@@ -93,25 +80,23 @@ class GameDisplayView: UIView {
         
       NSLayoutConstraint.activate([
           ///Constraints - container
-          container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.66),
+          //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
           container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
           container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+          container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
                       
           ///Constraints - song view
           song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
           song.leadingAnchor.constraint(equalTo: container.leadingAnchor),
           song.trailingAnchor.constraint(equalTo: container.trailingAnchor),
           song.topAnchor.constraint(equalTo: container.topAnchor),
-          
+         
           ///Constraints - progress view
           progressView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.9),
           progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.13),
           progressView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10),
           progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
           
-          previewCameraLayer.trailingAnchor.constraint(equalTo: container.leadingAnchor, constant: -10),
-          previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
-          previewCameraLayer.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
     
       ])
         
@@ -124,9 +109,9 @@ class GameDisplayView: UIView {
         let topPadding = window?.safeAreaInsets.top
         
         container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!).isActive = true
-        previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
+      //  previewCameraLayer.topAnchor.constraint(equalTo: self.topAnchor, constant: topPadding!).isActive = true
 
-        delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
+      //  delegate?.updateCamera(cameraView: previewCameraLayer) //TODO: estranho
         
 
     }
@@ -137,7 +122,6 @@ class GameDisplayView: UIView {
         self.addSubview(container)
         container.addSubview(progressView)
         container.addSubview(song)
-        self.addSubview(previewCameraLayer)
         self.addSubview(hitBarImage)
     }
     

@@ -74,9 +74,10 @@ class FaceTrackingController: UIView {
     
     //MARK: - Initialization
     init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         initialConfiguration()
         sceneView?.delegate = self
+        sceneView?.alpha = 0.3
     }
     
     required init?(coder: NSCoder) {
@@ -85,7 +86,7 @@ class FaceTrackingController: UIView {
     
     //MARK: - Configuration Methods
     func initialConfiguration() {
-        guard ARFaceTrackingConfiguration.isSupported else { fatalError("iPhone X required") }
+        guard ARFaceTrackingConfiguration.isSupported else { dump("iPhone X required"); return;}
         let arScene = ARSCNView(frame: self.frame)
         let configuration = ARFaceTrackingConfiguration()
         
@@ -97,9 +98,9 @@ class FaceTrackingController: UIView {
         arScene.automaticallyUpdatesLighting = true
         arScene.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         arScene.delegate = self
-        arScene.isHidden = true
+        arScene.isHidden = true 
         sceneView = arScene
-        guard sceneView != nil else {fatalError("Could not create a Face Tracking Controller")}
+        guard sceneView != nil else {dump("Could not create a Face Tracking Controller"); return;}
         addSubview(sceneView!)
     }
     

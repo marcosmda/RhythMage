@@ -57,12 +57,11 @@ class HapticCell: UITableViewCell{
     lazy var settingsDescription: UILabel = {
         let label4 = UILabel(frame: .zero)
         label4.translatesAutoresizingMaskIntoConstraints = false
-        label4.text = "Settings Description"
+        label4.text = "Enables a more immersive experience for RhythMage."
         label4.textColor = .secondary
         label4.numberOfLines = 0
         label4.textAlignment = .left
         label4.font = .inika(ofSize: 15)
-        label4.contentMode = .scaleAspectFill
         return label4
     }()
     
@@ -81,8 +80,6 @@ class HapticCell: UITableViewCell{
         self.backgroundColor = .clear
         contentView.addSubview(rectangle)
         
-              
-        
     }
     
     required init?(coder: NSCoder) {
@@ -95,10 +92,10 @@ class HapticCell: UITableViewCell{
         NSLayoutConstraint.activate([
             rectangle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             rectangle.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-           rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            rectangle.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             rectangle.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-])
+        ])
         
         
         ///Add elements to the rectangle view
@@ -122,7 +119,7 @@ class HapticCell: UITableViewCell{
         
         settingsDescription.topAnchor.constraint(equalTo: titleText.bottomAnchor),
         settingsDescription.bottomAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: -10),
-        settingsDescription.trailingAnchor.constraint(equalTo: rectangle.trailingAnchor),
+        settingsDescription.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor),
         settingsDescription.leadingAnchor.constraint(equalTo: rectangle.leadingAnchor, constant: 20),
         
         ])

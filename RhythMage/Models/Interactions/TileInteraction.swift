@@ -11,9 +11,8 @@ import RealmSwift
 /// The X area of teh screen where the interactions will scroll.
 enum ScreenScrollArea: Int {
     case left = 0
-    case middleLeft = 1
-    case middleRight = 2
-    case right = 3
+    case middle = 1
+    case right = 2
 }
 
 class TileInteraction: InteractionProtocol {

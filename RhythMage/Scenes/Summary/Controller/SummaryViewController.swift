@@ -22,12 +22,20 @@ class SummaryViewController: BaseViewController<SummaryView> {
     typealias Factory = SummaryFactory & SongLibrarySceneFactory
     let factory: Factory
     
+    private let score: Int
+    private let level: Level
+    private let images: [UIImage]
+    
+    
     //MARK: - Initializers
-    init(factory:Factory){
+    init(factory:Factory, score: Int, level: Level, images: [UIImage]){
         self.factory = factory
-        let view = SummaryView(with: ["UserPhoto-Test", "UserPhoto-Test", "UserPhoto-Test"], points: 28456, message: "Magic in the air!")
+        self.score = score
+        self.level = level
+        self.images = images
+        let view = SummaryView(with: images, points: score, message: "Magic in the air!")
         super.init(mainView: view)
-        headerView = SummaryHeaderView(frame: .zero, songText: songMock.models[0].songName, artistText: songMock.models[0].artistName)
+        headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
     }
     
@@ -41,27 +49,39 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationItem.leftBarButtonItem =  self.mainView.rankingButton
         self.navigationItem.rightBarButtonItem = self.mainView.shareButton
         setupGameKit()
-    }
-    
-    override func viewDidLayoutSubviews() {
         self.navigationItem.titleView = headerView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
+        self.headerView?.layer.masksToBounds = false
+    }
+    
+    private func submitScoreToLB() {
+        // Submitting to a specific occurrence of a recurring leaderboard
+        GKLeaderboard.loadLeaderboards(IDs:["rhythmage.bestscores"]) { (fetchedLBs, error) in
+            if let lb = fetchedLBs?.first {
+                lb.submitScore(self.score, context: 0, player: GKLocalPlayer.local) { error in
+               }
+            }
+        }
+    }
 }
 
 extension SummaryViewController: SummaryDelegate {
     
     func goToMainMenu() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popToViewController(ofClass: SmileToUnlockController.self, animated: true)
     }
     
     func goToSongLibrary() {
-        print("eu")
         self.navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
     }
     
     func goToLeaderboards() {
-        let viewController = GKGameCenterViewController(leaderboardID: "1.000",
+        
+        let viewController = GKGameCenterViewController(leaderboardID: "rhythmage.bestscores",
                                                         playerScope: .global,
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self
@@ -112,6 +132,7 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
                 // Disable in game communication UI.
             }
             
+            self.submitScoreToLB()
             GKAccessPoint.shared.isActive = false
             
         }

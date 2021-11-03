@@ -12,6 +12,7 @@ import GameplayKit
 
 protocol SmileToUnlockDelegate {
     func onSongLibraryButtonPush()
+    func onLeaderboardButtonPush()
     func onSettingsButtonPush()
     func updateProgressBar()
 }
@@ -141,7 +142,7 @@ class SmileToUnlockView: UIView {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "Mage")
+        imageView.image = UIImage(named: "mageWithOrbs")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -153,6 +154,18 @@ class SmileToUnlockView: UIView {
         button.tintColor = .label
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(onSettingsButtonPush), for: .touchUpInside)
+        button.clipsToBounds = true
+        let barButtonItem = UIBarButtonItem(customView: button)
+        return barButtonItem
+    }()
+    
+    lazy var leaderboardButton: UIBarButtonItem = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.backgroundColor = .white
+        button.setImage(UIImage(named: "podium"), for: .normal)
+        button.tintColor = .label
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(onLeaderboardLibraryButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
@@ -204,7 +217,7 @@ class SmileToUnlockView: UIView {
         bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
         bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
+        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
         mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
@@ -246,6 +259,10 @@ class SmileToUnlockView: UIView {
     
     @objc func onSongLibraryButtonPush(){
         delegate?.onSongLibraryButtonPush()
+    }
+    
+    @objc func onLeaderboardLibraryButtonPush() {
+        delegate?.onLeaderboardButtonPush()
     }
     
     func handleAutoResizingMasks() {

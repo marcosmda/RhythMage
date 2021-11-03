@@ -12,6 +12,7 @@ import AVFoundation
 protocol TutorialViewDelegate {
     func updateSubtitles(currentTime: Double)
     func didEndVideo()
+    func didTapSkipButton()
 }
 
 class TutorialView: UIView {
@@ -54,6 +55,29 @@ class TutorialView: UIView {
         return button
     }()
     
+    lazy var skipTutorialButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        config.title
+        config.title = NSLocalizedString("Skip ", comment: "Skip Tutorial Button")
+        config.image = UIImage(systemName: "chevron.forward.2",
+                               withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
+        config.imagePlacement = .trailing
+        config.imagePadding = 8.0
+        config.baseBackgroundColor = .terciary.withAlphaComponent(0.5)
+        config.baseForegroundColor = .white
+        config.cornerStyle = .capsule
+        //button.setTitle(, for: .normal)
+        //button.setImage(UIImage(systemName: "chevron.forward.2"), for: .normal)
+        //button.tintColor = .white
+        //button.layer.cornerRadius = 20
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = config
+        button.addTarget(self, action: #selector(onSkipOption), for: .touchUpInside)
+        //button.clipsToBounds = true
+        return button
+    }()
+    
     @objc func onSoundOption(_ sender: UIButton) {
         isSoundOn.toggle()
         
@@ -73,11 +97,18 @@ class TutorialView: UIView {
         }
     }
     
+    @objc func onSkipOption(_ sender: UIButton) {
+        player?.pause()
+        player = nil
+        videoDelegate?.didTapSkipButton()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(backgroundSubtitleView)
         drawBlurBackground()
         addSubview(soundOption)
+        addSubview(skipTutorialButton)
         backgroundSubtitleView.addSubview(subtitle)
         setupLayout()
         
@@ -100,6 +131,10 @@ class TutorialView: UIView {
         soundOption.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
         soundOption.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         soundOption.heightAnchor.constraint(equalTo: soundOption.widthAnchor).isActive = true
+        
+        //MARK: - Skip Tutorial
+        skipTutorialButton.centerYAnchor.constraint(equalTo: soundOption.centerYAnchor).isActive = true
+        skipTutorialButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
         
         //MARK: - Background Subtitle
         backgroundSubtitleView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor).isActive = true

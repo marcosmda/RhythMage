@@ -9,7 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import RealmSwift
-
+/*
 class RecordingViewController: BaseGameViewController<RecordingScene> {
     
     //MARK: - Properties
@@ -60,4 +60,5 @@ extension RecordingViewController: RecordingSceneDelegate {
     func pauseButtonTouched() {
         audioController.toggle()
     }
-}
+     
+}*/

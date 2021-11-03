@@ -14,7 +14,7 @@ class AppContainer {
     let audioController = AudioController()
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = MainNavigationController(rootViewController: self.createSmileToUnlockScene())
+    lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
     let authenticatinController = AuthenticationController()
     
     init() {
@@ -63,7 +63,7 @@ extension AppContainer: LoadingSceneFactory {
         return LoadingScreenViewController(authenticationController: authenticatinController)
     }
 }
-
+/*
 //MARK: - RecordingScene
 protocol RecordingSceneFactory {
     /// Creates an instance of RecordingViewController to be used
@@ -76,7 +76,7 @@ extension AppContainer: RecordingSceneFactory {
         return RecordingViewController(realm: realm, audioController: self.audioController)
     }
 }
-
+*/
 //MARK: - SmileToUnlock
 protocol SmileToUnlockFactory{
     /// Creates an instance of SmileToUnlockViewController to be used
@@ -107,12 +107,12 @@ extension AppContainer:SmileToResumeFactory{
 protocol SummaryFactory {
     /// Creates an instance of SummaryViewController to be used
     /// - Returns: An instance of SummaryViewController
-    func createSummaryScene() -> SummaryViewController
+    func createSummaryScene(score: Int, level: Level, images: [UIImage]) -> SummaryViewController
 }
 
 extension AppContainer: SummaryFactory {
-    func createSummaryScene() -> SummaryViewController {
-        return SummaryViewController(factory: self)
+    func createSummaryScene(score: Int, level: Level, images: [UIImage]) -> SummaryViewController {
+        return SummaryViewController(factory: self, score: score, level: level, images: images)
     }
 }
 
