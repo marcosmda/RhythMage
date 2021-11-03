@@ -77,7 +77,6 @@ class FaceExpressionNode: SKNode {
         }
         
         self.addChild(circle)
-     
     }
     
     func addBody() {

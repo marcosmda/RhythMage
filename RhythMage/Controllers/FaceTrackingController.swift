@@ -86,7 +86,7 @@ class FaceTrackingController: UIView {
     
     //MARK: - Configuration Methods
     func initialConfiguration() {
-        guard ARFaceTrackingConfiguration.isSupported else { fatalError("iPhone X required") }
+        guard ARFaceTrackingConfiguration.isSupported else { dump("iPhone X required"); return;}
         let arScene = ARSCNView(frame: self.frame)
         let configuration = ARFaceTrackingConfiguration()
         
@@ -100,7 +100,7 @@ class FaceTrackingController: UIView {
         arScene.delegate = self
         arScene.isHidden = true 
         sceneView = arScene
-        guard sceneView != nil else {fatalError("Could not create a Face Tracking Controller")}
+        guard sceneView != nil else {dump("Could not create a Face Tracking Controller"); return;}
         addSubview(sceneView!)
     }
     
