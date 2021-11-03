@@ -11,7 +11,6 @@ import UIKit
 
 class CreditsSceneViewController: BaseViewController<CreditsView>, UIGestureRecognizerDelegate, CreditsSceneDelegate{
     
-    var ableToPlay = false
 
     typealias Factory = SettingsSceneFactory
     let factory: Factory
@@ -27,16 +26,7 @@ class CreditsSceneViewController: BaseViewController<CreditsView>, UIGestureReco
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ableToPlay = true
-        
-        let bool = true
-        if bool {
-            self.navigationItem.title = "CREDITS"
-            let attributes = [NSAttributedString.Key.font: UIFont(name: "Inika-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.white]
-            self.navigationController?.navigationBar.titleTextAttributes = attributes
-            
-        }
-        
+        self.navigationItem.titleView = mainView.titleNavBar
         
 }
     
