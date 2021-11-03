@@ -150,16 +150,18 @@ class SmileToResumeView: UIView{
         
         handleAutoResizingMasks()
        
-        gradientView.setupGradient(with: self.container)
-
+       // gradientView.setupGradient(with: self.container)
+        gradientView.setupCircleBackgroundBlur()
     }
     
     func setupLayout(){
         ///Constraints - container
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
+        //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
         container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.27).isActive = true
+        container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
+        container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
         
         ///Constraints - smile to resume label
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
