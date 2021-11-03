@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecognizerDelegate{
     //MARK: Injected Properties
-    typealias Factory = SmileToUnlockFactory & CreditsSceneFactory
+    typealias Factory = SmileToUnlockFactory & TermsOfUseSceneFactory & CreditsSceneFactory
     let factory: Factory
     let authenticationController: AuthenticationController
     
@@ -155,6 +155,7 @@ extension SettingsViewController: UITableViewDelegate{
             switch indexPath.row{
             case 0:
                 print("Terms Of Use")
+                self.navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
             case 1:
                 print("Credits")
                 self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
