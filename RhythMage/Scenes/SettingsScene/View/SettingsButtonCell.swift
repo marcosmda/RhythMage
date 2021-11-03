@@ -31,6 +31,7 @@ class SettingsButtonCell:  UITableViewCell{
         label.font = .inikaBold(ofSize: 18)
         label.contentMode = .scaleAspectFit
         label.sizeToFit()
+        label.numberOfLines = 0
         //label.fitTextToBounds()
         //label.minimumScaleFactor = 0.1
         return label
