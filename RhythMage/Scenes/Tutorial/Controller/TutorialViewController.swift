@@ -63,6 +63,7 @@ class TutorialViewController: BaseViewController<TutorialView> {
 extension TutorialViewController: TutorialViewDelegate {
    
     func didTapSkipButton() {
+        UserDefaults.standard.set(true, forKey: "Skip")
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
