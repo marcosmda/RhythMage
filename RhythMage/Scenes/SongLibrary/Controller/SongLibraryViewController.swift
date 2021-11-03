@@ -15,6 +15,8 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     //MARK: Injected Properties
     let authenticationController: AuthenticationController
     
+    private var didStoppedSong: Bool = false
+    
     //MARK: - Properties
     var models = [
         Level(id: "11", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Sweet but Psycho", artist: "Ava Max"),
@@ -207,4 +209,8 @@ extension SongLibraryViewController: SongLibraryViewDelegate{
                 }
             }
         }
+    
+    func didStopSong() {
+        didStoppedSong = true
+    }
 }
