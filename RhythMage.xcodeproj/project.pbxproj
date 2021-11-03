@@ -23,6 +23,7 @@
 		8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */; };
 		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
 		8D4A63C1272725C4009AF315 /* FaceTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */; };
+		8D4DD564273303C90006E90F /* GameScene+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DD563273303C90006E90F /* GameScene+Score.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -137,6 +138,7 @@
 		8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "fairy-tale-waltz.mp3"; sourceTree = "<group>"; };
 		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingController.swift; sourceTree = "<group>"; };
+		8D4DD563273303C90006E90F /* GameScene+Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Score.swift"; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 			children = (
 				8D0984182717522C007477F3 /* GameScene.swift */,
 				F1508F8B272C8DC800C2C5F6 /* GameScene+ContactDelegate.swift */,
+				8D4DD563273303C90006E90F /* GameScene+Score.swift */,
 				F1508F8D272C8E9F00C2C5F6 /* GameScene+Touch.swift */,
 				F1508F8F272C8F7B00C2C5F6 /* GameScene+PrepareScene.swift */,
 				F1508F91272C901B00C2C5F6 /* GameScene+GameViewController.swift */,
@@ -902,6 +905,7 @@
 				DB1A4106272321D300F7EDD1 /* SmileToResumeView.swift in Sources */,
 				F1587EFC27232EB300A2DC09 /* SettingsButtonCell.swift in Sources */,
 				F18C285A27288B8A004E5075 /* TermsOfUseCellModel.swift in Sources */,
+				8D4DD564273303C90006E90F /* GameScene+Score.swift in Sources */,
 				F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */,
 				8DA09D89270B7CA4000B43C8 /* InteractionProtocol.swift in Sources */,
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,

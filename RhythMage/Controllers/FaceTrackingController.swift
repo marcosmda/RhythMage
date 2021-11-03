@@ -47,7 +47,7 @@ class FaceTrackingController: UIView {
     var factorValue: Float = 0.5
     
     /// The value describing if the delegate is supposed to be called for every face change. If true might consume more of the processor.
-    var updateForEveryFaceChange: Bool = false
+    var updateForEveryFaceChange: Bool = true
     
     /// The array of delegates that must receive updates.
     var delegates = [FaceTrackingControllerDelegate]()
@@ -77,7 +77,6 @@ class FaceTrackingController: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         initialConfiguration()
         sceneView?.delegate = self
-        sceneView?.alpha = 0.3
     }
     
     required init?(coder: NSCoder) {
@@ -102,6 +101,7 @@ class FaceTrackingController: UIView {
         sceneView = arScene
         guard sceneView != nil else {dump("Could not create a Face Tracking Controller"); return;}
         addSubview(sceneView!)
+        sceneView?.alpha = 0.3
     }
     
     //MARK: - Set Methods
@@ -164,6 +164,9 @@ extension FaceTrackingController: ARSCNViewDelegate {
                     highestFactor = faceFactor
                     newPredominantFace = face
                 }
+            }
+            if highestFactor < factorValue {
+                predominantFace = nil
             }
             
             if highestFactor < factorValue && timer != nil{
