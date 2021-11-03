@@ -48,27 +48,16 @@ class SmileToUnlockView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //Setting the labels of the view
-    let nameGameTitle: DynamicLabel = {
-        let label1 = DynamicLabel()
-        label1.translatesAutoresizingMaskIntoConstraints = false
-        label1.textColor = .white
-        label1.text = "RHYTH\nMAGE"
-        label1.shadowColor = .primary
-        label1.layer.shadowOffset = CGSize(width: 0, height: 5)
-        label1.layer.shadowOpacity = 0.5
-        label1.layer.shadowRadius = 20
-        label1.numberOfLines = 2
-        label1.textAlignment = .center
-        label1.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        if let configuration = UIFont(name: "Inika-Bold", size: 75)?.fontDescriptor
-        {
-            label1.font = UIFontMetrics.default.scaledFont(for: UIFont(descriptor: configuration, size: 75))
-        }
-        label1.contentMode = .scaleAspectFit
-        label1.adjustsFontSizeToFitWidth = true
-        return label1
+
+    //Setting the image of the game
+    let nameGameTitle: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "Logo")
+        imageView.contentMode = .scaleAspectFit
+        imageView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        return imageView
     }()
     
     
@@ -78,8 +67,8 @@ class SmileToUnlockView: UIView {
         label2.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.textColor = .white
-        label2.text = (songPlaying ?? "Song Playing: Happier Than Ever - Billie Eilish")
-        label2.numberOfLines = 2
+        label2.text = (songPlaying ?? "Song Playing: Fairytale Waltz - Avaliable at AudioJungle maestro-misha2012.")
+        label2.numberOfLines = 0
         label2.textAlignment = .center
         label2.font = .inikaBold(ofSize: 18)
         label2.contentMode = .scaleAspectFit
@@ -144,6 +133,7 @@ class SmileToUnlockView: UIView {
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "mageWithOrbs")
         imageView.contentMode = .scaleAspectFit
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return imageView
     }()
     
@@ -203,7 +193,7 @@ class SmileToUnlockView: UIView {
     func setupLayout() {
         handleAutoResizingMasks()
         
-        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
+        nameGameTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
         nameGameTitle.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
         nameGameTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
