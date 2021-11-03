@@ -123,7 +123,7 @@ extension SettingsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section{
         case 0:
-            return 80
+            return 100
         case 1:
             return 60
             
