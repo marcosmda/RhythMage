@@ -178,9 +178,7 @@ class SmileToUnlockView: UIView {
         button3.setImage(UIImage(systemName: "music.note"), for: .normal)
         button3.tintColor = .label
         button3.setTitle(songText.uppercased(), for: .normal)
-        button3.contentVerticalAlignment = .center
         button3.setTitleColor(.label, for: .normal)
-        //TODO: Confirm the colors
         button3.titleLabel!.font = .inikaBold(ofSize: 20)
         button3.layer.cornerRadius = 20
         button3.addTarget(self, action: #selector(onSongLibraryButtonPush), for: .touchUpInside)
