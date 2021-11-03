@@ -62,6 +62,7 @@ class HapticCell: UITableViewCell{
         label4.numberOfLines = 0
         label4.lineBreakMode = .byClipping
         label4.textAlignment = .left
+        label4.contentMode = .scaleAspectFit
         label4.font = .inika(ofSize: 15)
         return label4
     }()
