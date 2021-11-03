@@ -154,13 +154,13 @@ extension SongLibraryViewController: UITableViewDelegate{
                 return UITableViewCell()
             }
             cell.song.libraryDelegate = self
-            cell.song.configure(with: models[indexPath.section], and: user)
+            cell.song.configure(with: models[indexPath.section], userModel: user)
             return cell
         case false:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryLockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryLockedSongCell else {
                 return UITableViewCell()
             }
-            cell.song.configure(with: models[indexPath.section], and: user)
+            cell.song.configure(with: models[indexPath.section], userModel: user)
             return cell
         }
     }
