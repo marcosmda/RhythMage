@@ -67,6 +67,12 @@ class AudioController: NSObject {
         }
     }
     
+    //Sets the volume of the player. 0.1 is very low and 1 is maximum volume
+    public func playerVolume(myVolume: Float){
+        player?.volume = myVolume
+        
+    }
+    
     //MARK: - Private Methods
     private func setupSession() {
         let audioSession = AVAudioSession.sharedInstance()

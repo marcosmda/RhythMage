@@ -17,10 +17,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     let factory: Factory
     let authenticationController: AuthenticationController
     let faceTrackingController = FaceTrackingController()
+    let audioController: AudioController
     
     //MARK: Properties
     var progressTime: Double = 0
-    var player: AVAudioPlayer!
     var initiatedGameScene = false
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
@@ -30,12 +30,18 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     var ableToPlay = false
     
     //MARK: Initialization
-    init (factory: Factory, authenticationController: AuthenticationController)
+    init (factory: Factory, authenticationController: AuthenticationController, audioController: AudioController)
     {
         self.factory = factory
+        self.audioController = audioController
         self.authenticationController = authenticationController
         super.init(mainView: SmileToUnlockView())
         mainView.addSubview(faceTrackingController)
+        
+        audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
+        audioController.start(playing: true)
+        audioController.playerVolume(myVolume: 0.3)
+
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +57,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
         if let navigation = navigationController {
             authenticationController.authenticateGKLocalPlayer(navigationController: navigation)
+            
         }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,23 +80,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
-    //MARK: AudioController Methods
-    func playSound(){
-        guard let path = Bundle.main.path(forResource: mainView.songPlaying, ofType: "mp3") else {
-            print("No file.")
-            return}
-        let url = URL(fileURLWithPath: path)
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else {return}
-            player.play()
-        }
-        catch let error{
-            print(error.localizedDescription)
-        }
-        
-    }
-    
     override func viewDidLayoutSubviews() {
         
     }
@@ -106,6 +97,7 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(self.factory.createGameScene(), animated: true)
                 self.faceTrackingController.kill()
+                self.audioController.pause()
             }
         }
     }
@@ -121,8 +113,11 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
 //MARK: - SmileToUnlockDelegate
 extension SmileToUnlockController: SmileToUnlockDelegate {
     
+    
+    
     func onLeaderboardButtonPush() {
         authenticationController.openLeaderboard(with: self)
+        self.audioController.pause()
     }
     
     func updateProgressBar() {
@@ -132,10 +127,14 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     @objc func onSettingsButtonPush() {
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
+        self.audioController.pause()
+        
     }
     
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
+        self.audioController.pause()
+        
     }
     
 }
