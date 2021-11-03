@@ -391,6 +391,58 @@ extension SongContainerView {
         multiplierTitle.attributedText = myString
     }
     
+    ///Configures the cell for usage
+    public func configure(with model: Level, and userModel: User){
+        switch type {
+        case .lockedSong:
+            break
+        case .unlockedSong:
+            artistNameLabel.text = model.artistName.uppercased()
+            songTitleLabel.text = model.songName.uppercased()
+            if let highest = userModel.completed[model.getId()] {
+                highestScore = highest
+            }
+            highestScoreLabel.text = "Highest Score: "+String(highestScore)
+        case .playingSong:
+            pointsLabel.text = String(score)
+            break
+        case .buyableSong:
+            break
+        }
+    }
+    
+    func stopSong() {
+        player.stop()
+        libraryDelegate?.didStopSong()
+    }
+    
+    @objc func togglePlaySong(){
+        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
+        isPlaying.toggle()
+        
+        if !isPlaying {
+            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            player.stop()
+        }
+        
+        else {
+            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
+                print("No file.")
+                return
+            }
+            let url = URL(fileURLWithPath: path)
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else {return}
+                player.play()
+            }
+            catch let error{
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     /// Pauses the game when the Icon Image is tapped
     /// - Parameter sender: UITapGestureRecognizer
     @objc func togglePlayGame(_ sender: UITapGestureRecognizer){
