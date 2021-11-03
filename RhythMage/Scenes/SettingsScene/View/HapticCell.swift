@@ -60,6 +60,7 @@ class HapticCell: UITableViewCell{
         label4.text = "Enables a more immersive experience for RhythMage."
         label4.textColor = .secondary
         label4.numberOfLines = 0
+        label4.lineBreakMode = .byClipping
         label4.textAlignment = .left
         label4.font = .inika(ofSize: 15)
         return label4

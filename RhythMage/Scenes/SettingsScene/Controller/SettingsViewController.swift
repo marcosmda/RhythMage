@@ -24,7 +24,7 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
             return User.empty()
         }
     }
-    //var sender: UISwitch
+    var userSettings = UserSettings()
     
     //MARK: - Initializers
     init(factory: Factory, authenticationController: AuthenticationController){
@@ -112,6 +112,7 @@ extension SettingsViewController: UITableViewDelegate{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HapticCell.reusableIdentifier, for: indexPath) as? HapticCell else {
                 return UITableViewCell()
             }
+            cell.hapticSwitch.isOn = userSettings.isHapticOn
             cell.selectionStyle = .none
             cell.setupCell()
             return cell
