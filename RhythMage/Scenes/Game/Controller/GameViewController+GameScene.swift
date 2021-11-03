@@ -58,7 +58,7 @@ extension GameViewController: GameSceneDelegate {
     }
     
     func updatedScore(score: Double) {
-        gameDisplayView.song.pointsLabel.text = String(Int(score))
+        gameDisplayView.song.setScore(score: Int(score))
     }
     
     func createTiles() {

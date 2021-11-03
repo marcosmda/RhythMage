@@ -56,9 +56,7 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-            self.navigationItem.title = "Settings"
-            let attributes = [NSAttributedString.Key.font: UIFont(name: "Inika-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.white]
-            self.navigationController?.navigationBar.titleTextAttributes = attributes
+        self.navigationItem.titleView = mainView.titleNavBar
         
         
         
@@ -123,7 +121,7 @@ extension SettingsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section{
         case 0:
-            return 80
+            return 100
         case 1:
             return 60
             

@@ -29,7 +29,7 @@ class HeadphonerViewController: BaseViewController<HeadphoneRecomendationView> {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(authorizeSegue), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(authorizeSegue), userInfo: nil, repeats: false)
     }
     
     @objc private func authorizeSegue() {
