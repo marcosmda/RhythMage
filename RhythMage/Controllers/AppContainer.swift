@@ -86,7 +86,7 @@ protocol SmileToUnlockFactory{
 
 extension AppContainer:SmileToUnlockFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
-        return SmileToUnlockController(factory: self, authenticationController: authenticatinController)
+        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController)
     }
 }
 
