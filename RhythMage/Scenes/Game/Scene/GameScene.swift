@@ -21,7 +21,7 @@ enum GameSceneCattegoryTypes: UInt32 {
 }
 
 protocol GameSceneDelegate {
-    func getElapsedTime() -> Double?
+    func getElapsedTime() 
     func pauseGame()
     func updatedScore(score: Double)
     func updateCamera(cameraView: UIView)
@@ -77,6 +77,8 @@ class GameScene: SKScene {
             tileOrbs.remove(at: 0)
             hashes = hashes.filter{$0 != tileOrbs[0].physicsBody?.hash}
         }
+        
+        gameDelegate?.getElapsedTime()
     }
 }
 

@@ -25,8 +25,8 @@ class GameDisplayView: UIView {
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.trackTintColor = .white
-        progressView.progressTintColor = .clear
+        progressView.trackTintColor = .clear
+        progressView.progressTintColor = .white
         progressView.layer.cornerRadius = 8.4
         progressView.clipsToBounds = true
         progressView.layer.borderWidth = 1
@@ -38,9 +38,9 @@ class GameDisplayView: UIView {
     fileprivate let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.quaternaryBackground
+        view.backgroundColor = UIColor.backgroundColor5.withAlphaComponent(0.3)
         view.clipsToBounds = true
-        view.layer.cornerRadius = 24
+        view.layer.cornerRadius = 20
         return view
     }()
     
@@ -60,7 +60,6 @@ class GameDisplayView: UIView {
         self.song = SongContainerView(type: .playingSong)
         super.init(frame: frame)
         self.song.translatesAutoresizingMaskIntoConstraints = false
-        progressView.setProgress(0.5, animated: false)
         self.backgroundColor = .clear
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector  (togglePlayGame(_:)))
         self.song.iconImageView.isUserInteractionEnabled = true
@@ -81,10 +80,11 @@ class GameDisplayView: UIView {
 
         NSLayoutConstraint.activate([
             ///Constraints - container
-            //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
+            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
-            container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            //container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            //container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             
             ///Constraints - song view
             song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),
