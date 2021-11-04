@@ -53,16 +53,8 @@ class FaceExpressionNode: SKNode {
     let fadeOut = SKAction.fadeOut(withDuration: 0.3)
     lazy var scaleDown = SKAction.scale(by: 1.1, duration: 0.3)
     
-    let hapticAction = SKAction.customAction(withDuration: 0) { _, _ in
-        haptic.setupImpactHaptic(style: .heavy)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            haptic.setupImpactHaptic(style: .light)
-        }
-    }
-    
     lazy var fadeInAndScaleUp = SKAction.group([rotation, fadeIn, scaleUp])
     lazy var scaleDownAndFadeOut = SKAction.group([rotation, fadeOut, scaleDown])
-    
     
     let leftFaceIndicator = FaceIndicator(defaultTexture: "leftFaceCircle")
     let rightFaceIndicator = FaceIndicator(defaultTexture: "rightFaceCircle")
@@ -186,7 +178,7 @@ extension FaceExpressionNode {
     }
     
     func runHitAnimation() {
-        animationNode.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut])) {
+        animationNode.run(SKAction.sequence([fadeInAndScaleUp, scaleDownAndFadeOut])) {
             self.animationNode.size = CGSize(width: self.circle.size.width*3.5, height: self.circle.size.height*3.5)
         }
     }

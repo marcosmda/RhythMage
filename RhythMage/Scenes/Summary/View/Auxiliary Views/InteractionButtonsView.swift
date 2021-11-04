@@ -9,6 +9,40 @@ import UIKit
 
 class InteractionButtonsView: UIView {
     
+    lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.trackTintColor = .secondaryBackground
+        progressView.progressTintColor = .white
+        progressView.layer.cornerRadius = 20
+        progressView.clipsToBounds = true
+        return progressView
+    }()
+    
+    let smileToPlayTitle: UILabel = {
+        let label4 = UILabel(frame: .zero)
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "face.smiling.fill")?.withTintColor(.white)
+        let imageOffsetY: CGFloat = -2.0
+        attachment.bounds = CGRect(x: 0, y: imageOffsetY, width: attachment.image!.size.width, height: attachment.image!.size.height)
+        let attachmentString = NSAttributedString(attachment: attachment)
+        let myString = NSMutableAttributedString(string: " ")
+        myString.append(attachmentString)
+        let myStringAfter = NSMutableAttributedString(string: " Smile to Play Again".uppercased())
+        myString.append(myStringAfter)
+        label4.attributedText = myString
+        label4.translatesAutoresizingMaskIntoConstraints = false
+        label4.textColor = .white
+        label4.numberOfLines = 0
+        label4.textAlignment = .center
+        label4.font = .inikaBold(ofSize: 20)
+        label4.contentMode = .scaleAspectFill
+        label4.sizeToFit()
+        label4.fitTextToBounds()
+        return label4
+    }()
+
+    
     let playAgainButton: UIButton = {
         let button3 = UIButton(frame: .zero)
         var songText = " Smile to Play Again"
@@ -71,7 +105,8 @@ class InteractionButtonsView: UIView {
     }
     
     private func setupHierarchy() {
-        addSubview(playAgainButton)
+        addSubview(progressView)
+        progressView.addSubview(smileToPlayTitle)
         addSubview(buttonSongLibrary)
         addSubview(menuButton)
     }
@@ -82,20 +117,23 @@ class InteractionButtonsView: UIView {
     
     private func setupLayout() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        playAgainButton.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
-        playAgainButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        playAgainButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        playAgainButton.heightAnchor.constraint(lessThanOrEqualToConstant: 54).isActive = true
+        progressView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
+        progressView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        progressView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: 54).isActive = true
         
-        buttonSongLibrary.heightAnchor.constraint(equalTo: playAgainButton.heightAnchor).isActive = true
-        buttonSongLibrary.topAnchor.constraint(equalTo: playAgainButton.bottomAnchor, constant: 20).isActive = true
-        buttonSongLibrary.leadingAnchor.constraint(equalTo: playAgainButton.leadingAnchor).isActive = true
-        buttonSongLibrary.widthAnchor.constraint(equalTo: playAgainButton.widthAnchor, multiplier: 0.46).isActive = true
+        smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
+        smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
+        
+        buttonSongLibrary.heightAnchor.constraint(equalTo: progressView.heightAnchor).isActive = true
+        buttonSongLibrary.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
+        buttonSongLibrary.leadingAnchor.constraint(equalTo: progressView.leadingAnchor).isActive = true
+        buttonSongLibrary.widthAnchor.constraint(equalTo: progressView.widthAnchor, multiplier: 0.46).isActive = true
         buttonSongLibrary.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        menuButton.heightAnchor.constraint(equalTo: playAgainButton.heightAnchor).isActive = true
+        menuButton.heightAnchor.constraint(equalTo: progressView.heightAnchor).isActive = true
         menuButton.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
-        menuButton.trailingAnchor.constraint(equalTo: playAgainButton.trailingAnchor).isActive = true
+        menuButton.trailingAnchor.constraint(equalTo: progressView.trailingAnchor).isActive = true
         menuButton.centerYAnchor.constraint(equalTo: buttonSongLibrary.centerYAnchor).isActive = true
         
     }
