@@ -55,8 +55,9 @@ class SummaryViewController: BaseViewController<SummaryView> {
         // Do any additional setup after loading the view.
         self.navigationItem.leftBarButtonItem =  self.mainView.rankingButton
         self.navigationItem.rightBarButtonItem = self.mainView.shareButton
-        setupGameKit()
         self.navigationItem.titleView = headerView
+        setupGameKit()
+        submitScoreToLB()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +142,6 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
                 // Disable in game communication UI.
             }
             
-            self.submitScoreToLB()
             GKAccessPoint.shared.isActive = false
             
         }
