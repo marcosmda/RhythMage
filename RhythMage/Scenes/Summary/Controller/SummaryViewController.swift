@@ -167,7 +167,7 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
         DispatchQueue.main.async {
-                //self.mainView.progressView.setProgress(Float(time/2), animated: true)
+            self.mainView.interactionsButtonView.progressView.setProgress(Float(time/2), animated: true)
         }
         if !changedScene && time >= 2 {
             changedScene = true
@@ -180,7 +180,7 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
     
     func faceReleased() {
         DispatchQueue.main.async {
-            //self.mainView.progressView.setProgress(0, animated: true)
+            self.mainView.interactionsButtonView.progressView.setProgress(0, animated: true)
         }
     }
     
