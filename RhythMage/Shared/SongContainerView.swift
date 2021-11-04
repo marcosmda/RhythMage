@@ -419,32 +419,7 @@ extension SongContainerView {
         libraryDelegate?.didStopSong()
     }
     
-    @objc func togglePlaySong(){
-        libraryDelegate?.didPlaySong(songName: songTitleLabel.text ?? "")
-        isPlaying.toggle()
-        
-        if !isPlaying {
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
-            player.stop()
-        }
-        
-        else {
-            iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
-                print("No file.")
-                return
-            }
-            let url = URL(fileURLWithPath: path)
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                guard let player = player else {return}
-                player.play()
-            }
-            catch let error{
-                print(error.localizedDescription)
-            }
-        }
-    }
+    
     
     /// Pauses the game when the Icon Image is tapped
     /// - Parameter sender: UITapGestureRecognizer
