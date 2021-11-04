@@ -48,10 +48,10 @@ class FaceExpressionNode: SKNode {
     let rotation = SKAction.rotate(toAngle: 270, duration: 0.3)
     
     let fadeIn = SKAction.fadeIn(withDuration: 0.3)
-    lazy var scaleUp = SKAction.scale(to: bigSize, duration: 0.3)
+    lazy var scaleUp = SKAction.scale(by: 1.1, duration: 0.3)
     
     let fadeOut = SKAction.fadeOut(withDuration: 0.3)
-    lazy var scaleDown = SKAction.scale(to: smallSize, duration: 0.3)
+    lazy var scaleDown = SKAction.scale(by: 1.1, duration: 0.3)
     
     let hapticAction = SKAction.customAction(withDuration: 0) { _, _ in
         haptic.setupImpactHaptic(style: .heavy)
@@ -60,8 +60,8 @@ class FaceExpressionNode: SKNode {
         }
     }
     
-    lazy var fadeInAndScaleUp = SKAction.group([scaleUp, fadeIn, rotation])
-    lazy var scaleDownAndFadeOut = SKAction.group([rotation, scaleDown, fadeOut])
+    lazy var fadeInAndScaleUp = SKAction.group([rotation, fadeIn, scaleUp])
+    lazy var scaleDownAndFadeOut = SKAction.group([rotation, fadeOut, scaleDown])
     
     
     let leftFaceIndicator = FaceIndicator(defaultTexture: "leftFaceCircle")
@@ -87,12 +87,10 @@ class FaceExpressionNode: SKNode {
         case .left:
             circle = leftFaceIndicator.setupNode()
             setupImage(with: .left, from: circle)
-//            hitTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(setupHitAnimation), userInfo: nil, repeats: true)
             break
         case .middle:
             circle = middleFaceIndicator.setupNode()
             setupImage(with: .middle, from: circle)
-//            setCircleAsActive(with: true)
             break
         case .right:
             circle = rightFaceIndicator.setupNode()
@@ -174,58 +172,56 @@ extension FaceExpressionNode {
         circle.addChild(animationNode)
         
         
+        
         rotation.timingFunction = { t in
-            return t*t*t
+            return t*t*t*t*t
         }
         scaleUp.timingFunction = { t in
-            return t*t*t
+            return t*t*t*t*t
         }
         scaleDown.timingFunction = { t in
-            return t*t*t
+            return t*t*t*t*t
         }
         
     }
     
     func runHitAnimation() {
-        if animationNode.hasActions() {
-            animationNode.run(SKAction.group([SKAction.scale(by: 1.1, duration: 0.2), SKAction.rotate(byAngle: 360, duration: 0.3)]))
-        } else {
-            animationNode.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut]))
+        animationNode.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut])) {
+            self.animationNode.size = CGSize(width: self.circle.size.width*3.5, height: self.circle.size.height*3.5)
         }
     }
-    
 }
 
 //MARK: - Active Circle Animation
 extension FaceExpressionNode {
     
-    func checkIfCircleIsActive(with status: Bool) {
+    func updateExpressionActiveAnimation(with status: Bool = false) {
         
         haptic.setupImpactHaptic(style: .light)
         
+        isCircleActive = status
+        
         switch positions {
         case .left:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: leftFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: leftFaceIndicator.defaultTexture)))
             }
         case .middle:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: middleFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: middleFaceIndicator.defaultTexture)))
             }
         case .right:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: rightFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: rightFaceIndicator.defaultTexture)))
             }
         }
-        
-        
-        
     }
+    
     
 }

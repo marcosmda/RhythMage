@@ -34,11 +34,17 @@ class TileOrbNode: SKNode {
     //MARK: - Initialization
     init(tileInteraction: TileInteraction, height: CGFloat) {
         self.tileInteraction = tileInteraction
-        self.hasTail = height > defaultHeight/2 ? true : false
-        self.height = height > defaultHeight/2 ? height : defaultHeight/2
+
+        //No tail tile
+        self.hasTail = false
+        self.height = defaultHeight
+        
+        //Tail tile
+//        self.hasTail = height > defaultHeight/2 ? true : false
+//        self.height = height > defaultHeight/2 ? height : defaultHeight/2
+        
         super.init()
         setupNode()
-//        self.showCenter()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -135,24 +141,37 @@ class TileOrbNode: SKNode {
     }
     
     func setColor() -> UIColor{
-        if colors.count > 1 {
-            let index = Int.random(in: 0..<colors.count)
-            let color = colors[index]
-            colors.removeAll()
-            colors.append(color)
-            return color
-        } else {return colors[0]}
+        //Random color
+//        if colors.count > 1 {
+//            let index = Int.random(in: 0..<colors.count)
+//            let color = colors[index]
+//            colors.removeAll()
+//            colors.append(color)
+//            return color
+//        } else {return colors[0]}
+        
+        //Color by position
+        switch tileInteraction.xPosition {
+        case 0:
+            return .blueOrb
+        case 1:
+            return .greenOrb
+        case 2:
+            return .yellowOrb
+        default:
+            return .pinkOrb
+        }
     }
     
     func setAnimations(screenCenter: CGFloat, mainOrbRadius: CGFloat) {
         var point = CGPoint()
         switch tileInteraction.xPosition {
         case 0:
-            point = CGPoint(x: screenCenter - 135, y: GameScene.orbYPosition + mainOrbRadius + 3)
+            point = CGPoint(x: screenCenter - 135, y: GameScene.orbYPosition + mainOrbRadius)
         case 1:
-            point = CGPoint(x: screenCenter, y: GameScene.orbYPosition + mainOrbRadius + 3)
+            point = CGPoint(x: screenCenter, y: GameScene.orbYPosition + mainOrbRadius)
         case 2:
-            point = CGPoint(x: screenCenter + 135, y: GameScene.orbYPosition + mainOrbRadius + 3)
+            point = CGPoint(x: screenCenter + 135, y: GameScene.orbYPosition + mainOrbRadius)
         default:
             return
         }
