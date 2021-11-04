@@ -41,8 +41,13 @@ extension GameViewController: GameSceneDelegate {
         }
     }
 
-    func getElapsedTime() -> Double? {
-        return audioController.getPlayerTime()
+    func getElapsedTime() {
+        var progress = Float()
+        progress = Float((audioController.getPlayerTime() ?? 0.0)/(audioController.getAudioDuration() ?? 0.0))
+        DispatchQueue.main.async {
+            self.gameDisplayView.progressView.setProgress(progress, animated: true)
+        }
+       
     }
     
     func pauseGame() {

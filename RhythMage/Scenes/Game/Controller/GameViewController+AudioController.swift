@@ -10,7 +10,6 @@ import Foundation
 extension GameViewController: AudioControllerDelegate {
     
     func initAudioController() {
-        
         self.audioController.delegates.append(self)
         setupAudioController()
     }

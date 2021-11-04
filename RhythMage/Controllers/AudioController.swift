@@ -99,6 +99,10 @@ class AudioController: NSObject {
         return player?.currentTime
     }
     
+    public func getAudioDuration() -> Double? {
+        return player?.duration
+    }
+    
 }
 
 extension AudioController: AVAudioPlayerDelegate {
