@@ -9,6 +9,7 @@ import UIKit
 import ARKit
 import AVFoundation
 import GameKit
+import Photos
 
 class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     
@@ -55,6 +56,22 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
             authenticationController.authenticateGKLocalPlayer(navigationController: navigation)
             
         }
+        
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized: // The user has previously granted access to the camera.
+            print("SYSTEM RESPONSE: This device's camera authorization was already granted.")
+            return
+        case .notDetermined: // The user has not yet been asked for camera access.
+            AVCaptureDevice.requestAccess(for: .video) { _ in
+            }
+        case .denied: // The user has previously denied access.
+            return
+        case .restricted: // The user can't grant access due to restrictions.
+            return
+        @unknown default:
+            fatalError("This case should't exist")
+        }
+
 
     }
     
