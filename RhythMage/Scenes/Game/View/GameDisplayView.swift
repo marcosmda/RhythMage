@@ -60,6 +60,7 @@ class GameDisplayView: UIView {
         self.song = SongContainerView(type: .playingSong)
         super.init(frame: frame)
         self.song.translatesAutoresizingMaskIntoConstraints = false
+        progressView.setProgress(0.5, animated: false)
         self.backgroundColor = .clear
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector  (togglePlayGame(_:)))
         self.song.iconImageView.isUserInteractionEnabled = true
@@ -80,11 +81,10 @@ class GameDisplayView: UIView {
 
         NSLayoutConstraint.activate([
             ///Constraints - container
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
+            //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
             container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.14),
-            container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            //container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            //container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
             
             ///Constraints - song view
             song.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.78),

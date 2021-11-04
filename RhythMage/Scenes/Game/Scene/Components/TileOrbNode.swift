@@ -22,14 +22,29 @@ class TileOrbNode: SKNode {
         return self.defaultHeight/CGFloat(4)
     }
     
+    
+    //MARK: - Animations
+    
+    let rotation = SKAction.rotate(toAngle: 270, duration: 0.3)
+    let fadeOut = SKAction.fadeOut(withDuration: 0.3)
+    let scaleDown = SKAction.scale(to: CGSize(width: 5, height: 5), duration: 0.3)
+    var move = SKAction()
+    lazy var scaleDownAndFadeOut = SKAction.group([rotation, move, scaleDown, fadeOut])
+    
     //MARK: - Initialization
     init(tileInteraction: TileInteraction, height: CGFloat) {
         self.tileInteraction = tileInteraction
-        self.hasTail = height > defaultHeight/2 ? true : false
-        self.height = height > defaultHeight/2 ? height : defaultHeight/2
+
+        //No tail tile
+        self.hasTail = false
+        self.height = defaultHeight
+        
+        //Tail tile
+//        self.hasTail = height > defaultHeight/2 ? true : false
+//        self.height = height > defaultHeight/2 ? height : defaultHeight/2
+        
         super.init()
         setupNode()
-//        self.showCenter()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -126,12 +141,60 @@ class TileOrbNode: SKNode {
     }
     
     func setColor() -> UIColor{
-        if colors.count > 1 {
-            let index = Int.random(in: 0..<colors.count)
-            let color = colors[index]
-            colors.removeAll()
-            colors.append(color)
-            return color
-        } else {return colors[0]}
+        //Random color
+//        if colors.count > 1 {
+//            let index = Int.random(in: 0..<colors.count)
+//            let color = colors[index]
+//            colors.removeAll()
+//            colors.append(color)
+//            return color
+//        } else {return colors[0]}
+        
+        //Color by position
+        switch tileInteraction.xPosition {
+        case 0:
+            return .blueOrb
+        case 1:
+            return .greenOrb
+        case 2:
+            return .yellowOrb
+        default:
+            return .pinkOrb
+        }
+    }
+    
+    func setAnimations(screenCenter: CGFloat, mainOrbRadius: CGFloat) {
+        var point = CGPoint()
+        switch tileInteraction.xPosition {
+        case 0:
+            point = CGPoint(x: screenCenter - 135, y: GameScene.orbYPosition + mainOrbRadius)
+        case 1:
+            point = CGPoint(x: screenCenter, y: GameScene.orbYPosition + mainOrbRadius)
+        case 2:
+            point = CGPoint(x: screenCenter + 135, y: GameScene.orbYPosition + mainOrbRadius)
+        default:
+            return
+        }
+        move = SKAction.move(to: point, duration: 0.3)
+        
+        scaleDown.timingFunction = { t in
+            return t*t*t*t*t
+        }
+        rotation.timingFunction = { t in
+            return t*t*t*t*t
+        }
+        move.timingFunction = { t in
+            return t*t*t*t*t
+            
+        }
+    }
+    
+    func runHitAnimation() {
+        if self.hasActions() {
+            self.removeAllActions()
+        }
+        self.run(scaleDownAndFadeOut){
+            self.removeFromParent()
+        }
     }
 }

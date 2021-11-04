@@ -38,6 +38,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         super.init(mainView: SmileToUnlockView())
         mainView.delegate = self
         mainView.insertSubview(faceTrackingController, at: 0)
+        
     }
     
     required init?(coder: NSCoder) {

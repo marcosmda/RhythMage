@@ -33,12 +33,36 @@ class FaceExpressionNode: SKNode {
     var circleInt = 0
     
     var circle = SKSpriteNode()
-    var defaultHeight = 50
+    let defaultHeight = 50
     var height: Int
     
     var isCircleActive: Bool = true
+    var animationNode = SKSpriteNode()
     
     internal var positions: FacePosition
+    
+    //MARK: Animations
+    lazy var bigSize = CGSize(width: Double(defaultHeight)*2, height: Double(defaultHeight)*2)
+    lazy var smallSize = CGSize(width: Double(defaultHeight)*0.3, height: Double(defaultHeight)*0.3)
+    
+    let rotation = SKAction.rotate(toAngle: 270, duration: 0.3)
+    
+    let fadeIn = SKAction.fadeIn(withDuration: 0.3)
+    lazy var scaleUp = SKAction.scale(by: 1.1, duration: 0.3)
+    
+    let fadeOut = SKAction.fadeOut(withDuration: 0.3)
+    lazy var scaleDown = SKAction.scale(by: 1.1, duration: 0.3)
+    
+    let hapticAction = SKAction.customAction(withDuration: 0) { _, _ in
+        haptic.setupImpactHaptic(style: .heavy)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            haptic.setupImpactHaptic(style: .light)
+        }
+    }
+    
+    lazy var fadeInAndScaleUp = SKAction.group([rotation, fadeIn, scaleUp])
+    lazy var scaleDownAndFadeOut = SKAction.group([rotation, fadeOut, scaleDown])
+    
     
     let leftFaceIndicator = FaceIndicator(defaultTexture: "leftFaceCircle")
     let rightFaceIndicator = FaceIndicator(defaultTexture: "rightFaceCircle")
@@ -49,7 +73,7 @@ class FaceExpressionNode: SKNode {
         self.positions = position
         super.init()
         setupNode()
-        
+        setAnimationForNode()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,12 +87,10 @@ class FaceExpressionNode: SKNode {
         case .left:
             circle = leftFaceIndicator.setupNode()
             setupImage(with: .left, from: circle)
-//            hitTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(setupHitAnimation), userInfo: nil, repeats: true)
             break
         case .middle:
             circle = middleFaceIndicator.setupNode()
             setupImage(with: .middle, from: circle)
-//            setCircleAsActive(with: true)
             break
         case .right:
             circle = rightFaceIndicator.setupNode()
@@ -127,97 +149,79 @@ class FaceExpressionNode: SKNode {
 //MARK: - Hit Animation
 extension FaceExpressionNode {
 
-    @objc func setupHitAnimation() {
-        
-        var animation = SKSpriteNode()
+    func setAnimationForNode() {
         
         switch positions {
         case .left:
-            animation = SKSpriteNode(imageNamed: "leftHitEffect")
+            animationNode = SKSpriteNode(imageNamed: "leftHitEffect")
             break
         case .middle:
-            animation = SKSpriteNode(imageNamed: "middleHitEffect")
+            animationNode = SKSpriteNode(imageNamed: "middleHitEffect")
             break
         case .right:
-            animation = SKSpriteNode(imageNamed: "rightHitEffect")
+            animationNode = SKSpriteNode(imageNamed: "rightHitEffect")
             break
         }
         
-        circle.addChild(animation)
         
         
-        animation.zPosition = -1000
-        animation.alpha = 0.0
-        animation.position.x = circle.position.x
-        animation.position.y = circle.position.y
-        animation.size.height = animation.size.height / 4
-        animation.size.width = animation.size.width / 4
+        animationNode.zPosition = -1000
+        animationNode.alpha = 0.0
+        animationNode.position.x = circle.position.x
+        animationNode.position.y = circle.position.y
+        circle.addChild(animationNode)
         
-        //MARK: - Action Sequences Setup
-        let rotation = SKAction.rotate(toAngle: 270, duration: 1.2)
+        
+        
         rotation.timingFunction = { t in
             return t*t*t*t*t
         }
-        
-        let fadeIn = SKAction.fadeIn(withDuration: 0.5)
-        let scaleUp = SKAction.scale(by: 3.5, duration: 0.6)
         scaleUp.timingFunction = { t in
             return t*t*t*t*t
         }
-        
-        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
-        let scaleDown = SKAction.scale(by: -3.5, duration: 0.6)
         scaleDown.timingFunction = { t in
             return t*t*t*t*t
         }
         
-        let hapticAction = SKAction.customAction(withDuration: 0) { _, _ in
-            haptic.setupImpactHaptic(style: .heavy)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                haptic.setupImpactHaptic(style: .light)
-            }
-        }
-        
-        let fadeInAndScaleUp = SKAction.group([scaleUp, fadeIn, rotation])
-        let scaleDownAndFadeOut = SKAction.group([rotation, scaleDown, fadeOut])
-        animation.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut])) {
-            animation.removeFromParent()
-        }
-        
     }
     
+    func runHitAnimation() {
+        animationNode.run(SKAction.sequence([fadeInAndScaleUp, hapticAction, scaleDownAndFadeOut])) {
+            self.animationNode.size = CGSize(width: self.circle.size.width*3.5, height: self.circle.size.height*3.5)
+        }
+    }
 }
 
 //MARK: - Active Circle Animation
 extension FaceExpressionNode {
     
-    func checkIfCircleIsActive(with status: Bool) {
+    func updateExpressionActiveAnimation(with status: Bool = false) {
         
         haptic.setupImpactHaptic(style: .light)
         
+        isCircleActive = status
+        
         switch positions {
         case .left:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: leftFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: leftFaceIndicator.defaultTexture)))
             }
         case .middle:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: middleFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: middleFaceIndicator.defaultTexture)))
             }
         case .right:
-            if status == true {
+            if isCircleActive {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: rightFaceIndicator.activeTexture)))
             } else {
                 circle.run(SKAction.setTexture(SKTexture(imageNamed: rightFaceIndicator.defaultTexture)))
             }
         }
-        
-        
-        
     }
+    
     
 }
