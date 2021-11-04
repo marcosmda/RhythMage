@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "middleFaceExpression.png",
+      "filename" : "expressionCenter.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "middleFaceExpression@2x.png",
+      "filename" : "expressionCenter@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "middleFaceExpression@3x.png",
+      "filename" : "expressionCenter@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
