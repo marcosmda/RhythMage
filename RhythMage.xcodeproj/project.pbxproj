@@ -24,6 +24,7 @@
 		8D09842727175C27007477F3 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09842627175C27007477F3 /* RecordingViewController.swift */; };
 		8D4A63C1272725C4009AF315 /* FaceTrackingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */; };
 		8D4DD564273303C90006E90F /* GameScene+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DD563273303C90006E90F /* GameScene+Score.swift */; };
+		8D4DD566273427870006E90F /* GameViewController+Capture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DD565273427870006E90F /* GameViewController+Capture.swift */; };
 		8DA09D80270B7564000B43C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D7F270B7564000B43C8 /* User.swift */; };
 		8DA09D82270B7948000B43C8 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D81270B7948000B43C8 /* Level.swift */; };
 		8DA09D84270B7963000B43C8 /* CheckpointScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA09D83270B7963000B43C8 /* CheckpointScores.swift */; };
@@ -139,6 +140,7 @@
 		8D09842627175C27007477F3 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		8D4A63C0272725C4009AF315 /* FaceTrackingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingController.swift; sourceTree = "<group>"; };
 		8D4DD563273303C90006E90F /* GameScene+Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+Score.swift"; sourceTree = "<group>"; };
+		8D4DD565273427870006E90F /* GameViewController+Capture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+Capture.swift"; sourceTree = "<group>"; };
 		8D6CB93F270CE88C0057176F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DA09D7F270B7564000B43C8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DA09D81270B7948000B43C8 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				8D09841A27175233007477F3 /* GameViewController.swift */,
+				8D4DD565273427870006E90F /* GameViewController+Capture.swift */,
 				8DCFE343272C774A00064DE7 /* GameViewController+FaceTracking.swift */,
 				8DCFE345272C7A0500064DE7 /* GameViewController+AudioController.swift */,
 				8DCFE347272C7B2400064DE7 /* GameViewController+GameScene.swift */,
@@ -911,6 +914,7 @@
 				DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */,
 				CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */,
 				8D00CA462723439000DCBA84 /* AuthenticationController.swift in Sources */,
+				8D4DD566273427870006E90F /* GameViewController+Capture.swift in Sources */,
 				CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */,
 				DB1A4104272321D300F7EDD1 /* SmileToResumeViewController.swift in Sources */,
 				CF746E9727209D8D00B7F2DE /* PointsView.swift in Sources */,

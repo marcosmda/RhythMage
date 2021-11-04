@@ -7,6 +7,7 @@
 
 import UIKit
 import GameKit
+import ARKit
 
 protocol SummaryDelegate {
     func goToMainMenu()
@@ -19,12 +20,17 @@ class SummaryViewController: BaseViewController<SummaryView> {
     var headerView: SummaryHeaderView?
     let songMock = SongMock()
     
+    let faceTrackingController = FaceTrackingController()
+    
     typealias Factory = SummaryFactory & SongLibrarySceneFactory
     let factory: Factory
     
     private let score: Int
     private let level: Level
     private let images: [UIImage]
+    
+    // Inidcates if the view controller prepared to change the scene for preventing multiple navigations
+    private var changedScene = false
     
     
     //MARK: - Initializers
@@ -37,6 +43,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         super.init(mainView: view)
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
+        initFaceTracking()
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +64,8 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationController?.isNavigationBarHidden = false
         self.headerView?.layer.masksToBounds = false
     }
+    
+    
     
     private func submitScoreToLB() {
         // Submitting to a specific occurrence of a recurring leaderboard
@@ -143,3 +152,36 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
 
 }
 
+
+extension SummaryViewController: FaceTrackingControllerDelegate {
+    
+    fileprivate func initFaceTracking() {
+            mainView.addSubview(faceTrackingController)
+            faceTrackingController.initialConfiguration()
+            faceTrackingController.isEnabled = true
+            faceTrackingController.delegates.append(self)
+            faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+    }
+    
+    func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
+    
+    func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
+        DispatchQueue.main.async {
+                //self.mainView.progressView.setProgress(Float(time/2), animated: true)
+        }
+        if !changedScene && time >= 2 {
+            changedScene = true
+            DispatchQueue.main.async {
+                self.navigationController?.popToViewController(ofClass: GameViewController.self)
+                self.faceTrackingController.kill()
+            }
+        }
+    }
+    
+    func faceReleased() {
+        DispatchQueue.main.async {
+            //self.mainView.progressView.setProgress(0, animated: true)
+        }
+    }
+    
+}

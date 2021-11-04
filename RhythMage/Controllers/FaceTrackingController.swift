@@ -101,7 +101,7 @@ class FaceTrackingController: UIView {
         sceneView = arScene
         guard sceneView != nil else {dump("Could not create a Face Tracking Controller"); return;}
         addSubview(sceneView!)
-        sceneView?.alpha = 0.3
+        sceneView?.alpha = 0.4
     }
     
     //MARK: - Set Methods

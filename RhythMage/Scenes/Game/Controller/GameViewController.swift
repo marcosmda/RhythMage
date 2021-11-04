@@ -63,7 +63,7 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
         initFaceTracking()
         initAudioController()
         initGameDisplayView()
-    
+        initCapture()
     }
     
     required init?(coder: NSCoder) {
