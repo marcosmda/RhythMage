@@ -15,6 +15,20 @@ class SongLibraryView: UIView {
     var gradientView = GradientBackgroundView()
     weak var currentPlayingCell: SongLibraryUnlockedSongCell?
     
+    
+    ///Create a title of the section of the terms of use to appear in the nav bar
+    let titleNavBar: DynamicLabel = {
+        let label = DynamicLabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondary
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = .inikaBold(ofSize: 25)
+        label.contentMode = .scaleAspectFit
+        label.text = "song library".uppercased()
+        return label
+    }()
+    
     lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SongLibraryUnlockedSongCell.self, forCellReuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
@@ -65,7 +79,7 @@ class SongLibraryView: UIView {
     lazy var buttonBack: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
-        button.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .label
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)

@@ -19,9 +19,9 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     
     //MARK: - Properties
     var models = [
-        Level(id: "11", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Sweet but Psycho", artist: "Ava Max"),
-        Level(id: "22", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Happier than Ever", artist: "Billie Eilish"),
-        Level(id: "33", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "A Concert Six Months From Now", artist: "Finneas"),
+        Level(id: "11", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Fairytale Waltz", artist: "maestro-misha201"),
+        /*Level(id: "22", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Happier than Ever", artist: "Billie Eilish"),
+        Level(id: "33", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "A Concert Six Months From Now", artist: "Finneas"),*/
         Level(id: "44", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Industry Baby", artist: "Lil Nas X"),
         Level(id: "55", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Angel Baby", artist: "Troye Sivan")
     ]
@@ -57,7 +57,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = "Song Library"
+        self.navigationItem.titleView = mainView.titleNavBar
         
         guard let navBar = self.navigationController?.navigationBar else {fatalError("Navigation Controller does not exist")}
         
@@ -79,8 +79,8 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     ///Function configure adds songs to the mock user: User.
     func configure(){
         models[0].unlock()
-        models[1].unlock()
-        models[2].unlock()
+       // models[1].unlock()
+       // models[2].unlock()
         user.completed["11"] = 33333
 
     }
@@ -102,7 +102,7 @@ extension SongLibraryViewController: UITableViewDelegate{
             
             return headerView
             
-        } else if section == 3 {
+        } else if section == 1 { //3 {
             
             let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "Song Shop")
             return headerView
@@ -121,7 +121,7 @@ extension SongLibraryViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 || section == 3 {
+        if section == 0 || section == 1{//3 {
             return 65
         }
         
