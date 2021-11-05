@@ -12,6 +12,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
     
     func initFaceTracking() {
         mainView.addSubview(faceTrackingController)
+        faceTrackingController.frame = UIScreen.main.bounds
         faceTrackingController.initialConfiguration()
         faceTrackingController.isEnabled = true
         faceTrackingController.delegates.append(self)
