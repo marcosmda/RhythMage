@@ -60,6 +60,9 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
         
         self.navigationController?.isNavigationBarHidden = true
         
+        // Turns off auto dimming during gameplay
+        UIApplication.shared.isIdleTimerDisabled = true
+        
         initFaceTracking()
         initAudioController()
         initGameDisplayView()
