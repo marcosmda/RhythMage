@@ -114,7 +114,7 @@ class SmileToResumeView: UIView{
         
         container.addSubview(gradientView)
         setupBackGround()
-        container.addSubview(pausedTitle)
+        //container.addSubview(pausedTitle)
         progressView.addSubview(smileToResumeTitle)
         //container.addSubview(progressView)
         //container.addSubview(buttonMainMenu)
@@ -145,6 +145,7 @@ class SmileToResumeView: UIView{
     
     @objc func onMainMenuButtonClicked(){
         delegate?.onMainMenuButtonClicked()
+        print("objc delegate")
     }
     
     //MARK: - Layout Subviews
@@ -177,6 +178,7 @@ class SmileToResumeView: UIView{
         smileToResumeTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
         progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2).isActive = true
+        buttonMainMenu.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2).isActive = true
 
         finalStackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         finalStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
@@ -184,7 +186,7 @@ class SmileToResumeView: UIView{
      
         
         //gradientView.widthAnchor.constraint(equalTo: self.container.widthAnchor).isActive = true
-        //gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
+       // gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
         
         ///animates the container
         animateIn()
@@ -193,10 +195,10 @@ class SmileToResumeView: UIView{
     func setupBackGround(){
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         
-        gradientView.topAnchor.constraint(equalTo: self.container.topAnchor).isActive = true
-        gradientView.leadingAnchor.constraint(equalTo: self.container.leadingAnchor).isActive = true
-        gradientView.trailingAnchor.constraint(equalTo: self.container.trailingAnchor).isActive = true
-        gradientView.bottomAnchor.constraint(equalTo: self.container.bottomAnchor).isActive = true
+        gradientView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
         
         gradientView.setupCircleBackgroundBlur()
     }

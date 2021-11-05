@@ -24,6 +24,8 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     
     var delegate: SmileToResumeDelegate?
     
+    
+    
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
     static public var isSupported: Bool {
@@ -64,7 +66,8 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
 //MARK: - SmileToResumeDelegate
 extension SmileToResumeViewController: SmileToResumeViewDelegate {
     
-    @objc func onMainMenuButtonClicked() {
+    func onMainMenuButtonClicked() {
+        print("extension delegate")
         dismiss(animated: true) {
             self.rootNavigationController.popToViewController(ofClass: SmileToUnlockController.self, animated: true)
         }
