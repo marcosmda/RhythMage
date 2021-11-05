@@ -12,6 +12,7 @@ extension GameViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         viewWillAppearFaceTracking()
+        viewWillAppearGameScene()
     }
     
     override func viewDidAppear(_ animated: Bool) {
