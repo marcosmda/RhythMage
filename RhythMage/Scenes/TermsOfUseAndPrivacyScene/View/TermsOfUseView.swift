@@ -49,22 +49,17 @@ class TermsOfUseView: UIView{
         table.separatorStyle = .none
         return table
     }()
-    
-    ///Create the scroll view of the Terms Of Use View
-    let scrollView = UIScrollView()
-    let contentView = UIView()
-    
-    
+
     //MARK: - Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(gradientView)
         setupBackGround()
-        self.addSubview(scrollView)
+        //self.addSubview(scrollView)
         self.addSubview(tableView)
-        setLayoutScrollView()
-        setupLayoutTableView()
+        //setLayoutScrollView()
+        setupViews()
         
     }
     
@@ -72,47 +67,19 @@ class TermsOfUseView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    ///Add autolayout of the tableview
-    func setupLayoutTableView(){
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            
 
-        ])
-        
-
-    }
-    
-    func setLayoutScrollView(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-
-            scrollView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-
-            
-        ])
-        
-    }
-    
    
     
     func setupViews(){
         
-        contentView.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        tableView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        //contentView.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
          
        }
     
