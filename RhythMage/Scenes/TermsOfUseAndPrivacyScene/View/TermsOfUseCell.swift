@@ -98,8 +98,8 @@ class TermsOfUseCell:  UITableViewCell{
 
         
         NSLayoutConstraint.activate([
-            finalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            finalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            finalStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            finalStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             finalStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             finalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
