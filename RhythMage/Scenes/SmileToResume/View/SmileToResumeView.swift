@@ -176,7 +176,9 @@ class SmileToResumeView: UIView{
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToResumeTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
+        
         progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2).isActive = true
+        buttonMainMenu.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2).isActive = true
 
         finalStackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
         finalStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
