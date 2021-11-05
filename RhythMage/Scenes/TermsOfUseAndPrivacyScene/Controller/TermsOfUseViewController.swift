@@ -26,6 +26,7 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
                 print("Mail services are not available")
                 return
             }
+       
         
     }
     
@@ -51,10 +52,12 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
         fatalError("init(coder:) has not been implemented")
     }
     
-    func sendEmail() {
+    @objc func sendEmail() {
+        
         if MFMailComposeViewController.canSendMail() {
             
             let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
             mail.setToRecipients(["rhythmages.contato@gmail.com"])
             mail.setSubject((NSLocalizedString("Report Issue:", comment: "")))
             mail.setMessageBody("<html><strong><p>This is your message:</p></strong><br><br><strong><p>Subject:</p></strong>\n<br>\n<br>\n<strong><p>Full description:</p></strong>\n<br>\n<br><p><strong>Observations:</p></strong>\n\n<ul><li>Topics can be: Bug report, question, feedback, feature request or other.</li>\n<li>Topics can be: Bug report, question, feedback, feature request or other.</li>\n<li>Please make sure the correct sharing permissions have been set.\n<li>All files sent to us are 100% confidential.</li></html>",isHTML: true)
@@ -65,15 +68,39 @@ class TermsOfUseViewController: BaseViewController<TermsOfUseView>, MFMailCompos
             // show failure alert
             print("error sending e-mail")
             let alert = UIAlertController(title: "Your request could not be completed", message: "Make sure you have an e-mail account set up on your iPhone", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        
     }
 
 
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true)
+    func mailComposeController( _ controller: MFMailComposeViewController, didFinishWith result:MFMailComposeResult, error: Error?)
+     {
+      if let _ = error
+      {
+          controller.dismiss(animated: true)
+          return
+      }
+      switch result
+      {
+      case.cancelled:
+          print("CANCELLED")
+      case.failed:
+          print("FAILED")
+      case.saved:
+          print("SAVED")
+      case.sent:
+          print("EMAIL SENT")
+      @unknown default:
+          fatalError()
+      }
+      controller.dismiss(animated: true)
     }
+    
+   
+    
+    
     
 }
 
@@ -190,4 +217,7 @@ extension TermsOfUseViewController: UITableViewDataSource{
 
 
 }
+
+
+
 
