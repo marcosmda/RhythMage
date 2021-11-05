@@ -60,7 +60,7 @@ class SmileToResumeView: UIView{
         button3.contentVerticalAlignment = .center
         button3.setTitleColor(.white, for: .normal)
         //TODO: Confirm the colors
-        button3.titleLabel!.font = .inikaBold(ofSize: 20)
+        button3.titleLabel!.font = .inikaBold(ofSize: 18)
         button3.layer.cornerRadius = 20
         button3.addTarget(self, action: #selector(onMainMenuButtonClicked), for: .touchUpInside)
         return button3
@@ -113,12 +113,14 @@ class SmileToResumeView: UIView{
         self.frame = UIScreen.main.bounds
         
         container.addSubview(gradientView)
+        setupBackGround()
         container.addSubview(pausedTitle)
         progressView.addSubview(smileToResumeTitle)
-        container.addSubview(progressView)
-        container.addSubview(buttonMainMenu)
+        //container.addSubview(progressView)
+        //container.addSubview(buttonMainMenu)
         self.addSubview(container)
         setupLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -129,7 +131,7 @@ class SmileToResumeView: UIView{
     func handleAutoResizingMasks() {
         pausedTitle.translatesAutoresizingMaskIntoConstraints = false
         buttonMainMenu.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        //gradientView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     @objc fileprivate func animateIn() {
@@ -155,10 +157,17 @@ class SmileToResumeView: UIView{
     }
     
     func setupLayout(){
+        
+        let finalStackView = UIStackView(arrangedSubviews: [pausedTitle,progressView, buttonMainMenu])
+        finalStackView.translatesAutoresizingMaskIntoConstraints = false
+        finalStackView.axis = .vertical
+        finalStackView.spacing = 20
+        
+        container.addSubview(finalStackView)
+        
         ///Constraints - container
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         container.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        //container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.96).isActive = true
         container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.27).isActive = true
         container.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
         container.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).isActive = true
@@ -167,28 +176,29 @@ class SmileToResumeView: UIView{
         smileToResumeTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToResumeTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
-        ///Constraints - paused label
-        pausedTitle.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.2).isActive = true
+
+        finalStackView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
+        finalStackView.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        finalStackView.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.85).isActive = true
+     
         
-        ///Constraints - progress view
-        progressView.widthAnchor.constraint(equalTo: buttonMainMenu.widthAnchor).isActive = true
-        progressView.topAnchor.constraint(equalTo: pausedTitle.bottomAnchor, constant: 20).isActive = true
-        progressView.bottomAnchor.constraint(equalTo: buttonMainMenu.topAnchor, constant: -20).isActive = true
-        progressView.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        progressView.heightAnchor.constraint(equalTo: buttonMainMenu.heightAnchor).isActive = true
-        
-        ///Constraints - Main Menu Button
-        buttonMainMenu.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.85).isActive = true
-        buttonMainMenu.topAnchor.constraint(equalTo: smileToResumeTitle.bottomAnchor, constant: 20).isActive = true
-        buttonMainMenu.heightAnchor.constraint(equalToConstant: 51).isActive = true
-        buttonMainMenu.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -42).isActive = true
-        buttonMainMenu.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
-        
-        gradientView.widthAnchor.constraint(equalTo: self.container.widthAnchor).isActive = true
-        gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
+        //gradientView.widthAnchor.constraint(equalTo: self.container.widthAnchor).isActive = true
+        //gradientView.heightAnchor.constraint(equalTo: self.container.heightAnchor).isActive = true
         
         ///animates the container
         animateIn()
+    }
+    
+    func setupBackGround(){
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        
+        gradientView.topAnchor.constraint(equalTo: self.container.topAnchor).isActive = true
+        gradientView.leadingAnchor.constraint(equalTo: self.container.leadingAnchor).isActive = true
+        gradientView.trailingAnchor.constraint(equalTo: self.container.trailingAnchor).isActive = true
+        gradientView.bottomAnchor.constraint(equalTo: self.container.bottomAnchor).isActive = true
+        
+        gradientView.setupCircleBackgroundBlur()
     }
     
 }
