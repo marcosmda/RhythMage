@@ -26,16 +26,17 @@ class CreditsView: UIView{
     var delegate: CreditsSceneDelegate?
     
     lazy var backButton: UIBarButtonItem = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .label
-        button.layer.cornerRadius = button.frame.size.height / 2
+        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(onBackButtonPush), for: .touchUpInside)
         button.clipsToBounds = true
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }()
+    
     
     ///Create a title of the section of the terms of use to appear in the nav bar
     let titleNavBar: DynamicLabel = {

@@ -29,13 +29,13 @@ class HapticCell: UITableViewCell{
     lazy var hapticSwitch: UISwitch = {
         let switchHapitc = UISwitch()
         switchHapitc.translatesAutoresizingMaskIntoConstraints = false
-        switchHapitc.tintColor = .terciary
-        switchHapitc.onTintColor = .terciary
-        switchHapitc.thumbTintColor = .primary
-        switchHapitc.backgroundColor = .terciary
+        switchHapitc.onTintColor = .primary
+        switchHapitc.thumbTintColor = .white
+        switchHapitc.backgroundColor = .label
         switchHapitc.layer.cornerRadius = switchHapitc.frame.size.height / 2
         switchHapitc.layer.masksToBounds = true
         switchHapitc.addTarget(self, action: #selector(switchValueDidChange(_ :)), for: .valueChanged)
+        switchHapitc.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         return switchHapitc
     }()
     
@@ -102,26 +102,28 @@ class HapticCell: UITableViewCell{
         
         ///Add elements to the rectangle view
         rectangle.addSubview(hapticSwitch)
-        rectangle.addSubview(titleText)
-        rectangle.addSubview(settingsDescription)
-        
         setupElementsInRectangleView()
     }
     
     ///Add autolayout of the elements inside the rectangle view
     func setupElementsInRectangleView(){
+        
+        let finalStackView = UIStackView(arrangedSubviews: [titleText, settingsDescription])
+        finalStackView.translatesAutoresizingMaskIntoConstraints = false
+        finalStackView.axis = .vertical
+        //finalStackView.spacing = 1
+        
+        rectangle.addSubview(finalStackView)
+        
         NSLayoutConstraint.activate([
         hapticSwitch.centerYAnchor.constraint(equalTo: rectangle.centerYAnchor),
         hapticSwitch.centerXAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.trailingAnchor, constant: -50),
         
-        titleText.topAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.topAnchor),
-        titleText.bottomAnchor.constraint(equalTo: settingsDescription.topAnchor),
-        titleText.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
-        titleText.leadingAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.leadingAnchor, constant: 10),
-    
-        settingsDescription.bottomAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.bottomAnchor),
-        settingsDescription.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
-        settingsDescription.leadingAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.leadingAnchor, constant: 10),
+        //finalStackView.topAnchor.constraint(equalTo: rectangle.topAnchor),
+        finalStackView.centerYAnchor.constraint(equalTo: rectangle.centerYAnchor),
+        //finalStackView.bottomAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.bottomAnchor),
+        finalStackView.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
+        finalStackView.leadingAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.leadingAnchor, constant: 10),
         
         ])
         
