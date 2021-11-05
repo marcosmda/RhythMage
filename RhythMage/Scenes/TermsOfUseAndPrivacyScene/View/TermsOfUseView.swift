@@ -76,7 +76,7 @@ class TermsOfUseView: UIView{
         
         //contentView.addSubview(tableView)
         
-        tableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
