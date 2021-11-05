@@ -9,6 +9,11 @@ import UIKit
 import AVFoundation
 
 extension GameViewController: GameSceneDelegate {
+    
+    func viewWillAppearGameScene() {
+        mainScene.resetScore()
+    }
+    
     func updateCamera(cameraView: UIView) {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
