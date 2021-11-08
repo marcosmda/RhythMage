@@ -54,7 +54,6 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
         if let navigation = navigationController {
             authenticationController.authenticateGKLocalPlayer(navigationController: navigation)
-            
         }
         
         switch AVCaptureDevice.authorizationStatus(for: .video) {

@@ -44,17 +44,6 @@ class InteractionSequence {
     }
 }
 
-//MARK: - Realm
-class RealmInteractionSequence: Object {
-    @objc dynamic let type: Int
-    
-    let sequence = List<RealmTileInteraction>()
-    
-    required init(){
-        self.type = 0
-    }
-}
-
 //MARK: - Mocked Data
 extension InteractionSequence {
     static func mockedInteraction() -> InteractionSequence {

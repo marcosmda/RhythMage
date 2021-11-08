@@ -12,11 +12,7 @@ class LoadingScreenViewController: BaseViewController<LoadingScreenView> {
     let authenticationController: AuthenticationController
     
     var user: User {
-        if let user = authenticationController.user {
-            return user
-        } else {
-            return  User.empty()
-        }
+        return authenticationController.user
     }
     
     //MARK: - Initializers

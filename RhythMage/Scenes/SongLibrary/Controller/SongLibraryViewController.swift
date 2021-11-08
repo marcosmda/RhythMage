@@ -27,11 +27,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     ]
     
     var user: User {
-        if let user = authenticationController.user {
-            return user
-        } else {
-            return User.empty()
-        }
+        return authenticationController.user 
     }
     //MARK: - Initializers
     init(authenticationController: AuthenticationController){
@@ -81,7 +77,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         models[0].unlock()
        // models[1].unlock()
        // models[2].unlock()
-        user.completed["11"] = 33333
+        user.completed["11"] = "33333"
 
     }
     

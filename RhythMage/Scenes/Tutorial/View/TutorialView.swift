@@ -57,7 +57,6 @@ class TutorialView: UIView {
     
     lazy var skipTutorialButton: UIButton = {
         var config = UIButton.Configuration.filled()
-        config.title
         config.title = NSLocalizedString("Skip ", comment: "Skip Tutorial Button")
         config.image = UIImage(systemName: "chevron.forward.2",
                                withConfiguration: UIImage.SymbolConfiguration(weight: .bold))

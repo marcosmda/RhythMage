@@ -5,11 +5,28 @@
 //  Created by Marcos Vinicius Majeveski De Angeli on 22/10/21.
 //
 
+import Realm
 import GameKit
+import RealmSwift
 
 class AuthenticationController: GKGameCenterViewController {
+    //MARK: Injected Properties
+    let realm: Realm
     
-    public var user: User?
+    public var user: User = User()
+    public var gkLocalPlayer: GKLocalPlayer = GKLocalPlayer()
+    
+    //MARK: - Initialization
+    init(realm: Realm) {
+        self.realm = realm
+        super.init(nibName: nil, bundle: nil)
+        
+        self.user = loadUser()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - Methods
     func authenticateGKLocalPlayer(navigationController: UINavigationController){
@@ -26,23 +43,58 @@ class AuthenticationController: GKGameCenterViewController {
                     // Player could not be authenticated.
                     // Disable Game Center in the game.
                     //GKAccessPoint.shared.isActive = false
-                    self.user = User.empty()
                     return
                 }
                 
                 GKAccessPoint.shared.isActive = false
                 
-                let id = GKLocalPlayer.local.gamePlayerID
-                let name = GKLocalPlayer.local.displayName
+                self.gkLocalPlayer = GKLocalPlayer.local
                 
-                self.user = User(id: id, name: name)
+                if self.user.id != self.gkLocalPlayer.gamePlayerID
+                || self.user.name != self.gkLocalPlayer.displayName {
+                    self.updateUser(for: "id", to: self.gkLocalPlayer.gamePlayerID)
+                    self.updateUser(for: "name", to: self.gkLocalPlayer.displayName)
+                }
                 return
             }
         }
         
     }
     
+    public func updateUserSettings(for key: String, to value: Any) {
+        do {
+            try realm.write {
+                self.user.settings[key] = value
+            }
+        } catch {dump("Error updating user settings on Realm")}
+    }
     
+    public func updateUser(for key: String, to value: Any) {
+        do {
+            try realm.write {
+                user[key] = value
+                realm.add(self.user, update: .modified)
+            }
+        } catch {dump("Error updating user model on Realm")}
+    }
+    
+    private func loadUser() -> User{
+        guard let retrievedUser = realm.objects(User.self).first
+        else { //Enters if not able to load a user, so probably is the first time
+            let user = User()
+            saveUser(user)
+            return user
+        }
+        return retrievedUser
+    }
+    
+    private func saveUser(_ user: User) {
+        do {
+            try realm.write {
+                realm.add(user)
+            }
+        } catch {dump("Error trying to save user model on Realm")}
+    }
     
 }
 

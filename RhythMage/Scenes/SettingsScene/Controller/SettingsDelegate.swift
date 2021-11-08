@@ -10,5 +10,5 @@ import UIKit
 
 protocol SettingsDelegate {
     func onBackButtonPush()
-    func switchValueDidChange()
+    func switchValueDidChange(to value: Bool)
 }
