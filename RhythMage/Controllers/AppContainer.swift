@@ -22,7 +22,7 @@ class AppContainer {
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
     lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
-    let authenticatinController = AuthenticationController()
+    lazy var authenticatinController = AuthenticationController(realm: realm)
     
     init() {
         
