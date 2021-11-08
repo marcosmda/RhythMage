@@ -73,7 +73,7 @@ class AuthenticationController: GKGameCenterViewController {
         do {
             try realm.write {
                 user[key] = value
-                realm.add(self.user, update: .modified)
+                //realm.add(self.user, update: .modified)
             }
         } catch {dump("Error updating user model on Realm")}
     }

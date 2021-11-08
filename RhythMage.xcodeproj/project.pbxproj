@@ -71,6 +71,7 @@
 		CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */; };
 		CFC99B5A2728906700773C92 /* CameraAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B592728906700773C92 /* CameraAccessView.swift */; };
 		CFC99B5C2728914300773C92 /* CameraSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */; };
+		CFD96D9D2739B5CA00C4F7DF /* SharableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96D9C2739B5CA00C4F7DF /* SharableView.swift */; };
 		CFE760582728AE5B0059F245 /* HeadphoneRecomendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */; };
 		CFE7605A2728B71D0059F245 /* HeadphonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE760592728B71D0059F245 /* HeadphonerViewController.swift */; };
 		CFF5B040271DFEA500E5CCE8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF5B03F271DFEA500E5CCE8 /* Colors.swift */; };
@@ -187,6 +188,7 @@
 		CFC99B5727288D8800773C92 /* rhtyhMage.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rhtyhMage.mp4; sourceTree = "<group>"; };
 		CFC99B592728906700773C92 /* CameraAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAccessView.swift; sourceTree = "<group>"; };
 		CFC99B5B2728914300773C92 /* CameraSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSetupViewController.swift; sourceTree = "<group>"; };
+		CFD96D9C2739B5CA00C4F7DF /* SharableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharableView.swift; sourceTree = "<group>"; };
 		CFE760572728AE5B0059F245 /* HeadphoneRecomendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphoneRecomendationView.swift; sourceTree = "<group>"; };
 		CFE760592728B71D0059F245 /* HeadphonerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadphonerViewController.swift; sourceTree = "<group>"; };
 		CFF5B03F271DFEA500E5CCE8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				CF746E9627209D8D00B7F2DE /* PointsView.swift */,
 				CF746E912720910200B7F2DE /* InteractionButtonsView.swift */,
 				CF746E8F27208C5F00B7F2DE /* SummaryHeaderView.swift */,
+				CFD96D9C2739B5CA00C4F7DF /* SharableView.swift */,
 			);
 			path = "Auxiliary Views";
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				F17AFFB9272ADB81007D3C73 /* CameraTableViewCell.swift in Sources */,
 				DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */,
 				F1508F88272C8AB300C2C5F6 /* GameViewController+GameDisplayView.swift in Sources */,
+				CFD96D9D2739B5CA00C4F7DF /* SharableView.swift in Sources */,
 				CF3C024B271F3E070046D529 /* CircularGradientView.swift in Sources */,
 				CFF5B044271E0DF400E5CCE8 /* GradientBackgroundView.swift in Sources */,
 				8DDCA7F327078441002E9925 /* AppDelegate.swift in Sources */,
@@ -1124,7 +1128,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = Z9QZ625W6Q;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
@@ -1141,7 +1145,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Juliana;
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1158,7 +1162,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
+				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
@@ -1175,7 +1179,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Marcos;
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

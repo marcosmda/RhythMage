@@ -8,11 +8,13 @@
 import UIKit
 import GameKit
 import ARKit
+import LinkPresentation
 
 protocol SummaryDelegate {
     func goToMainMenu()
     func goToSongLibrary()
     func goToLeaderboards()
+    func goToShareSheet()
 }
 
 class SummaryViewController: BaseViewController<SummaryView> {
@@ -21,6 +23,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     let songMock = SongMock()
     
     let faceTrackingController = FaceTrackingController()
+    var shareableView: SharableView?
     
     typealias Factory = SummaryFactory & SongLibrarySceneFactory
     let factory: Factory
@@ -28,6 +31,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     private let score: Int
     private let level: Level
     private let images: [UIImage]
+    private var urlOfImageToShare: URL?
     
     // Inidcates if the view controller prepared to change the scene for preventing multiple navigations
     private var changedScene = false
@@ -44,6 +48,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
         initFaceTracking()
+        shareableView = SharableView(frame: UIScreen.main.bounds, score: score, images: images)
     }
     
     required init?(coder: NSCoder) {
@@ -73,7 +78,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         GKLeaderboard.loadLeaderboards(IDs:["rhythmage.bestscores"]) { (fetchedLBs, error) in
             if let lb = fetchedLBs?.first {
                 lb.submitScore(self.score, context: 0, player: GKLocalPlayer.local) { error in
-               }
+                }
             }
         }
     }
@@ -96,6 +101,12 @@ extension SummaryViewController: SummaryDelegate {
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self
         present(viewController, animated: true, completion: nil)
+    }
+    
+    func goToShareSheet() {
+        //URL(string: "https://testflight.apple.com/join/L9igbwiB")
+        //UIImage(named: "Mage")
+        self.showShareActivity(msg: "I've made \(score) points playing RhythMage")
     }
     
     
@@ -149,18 +160,18 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
         
         
     }
-
+    
 }
 
 
 extension SummaryViewController: FaceTrackingControllerDelegate {
     
     fileprivate func initFaceTracking() {
-            mainView.addSubview(faceTrackingController)
-            faceTrackingController.initialConfiguration()
-            faceTrackingController.isEnabled = true
-            faceTrackingController.delegates.append(self)
-            faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+        mainView.addSubview(faceTrackingController)
+        faceTrackingController.initialConfiguration()
+        faceTrackingController.isEnabled = true
+        faceTrackingController.delegates.append(self)
+        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
@@ -184,4 +195,67 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
         }
     }
     
+}
+
+
+//MARK: - Sharable Image Function
+extension SummaryViewController {
+    
+    func showShareActivity(msg: String?) {
+        
+        var image = UIImage()
+        
+        DispatchQueue.main.async {
+            image = self.shareableView?.getImage() ?? UIImage(named: "Mage")!
+        }
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let filePath = "\(paths[0])/MyImageName.jpg"
+
+        // Save image.
+        do {
+            try image.jpegData(compressionQuality: 0.90)?.write(to: URL(fileURLWithPath: filePath))
+        } catch {
+            dump(error.localizedDescription)
+        }
+
+        let localFile = NSURL(fileURLWithPath: filePath)
+        
+        urlOfImageToShare = localFile.filePathURL
+        
+        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
+        
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            popoverController.sourceView = self.view
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
+        
+        self.present(activityViewController, animated: true, completion: nil)
+        
+    }
+    
+}
+
+extension SummaryViewController: UIActivityItemSource {
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return UIImage() // an empty UIImage is sufficient to ensure share sheet shows right actions
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return urlOfImageToShare
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+
+        metadata.title = "I've made \(score) on RhythMage." // Preview Title
+        metadata.originalURL = urlOfImageToShare // determines the Preview Subtitle
+        metadata.url = urlOfImageToShare
+        metadata.imageProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
+        metadata.iconProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
+
+        return metadata
+    }
 }
