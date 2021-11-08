@@ -23,7 +23,6 @@ class SummaryViewController: BaseViewController<SummaryView> {
     let songMock = SongMock()
     
     let faceTrackingController = FaceTrackingController()
-    var shareableView: SharableView?
     
     typealias Factory = SummaryFactory & SongLibrarySceneFactory
     let factory: Factory
@@ -48,7 +47,6 @@ class SummaryViewController: BaseViewController<SummaryView> {
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
         initFaceTracking()
-        shareableView = SharableView(frame: UIScreen.main.bounds, score: score, images: images)
     }
     
     required init?(coder: NSCoder) {
@@ -104,9 +102,7 @@ extension SummaryViewController: SummaryDelegate {
     }
     
     func goToShareSheet() {
-        //URL(string: "https://testflight.apple.com/join/L9igbwiB")
-        //UIImage(named: "Mage")
-        self.showShareActivity(msg: "I've made \(score) points playing RhythMage")
+        self.showShareActivity(msg: "I've made \(self.score) points playing RhythMage. Download it now: https://testflight.apple.com/join/L9igbwiB")
     }
     
     
@@ -203,27 +199,11 @@ extension SummaryViewController {
     
     func showShareActivity(msg: String?) {
         
-        var image = UIImage()
+        let shareableView = SharableView(frame: UIScreen.main.bounds, score: score, images: images)
         
-        DispatchQueue.main.async {
-            image = self.shareableView?.getImage() ?? UIImage(named: "Mage")!
-        }
+        let image = shareableView.asImage()
         
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let filePath = "\(paths[0])/MyImageName.jpg"
-
-        // Save image.
-        do {
-            try image.jpegData(compressionQuality: 0.90)?.write(to: URL(fileURLWithPath: filePath))
-        } catch {
-            dump(error.localizedDescription)
-        }
-
-        let localFile = NSURL(fileURLWithPath: filePath)
-        
-        urlOfImageToShare = localFile.filePathURL
-        
-        let activityViewController = UIActivityViewController(activityItems: [self], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [msg!, image], applicationActivities: nil)
         
         if let popoverController = activityViewController.popoverPresentationController {
             popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
@@ -244,6 +224,7 @@ extension SummaryViewController: UIActivityItemSource {
     }
 
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+    
         return urlOfImageToShare
     }
 
