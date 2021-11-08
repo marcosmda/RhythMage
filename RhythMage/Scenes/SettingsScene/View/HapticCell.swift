@@ -54,15 +54,15 @@ class HapticCell: UITableViewCell{
     }()
     
     ///Create the subtitle of the rectangle view with the hapticSwitch
-    lazy var settingsDescription: DynamicLabel = {
-        let label4 = DynamicLabel()
+    lazy var settingsDescription: UILabel = {
+        let label4 = UILabel(frame: .zero)
         label4.translatesAutoresizingMaskIntoConstraints = false
         label4.text = "Enables a more immersive experience for RhythMage."
         label4.textColor = .secondary
-        label4.numberOfLines = 1
+        label4.numberOfLines = 2
         //label4.lineBreakMode = .byClipping
         label4.textAlignment = .left
-        label4.contentMode = .scaleAspectFit
+        label4.contentMode = .scaleAspectFill
         label4.font = .inika(ofSize: 15)
         return label4
     }()
@@ -111,18 +111,17 @@ class HapticCell: UITableViewCell{
     ///Add autolayout of the elements inside the rectangle view
     func setupElementsInRectangleView(){
         NSLayoutConstraint.activate([
-        hapticSwitch.topAnchor.constraint(equalTo: rectangle.topAnchor, constant: 20),
-        hapticSwitch.centerXAnchor.constraint(equalTo: rectangle.rightAnchor, constant: -50),
+        hapticSwitch.centerYAnchor.constraint(equalTo: rectangle.centerYAnchor),
+        hapticSwitch.centerXAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.trailingAnchor, constant: -50),
         
-        titleText.topAnchor.constraint(equalTo: rectangle.topAnchor, constant: 10),
+        titleText.topAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.topAnchor),
         titleText.bottomAnchor.constraint(equalTo: settingsDescription.topAnchor),
-        titleText.trailingAnchor.constraint(equalTo: rectangle.trailingAnchor),
-        titleText.leadingAnchor.constraint(equalTo: rectangle.leadingAnchor, constant: 20),
-        
-        settingsDescription.topAnchor.constraint(equalTo: titleText.bottomAnchor),
-        settingsDescription.bottomAnchor.constraint(equalTo: rectangle.bottomAnchor, constant: -10),
+        titleText.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
+        titleText.leadingAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.leadingAnchor, constant: 10),
+    
+        settingsDescription.bottomAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.bottomAnchor),
         settingsDescription.trailingAnchor.constraint(equalTo: hapticSwitch.leadingAnchor, constant: -10),
-        settingsDescription.leadingAnchor.constraint(equalTo: rectangle.leadingAnchor, constant: 20),
+        settingsDescription.leadingAnchor.constraint(equalTo: rectangle.layoutMarginsGuide.leadingAnchor, constant: 10),
         
         ])
         
