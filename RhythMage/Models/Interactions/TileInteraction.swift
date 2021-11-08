@@ -43,24 +43,3 @@ class TileInteraction: InteractionProtocol {
     }
 }
 
-//MARK: - Realm
-class RealmTileInteraction: Object {
-    @objc dynamic var minimumScore: Double
-    @objc dynamic var xPosition: Int
-    @objc dynamic var startTime: Double
-    @objc dynamic var endTime: Double
-    
-    required init(minimumScore: Double, xPosition: ScreenScrollArea, startTime: Double, endTime: Double) {
-        self.minimumScore = minimumScore
-        self.xPosition = xPosition.rawValue
-        self.startTime = startTime
-        self.endTime = endTime
-    }
-    
-    required init() {
-        self.minimumScore = 0
-        self.xPosition = 0
-        self.startTime = 0
-        self.endTime = 0
-    }
-}

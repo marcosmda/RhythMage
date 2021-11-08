@@ -219,7 +219,7 @@ class SongContainerView:UIView {
             artistNameLabel.text = model.artistName.uppercased()
             songTitleLabel.text = model.songName.uppercased()
             if let user = userModel?.completed[model.getId()] {
-                highestScore = user
+                highestScore = Double(user) ?? 0
             }
             highestScoreLabel.text = "Highest Score: "+String(highestScore)
         case .playingSong:
@@ -403,7 +403,7 @@ extension SongContainerView {
             artistNameLabel.text = model.artistName.uppercased()
             songTitleLabel.text = model.songName.uppercased()
             if let highest = userModel.completed[model.getId()] {
-                highestScore = highest
+                highestScore = Double(highest) ?? 0
             }
             highestScoreLabel.text = "Highest Score: "+String(highestScore)
         case .playingSong:

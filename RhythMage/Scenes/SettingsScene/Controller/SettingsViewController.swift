@@ -18,13 +18,8 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
     var safeArea: UILayoutGuide!
     var buttons = ["TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
     var user: User {
-        if let user = authenticationController.user {
-            return user
-        } else {
-            return User.empty()
-        }
+        return authenticationController.user
     }
-    var userSettings = UserSettings()
     
     //MARK: - Initializers
     init(factory: Factory, authenticationController: AuthenticationController){
@@ -110,9 +105,9 @@ extension SettingsViewController: UITableViewDelegate{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: HapticCell.reusableIdentifier, for: indexPath) as? HapticCell else {
                 return UITableViewCell()
             }
-            cell.hapticSwitch.isOn = userSettings.isHapticOn
+            cell.hapticSwitch.isOn = user.settings.isHapticOn
             cell.selectionStyle = .none
-            cell.setupCell()
+            cell.setupCell(delegate: self)
             return cell
         }
     }
@@ -193,7 +188,8 @@ extension SettingsViewController: UITableViewDelegate{
 }
 
 extension SettingsViewController: SettingsDelegate {
-    func switchValueDidChange() {
+    func switchValueDidChange(to value: Bool) {
+        authenticationController.updateUserSettings(for: UserSettingsKeys.isHapticOn.rawValue, to: value)
     }
     
     

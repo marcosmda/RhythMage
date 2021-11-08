@@ -129,24 +129,15 @@ class HapticCell: UITableViewCell{
         
     }
     
-    func setupCell() {
+    func setupCell(delegate: SettingsDelegate) {
+        self.delegate = delegate
         setupRectangleView()  
     }
     
     ///Create a action to the haptic switch button associated with the delegate
     @objc func switchValueDidChange(_ sender: UISwitch)
     {
-        delegate?.switchValueDidChange()
-        if (sender.isOn == true)
-        {
-            userSettings?.isHapticOn = true
-        }
-        else
-        {
-            userSettings?.isHapticOn = false
-        }
-           
-
+        delegate?.switchValueDidChange(to: sender.isOn)
     }
     
     

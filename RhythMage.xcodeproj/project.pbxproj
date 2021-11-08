@@ -107,7 +107,7 @@
 		F1587EFE27232ED000A2DC09 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFD27232ED000A2DC09 /* SettingsView.swift */; };
 		F1587F0027232EF200A2DC09 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587EFF27232EF200A2DC09 /* SettingsViewController.swift */; };
 		F1587F0227232F0400A2DC09 /* SettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */; };
-		F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UseSettings.swift */; };
+		F1587F0427232F2C00A2DC09 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0327232F2C00A2DC09 /* UserSettings.swift */; };
 		F1587F0927232FD400A2DC09 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0827232FD400A2DC09 /* CreditsView.swift */; };
 		F1587F0D27232FFC00A2DC09 /* CreditsSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */; };
 		F17AFFB7272AD5FB007D3C73 /* HapticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */; };
@@ -223,7 +223,7 @@
 		F1587EFD27232ED000A2DC09 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F1587EFF27232EF200A2DC09 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F1587F0127232F0400A2DC09 /* SettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDelegate.swift; sourceTree = "<group>"; };
-		F1587F0327232F2C00A2DC09 /* UseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseSettings.swift; sourceTree = "<group>"; };
+		F1587F0327232F2C00A2DC09 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F1587F0827232FD400A2DC09 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		F1587F0C27232FFC00A2DC09 /* CreditsSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsSceneDelegate.swift; sourceTree = "<group>"; };
 		F17AFFB6272AD5FB007D3C73 /* HapticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticCell.swift; sourceTree = "<group>"; };
@@ -400,7 +400,7 @@
 				8DA09D87270B7C92000B43C8 /* Protocols */,
 				8DA09D8C270B8425000B43C8 /* Interactions */,
 				8DA09D7F270B7564000B43C8 /* User.swift */,
-				F1587F0327232F2C00A2DC09 /* UseSettings.swift */,
+				F1587F0327232F2C00A2DC09 /* UserSettings.swift */,
 				8DA09D8A270B7F97000B43C8 /* Book.swift */,
 				8DA09D81270B7948000B43C8 /* Level.swift */,
 				8DA09D83270B7963000B43C8 /* CheckpointScores.swift */,
@@ -954,7 +954,7 @@
 				CFC99B5527286EE600773C92 /* Video.swift in Sources */,
 				CFB113B32729AC4F001A5447 /* CameraCaptureViewController.swift in Sources */,
 				CF577A6F2720D85300BF82E3 /* SummaryImageViewCollection.swift in Sources */,
-				F1587F0427232F2C00A2DC09 /* UseSettings.swift in Sources */,
+				F1587F0427232F2C00A2DC09 /* UserSettings.swift in Sources */,
 				DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */,
 				8DCFE348272C7B2400064DE7 /* GameViewController+GameScene.swift in Sources */,
 				F18C285E2728A0B0004E5075 /* SelectedTermsOfUseViewController.swift in Sources */,
@@ -1124,7 +1124,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
@@ -1141,7 +1141,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ADA.RhythMage.Marcos-";
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Marcos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1158,7 +1158,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 8435JRD5SK;
+				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
@@ -1175,7 +1175,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ADA.RhythMage.Marcos-";
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Marcos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1213,8 +1213,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
