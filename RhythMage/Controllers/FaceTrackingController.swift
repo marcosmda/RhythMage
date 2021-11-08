@@ -67,7 +67,7 @@ class FaceTrackingController: UIView {
     private var trackedFaces = [ARFaceAnchor.BlendShapeLocation]()
     
     /// The current  face hold time
-     var heldTime: Double = 0
+    private var heldTime: Double = 0
     
     /// The current timer that is on use or a nil value
     private var timer: Timer?
@@ -128,9 +128,12 @@ class FaceTrackingController: UIView {
         sceneView = nil
         updateForEveryFaceChange = false
         isEnabled = false
+        isViewHidden = true
         trackedFaces = []
         delegates = []
         heldTime = 0
+        heldUpdateRate = 0.01
+        factorValue = 0.4
         timeSinceLastDelegateHeldUpdate = 0
         for subview in self.subviews {
             subview.removeFromSuperview()

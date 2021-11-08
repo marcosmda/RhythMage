@@ -9,7 +9,7 @@ import UIKit
 
 extension GameViewController {
     
-    func initCapture() {
+    func viewWillAppearCapture() {
         Timer.scheduledTimer(timeInterval: (audioController.getAudioDuration() ?? 60)/4, target: self, selector: #selector(takeScreenshot), userInfo: nil, repeats: true)
     }
     

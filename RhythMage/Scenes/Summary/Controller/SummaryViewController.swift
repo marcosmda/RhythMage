@@ -20,10 +20,10 @@ class SummaryViewController: BaseViewController<SummaryView> {
     var headerView: SummaryHeaderView?
     let songMock = SongMock()
     
-    let faceTrackingController = FaceTrackingController()
+    let faceTrackingController: FaceTrackingController
     let authenticationController: AuthenticationController
     
-    typealias Factory = SummaryFactory & SongLibrarySceneFactory
+    typealias Factory = SummaryFactory & SongLibrarySceneFactory & GameSceneFactory
     let factory: Factory
     
     private let score: Int
@@ -35,9 +35,10 @@ class SummaryViewController: BaseViewController<SummaryView> {
     
     
     //MARK: - Initializers
-    init(factory:Factory, authenticationController: AuthenticationController, score: Int, level: Level, images: [UIImage]){
+    init(factory:Factory, authenticationController: AuthenticationController, faceTrackingController: FaceTrackingController, score: Int, level: Level, images: [UIImage]){
         self.factory = factory
         self.authenticationController = authenticationController
+        self.faceTrackingController = faceTrackingController
         self.score = score
         self.level = level
         self.images = images
@@ -45,13 +46,13 @@ class SummaryViewController: BaseViewController<SummaryView> {
         super.init(mainView: view)
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
         mainView.delegate = self
-        initFaceTracking()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -67,8 +68,12 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = false
         self.headerView?.layer.masksToBounds = false
+        setupFaceTracking()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        faceTrackingController.kill()
+    }
     
     
     private func submitScoreToLB() {
@@ -81,11 +86,13 @@ class SummaryViewController: BaseViewController<SummaryView> {
         }
     }
     
+    //MARK: - Methods
     private func saveScore() {
         authenticationController.updateUserHighScore(for: level.getId(), to: String(score))
     }
 }
 
+//MARK: - SummaryDelegate
 extension SummaryViewController: SummaryDelegate {
     
     func goToMainMenu() {
@@ -108,7 +115,7 @@ extension SummaryViewController: SummaryDelegate {
     
 }
 
-
+//MARK: - GKGameCenterControllerDelegate
 extension SummaryViewController: GKGameCenterControllerDelegate {
     
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
@@ -159,15 +166,15 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
 
 }
 
-
+//MARK: - FaceTrackingControllerDelegate
 extension SummaryViewController: FaceTrackingControllerDelegate {
     
-    fileprivate func initFaceTracking() {
-            mainView.addSubview(faceTrackingController)
-            faceTrackingController.initialConfiguration()
-            faceTrackingController.isEnabled = true
-            faceTrackingController.delegates.append(self)
-            faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+    fileprivate func setupFaceTracking() {
+        mainView.addSubview(faceTrackingController)
+        faceTrackingController.initialConfiguration()
+        faceTrackingController.isEnabled = true
+        faceTrackingController.delegates.append(self)
+        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
@@ -179,7 +186,8 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
         if !changedScene && time >= 2 {
             changedScene = true
             DispatchQueue.main.async {
-                self.navigationController?.popToViewController(ofClass: GameViewController.self)
+                self.navigationController?.popToViewController(ofClass: SmileToUnlockView.self)
+                self.navigationController?.pushViewController(self.factory.createGameScene(), animated: true)
                 self.faceTrackingController.kill()
             }
         }

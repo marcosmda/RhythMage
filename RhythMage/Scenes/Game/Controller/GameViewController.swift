@@ -18,7 +18,7 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
     let level: Level
     var gameDisplayView: GameDisplayView
     
-    let faceTrackingController = FaceTrackingController()
+    let faceTrackingController: FaceTrackingController
     
     ///camera capture
     var captureSession: AVCaptureSession!
@@ -43,12 +43,13 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
     
     
     //MARK: - Initialization
-    init(realm: Realm, audioController: AudioController, level: Level, factory: Factory) {
+    init(realm: Realm, audioController: AudioController, level: Level, factory: Factory, faceTrackingController: FaceTrackingController) {
         self.realm = realm
         self.audioController = audioController
         self.level = level
         self.gameDisplayView = GameDisplayView()
         self.factory = factory
+        self.faceTrackingController = faceTrackingController
         let gameScene = GameScene(size: UIScreen.main.bounds.size)
         let gameView = GameView(frame: UIScreen.main.bounds, faceTrackingView: self.faceTrackingController)
         
@@ -63,10 +64,7 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
         // Turns off auto dimming during gameplay
         UIApplication.shared.isIdleTimerDisabled = true
         
-        initFaceTracking()
-        initAudioController()
         initGameDisplayView()
-        initCapture()
     }
     
     required init?(coder: NSCoder) {

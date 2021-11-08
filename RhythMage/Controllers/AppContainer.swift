@@ -18,6 +18,7 @@ struct userState{
 class AppContainer {
     let realm = try! Realm()
     let audioController = AudioController()
+    let faceTrackingController = FaceTrackingController()
     @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
@@ -93,7 +94,7 @@ protocol SmileToUnlockFactory{
 
 extension AppContainer:SmileToUnlockFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
-        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController)
+        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController, facetrackingController: faceTrackingController)
     }
 }
 
@@ -106,7 +107,7 @@ protocol SmileToResumeFactory{
 
 extension AppContainer:SmileToResumeFactory{
     func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController {
-        return SmileToResumeViewController(factory: self, rootNavigationController: rootNavigationController)
+        return SmileToResumeViewController(factory: self, rootNavigationController: rootNavigationController, faceTrackingController: faceTrackingController)
     }
 }
 
@@ -119,7 +120,7 @@ protocol SummaryFactory {
 
 extension AppContainer: SummaryFactory {
     func createSummaryScene(score: Int, level: Level, images: [UIImage]) -> SummaryViewController {
-        return SummaryViewController(factory: self, authenticationController: authenticatinController, score: score, level: level, images: images)
+        return SummaryViewController(factory: self, authenticationController: authenticatinController, faceTrackingController: faceTrackingController, score: score, level: level, images: images)
     }
 }
 
@@ -132,7 +133,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self)
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self, faceTrackingController: faceTrackingController)
     }
 }
 

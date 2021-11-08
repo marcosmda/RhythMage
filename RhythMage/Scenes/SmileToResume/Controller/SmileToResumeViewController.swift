@@ -15,7 +15,7 @@ protocol SmileToResumeDelegate {
 class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
     
     private let rootNavigationController: UINavigationController
-    private let faceTrackingController = FaceTrackingController()
+    private let faceTrackingController: FaceTrackingController
     
     private var initiatedGameScene: Bool = false
     
@@ -30,9 +30,10 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         return ARFaceTrackingConfiguration.isSupported
     }
     
-    init (factory: Factory, rootNavigationController: UINavigationController) {
+    init (factory: Factory, rootNavigationController: UINavigationController, faceTrackingController: FaceTrackingController) {
         self.factory = factory
         self.rootNavigationController = rootNavigationController
+        self.faceTrackingController = faceTrackingController
         super.init(mainView: SmileToResumeView())
         mainView.delegate = self
         
@@ -48,17 +49,19 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupFaceTracking()
     }
     
-//    self.navigationController?.popViewController(animated: true)
-//    self.dismiss(animated: true, completion: nil)
-//    self.navigationController?.pushViewController(self.factory.createSmileToUnlockScene(), animated: true)
+    override func viewWillDisappear(_ animated: Bool) {
+        faceTrackingController.kill()
+    }
 }
 
 //MARK: - SmileToResumeDelegate
@@ -76,7 +79,16 @@ extension SmileToResumeViewController: SmileToResumeViewDelegate {
     
 }
 
+//MARK: - FaceTrackingControllerDelegate
 extension SmileToResumeViewController: FaceTrackingControllerDelegate {
+    
+    fileprivate func setupFaceTracking() {
+        faceTrackingController.initialConfiguration()
+        faceTrackingController.isEnabled = true
+        faceTrackingController.delegates.append(self)
+        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+    }
+    
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
