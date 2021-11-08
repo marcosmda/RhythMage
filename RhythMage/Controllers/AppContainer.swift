@@ -21,8 +21,8 @@ class AppContainer {
     @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
-    lazy var navigationController = didSkip ? MainNavigationController(rootViewController: self.createSmileToUnlockScene()) :MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
-    lazy var authenticatinController = AuthenticationController(realm: realm)
+    lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
+    let authenticatinController = AuthenticationController()
     
     init() {
         
