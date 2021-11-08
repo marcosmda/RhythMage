@@ -10,7 +10,6 @@ import UIKit
 class SongLibraryView: UIView {
     
     //MARK: - Properties
-    //var delegate: SongLibraryViewDelegate?
     var delegate: SongLibraryDelegate?
     var gradientView = GradientBackgroundView()
     weak var currentPlayingCell: SongLibraryUnlockedSongCell?
@@ -25,6 +24,19 @@ class SongLibraryView: UIView {
         return table
     }()
     
+    lazy var buttonBack: UIBarButtonItem = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        button.backgroundColor = .white
+        button.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        button.tintColor = .label
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        button.clipsToBounds = true
+        let barButtonItem = UIBarButtonItem(customView: button)
+        return barButtonItem
+    }()
+    
+    //MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .primary
@@ -36,13 +48,13 @@ class SongLibraryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func setupHiararchy() {
         self.addSubview(gradientView)
         self.addSubview(tableView)
     }
     
     func setupLayout(){
-        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -60,23 +72,6 @@ class SongLibraryView: UIView {
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         gradientView.setupCircleBackgroundBlur()
-    }
-    
-    lazy var buttonBack: UIBarButtonItem = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        button.backgroundColor = .white
-        button.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-        button.tintColor = .label
-        button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
-        button.clipsToBounds = true
-        let barButtonItem = UIBarButtonItem(customView: button)
-        return barButtonItem
-    }()
-    
-    
-    func didPlaySong(){
-        currentPlayingCell?.song.togglePlaySong()
     }
     
     @objc func backButtonAction(_sender: UIBarButtonItem) {

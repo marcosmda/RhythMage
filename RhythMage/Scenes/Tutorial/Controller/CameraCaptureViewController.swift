@@ -100,6 +100,7 @@ class CameraCaptureViewController: BaseViewController<CameraCapture> {
 extension CameraCaptureViewController: AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        UserDefaults.standard.set(true, forKey: "Skip")
         self.navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: true)
     }
     

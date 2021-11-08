@@ -55,9 +55,9 @@ class Level {
         return self.songName
     }
     
-    static func mockedLevel() -> Level {
+    static func mockedLevel(fileName: String) -> Level {
             let checkpoint = CheckpointScores(bronze: 200, silver: 350, gold: 500, wizard: 700)
-            let level = Level(id: "111", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction()], song: "fairy-tale-waltz", artist: "AudioJungle")
+        let level = Level(id: "111", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: fileName)], song: "fairy-tale-waltz", artist: "AudioJungle")
             
             return level
         }

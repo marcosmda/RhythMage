@@ -87,6 +87,14 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     
     func backButtonAction() {
         self.navigationController?.popViewController(animated: true)
+        let cells = mainView.tableView.visibleCells
+        for cell in cells {
+            guard let cell = cell as? SongLibraryUnlockedSongCell else { return}
+            if cell.song.isPlaying {
+                    cell.song.togglePlaySong()
+                }
+            }
+        
     }
     
 }
@@ -165,7 +173,6 @@ extension SongLibraryViewController: UITableViewDelegate{
         }
     }
 
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
     }
@@ -200,6 +207,7 @@ extension SongLibraryViewController: UITableViewDataSource{
 }
 
 extension SongLibraryViewController: SongLibraryViewDelegate{
+    
     func didPlaySong(songName: String) {
         let cells = mainView.tableView.visibleCells
         for cell in cells {
@@ -213,4 +221,5 @@ extension SongLibraryViewController: SongLibraryViewDelegate{
     func didStopSong() {
         didStoppedSong = true
     }
+    
 }

@@ -15,7 +15,7 @@ class TutorialViewController: BaseViewController<TutorialView> {
     
     var ellapsedKeys: [Double] = []
     
-    typealias Factory = CameraSetupSceneFactory & SmileToUnlockFactory
+    typealias Factory = CameraSetupSceneFactory & SmileToUnlockFactory & CameraCaptureSceneFactory
     let factory: Factory
     
     init(factory: Factory) {
