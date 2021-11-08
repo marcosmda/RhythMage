@@ -28,7 +28,7 @@ class AuthenticationController: GKGameCenterViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
+    //MARK: - GameKit Methods
     func authenticateGKLocalPlayer(navigationController: UINavigationController){
         DispatchQueue.main.async {
             GKLocalPlayer.local.authenticateHandler = { viewController, error in
@@ -61,6 +61,15 @@ class AuthenticationController: GKGameCenterViewController {
         
     }
     
+    //MARK: - User Persistency Methods
+    public func updateUserHighScore(for level: String, to score: String) {
+        do {
+            try realm.write {
+                user.completed[level] = score
+            }
+        } catch {dump("Error updating user score on Realm")}
+    }
+    
     public func updateUserSettings(for key: String, to value: Any) {
         do {
             try realm.write {
@@ -73,7 +82,6 @@ class AuthenticationController: GKGameCenterViewController {
         do {
             try realm.write {
                 user[key] = value
-                realm.add(self.user, update: .modified)
             }
         } catch {dump("Error updating user model on Realm")}
     }

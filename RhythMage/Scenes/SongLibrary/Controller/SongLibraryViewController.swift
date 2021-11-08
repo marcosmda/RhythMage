@@ -77,7 +77,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         models[0].unlock()
        // models[1].unlock()
        // models[2].unlock()
-        user.completed["11"] = "33333"
+        authenticationController.updateUserHighScore(for: "11", to: "3333")
 
     }
     

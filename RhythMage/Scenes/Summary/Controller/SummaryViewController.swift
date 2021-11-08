@@ -21,6 +21,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     let songMock = SongMock()
     
     let faceTrackingController = FaceTrackingController()
+    let authenticationController: AuthenticationController
     
     typealias Factory = SummaryFactory & SongLibrarySceneFactory
     let factory: Factory
@@ -34,8 +35,9 @@ class SummaryViewController: BaseViewController<SummaryView> {
     
     
     //MARK: - Initializers
-    init(factory:Factory, score: Int, level: Level, images: [UIImage]){
+    init(factory:Factory, authenticationController: AuthenticationController, score: Int, level: Level, images: [UIImage]){
         self.factory = factory
+        self.authenticationController = authenticationController
         self.score = score
         self.level = level
         self.images = images
@@ -58,6 +60,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationItem.titleView = headerView
         setupGameKit()
         submitScoreToLB()
+        saveScore()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +79,10 @@ class SummaryViewController: BaseViewController<SummaryView> {
                }
             }
         }
+    }
+    
+    private func saveScore() {
+        authenticationController.updateUserHighScore(for: level.getId(), to: String(score))
     }
 }
 
