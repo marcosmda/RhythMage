@@ -119,7 +119,7 @@ protocol SummaryFactory {
 
 extension AppContainer: SummaryFactory {
     func createSummaryScene(score: Int, level: Level, images: [UIImage]) -> SummaryViewController {
-        return SummaryViewController(factory: self, score: score, level: level, images: images)
+        return SummaryViewController(factory: self, authenticationController: authenticatinController, score: score, level: level, images: images)
     }
 }
 

@@ -234,12 +234,12 @@ class SmileToUnlockView: UIView {
     
     public func requestModel (user: User, level: Level)
     {
-        if let bestScore = user.completed[level.getId()]{
-            self.bestScore = String(bestScore)
-        }
         songPlaying = level.getSongName()
     }
     
+    func setBestScore(score: String) {
+        bestScoreTitle.text = "Best Score: " + score
+    }
     
     @objc func onSettingsButtonPush(){
         delegate?.onSettingsButtonPush()
