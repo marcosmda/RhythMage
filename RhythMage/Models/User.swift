@@ -51,6 +51,8 @@ class User: Object {
     @Persisted var settings: UserSettings! = UserSettings()
     @Persisted var completed: Map<String, String> = Map<String, String>()
     
+    var currentlevel = "111"
+    
     //MARK: Initialization
     convenience init(id: String, name: String) {
         self.init()

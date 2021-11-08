@@ -78,6 +78,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         super.viewWillAppear(animated)
         initiatedGameScene = false
         mainView.progressView.setProgress(0, animated: false)
+        mainView.setBestScore(score: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
         audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
         audioController.start(playing: true)
         audioController.playerVolume(myVolume: 0.3)
