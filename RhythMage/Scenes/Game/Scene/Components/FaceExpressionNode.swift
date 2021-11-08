@@ -60,12 +60,26 @@ class FaceExpressionNode: SKNode {
     let rightFaceIndicator = FaceIndicator(defaultTexture: "rightFaceCircle")
     let middleFaceIndicator = FaceIndicator(defaultTexture: "middleFaceCircle")
     
+    let hapticLight = SKAction.customAction(withDuration: 0.0) { _, _ in
+        haptic.setupImpactHaptic(style: .light)
+    }
+    
+    var actions: [SKAction] = []
+    
     init(height: Int, position: FacePosition) {
         self.height = height
         self.positions = position
         super.init()
         setupNode()
         setAnimationForNode()
+        if AppContainer().authenticatinController.user.settings.isHapticOn {
+            actions.append(hapticLight)
+            actions.append(fadeInAndScaleUp)
+            actions.append(scaleDownAndFadeOut)
+        } else {
+            actions.append(fadeInAndScaleUp)
+            actions.append(scaleDownAndFadeOut)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -134,8 +148,6 @@ class FaceExpressionNode: SKNode {
         
     }
     
-    
-    
 }
 
 //MARK: - Hit Animation
@@ -155,15 +167,11 @@ extension FaceExpressionNode {
             break
         }
         
-        
-        
         animationNode.zPosition = -1000
         animationNode.alpha = 0.0
         animationNode.position.x = circle.position.x
         animationNode.position.y = circle.position.y
         circle.addChild(animationNode)
-        
-        
         
         rotation.timingFunction = { t in
             return t*t*t*t*t
@@ -178,7 +186,8 @@ extension FaceExpressionNode {
     }
     
     func runHitAnimation() {
-        animationNode.run(SKAction.sequence([fadeInAndScaleUp, scaleDownAndFadeOut])) {
+        
+        animationNode.run(SKAction.sequence(actions)) {
             self.animationNode.size = CGSize(width: self.circle.size.width*3.5, height: self.circle.size.height*3.5)
         }
     }
@@ -189,8 +198,8 @@ extension FaceExpressionNode {
     
     func updateExpressionActiveAnimation(with status: Bool = false) {
         
-        haptic.setupImpactHaptic(style: .light)
         
+      
         isCircleActive = status
         
         switch positions {

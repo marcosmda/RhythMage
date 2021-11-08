@@ -8,11 +8,13 @@
 import UIKit
 import GameKit
 import ARKit
+import LinkPresentation
 
 protocol SummaryDelegate {
     func goToMainMenu()
     func goToSongLibrary()
     func goToLeaderboards()
+    func goToShareSheet()
 }
 
 class SummaryViewController: BaseViewController<SummaryView> {
@@ -29,6 +31,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     private let score: Int
     private let level: Level
     private let images: [UIImage]
+    private var urlOfImageToShare: URL?
     
     // Inidcates if the view controller prepared to change the scene for preventing multiple navigations
     private var changedScene = false
@@ -76,7 +79,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         GKLeaderboard.loadLeaderboards(IDs:["rhythmage.bestscores"]) { (fetchedLBs, error) in
             if let lb = fetchedLBs?.first {
                 lb.submitScore(self.score, context: 0, player: GKLocalPlayer.local) { error in
-               }
+                }
             }
         }
     }
@@ -103,6 +106,10 @@ extension SummaryViewController: SummaryDelegate {
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self
         present(viewController, animated: true, completion: nil)
+    }
+    
+    func goToShareSheet() {
+        self.showShareActivity(msg: "I've made \(self.score) points playing RhythMage. Download it now: https://testflight.apple.com/join/L9igbwiB")
     }
     
     
@@ -156,18 +163,18 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
         
         
     }
-
+    
 }
 
 
 extension SummaryViewController: FaceTrackingControllerDelegate {
     
     fileprivate func initFaceTracking() {
-            mainView.addSubview(faceTrackingController)
-            faceTrackingController.initialConfiguration()
-            faceTrackingController.isEnabled = true
-            faceTrackingController.delegates.append(self)
-            faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+        mainView.addSubview(faceTrackingController)
+        faceTrackingController.initialConfiguration()
+        faceTrackingController.isEnabled = true
+        faceTrackingController.delegates.append(self)
+        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
@@ -191,4 +198,52 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
         }
     }
     
+}
+
+
+//MARK: - Sharable Image Function
+extension SummaryViewController {
+    
+    func showShareActivity(msg: String?) {
+        
+        let shareableView = SharableView(frame: UIScreen.main.bounds, score: score, images: images)
+        
+        let image = shareableView.asImage()
+        
+        let activityViewController = UIActivityViewController(activityItems: [msg!, image], applicationActivities: nil)
+        
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            popoverController.sourceView = self.view
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
+        
+        self.present(activityViewController, animated: true, completion: nil)
+        
+    }
+    
+}
+
+extension SummaryViewController: UIActivityItemSource {
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return UIImage() // an empty UIImage is sufficient to ensure share sheet shows right actions
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+    
+        return urlOfImageToShare
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+
+        metadata.title = "I've made \(score) on RhythMage." // Preview Title
+        metadata.originalURL = urlOfImageToShare // determines the Preview Subtitle
+        metadata.url = urlOfImageToShare
+        metadata.imageProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
+        metadata.iconProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
+
+        return metadata
+    }
 }

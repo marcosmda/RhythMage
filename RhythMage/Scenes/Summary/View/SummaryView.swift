@@ -89,7 +89,7 @@ class SummaryView: UIView {
     
     @objc func onShareButton(_ sender: UIButton) {
         //MARK: - TO-DO: Add Share func!
-        delegate?.goToLeaderboards()
+        delegate?.goToShareSheet()
     }
     
     //MARK: - SetupInteractionButtons

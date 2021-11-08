@@ -12,9 +12,14 @@ let haptic = Haptic()
 class Haptic {
     
     public func setupImpactHaptic(style: UIImpactFeedbackGenerator.FeedbackStyle) {
-        let generator = UIImpactFeedbackGenerator(style: style)
-        generator.prepare()
-        generator.impactOccurred()
+        DispatchQueue.main.async {
+
+            let generator = UIImpactFeedbackGenerator(style: style)
+            generator.prepare()
+            generator.impactOccurred()
+            
+        }
+        
     }
     
     public func setupNotificationHaptic(type: UINotificationFeedbackGenerator.FeedbackType) {

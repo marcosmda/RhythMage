@@ -110,7 +110,6 @@ class TutorialView: UIView {
         addSubview(skipTutorialButton)
         backgroundSubtitleView.addSubview(subtitle)
         setupLayout()
-        
     }
     
     convenience init(video: Video) {

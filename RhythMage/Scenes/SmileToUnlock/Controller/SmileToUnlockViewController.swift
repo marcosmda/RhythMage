@@ -155,7 +155,6 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
         
-        
     }
     
 }
