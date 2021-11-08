@@ -9,8 +9,9 @@ import UIKit
 
 class HeadphonerViewController: BaseViewController<HeadphoneRecomendationView> {
 
-    typealias Factory = TutorialSceneFactory
+    typealias Factory = TutorialSceneFactory & SmileToUnlockFactory
     let factory: Factory
+    var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
     init(factory: Factory) {
         self.factory = factory
@@ -38,6 +39,7 @@ class HeadphonerViewController: BaseViewController<HeadphoneRecomendationView> {
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.fade
         self.navigationController?.view.layer.add(transition, forKey: nil)
-        self.navigationController?.pushViewController(factory.createTutorialScene(), animated: false)
+        lazy var navigationController = didSkip ? factory.createSmileToUnlockScene() : factory.createTutorialScene()
+        self.navigationController?.pushViewController(navigationController, animated: false)
     }
 }
