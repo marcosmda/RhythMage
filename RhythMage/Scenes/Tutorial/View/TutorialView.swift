@@ -78,9 +78,13 @@ class TutorialView: UIView {
     }()
     
     @objc func onSoundOption(_ sender: UIButton) {
-        isSoundOn.toggle()
+        var soundSetting = AppContainer().authenticatinController.user.settings.isTutorialSoundOn
         
-        switch self.isSoundOn {
+        soundSetting.toggle()
+        
+        AppContainer().authenticatinController.updateUserSettings(for: UserSettingsKeys.isTutorialSoundOn.rawValue, to: soundSetting)
+        
+        switch soundSetting {
             case true:
                 player?.volume = 1.0
                 UIView.transition(with: sender, duration: 0.3, options: .transitionCrossDissolve) {
