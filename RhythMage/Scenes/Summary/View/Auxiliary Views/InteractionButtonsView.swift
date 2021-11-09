@@ -9,6 +9,8 @@ import UIKit
 
 class InteractionButtonsView: UIView {
     
+    var delegate: SummaryDelegate?
+    
     lazy var progressView: UIProgressView = {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +49,7 @@ class InteractionButtonsView: UIView {
         let button3 = UIButton(frame: .zero)
         var songText = " Smile to Play Again"
         button3.translatesAutoresizingMaskIntoConstraints = false
-        button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        //button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         button3.backgroundColor = .secondaryBackground
         button3.setImage(UIImage(systemName: "arrow.clockwise",
                                   withConfiguration: UIImage.SymbolConfiguration(pointSize: 23, weight: .bold)), for: .normal)
@@ -65,7 +67,7 @@ class InteractionButtonsView: UIView {
         let button3 = UIButton(frame: .zero)
         var songText = " Library"
         button3.translatesAutoresizingMaskIntoConstraints = false
-        button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+        //button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         button3.backgroundColor = .white
         button3.setImage(UIImage(systemName: "music.note"), for: .normal)
         button3.tintColor = .label
@@ -81,7 +83,7 @@ class InteractionButtonsView: UIView {
         let button3 = UIButton(frame: .zero)
         var songText = " Menu"
         button3.translatesAutoresizingMaskIntoConstraints = false
-        button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
+       // button3.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
         button3.backgroundColor = .white
         button3.setImage(UIImage(systemName: "house.fill"), for: .normal)
         button3.tintColor = .label
@@ -137,5 +139,7 @@ class InteractionButtonsView: UIView {
         menuButton.centerYAnchor.constraint(equalTo: buttonSongLibrary.centerYAnchor).isActive = true
         
     }
+ 
 
+    
 }
