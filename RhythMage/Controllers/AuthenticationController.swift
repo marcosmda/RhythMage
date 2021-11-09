@@ -63,11 +63,20 @@ class AuthenticationController: GKGameCenterViewController {
     
     //MARK: - User Persistency Methods
     public func updateUserHighScore(for level: String, to score: String) {
+        var highScore = 0
+        var newScore = 0
         do {
-            try realm.write {
-                user.completed[level] = score
-            }
+            try highScore = Int(user.completed[level] ?? "0", format: IntegerFormatStyle<Int>.number)
+            try newScore = Int(score, format: IntegerFormatStyle<Int>.number)
         } catch {dump("Error updating user score on Realm")}
+        
+        if highScore < newScore {
+            do {
+                try realm.write {
+                    user.completed[level] = score
+                }
+            } catch {dump("Error updating user score on Realm")}
+        }
     }
     
     public func updateUserSettings(for key: String, to value: Any) {

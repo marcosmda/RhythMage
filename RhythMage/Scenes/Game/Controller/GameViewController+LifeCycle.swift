@@ -13,6 +13,12 @@ extension GameViewController {
     override func viewWillAppear(_ animated: Bool) {
         viewWillAppearFaceTracking()
         viewWillAppearGameScene()
+        viewWillAppearFaceTracking()
+        viewWillAppearAudioController()
+        images = []
+        counter = 3
+        viewWillAppearCapture()
+        viewWillAppearGameDisplayView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,6 +39,10 @@ extension GameViewController {
         
         gameDisplayView.hitBarImage.frame = CGRect(x: position.x - width/2, y:  position.y - height / 2, width: width, height: height)
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        viewWillDesapearFaceTracking()
     }
     
 }

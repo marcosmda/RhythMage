@@ -17,7 +17,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     typealias Factory = SongLibrarySceneFactory & SettingsSceneFactory & GameSceneFactory
     let factory: Factory
     let authenticationController: AuthenticationController
-    let faceTrackingController = FaceTrackingController()
+    let faceTrackingController: FaceTrackingController
     let audioController: AudioController
     
     //MARK: Properties
@@ -31,15 +31,14 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     var ableToPlay = false
     
     //MARK: Initialization
-    init (factory: Factory, authenticationController: AuthenticationController, audioController: AudioController)
-    {
+    init (factory: Factory, authenticationController: AuthenticationController, audioController: AudioController, facetrackingController: FaceTrackingController) {
         self.factory = factory
         self.audioController = audioController
         self.authenticationController = authenticationController
+        self.faceTrackingController = facetrackingController
         super.init(mainView: SmileToUnlockView())
         mainView.delegate = self
         mainView.insertSubview(faceTrackingController, at: 0)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -82,31 +81,28 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
         audioController.start(playing: true)
         audioController.playerVolume(myVolume: 0.3)
-
+        setupFaceTracking()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(setFaceTrackingController), userInfo: nil, repeats: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.audioController.pause()
+        faceTrackingController.kill()
     }
+}
+
+extension SmileToUnlockController: FaceTrackingControllerDelegate {
     
-    @objc private func setFaceTrackingController() {
+    func setupFaceTracking() {
         faceTrackingController.initialConfiguration()
         faceTrackingController.isEnabled = true
         faceTrackingController.delegates.append(self)
         faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
     
-    override func viewDidLayoutSubviews() {
-        
-    }
-}
-
-extension SmileToUnlockController: FaceTrackingControllerDelegate {
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {}
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {

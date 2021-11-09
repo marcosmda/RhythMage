@@ -10,7 +10,7 @@ import ARKit
 
 extension GameViewController: FaceTrackingControllerDelegate {
     
-    func initFaceTracking() {
+    func viewWillAppearFaceTracking(){
         mainView.addSubview(faceTrackingController)
         faceTrackingController.frame = UIScreen.main.bounds
         faceTrackingController.initialConfiguration()
@@ -18,10 +18,11 @@ extension GameViewController: FaceTrackingControllerDelegate {
         faceTrackingController.delegates.append(self)
         faceTrackingController.addTrackedFaces(faces: [.mouthLeft, .jawOpen, .mouthRight])
         faceTrackingController.heldUpdateRate = 0.1
+        faceTrackingController.isViewHidden = false
     }
     
-    func viewWillAppearFaceTracking(){
-        faceTrackingController.isViewHidden = false
+    func viewWillDesapearFaceTracking() {
+        faceTrackingController.kill()
     }
     
     //MARK: - Protocol Methods
