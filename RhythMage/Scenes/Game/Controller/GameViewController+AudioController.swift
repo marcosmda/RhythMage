@@ -9,8 +9,12 @@ import Foundation
 
 extension GameViewController: AudioControllerDelegate {
     
-    func viewWillAppearAudioController() {
+    func initAudioController() {
         self.audioController.delegates.append(self)
+        setupAudioController()
+    }
+    
+    func viewWillAppearAudioController() {
         setupAudioController()
     }
     
@@ -20,9 +24,8 @@ extension GameViewController: AudioControllerDelegate {
     }
     
     func audioFinished() {
-        DispatchQueue.main.async {
             self.navigationController?.pushViewController(self.factory.createSummaryScene(score: Int(self.mainScene.score), level: self.level, images: self.images), animated: true)
-        }
+        
     }
     
     @objc func startAudio() {

@@ -193,9 +193,8 @@ extension SummaryViewController: FaceTrackingControllerDelegate {
         if !changedScene && time >= 2 {
             changedScene = true
             DispatchQueue.main.async {
-                self.navigationController?.popToViewController(ofClass: SmileToUnlockView.self)
-                self.navigationController?.pushViewController(self.factory.createGameScene(), animated: true)
                 self.faceTrackingController.kill()
+                self.navigationController?.popToViewController(ofClass: GameViewController.self)
             }
         }
     }
