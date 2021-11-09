@@ -11,13 +11,11 @@ class CameraCapture: UIView {
     
     private var isSoundOn: Bool = true
     private var gradientView = GradientBackgroundView()
+    var delegate: CameraCaptureDelegate?
     
     var previewCameraLayer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 5
         view.clipsToBounds = true
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
@@ -56,22 +54,7 @@ class CameraCapture: UIView {
     }()
     
     @objc func onSoundOption(_ sender: UIButton) {
-        isSoundOn.toggle()
-        
-        switch self.isSoundOn {
-            case true:
-                //player?.volume = 1.0
-                UIView.transition(with: sender, duration: 0.3, options: .transitionCrossDissolve) {
-                    self.soundOption.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
-                }
-
-            case false:
-                //player?.volume = 0.0
-                UIView.transition(with: sender, duration: 0.3, options: .transitionCrossDissolve) {
-                self.soundOption.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
-            }
-            
-        }
+        delegate?.checkIfSoundAvailable(sender)
     }
     
     override init(frame: CGRect) {
@@ -83,6 +66,7 @@ class CameraCapture: UIView {
         addSubview(soundOption)
         backgroundSubtitleView.addSubview(subtitle)
         setupLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -119,10 +103,10 @@ class CameraCapture: UIView {
         subtitle.widthAnchor.constraint(equalTo: backgroundSubtitleView.widthAnchor, multiplier: 0.9).isActive = true
         subtitle.bottomAnchor.constraint(equalTo: backgroundSubtitleView.bottomAnchor, constant: -20).isActive = true
         
-        previewCameraLayer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
-        previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+        previewCameraLayer.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        previewCameraLayer.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         previewCameraLayer.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        previewCameraLayer.bottomAnchor.constraint(equalTo: self.backgroundSubtitleView.topAnchor, constant: -50).isActive = true
+        previewCameraLayer.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
     func drawBlurBackground() {
@@ -133,5 +117,6 @@ class CameraCapture: UIView {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         backgroundSubtitleView.addSubview(blurEffectView)
     }
+    
     
 }

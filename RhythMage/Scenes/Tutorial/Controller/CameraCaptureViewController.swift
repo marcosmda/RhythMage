@@ -8,6 +8,11 @@
 import UIKit
 import AVFoundation
 
+protocol CameraCaptureDelegate {
+    func checkIfSoundAvailable(_ button: UIButton)
+}
+
+
 class CameraCaptureViewController: BaseViewController<CameraCapture> {
 
     private var captureSession: AVCaptureSession!
@@ -18,10 +23,13 @@ class CameraCaptureViewController: BaseViewController<CameraCapture> {
     typealias Factory = SmileToUnlockFactory
     let factory: Factory
     
+    var soundSetting = AppContainer().authenticatinController.user.settings.isTutorialSoundOn
+    
     init(factory: Factory) {
         self.factory = factory
         let view = CameraCapture()
         super.init(mainView: view)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -30,8 +38,9 @@ class CameraCaptureViewController: BaseViewController<CameraCapture> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        mainView.delegate = self
         prepareStoryAudio()
+        setupAudioSettings(mainView.soundOption)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -62,9 +71,9 @@ class CameraCaptureViewController: BaseViewController<CameraCapture> {
     
     private func setupCameraCaptureSession() {
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
+        captureSession.sessionPreset = .hd1920x1080
         
-        guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else { fatalError("no front camera. but don't all iOS 15 devices have them? Check if you are running on the iOS Simulator. You need a physical device ;)") }
+        guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else { return  }
         
         do {
             let input = try AVCaptureDeviceInput(device: frontCamera)
@@ -95,6 +104,12 @@ class CameraCaptureViewController: BaseViewController<CameraCapture> {
         
     }
     
+    private func setupAudioSettings(_ button: UIButton) {
+        
+        changeSoundSetting(soundSetting, button)
+        
+    }
+    
 }
 
 extension CameraCaptureViewController: AVAudioPlayerDelegate {
@@ -102,6 +117,39 @@ extension CameraCaptureViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
             UserDefaults.standard.set(true, forKey: "Skip")
             self.navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: true)
+    }
+    
+}
+
+extension CameraCaptureViewController: CameraCaptureDelegate {
+    
+    func checkIfSoundAvailable(_ button: UIButton) {
+        
+        soundSetting.toggle()
+        
+        AppContainer().authenticatinController.updateUserSettings(for: UserSettingsKeys.isTutorialSoundOn.rawValue, to: soundSetting)
+        
+        changeSoundSetting(soundSetting, button)
+        
+    }
+    
+    
+    private func changeSoundSetting(_ soundSetting: Bool, _ button: UIButton) {
+     
+        switch soundSetting {
+            case true:
+                player?.volume = 1.0
+                UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve) {
+                    button.setImage(UIImage(systemName: "speaker.wave.3.fill"), for: .normal)
+                }
+
+            case false:
+                player?.volume = 0.0
+                UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve) {
+                    button.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+            }
+        }
+        
     }
     
 }
