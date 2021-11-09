@@ -19,10 +19,10 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     
     //MARK: - Properties
     var models = [
-        Level(id: "11", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Fairytale Waltz", artist: "maestro-misha201"),
-        /*Level(id: "22", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Happier than Ever", artist: "Billie Eilish"),
-        Level(id: "33", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "A Concert Six Months From Now", artist: "Finneas"),*/
-        Level(id: "44", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Industry Baby", artist: "Lil Nas X"),
+        Level(id: "level1", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Fairytale Waltz", artist: "maestro-misha201"),
+        Level(id: "level2", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Happier than Ever", artist: "Billie Eilish"),
+        Level(id: "level3", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "A Concert Six Months From Now", artist: "Finneas"),
+        Level(id: "level4", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Industry Baby", artist: "Lil Nas X"),
         Level(id: "55", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Angel Baby", artist: "Troye Sivan")
     ]
     
@@ -75,9 +75,8 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     ///Function configure adds songs to the mock user: User.
     func configure(){
         models[0].unlock()
-       // models[1].unlock()
-       // models[2].unlock()
-        authenticationController.updateUserHighScore(for: "11", to: "3333")
+        models[1].unlock()
+        authenticationController.updateUserHighScore(for: "level1", to: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
     }
     
     func backButtonAction() {
@@ -93,13 +92,13 @@ extension SongLibraryViewController: UITableViewDelegate{
         
         if section == 0 {
             
-            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "Your Songs")
+            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "YOUR SONGS")
             
             return headerView
             
         } else if section == 1 { //3 {
             
-            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "Song Shop")
+            let headerView = SongLibraryHeaderView(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 65), headerTitle: "SONG SHOP")
             return headerView
             
         }
@@ -173,11 +172,9 @@ extension SongLibraryViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layer.cornerRadius = 20
         cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 2
+        cell.layer.borderWidth = 5
+        cell.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
         cell.accessoryType = UITableViewCell.AccessoryType.none
-
-        let borderColor: UIColor = UIColor.white
-        cell.layer.borderColor = borderColor.cgColor
         cell.selectionStyle = .none
 
         let selectedView: UIView = UIView(frame: cell.frame)

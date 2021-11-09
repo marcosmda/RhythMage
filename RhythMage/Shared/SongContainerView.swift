@@ -37,6 +37,15 @@ class SongContainerView:UIView {
         return .buyableSong
     }()
     
+    ///StackView containing the Labels
+    var actionsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
     ///icon with the play symbol
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -44,13 +53,22 @@ class SongContainerView:UIView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    
+    ///icon with the play symbol
+    let leaderBoardButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "podiumWhite"), for: .normal)
+        return button
+    }()
+    
     ///highest score label
     private let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         view.layer.cornerRadius = 20
-        view.layer.borderWidth = 3
+        //view.layer.borderWidth = 5
+       // view.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
         view.layer.masksToBounds = true
         return view
     }()
@@ -154,13 +172,13 @@ class SongContainerView:UIView {
             break
         case .unlockedSong:
             setupHiararchyUnlockedSong()
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            iconImageView.image = UIImage(systemName: "play.fill")
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(togglePlaySong))
             iconImageView.isUserInteractionEnabled = true
             iconImageView.addGestureRecognizer(tapGestureRecognizer)
             break
         case .buyableSong:
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            iconImageView.image = UIImage(systemName: "play")
             setupHiararchyLockedSong()
             break
         case .playingSong:
@@ -221,7 +239,7 @@ class SongContainerView:UIView {
             if let user = userModel?.completed[model.getId()] {
                 highestScore = Double(user) ?? 0
             }
-            highestScoreLabel.text = "Highest Score: "+String(highestScore)
+            highestScoreLabel.text = "Best Score: "+String(highestScore)
         case .playingSong:
             songTitleLabel.text = model.songName.uppercased()
             //
@@ -264,23 +282,28 @@ extension SongContainerView {
     /// setupHiararchyUnlockedSong
     func setupHiararchyUnlockedSong(){
         self.addSubview(backgroundView)
-        labelsStackView.addArrangedSubview(highestScoreLabel)
         labelsStackView.addArrangedSubview(songTitleLabel)
         labelsStackView.addArrangedSubview(artistNameLabel)
+        labelsStackView.addArrangedSubview(highestScoreLabel)
         backgroundView.addSubview(labelsStackView)
-        backgroundView.addSubview(iconImageView)
+        backgroundView.addSubview(actionsStackView)
+        actionsStackView.addArrangedSubview(leaderBoardButton)
+        actionsStackView.addArrangedSubview(iconImageView)
     }
     
     /// layoutSubviewsUnlockedSong
     func layoutSubviewsUnlockedSong(){
         height = self.frame.size.height
-        xPosition = self.frame.size.width - 24
-        iconImageView.frame = CGRect(x: (xPosition - imageSize), y: (height - imageSize) / 2, width: imageSize, height: imageSize)
+        xPosition = self.frame.size.width
+        
+        actionsStackView.setCustomSpacing(15, after: leaderBoardButton)
         
         NSLayoutConstraint.activate([
             labelsStackView.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 10),
             labelsStackView.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 24),
-            labelsStackView.trailingAnchor.constraint(equalTo: iconImageView.leadingAnchor),
+            
+            actionsStackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor),
+            actionsStackView.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -20),
             
             backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor),
             backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor),
@@ -293,12 +316,12 @@ extension SongContainerView {
         isPlaying.toggle()
         
         if !isPlaying {
-            iconImageView.image = UIImage(systemName: "play.circle.fill")
+            iconImageView.image = UIImage(systemName: "play.fill")
             player.stop()
         }
         
         else {
-            iconImageView.image = UIImage(systemName: "pause.circle.fill")
+            iconImageView.image = UIImage(systemName: "pause.fill")
             guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
                 print("No file.")
                 return
@@ -405,7 +428,7 @@ extension SongContainerView {
             if let highest = userModel.completed[model.getId()] {
                 highestScore = Double(highest) ?? 0
             }
-            highestScoreLabel.text = "Highest Score: "+String(highestScore)
+            highestScoreLabel.text = "Best Score: "+String(highestScore)
         case .playingSong:
             pointsLabel.text = String(score)
             break
