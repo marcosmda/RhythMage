@@ -10,7 +10,7 @@ import UIKit
 
 extension GameViewController {
     
-    func initGameDisplayView(){
+    func viewWillAppearGameDisplayView(){
         gameDisplayView = GameDisplayView(frame: self.mainView.frame, level: level)
         gameDisplayView.delegate = self
         self.mainView.addSubview(gameDisplayView)

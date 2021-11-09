@@ -64,7 +64,6 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
         // Turns off auto dimming during gameplay
         UIApplication.shared.isIdleTimerDisabled = true
         
-        initGameDisplayView()
     }
     
     required init?(coder: NSCoder) {

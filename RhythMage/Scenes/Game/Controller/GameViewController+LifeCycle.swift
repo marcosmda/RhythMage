@@ -18,6 +18,7 @@ extension GameViewController {
         images = []
         counter = 3
         viewWillAppearCapture()
+        viewWillAppearGameDisplayView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
