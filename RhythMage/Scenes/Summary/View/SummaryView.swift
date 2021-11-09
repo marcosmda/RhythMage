@@ -82,6 +82,7 @@ class SummaryView: UIView {
     @objc func onMenuButtonPush(_ sender: UIButton) {
         delegate?.goToMainMenu()
     }
+
     
     @objc func onLeaderboardButtonPush(_ sender: UIButton) {
         delegate?.goToLeaderboards()

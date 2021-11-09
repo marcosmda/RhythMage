@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SpriteKit
 
 class SummaryHeaderView: UIView {
 
     private var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -24,6 +25,7 @@ class SummaryHeaderView: UIView {
         label.numberOfLines = 1
         label.font = .inika(ofSize: 14)
         label.textColor = .white
+        label.contentMode = .scaleAspectFit
         return label
     }()
     
@@ -33,22 +35,26 @@ class SummaryHeaderView: UIView {
         label.numberOfLines = 1
         label.font = .inikaBold(ofSize: 18)
         label.textColor = .white
+        label.contentMode = .scaleAspectFit
         return label
     }()
-    
+    /*
     private var artistText: DynamicLabel = {
         let label = DynamicLabel()
-        label.text = NSLocalizedString("Billie Eilish", comment: "Artist")
+        label.text = NSLocalizedString("Billie Eilish", comment: "")
         label.numberOfLines = 1
         label.font = .inika(ofSize: 14)
         label.textColor = .white
+        label.contentMode = .scaleAspectFit
         return label
-    }()
+    }()*/
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupHierarchy()
         setupLayout()
+        self.mainStackView.contentMode = .scaleAspectFill
+        self.mainStackView.clipsToBounds = true
     }
     
     required init?(coder: NSCoder) {
@@ -58,7 +64,7 @@ class SummaryHeaderView: UIView {
     convenience init(frame: CGRect, songText: String, artistText: String) {
         self.init(frame: frame)
         self.frame = .zero
-        self.artistText.text = artistText
+        //self.artistText.text = artistText
         self.songText.text = songText.uppercased()
     }
     
@@ -66,13 +72,19 @@ class SummaryHeaderView: UIView {
         addSubview(mainStackView)
         mainStackView.addArrangedSubview(defaultLabel)
         mainStackView.addArrangedSubview(songText)
-        mainStackView.addArrangedSubview(artistText)
+        //mainStackView.addArrangedSubview(artistText)
     }
     
     func setupLayout() {
         mainStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        mainStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
+        mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        //mainStackView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        //mainStackView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        
+       
     }
     
 }

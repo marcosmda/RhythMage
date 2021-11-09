@@ -47,7 +47,8 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.images = images
         let view = SummaryView(with: images, points: score, message: "Magic in the air!")
         super.init(mainView: view)
-        headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: level.artistName)
+        headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: "")
+        
         mainView.delegate = self
     }
     
@@ -62,6 +63,10 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationItem.leftBarButtonItem =  self.mainView.rankingButton
         self.navigationItem.rightBarButtonItem = self.mainView.shareButton
         self.navigationItem.titleView = headerView
+        //mainView.titleNavBar.text = "Your Performace for" + (level.songName + level.artistName).uppercased()
+        //self.navigationItem.titleView = mainView.titleNavBar
+        self.navigationItem.titleView?.contentMode = .scaleAspectFit
+        self.navigationItem.titleView?.clipsToBounds = true
         setupGameKit()
         submitScoreToLB()
         saveScore()
