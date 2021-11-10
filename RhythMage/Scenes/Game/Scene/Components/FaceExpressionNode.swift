@@ -64,6 +64,8 @@ class FaceExpressionNode: SKNode {
         haptic.setupImpactHaptic(style: .light)
     }
     
+    let collectSound = SKAction.playSoundFileNamed("CollectOrbSound", waitForCompletion: false)
+    
     var actions: [SKAction] = []
     
     init(height: Int, position: FacePosition) {
@@ -74,12 +76,11 @@ class FaceExpressionNode: SKNode {
         setAnimationForNode()
         if AppContainer().authenticatinController.user.settings.isHapticOn {
             actions.append(hapticLight)
-            actions.append(fadeInAndScaleUp)
-            actions.append(scaleDownAndFadeOut)
-        } else {
-            actions.append(fadeInAndScaleUp)
-            actions.append(scaleDownAndFadeOut)
         }
+        
+        actions.append(collectSound)
+        actions.append(fadeInAndScaleUp)
+        actions.append(scaleDownAndFadeOut)
     }
     
     required init?(coder aDecoder: NSCoder) {
