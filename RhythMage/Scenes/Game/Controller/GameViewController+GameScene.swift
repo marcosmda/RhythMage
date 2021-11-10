@@ -57,12 +57,12 @@ extension GameViewController: GameSceneDelegate {
     
     func pauseGame() {
         guard let navController = self.navigationController else {return}
-        let vc = factory.createSmileToResumeScene(rootNavigationController: navController)
+        let vc = factory.createSmileToResumeScene(rootNavController: navController)
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         DispatchQueue.main.async {
-            self.present(vc, animated: true, completion: nil)
+            navController.present(vc, animated: false)
             self.toggleGameStatus()
         }
     }

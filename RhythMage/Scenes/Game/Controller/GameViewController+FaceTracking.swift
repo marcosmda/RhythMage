@@ -25,6 +25,10 @@ extension GameViewController: FaceTrackingControllerDelegate {
         faceTrackingController.kill()
     }
     
+    func configFaceTracking() {
+        faceTrackingController.isEnabled = true
+    }
+    
     //MARK: - Protocol Methods
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {
         switch face {

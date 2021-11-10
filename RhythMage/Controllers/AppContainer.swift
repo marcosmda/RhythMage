@@ -102,12 +102,12 @@ extension AppContainer:SmileToUnlockFactory{
 protocol SmileToResumeFactory{
     /// Creates an instance of SmileToResumeViewController to be used
     /// - Returns: An instance of SmileToResumeViewController
-    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController
+    func createSmileToResumeScene(rootNavController: UINavigationController) -> SmileToResumeViewController
 }
 
 extension AppContainer:SmileToResumeFactory{
-    func createSmileToResumeScene(rootNavigationController: UINavigationController) -> SmileToResumeViewController {
-        return SmileToResumeViewController(factory: self, rootNavigationController: rootNavigationController, faceTrackingController: faceTrackingController)
+    func createSmileToResumeScene(rootNavController: UINavigationController) -> SmileToResumeViewController {
+        return SmileToResumeViewController(rootNavController: rootNavController)
     }
 }
 

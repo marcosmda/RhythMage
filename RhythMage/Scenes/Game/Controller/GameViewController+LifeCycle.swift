@@ -11,7 +11,6 @@ import UIKit
 extension GameViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        viewWillAppearFaceTracking()
         viewWillAppearGameScene()
         viewWillAppearFaceTracking()
         viewWillAppearAudioController()
