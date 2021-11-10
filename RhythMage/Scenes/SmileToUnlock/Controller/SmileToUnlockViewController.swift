@@ -47,12 +47,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: View Life Cycle
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.rightBarButtonItem = self.mainView.buttonSettings
-        self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
+        setupNavigationController()
         if let navigation = navigationController {
             authenticationController.authenticateGKLocalPlayer(navigationController: navigation)
         }
@@ -77,6 +75,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationController()
         initiatedGameScene = false
         mainView.progressView.setProgress(0, animated: false)
         mainView.setBestScore(score: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
@@ -94,6 +93,13 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     override func viewWillDisappear(_ animated: Bool) {
         self.audioController.pause()
         faceTrackingController.kill()
+    }
+
+    //MARK: - NavigationController
+    func setupNavigationController() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.rightBarButtonItem = self.mainView.buttonSettings
+        self.navigationItem.leftBarButtonItem = self.mainView.leaderboardButton
     }
 }
 
