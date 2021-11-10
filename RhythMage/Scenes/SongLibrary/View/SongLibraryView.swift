@@ -14,8 +14,7 @@ class SongLibraryView: UIView {
     var delegate: SongLibraryDelegate?
     var gradientView = GradientBackgroundView()
     weak var currentPlayingCell: SongLibraryUnlockedSongCell?
-    
-    
+
     ///Create a title of the section of the terms of use to appear in the nav bar
     let titleNavBar: DynamicLabel = {
         let label = DynamicLabel()
@@ -95,6 +94,10 @@ class SongLibraryView: UIView {
     
     @objc func backButtonAction(_sender: UIBarButtonItem) {
         delegate?.backButtonAction()
+    }
+
+    @objc func openLeaderboard(_ sender: UIButton) {
+        delegate?.openLeaderboards()
     }
     
 }
