@@ -13,15 +13,10 @@ protocol SmileToResumeDelegate {
 }
 
 class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
-    
-    private let rootNavigationController: UINavigationController
-    private let faceTrackingController: FaceTrackingController
+    private let faceTrackingController: FaceTrackingController = FaceTrackingController()
+    private let rootNavController: UINavigationController
     
     private var initiatedGameScene: Bool = false
-    
-    typealias Factory = SmileToUnlockFactory
-    let factory: Factory
-    
     var delegate: SmileToResumeDelegate?
     
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
@@ -30,35 +25,21 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
         return ARFaceTrackingConfiguration.isSupported
     }
     
-    init (factory: Factory, rootNavigationController: UINavigationController, faceTrackingController: FaceTrackingController) {
-        self.factory = factory
-        self.rootNavigationController = rootNavigationController
-        self.faceTrackingController = faceTrackingController
+    init (rootNavController: UINavigationController) {
+        self.rootNavController = rootNavController
         super.init(mainView: SmileToResumeView())
         mainView.delegate = self
         
         //Face Tracking initialization
         mainView.addSubview(faceTrackingController)
-        faceTrackingController.initialConfiguration()
-        faceTrackingController.isEnabled = true
-        faceTrackingController.delegates.append(self)
-        faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
+        setupFaceTracking()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - View LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupFaceTracking()
-    }
-    
+    //MARK: - ViewLifeCycle
     override func viewWillDisappear(_ animated: Bool) {
         faceTrackingController.kill()
     }
@@ -68,13 +49,11 @@ class SmileToResumeViewController: BaseViewController<SmileToResumeView> {
 extension SmileToResumeViewController: SmileToResumeViewDelegate {
     
     @objc func onMainMenuButtonClicked() {
-        dismiss(animated: true) {
-            self.rootNavigationController.popToViewController(ofClass: SmileToUnlockController.self, animated: true)
-            
-            //self.rootNavigationController.popToRootViewController(animated: true)
-            
+        faceTrackingController.kill()
+        DispatchQueue.main.async {
+            self.rootNavController.popToViewController(ofClass: SmileToUnlockController.self, animated: true)
         }
-        
+        self.dismiss(animated: true)
     }
     
 }
@@ -97,10 +76,9 @@ extension SmileToResumeViewController: FaceTrackingControllerDelegate {
         }
         if !initiatedGameScene && time >= 2 {
             initiatedGameScene = true
-            self.delegate?.resumed()
             DispatchQueue.main.async {
-                self.dismiss(animated: true, completion: nil)
-                self.faceTrackingController.kill()
+                self.dismiss(animated: true)
+                self.delegate?.resumed()
             }
         }
     }

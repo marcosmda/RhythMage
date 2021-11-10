@@ -25,6 +25,7 @@ extension GameViewController: SmileToResumeDelegate {
             }
             
         } else if mainScene.isPaused {
+            configFaceTracking()
             if timer == nil {
                 timer = Timer.scheduledTimer(timeInterval: remainingTime, target: self, selector: #selector(startAudio), userInfo: nil, repeats: false)
                 mainScene.isPaused = false
