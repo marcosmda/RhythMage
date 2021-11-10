@@ -15,16 +15,36 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="DA6-w2-Cqt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-Ra-pfs">
+                                <rect key="frame" x="51" y="253" width="312" height="390"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="DA6-w2-Cqt" secondAttribute="bottom" id="7XQ-Q0-Iq1"/>
+                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JHy-OY-ObL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6cQ-Ra-pfs" secondAttribute="trailing" constant="51" id="KSn-Jq-6iN"/>
+                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Vl7-De-dW1"/>
+                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bue-na-ag3"/>
+                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="mrv-N8-aae"/>
+                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="naj-qM-v6e"/>
+                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="z2z-b7-z8z"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="428" height="926"/>
+        <image name="NoCashLogo" width="259" height="390"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
