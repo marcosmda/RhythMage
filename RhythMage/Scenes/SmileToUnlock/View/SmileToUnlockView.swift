@@ -67,7 +67,7 @@ class SmileToUnlockView: UIView {
         label2.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.textColor = .white
-        label2.text = (songPlaying ?? "Song Playing: Fairytale Waltz - Avaliable at AudioJungle maestro-misha2012.")
+        label2.text = (songPlaying ?? "Now Playing: Fairytale Waltz from maestro-misha2012.")
         label2.numberOfLines = 0
         label2.textAlignment = .center
         label2.font = .inikaBold(ofSize: 18)
@@ -120,7 +120,7 @@ class SmileToUnlockView: UIView {
         let progressView = UIProgressView(progressViewStyle: .default)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.trackTintColor = .secondaryBackground
-        progressView.progressTintColor = .white
+        progressView.progressTintColor = .white.withAlphaComponent(0.4)
         progressView.layer.cornerRadius = 20
         progressView.clipsToBounds = true
         return progressView
@@ -234,7 +234,7 @@ class SmileToUnlockView: UIView {
     
     public func requestModel (user: User, level: Level)
     {
-        songPlaying = level.getSongName()
+        nameSongTitle.text = "Now Playing: \(level.songName) from \(level.artistName)"
     }
     
     func setBestScore(score: String) {

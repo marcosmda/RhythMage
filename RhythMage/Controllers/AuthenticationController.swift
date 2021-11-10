@@ -117,8 +117,8 @@ class AuthenticationController: GKGameCenterViewController {
 
 extension AuthenticationController: GKGameCenterControllerDelegate {
     
-    func openLeaderboard(with vc: UIViewController) {
-        let viewController = GKGameCenterViewController(leaderboardID: "rhythmage.bestscores",
+    func openLeaderboard(with vc: UIViewController, with leaderboardID: String) {
+        let viewController = GKGameCenterViewController(leaderboardID: leaderboardID,
                                                         playerScope: .global,
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self

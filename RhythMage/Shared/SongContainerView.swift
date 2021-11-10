@@ -221,7 +221,7 @@ class SongContainerView:UIView {
             if let user = userModel?.completed[model.getId()] {
                 highestScore = Double(user) ?? 0
             }
-            highestScoreLabel.text = "Highest Score: "+String(highestScore)
+            highestScoreLabel.text = "Best Score: " + String(highestScore)
         case .playingSong:
             songTitleLabel.text = model.songName.uppercased()
             //
@@ -264,9 +264,9 @@ extension SongContainerView {
     /// setupHiararchyUnlockedSong
     func setupHiararchyUnlockedSong(){
         self.addSubview(backgroundView)
-        labelsStackView.addArrangedSubview(highestScoreLabel)
         labelsStackView.addArrangedSubview(songTitleLabel)
         labelsStackView.addArrangedSubview(artistNameLabel)
+        labelsStackView.addArrangedSubview(highestScoreLabel)
         backgroundView.addSubview(labelsStackView)
         backgroundView.addSubview(iconImageView)
     }

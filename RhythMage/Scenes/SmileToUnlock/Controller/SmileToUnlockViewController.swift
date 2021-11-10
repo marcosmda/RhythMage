@@ -23,11 +23,13 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     //MARK: Properties
     var progressTime: Double = 0
     var initiatedGameScene = false
+    
     /// Tells whether the face tracking is supported on a device(currently it's only for iPhone X).
     /// Please check before creating this view controller!
     static public var isSupported: Bool {
         return ARFaceTrackingConfiguration.isSupported
     }
+    
     var ableToPlay = false
     
     //MARK: Initialization
@@ -78,14 +80,15 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         initiatedGameScene = false
         mainView.progressView.setProgress(0, animated: false)
         mainView.setBestScore(score: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
+        
+        // TO-DO: Pass the correct song name (and file type!)
         audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
         audioController.start(playing: true)
         audioController.playerVolume(myVolume: 0.3)
         setupFaceTracking()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+        // TO-DO: Request model from the proper user and level!
+        mainView.requestModel(user: authenticationController.user, level: Level.mockedLevel())
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +97,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     }
 }
 
+//MARK: - FaceTracking Delegate
 extension SmileToUnlockController: FaceTrackingControllerDelegate {
     
     func setupFaceTracking() {
@@ -130,13 +134,12 @@ extension SmileToUnlockController: FaceTrackingControllerDelegate {
 //MARK: - SmileToUnlockDelegate
 extension SmileToUnlockController: SmileToUnlockDelegate {
     
-    
-    
     func onLeaderboardButtonPush() {
-        authenticationController.openLeaderboard(with: self)
-       
+        // TO-DO: Add the proper level id!
+        authenticationController.openLeaderboard(with: self, with: Level.mockedLevel().getId())
     }
     
+    // Is this function nedded?
     func updateProgressBar() {
         //self.mainView.progressView.setProgress(Float(self.progressTime), animated: true)
     }
@@ -144,13 +147,10 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     @objc func onSettingsButtonPush() {
         navigationController?.pushViewController(factory.createSettingsScene(), animated: true)
-
-        
     }
     
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
-        
     }
     
 }
