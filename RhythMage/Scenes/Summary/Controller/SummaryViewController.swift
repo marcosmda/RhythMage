@@ -48,8 +48,8 @@ class SummaryViewController: BaseViewController<SummaryView> {
         let view = SummaryView(with: images, points: score, message: "Magic in the air!")
         super.init(mainView: view)
         headerView = SummaryHeaderView(frame: .zero, songText: level.songName, artistText: "")
-        
         mainView.delegate = self
+        
     }
     
     required init?(coder: NSCoder) {
@@ -77,6 +77,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
         self.navigationController?.isNavigationBarHidden = false
         self.headerView?.layer.masksToBounds = false
         setupFaceTracking()
+        self.faceTrackingController.frame = CGRect(x: 0 , y: 0, width: 1, height: 1)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

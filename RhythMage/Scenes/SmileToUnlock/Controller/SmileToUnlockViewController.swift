@@ -38,7 +38,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.faceTrackingController = facetrackingController
         super.init(mainView: SmileToUnlockView())
         mainView.delegate = self
-        mainView.insertSubview(faceTrackingController, at: 0)
+        //mainView.insertSubview(faceTrackingController, at: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -96,7 +96,9 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
 
 extension SmileToUnlockController: FaceTrackingControllerDelegate {
     
+    
     func setupFaceTracking() {
+        mainView.insertSubview(faceTrackingController, at: 0)
         faceTrackingController.initialConfiguration()
         faceTrackingController.isEnabled = true
         faceTrackingController.delegates.append(self)
