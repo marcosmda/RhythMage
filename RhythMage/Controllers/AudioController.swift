@@ -89,6 +89,7 @@ class AudioController: NSObject {
             do {
                 player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
                 player?.delegate = self
+                player?.volume = 0.7
             } catch {
                 //TODO: Manage Error
             }
