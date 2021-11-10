@@ -14,7 +14,6 @@ class MainNavigationController: UINavigationController {
 
         // Do any additional setup after loading the view.
     }
-    
 
     override open var prefersStatusBarHidden: Bool {
         return true

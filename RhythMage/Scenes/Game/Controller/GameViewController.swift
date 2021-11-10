@@ -41,6 +41,13 @@ class GameViewController: BaseGameViewController<GameScene, GameView> {
         return GameScene.hitPoint
     }
     
+    override open var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
     
     //MARK: - Initialization
     init(realm: Realm, audioController: AudioController, level: Level, factory: Factory, faceTrackingController: FaceTrackingController) {
