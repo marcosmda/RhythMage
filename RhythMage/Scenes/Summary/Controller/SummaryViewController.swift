@@ -59,6 +59,7 @@ class SummaryViewController: BaseViewController<SummaryView> {
     //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         self.navigationItem.leftBarButtonItem =  self.mainView.rankingButton
         self.navigationItem.rightBarButtonItem = self.mainView.shareButton
@@ -85,8 +86,9 @@ class SummaryViewController: BaseViewController<SummaryView> {
     
     
     private func submitScoreToLB() {
-        // Submitting to a specific occurrence of a recurring leaderboard
-        GKLeaderboard.loadLeaderboards(IDs:["rhythmage.bestscores"]) { (fetchedLBs, error) in
+        
+        //TO-DO: check if level.getID() is correct.
+        GKLeaderboard.loadLeaderboards(IDs:[level.getId()]) { (fetchedLBs, error) in
             if let lb = fetchedLBs?.first {
                 lb.submitScore(self.score, context: 0, player: GKLocalPlayer.local) { error in
                 }
@@ -113,7 +115,7 @@ extension SummaryViewController: SummaryDelegate {
     
     func goToLeaderboards() {
         
-        let viewController = GKGameCenterViewController(leaderboardID: "rhythmage.bestscores",
+        let viewController = GKGameCenterViewController(leaderboardID:Level.mockedLevel().getId(),
                                                         playerScope: .global,
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self
@@ -172,8 +174,6 @@ extension SummaryViewController: GKGameCenterControllerDelegate {
             
         }
         
-        
-        
     }
     
 }
@@ -222,7 +222,7 @@ extension SummaryViewController {
         
         let image = shareableView.asImage()
         
-        let activityViewController = UIActivityViewController(activityItems: [msg!, image], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         
         if let popoverController = activityViewController.popoverPresentationController {
             popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
@@ -234,28 +234,4 @@ extension SummaryViewController {
         
     }
     
-}
-
-extension SummaryViewController: UIActivityItemSource {
-
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return UIImage() // an empty UIImage is sufficient to ensure share sheet shows right actions
-    }
-
-    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-    
-        return urlOfImageToShare
-    }
-
-    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        let metadata = LPLinkMetadata()
-
-        metadata.title = "I've made \(score) on RhythMage." // Preview Title
-        metadata.originalURL = urlOfImageToShare // determines the Preview Subtitle
-        metadata.url = urlOfImageToShare
-        metadata.imageProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
-        metadata.iconProvider = NSItemProvider.init(contentsOf: urlOfImageToShare)
-
-        return metadata
-    }
 }

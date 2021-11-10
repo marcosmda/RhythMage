@@ -23,7 +23,7 @@ class SharableView: UIView {
     }()
     
     private var score: Int?
-    lazy var pointsView = PointsView(points: self.score ?? 0, message: "OH, SO MAGIC!")
+    lazy var pointsView = PointsView(points: self.score ?? 1000, message: "OH, SO MAGIC!")
     var summaryImageViewCollection = SummaryImageViewCollection()
     
     override init(frame: CGRect) {
