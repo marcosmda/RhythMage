@@ -36,7 +36,7 @@ class GameScene: SKScene {
     }
     
     let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
-    let hitLine = HitLineNode(height: 3)
+    let hitLine = HitLineNode(height: 100)
     let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
    
     //MARK: - Facial Expressions Circles
@@ -62,6 +62,7 @@ class GameScene: SKScene {
         facialExpressions = [leftFaceExpression, middleFaceExpression, rightFaceExpression]
         setupScene()
         
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,5 +81,6 @@ class GameScene: SKScene {
         
         gameDelegate?.getElapsedTime()
     }
+    
 }
 

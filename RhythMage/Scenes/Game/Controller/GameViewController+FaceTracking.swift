@@ -41,6 +41,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.leftFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                   
                 }
             }
         case .jawOpen:
@@ -63,6 +64,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.rightFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    
                 }
             }
         default:
@@ -71,6 +73,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
     }
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
+        //mainScene.hitLine.handleFillColors(with: .successuful)
         switch face {
         case .mouthRight: //Sim, é invertido
             for tile in mainScene.tilesInContact {
@@ -80,6 +83,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.leftFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .failure)
                 }
             }
         case .jawOpen:
@@ -90,6 +94,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.middleFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .successuful)
                 }
             }
         case .mouthLeft: //Sim, é invertido
@@ -100,6 +105,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.rightFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .failure)
                 }
             }
         default:
@@ -112,6 +118,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
         for expression in mainScene.facialExpressions {
             if expression.isCircleActive {
                 expression.updateExpressionActiveAnimation()
+                
             }
         }
     }

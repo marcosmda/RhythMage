@@ -8,11 +8,58 @@
 import Foundation
 import SpriteKit
 
+class HitColorModel: SKShapeNode{
+    var color: HitColors
+    
+    let startPoint = CGPoint(x: 0.6, y: 1)
+    let endPoint = CGPoint(x: 0.6, y: 0)
+    
+    func setTexture(){
+        var uiColor = UIColor()
+        
+        switch color {
+        case .successuful:
+            uiColor = .primary
+        case .failure:
+            uiColor = .red
+        case .onHold:
+            uiColor = .clear
+        }
+        let image = UIImage.gradientImage(withBounds: self.frame, startPoint: startPoint, endPoint: endPoint, colors: [uiColor.cgColor, UIColor.clear.cgColor])
+        
+        let gradientTexture = SKTexture(image: image)
+        self.fillTexture = gradientTexture
+        self.strokeColor = .clear
+        
+    }
+    //MARK: - Initialization
+    init(color: HitColors) {
+        self.color = color
+        super.init()
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+enum HitColors{
+    case successuful
+    case failure
+    case onHold
+}
+
 class HitLineNode: SKNode {
     let height: CGFloat
     let color: UIColor
-    
+
     let width = UIScreen.main.bounds.width
+    
+   
+    let startPoint = CGPoint(x: 0.6, y: 1)
+    let endPoint = CGPoint(x: 0.6, y: 0)
+    var lineNode: SKShapeNode?
     
     //MARK: - Initialization
     init(height: CGFloat, color: UIColor = .white) {
@@ -33,19 +80,21 @@ class HitLineNode: SKNode {
         addBody()
     }
     
-    func addShape() {
+    private func addShape() {
         let rectSize = CGSize(width: width, height: height)
-        let origin = CGPoint(x: -width/2, y: -height/2)
+        let origin = CGPoint(x: UIScreen.main.bounds.minX, y: UIScreen.main.bounds.minY)
         let rect = CGRect(origin: origin, size: rectSize)
-        let lineNode = SKShapeNode(rect: rect)
-        
-        lineNode.fillColor = color
-        lineNode.strokeColor = .clear
-        
+        //lineNode = HitColorModel(color: .successuful)
+        lineNode = SKShapeNode(rect: rect)//HitColorModel(color: .successuful)//
+        guard let lineNode = lineNode else {
+            return
+        }
+        //lineNode.fillColor = .primary
+        //lineNode.strokeColor = .clear
         self.addChild(lineNode)
     }
     
-    func addBody() {
+   private func addBody() {
         let size = CGSize(width: width, height: height)
         let body = SKPhysicsBody(rectangleOf: size, center: self.position)
         body.isDynamic = false
@@ -56,4 +105,62 @@ class HitLineNode: SKNode {
         
         self.physicsBody = body
     }
+    
+    public func handleFillColors(with hitColors: HitColors){
+        guard let lineNode = lineNode else {
+            return
+        }
+        switch hitColors {
+        case .successuful:
+            
+            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.primary.cgColor, UIColor.clear.cgColor])
+            let gradientTexture = SKTexture(image: image)
+        
+            lineNode.fillTexture = gradientTexture
+            lineNode.fillColor = .primary
+            
+            
+        case .failure:
+            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.red.cgColor, UIColor.clear.cgColor])
+            let gradientTexture = SKTexture(image: image)
+        
+            lineNode.fillTexture = gradientTexture
+            lineNode.fillColor = .red
+            
+      
+        case .onHold:
+            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.clear.cgColor, UIColor.clear.cgColor])
+            let gradientTexture = SKTexture(image: image)
+        
+            lineNode.fillTexture = gradientTexture
+            lineNode.fillColor = .clear
+
+        }
+        lineNode.strokeColor = .clear
+        //lineNode.setTexture()
+    }
+   
+    
+ 
 }
+
+extension UIImage {
+    static func gradientImage(withBounds: CGRect, startPoint: CGPoint, endPoint: CGPoint, colors: [CGColor]) -> UIImage {
+        
+        // Configure the gradient layer based on input
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = withBounds
+        gradientLayer.colors = colors
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        // Render the image using the gradient layer
+        UIGraphicsBeginImageContext(gradientLayer.bounds.size)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
+    }
+}
+
+

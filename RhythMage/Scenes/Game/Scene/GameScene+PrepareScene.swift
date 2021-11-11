@@ -18,7 +18,10 @@ extension GameScene {
     
     func addChildren() {
         self.addChild(hitLine)
-
+        
+        hitLine.lineNode?.strokeColor = .clear
+        hitLine.handleFillColors(with: .successuful)
+       
         for facialExpression in facialExpressions {
             self.addChild(facialExpression)
         }
@@ -31,7 +34,7 @@ extension GameScene {
         facialExpressions[1].position = CGPoint(x: screenCenter.x, y: GameScene.orbYPosition + mainOrb.radius + 3)
         facialExpressions[2].position = CGPoint(x: screenCenter.x + screenCenter.x/1.5, y: GameScene.orbYPosition + mainOrb.radius + 3)
         
-        hitLine.isHidden = true //Remove is hitLine should be visible
+        hitLine.isHidden = false //Remove is hitLine should be visible
         
     }
     
