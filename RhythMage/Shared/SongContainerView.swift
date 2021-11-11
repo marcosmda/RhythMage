@@ -17,6 +17,8 @@ enum SongContainerType {
 
 class SongContainerView:UIView {
     
+    var level: Level?
+    
     var highestScore = 0.0
     var score: Int = 99999
     
@@ -211,19 +213,20 @@ class SongContainerView:UIView {
     
 
     ///Configures the cell for usage
-    public func configure(with model: Level, userModel: User?){
+    public func configure(with level: Level, userModel: User?){
+        self.level = level
         switch type {
         case .lockedSong:
             break
         case .unlockedSong:
-            artistNameLabel.text = model.artistName.uppercased()
-            songTitleLabel.text = model.songName.uppercased()
-            if let user = userModel?.completed[model.getId()] {
+            artistNameLabel.text = level.artistName.uppercased()
+            songTitleLabel.text = level.songName.uppercased()
+            if let user = userModel?.completed[level.getId()] {
                 highestScore = Double(user) ?? 0
             }
             highestScoreLabel.text = "Best Score: " + String(highestScore)
         case .playingSong:
-            songTitleLabel.text = model.songName.uppercased()
+            songTitleLabel.text = level.songName.uppercased()
             //
             break
         case .buyableSong:
@@ -294,12 +297,13 @@ extension SongContainerView {
         
         if !isPlaying {
             iconImageView.image = UIImage(systemName: "play.circle.fill")
+            guard let player = player else {return}
             player.stop()
         }
         
         else {
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: "fairy-tale-waltz", ofType: "mp3") else {
+            guard let path = Bundle.main.path(forResource: level?.songName, ofType: "m4a") else {
                 print("No file.")
                 return
             }
