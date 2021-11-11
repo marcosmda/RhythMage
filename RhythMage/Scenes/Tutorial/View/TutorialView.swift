@@ -108,6 +108,7 @@ class TutorialView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .backgroundColor
         addSubview(backgroundSubtitleView)
         drawBlurBackground()
         addSubview(soundOption)
