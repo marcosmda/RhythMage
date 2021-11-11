@@ -87,7 +87,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         setupFaceTracking()
         
         // TO-DO: Request model from the proper user and level!
-        mainView.requestModel(user: authenticationController.user, level: Level.mockedLevel())
+        mainView.requestModel(user: authenticationController.user, level: Level.mockedLevel(id: authenticationController.user.currentlevel))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,7 +148,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
     func onLeaderboardButtonPush() {
         // TO-DO: Add the proper level id!
-        authenticationController.openLeaderboard(with: self, with: Level.mockedLevel().getId())
+        authenticationController.openLeaderboard(with: self, with: authenticationController.user.currentlevel)
     }
     
     // Is this function nedded?

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */; };
+		8D00CA1E2722D3E600DCBA84 /* fairy-tale-waltz.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */; };
 		8D00CA212722D43100DCBA84 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA202722D43100DCBA84 /* SKNode.swift */; };
 		8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */; };
 		8D00CA252722D45000DCBA84 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA242722D45000DCBA84 /* UIView.swift */; };
@@ -125,7 +125,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaultLevel.json; sourceTree = "<group>"; };
+		8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "fairy-tale-waltz.json"; sourceTree = "<group>"; };
 		8D00CA202722D43100DCBA84 /* SKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
 		8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
 		8D00CA242722D45000DCBA84 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			children = (
 				CFA1A13E273C432E001DB0F1 /* CollectOrbSound.mp3 */,
 				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
-				8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */,
+				8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -869,7 +869,7 @@
 				DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */,
 				CFA1A13F273C432E001DB0F1 /* CollectOrbSound.mp3 in Resources */,
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
-				8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */,
+				8D00CA1E2722D3E600DCBA84 /* fairy-tale-waltz.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */,
 				CFB113B72729BA77001A5447 /* cameraCaptureAudio.m4a in Resources */,
@@ -1132,10 +1132,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 83KH3JF2CE;
+				DEVELOPMENT_TEAM = Z9QZ625W6Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
@@ -1149,7 +1149,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage;
+				PRODUCT_BUNDLE_IDENTIFIER = ADA.RhythMage.Juliana;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1169,7 +1169,7 @@
 				DEVELOPMENT_TEAM = 83KH3JF2CE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;

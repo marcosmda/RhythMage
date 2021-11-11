@@ -55,10 +55,23 @@ class Level {
         return self.songName
     }
     
-    static func mockedLevel() -> Level {
-            let checkpoint = CheckpointScores(bronze: 200, silver: 350, gold: 500, wizard: 700)
-            let level = Level(id: "level1", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction()], song: "fairy-tale-waltz", artist: "AudioJungle")
+    static func mockedLevel(id: String) -> Level {
+        let checkpoint = CheckpointScores(bronze: 200, silver: 350, gold: 500, wizard: 700)
+        
+        switch id{
+        case "level1":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
+            return level
+        case "level2":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
+            return level
+        case "level3":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
+            return level
             
+        default:
+            let level = Level(id: "level1", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
             return level
         }
+    }
 }

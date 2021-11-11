@@ -116,7 +116,7 @@ extension SummaryViewController: SummaryDelegate {
     
     func goToLeaderboards() {
         
-        let viewController = GKGameCenterViewController(leaderboardID:Level.mockedLevel().getId(),
+        let viewController = GKGameCenterViewController(leaderboardID: authenticationController.user.currentlevel,
                                                         playerScope: .global,
                                                         timeScope: .allTime)
         viewController.gameCenterDelegate = self

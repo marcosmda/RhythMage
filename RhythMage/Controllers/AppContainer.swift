@@ -133,7 +133,7 @@ protocol GameSceneFactory{
 
 extension AppContainer:GameSceneFactory{
     func createGameScene() -> GameViewController {
-        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(), factory: self, faceTrackingController: faceTrackingController)
+        return GameViewController(realm: realm, audioController: audioController, level: Level.mockedLevel(id: authenticatinController.user.currentlevel), factory: self, faceTrackingController: faceTrackingController)
     }
 }
 

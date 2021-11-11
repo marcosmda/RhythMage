@@ -1,7 +1,6 @@
 
 {
-  "RealmInteractionSequence": [],
-  "RealmTileInteraction": [
+  "sequence": [
     {
       "minimumScore": 10,
       "xPosition": 1,
