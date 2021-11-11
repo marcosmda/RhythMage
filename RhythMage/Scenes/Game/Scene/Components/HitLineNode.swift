@@ -127,9 +127,7 @@ class HitLineNode: SKNode {
             
             lineNode.fillTexture = gradientTexture
             lineNode.fillColor = .red
-        
-           Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
-    
+            Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
             lineNode.strokeColor = .clear
         }
     }
