@@ -90,6 +90,10 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         mainView.requestModel(user: authenticationController.user, level: Level.mockedLevel())
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        setupNavigationController()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.audioController.pause()
         faceTrackingController.kill()

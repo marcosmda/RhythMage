@@ -9,14 +9,15 @@ import Foundation
 import UIKit
 
 class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecognizerDelegate{
+    
     //MARK: Injected Properties
-    typealias Factory = SmileToUnlockFactory & TermsOfUseSceneFactory & CreditsSceneFactory
+    typealias Factory = SmileToUnlockFactory & TermsOfUseSceneFactory & CreditsSceneFactory & TutorialSceneFactory
     let factory: Factory
     let authenticationController: AuthenticationController
     
     //MARK: Properties
     var safeArea: UILayoutGuide!
-    var buttons = ["TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
+    var buttons = ["WATCH TUTORIAL", "TERMS OF USE AND PRIVACY", "CREDITS", "ALLOW CAMERA ACCESS"]
     var user: User {
         return authenticationController.user
     }
@@ -30,8 +31,6 @@ class SettingsViewController: BaseViewController<SettingsView>, UIGestureRecogni
         mainView.delegate = self
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
-        
-       // mainView.setupCell
     }
     
     required init?(coder: NSCoder) {
@@ -147,13 +146,19 @@ extension SettingsViewController: UITableViewDelegate{
                 print("Haptic Feedback")
             case 1:
             switch indexPath.row{
-            case 0:
+            case 0 :
+                let tutorialScene = factory.createTutorialScene()
+                self.navigationController?.present(tutorialScene, animated: true, completion: {
+                    tutorialScene.isTutorialOrigin = true
+                    tutorialScene.mainView.skipTutorialButton.isHidden = true
+                })
+            case 1:
                 print("Terms Of Use")
                 self.navigationController?.pushViewController(factory.createTermsOfUseScene(), animated: true)
-            case 1:
+            case 2:
                 print("Credits")
                 self.navigationController?.pushViewController(factory.createCreditsScene(), animated: true)
-            case 2:
+            case 3:
                 print("Enter Allow Camera")
             //Adding the Alert
                 let alertController = UIAlertController (title: "Change Camera Access", message: "For playing with your face and registering your best moments, go to Settings and allow Camera Access.", preferredStyle: .alert)
@@ -213,14 +218,15 @@ extension SettingsViewController: UITableViewDataSource{
             case 1:
             
             switch indexPath.row{
-                
             case 0:
+                print("tutorial")
+            case 1:
                 print("Terms Of Use")
                 
-            case 1:
+            case 2:
                 print("Credits")
               
-            case 2:
+            case 3:
                 print("Enter Allow Camera")
                 
 
