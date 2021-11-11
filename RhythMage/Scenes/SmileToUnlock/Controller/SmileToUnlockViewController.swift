@@ -42,6 +42,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.level = level
         super.init(mainView: SmileToUnlockView())
         mainView.delegate = self
+        authenticationController.observers.append(self)
         
     }
     
@@ -82,7 +83,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         mainView.progressView.setProgress(0, animated: false)
         mainView.setBestScore(score: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
     
-        audioController.updateUrl(fileName: level.songName, fileType: "m4a")
+        audioController.updateUrl(fileName: level.fileName, fileType: level.fileType)
         audioController.start(playing: true)
         audioController.playerVolume(myVolume: 0.3)
         setupFaceTracking()
@@ -168,4 +169,8 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
 }
 
-
+extension SmileToUnlockController: UserObserver {
+    func changedCurrentLevel(to level: Level) {
+        self.level = level
+    }
+}

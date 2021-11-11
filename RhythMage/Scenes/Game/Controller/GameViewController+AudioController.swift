@@ -19,7 +19,7 @@ extension GameViewController: AudioControllerDelegate {
     }
     
     func setupAudioController() {
-        audioController.updateUrl(fileName: level.songName, fileType: "m4a")
+        audioController.updateUrl(fileName: level.fileName, fileType: level.fileType)
         audioController.start(playing: false)
     }
     

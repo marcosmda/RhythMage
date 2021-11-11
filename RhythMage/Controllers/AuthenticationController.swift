@@ -15,6 +15,7 @@ class AuthenticationController: GKGameCenterViewController {
     
     public var user: User = User()
     public var gkLocalPlayer: GKLocalPlayer = GKLocalPlayer()
+    public var observers = [UserObserver]()
     
     //MARK: - Initialization
     init(realm: Realm) {
@@ -85,6 +86,17 @@ class AuthenticationController: GKGameCenterViewController {
                 self.user.settings[key] = value
             }
         } catch {dump("Error updating user settings on Realm")}
+    }
+    
+    public func updateCurrentLevel(level: Level) {
+        do {
+            try realm.write {
+                self.user.currentlevel = level.getId()
+            }
+            for observer in observers {
+                observer.changedCurrentLevel(to: level)
+            }
+        } catch {dump("Error updating user current Level on Realm")}
     }
     
     public func updateUser(for key: String, to value: Any) {

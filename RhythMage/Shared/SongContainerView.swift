@@ -303,7 +303,7 @@ extension SongContainerView {
         
         else {
             iconImageView.image = UIImage(systemName: "pause.circle.fill")
-            guard let path = Bundle.main.path(forResource: level?.songName, ofType: "m4a") else {
+            guard let path = Bundle.main.path(forResource: level?.fileName, ofType: level?.fileType) else {
                 print("No file.")
                 return
             }
