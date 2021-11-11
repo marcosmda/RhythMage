@@ -36,7 +36,7 @@ class GameScene: SKScene {
     }
     
     let mainOrb = MainOrbNode(height: GameScene.mainOrbHeight, color: .pinkOrb)
-    let hitLine = HitLineNode(height: 100)
+    let hitLine = HitLineNode(height: 150)
     let screenCenter = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
    
     //MARK: - Facial Expressions Circles
@@ -73,6 +73,7 @@ class GameScene: SKScene {
         if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < -tileOrbs[0].height{
             tileOrbs[0].removeFromParent()
             tileOrbs.remove(at: 0)
+            hitLine.handleFillColors(with: .failure)
         } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y + tileOrbs[0].height) < 0 {
             tileOrbs[0].removeFromParent()
             tileOrbs.remove(at: 0)

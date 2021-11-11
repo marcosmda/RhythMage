@@ -14,6 +14,7 @@ class HitColorModel: SKShapeNode{
     let startPoint = CGPoint(x: 0.6, y: 1)
     let endPoint = CGPoint(x: 0.6, y: 0)
     
+    
     func setTexture(){
         var uiColor = UIColor()
         
@@ -22,8 +23,6 @@ class HitColorModel: SKShapeNode{
             uiColor = .primary
         case .failure:
             uiColor = .red
-        case .onHold:
-            uiColor = .clear
         }
         let image = UIImage.gradientImage(withBounds: self.frame, startPoint: startPoint, endPoint: endPoint, colors: [uiColor.cgColor, UIColor.clear.cgColor])
         
@@ -47,19 +46,19 @@ class HitColorModel: SKShapeNode{
 enum HitColors{
     case successuful
     case failure
-    case onHold
 }
 
 class HitLineNode: SKNode {
     let height: CGFloat
     let color: UIColor
-
+    
     let width = UIScreen.main.bounds.width
     
-   
     let startPoint = CGPoint(x: 0.6, y: 1)
     let endPoint = CGPoint(x: 0.6, y: 0)
     var lineNode: SKShapeNode?
+    var imageB: UIImage?
+    var imageR: UIImage?
     
     //MARK: - Initialization
     init(height: CGFloat, color: UIColor = .white) {
@@ -89,12 +88,15 @@ class HitLineNode: SKNode {
         guard let lineNode = lineNode else {
             return
         }
+        imageB = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.primary.cgColor, UIColor.clear.cgColor])
+        imageR = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.red.cgColor, UIColor.clear.cgColor])
+
         //lineNode.fillColor = .primary
         //lineNode.strokeColor = .clear
         self.addChild(lineNode)
     }
     
-   private func addBody() {
+    private func addBody() {
         let size = CGSize(width: width, height: height)
         let body = SKPhysicsBody(rectangleOf: size, center: self.position)
         body.isDynamic = false
@@ -107,41 +109,40 @@ class HitLineNode: SKNode {
     }
     
     public func handleFillColors(with hitColors: HitColors){
-        guard let lineNode = lineNode else {
+        guard let lineNode = lineNode , let imageB = imageB , let imageR = imageR else {
             return
         }
         switch hitColors {
         case .successuful:
             
-            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.primary.cgColor, UIColor.clear.cgColor])
-            let gradientTexture = SKTexture(image: image)
-        
+            let gradientTexture = SKTexture(image: imageB)
+            
             lineNode.fillTexture = gradientTexture
             lineNode.fillColor = .primary
             
+            //Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
             
         case .failure:
-            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.red.cgColor, UIColor.clear.cgColor])
-            let gradientTexture = SKTexture(image: image)
-        
+            let gradientTexture = SKTexture(image: imageR)
+            
             lineNode.fillTexture = gradientTexture
             lineNode.fillColor = .red
-            
-      
-        case .onHold:
-            let image: UIImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.clear.cgColor, UIColor.clear.cgColor])
-            let gradientTexture = SKTexture(image: image)
         
-            lineNode.fillTexture = gradientTexture
-            lineNode.fillColor = .clear
-
-        }
-        lineNode.strokeColor = .clear
-        //lineNode.setTexture()
-    }
-   
+           Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
     
- 
+            lineNode.strokeColor = .clear
+        }
+    }
+    
+   @objc func setHitLineToClear(){
+       guard let lineNode = lineNode , let imageB = imageB else {
+           return
+       }
+        if lineNode.fillColor != .primary {
+            lineNode.fillColor = .primary
+            lineNode.strokeColor = .clear
+        }
+    }
 }
 
 extension UIImage {
