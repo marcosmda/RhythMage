@@ -72,6 +72,12 @@ class FaceTrackingController: UIView {
     /// The current timer that is on use or a nil value
     private var timer: Timer?
     
+    /// Timer for handling if there is still a face to track
+    private var stillTrackingTimer: Timer?
+    
+    /// Flag for handling if there is still a face to track
+    private var stillTracking: Bool = false
+    
     //MARK: - Initialization
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
@@ -145,6 +151,14 @@ class FaceTrackingController: UIView {
 extension FaceTrackingController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        if !stillTracking {
+            stillTracking.toggle()
+        } else {
+            stillTrackingTimer?.invalidate()
+        }
+        stillTrackingTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateStillTrackingTimer), userInfo: nil, repeats: false)
+        
+        
         if isEnabled {
             guard let faceAnchor = anchor as? ARFaceAnchor else {return}
             
@@ -212,6 +226,16 @@ extension FaceTrackingController: ARSCNViewDelegate {
                 }
             }
         }
+    }
+    
+    @objc func updateStillTrackingTimer() {
+        for delegate in delegates {
+            delegate.faceReleased()
+        }
+        stillTracking = false
+        
+        resetHeldTime()
+        predominantFace = nil
     }
     
     private func triggerHeldTime() {
