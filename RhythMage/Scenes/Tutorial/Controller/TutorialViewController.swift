@@ -65,7 +65,11 @@ extension TutorialViewController: TutorialViewDelegate {
    
     func didTapSkipButton() {
         UserDefaults.standard.set(true, forKey: "Skip")
-        self.navigationController?.setupTransitionStyle(.fade, with: 0.5)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = .fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
         self.navigationController?.pushViewController(factory.createSmileToUnlockScene(), animated: false)
     }
     
@@ -90,8 +94,13 @@ extension TutorialViewController: TutorialViewDelegate {
         case true:
             dismiss(animated: true)
         case false:
-            self.navigationController?.setupTransitionStyle(.fade, with: 0.5)
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = .fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
             self.navigationController?.pushViewController(factory.createCameraSetupScene(), animated: false)
+            
         }
         
         

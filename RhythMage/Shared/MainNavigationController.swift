@@ -26,11 +26,7 @@ class MainNavigationController: UINavigationController {
 extension UINavigationController {
     
     public func setupTransitionStyle(_ transitionType: CATransitionType, with duration: Double) {
-        let transition = CATransition()
-        transition.duration = duration
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = transitionType
-        self.view.layer.add(transition, forKey: nil)
+        
     }
     
 }

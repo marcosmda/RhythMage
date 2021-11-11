@@ -18,7 +18,7 @@ struct userState{
 class AppContainer {
     let realm = try! Realm()
     let audioController = AudioController()
-    let faceTrackingController = FaceTrackingController()
+    lazy var faceTrackingController = FaceTrackingController()
     @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
