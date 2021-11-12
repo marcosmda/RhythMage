@@ -15,26 +15,20 @@ protocol SongLibraryDelegate {
 class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibraryDelegate, UIGestureRecognizerDelegate{
     //MARK: Injected Properties
     let authenticationController: AuthenticationController
+    var levels: [Level]
     
     private var didStoppedSong: Bool = false
     
     //MARK: - Properties
     
-    // TO-DO: Remove mock from controller!
-    var models = [
-        Level(id: "level1", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Fairytale Waltz", artist: "AudioJungle"),
-        /*Level(id: "22", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Happier than Ever", artist: "Billie Eilish"),
-        Level(id: "33", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "A Concert Six Months From Now", artist: "Finneas"),*/
-        Level(id: "level2", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Industry Baby", artist: "Lil Nas X"),
-        Level(id: "level3", checkpointScores: CheckpointScores(bronze: 111.11, silver: 222.22, gold: 333.33, wizard: 444.44), sequences:[], song: "Angel Baby", artist: "Troye Sivan")
-    ]
-    
     var user: User {
         return authenticationController.user 
     }
+    
     //MARK: - Initializers
-    init(authenticationController: AuthenticationController){
+    init(authenticationController: AuthenticationController, levels: [Level]){
         self.authenticationController = authenticationController
+        self.levels = levels
         super.init(mainView: SongLibraryView())
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -77,9 +71,9 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     //MARK: - Methods
     ///Function configure adds songs to the mock user: User.
     func configure(){
-        models[0].unlock()
-        models[1].unlock()
-       //models[2].unlock()
+        levels[0].unlock()
+        levels[1].unlock()
+        levels[2].unlock()
     }
     
     func backButtonAction() {
@@ -88,7 +82,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
     
     // TO-DO: Remove mock level from this function.
     func openLeaderboards() {
-        authenticationController.openLeaderboard(with: self, with: models[0].getId())
+        authenticationController.openLeaderboard(with: self, with: authenticationController.user.currentlevel)
     }
     
 }
@@ -123,7 +117,7 @@ extension SongLibraryViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 || section == 1{//3 {
+        if section == 0 || section == 1 {
             return 65
         }
         
@@ -134,11 +128,11 @@ extension SongLibraryViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return levels.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let song = models[indexPath.section].getUnlock()
+        let song = levels[indexPath.section].getUnlock()
         switch song.self {
         case true:
             return 82.00
@@ -149,27 +143,27 @@ extension SongLibraryViewController: UITableViewDelegate{
     
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let song = models[indexPath.section].getUnlock()
+        let song = levels[indexPath.row].getUnlock()
         switch song.self {
         case true:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
             cell.song.libraryDelegate = self
-            cell.song.configure(with: models[indexPath.section], userModel: user)
+            cell.song.configure(with: levels[indexPath.row], userModel: user)
             return cell
         case false:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryLockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryLockedSongCell else {
                 return UITableViewCell()
             }
-            cell.song.configure(with: models[indexPath.section], userModel: user)
+            cell.song.configure(with: levels[indexPath.row], userModel: user)
             return cell
         }
     }
 
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return models.count
+        return 1
     }
 
 }
@@ -197,7 +191,9 @@ extension SongLibraryViewController: UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected a row")
+        let selectedLevel = levels[indexPath.row]
+        authenticationController.updateCurrentLevel(level: selectedLevel)
+        navigationController?.popViewController(animated: true)
     }
 }
 

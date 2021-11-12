@@ -15,7 +15,7 @@ enum ScreenScrollArea: Int {
     case right = 2
 }
 
-class TileInteraction: InteractionProtocol {
+class TileInteraction: InteractionProtocol, Codable {
     //MARK: Protocol Properties
     var minimumScore: Double
     

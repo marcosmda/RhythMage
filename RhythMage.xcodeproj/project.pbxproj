@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */; };
+		8D00CA1E2722D3E600DCBA84 /* fairy-tale-waltz.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */; };
 		8D00CA212722D43100DCBA84 /* SKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA202722D43100DCBA84 /* SKNode.swift */; };
 		8D00CA232722D43E00DCBA84 /* SKShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */; };
 		8D00CA252722D45000DCBA84 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00CA242722D45000DCBA84 /* UIView.swift */; };
@@ -95,6 +95,14 @@
 		DBB4A1DD271757AF0037BCB1 /* LoadingScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */; };
 		DBB92018270CC4D40090E41F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB92017270CC4D40090E41F /* BaseViewController.swift */; };
 		DBB9201D270CE3850090E41F /* DynamicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB9201C270CE3850090E41F /* DynamicLabel.swift */; };
+		DBD55A60273D95F900235985 /* Winds.json in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A5F273D95F900235985 /* Winds.json */; };
+		DBD55A62273D95FF00235985 /* Puffs.json in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A61273D95FF00235985 /* Puffs.json */; };
+		DBD55A64273D960800235985 /* ColdWater.json in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A63273D960800235985 /* ColdWater.json */; };
+		DBD55A68273D962900235985 /* ColdWater.m4a in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A67273D962900235985 /* ColdWater.m4a */; };
+		DBD55A6A273D964000235985 /* Winds.m4a in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A69273D964000235985 /* Winds.m4a */; };
+		DBD55A6C273D966800235985 /* Puffs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A6B273D966800235985 /* Puffs.mp3 */; };
+		DBD55A70273D96B000235985 /* AtTheBottomOfInfinity.json in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A6F273D96B000235985 /* AtTheBottomOfInfinity.json */; };
+		DBD55A72273D96C100235985 /* AtTheBottomOfInfinity.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DBD55A71273D96C100235985 /* AtTheBottomOfInfinity.mp3 */; };
 		F14F1A522712291B002F5C3A /* SmileToUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */; };
 		F14F1A5627122D1A002F5C3A /* SmileToUnlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */; };
 		F1508F83272C823F00C2C5F6 /* GameCameraDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1508F82272C823F00C2C5F6 /* GameCameraDisplayView.swift */; };
@@ -125,7 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = defaultLevel.json; sourceTree = "<group>"; };
+		8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "fairy-tale-waltz.json"; sourceTree = "<group>"; };
 		8D00CA202722D43100DCBA84 /* SKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.swift; sourceTree = "<group>"; };
 		8D00CA222722D43E00DCBA84 /* SKShapeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.swift; sourceTree = "<group>"; };
 		8D00CA242722D45000DCBA84 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -213,6 +221,14 @@
 		DBB4A1DC271757AF0037BCB1 /* LoadingScreenViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewDelegate.swift; sourceTree = "<group>"; };
 		DBB92017270CC4D40090E41F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DBB9201C270CE3850090E41F /* DynamicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabel.swift; sourceTree = "<group>"; };
+		DBD55A5F273D95F900235985 /* Winds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Winds.json; sourceTree = "<group>"; };
+		DBD55A61273D95FF00235985 /* Puffs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Puffs.json; sourceTree = "<group>"; };
+		DBD55A63273D960800235985 /* ColdWater.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ColdWater.json; sourceTree = "<group>"; };
+		DBD55A67273D962900235985 /* ColdWater.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ColdWater.m4a; sourceTree = "<group>"; };
+		DBD55A69273D964000235985 /* Winds.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Winds.m4a; sourceTree = "<group>"; };
+		DBD55A6B273D966800235985 /* Puffs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Puffs.mp3; sourceTree = "<group>"; };
+		DBD55A6F273D96B000235985 /* AtTheBottomOfInfinity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AtTheBottomOfInfinity.json; sourceTree = "<group>"; };
+		DBD55A71273D96C100235985 /* AtTheBottomOfInfinity.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AtTheBottomOfInfinity.mp3; sourceTree = "<group>"; };
 		F14F1A512712291B002F5C3A /* SmileToUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockView.swift; sourceTree = "<group>"; };
 		F14F1A5527122D1A002F5C3A /* SmileToUnlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmileToUnlockViewController.swift; sourceTree = "<group>"; };
 		F1508F82272C823F00C2C5F6 /* GameCameraDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCameraDisplayView.swift; sourceTree = "<group>"; };
@@ -344,7 +360,15 @@
 			children = (
 				CFA1A13E273C432E001DB0F1 /* CollectOrbSound.mp3 */,
 				8D09842427175BD6007477F3 /* fairy-tale-waltz.mp3 */,
-				8D00CA1D2722D3E500DCBA84 /* defaultLevel.json */,
+				8D00CA1D2722D3E500DCBA84 /* fairy-tale-waltz.json */,
+				DBD55A71273D96C100235985 /* AtTheBottomOfInfinity.mp3 */,
+				DBD55A6F273D96B000235985 /* AtTheBottomOfInfinity.json */,
+				DBD55A69273D964000235985 /* Winds.m4a */,
+				DBD55A5F273D95F900235985 /* Winds.json */,
+				DBD55A67273D962900235985 /* ColdWater.m4a */,
+				DBD55A63273D960800235985 /* ColdWater.json */,
+				DBD55A6B273D966800235985 /* Puffs.mp3 */,
+				DBD55A61273D95FF00235985 /* Puffs.json */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -867,14 +891,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */,
+				DBD55A68273D962900235985 /* ColdWater.m4a in Resources */,
+				DBD55A60273D95F900235985 /* Winds.json in Resources */,
 				CFA1A13F273C432E001DB0F1 /* CollectOrbSound.mp3 in Resources */,
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
-				8D00CA1E2722D3E600DCBA84 /* defaultLevel.json in Resources */,
+				8D00CA1E2722D3E600DCBA84 /* fairy-tale-waltz.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */,
+				DBD55A72273D96C100235985 /* AtTheBottomOfInfinity.mp3 in Resources */,
 				CFB113B72729BA77001A5447 /* cameraCaptureAudio.m4a in Resources */,
+				DBD55A6A273D964000235985 /* Winds.m4a in Resources */,
+				DBD55A6C273D966800235985 /* Puffs.mp3 in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
+				DBD55A70273D96B000235985 /* AtTheBottomOfInfinity.json in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
+				DBD55A62273D95FF00235985 /* Puffs.json in Resources */,
+				DBD55A64273D960800235985 /* ColdWater.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,7 +1167,7 @@
 				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
@@ -1169,7 +1201,7 @@
 				DEVELOPMENT_TEAM = 5J4WXMTZ2V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RhythMage/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "RhythMage needs camera access for gameplay";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
