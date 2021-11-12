@@ -67,8 +67,8 @@ class AutorsCredits: UITableViewCell {
         autorsText.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         autorsText.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
         autorsText.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
-        autorsText.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.85).isActive = true
-        //autorsText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        //autorsText.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65).isActive = true
+        autorsText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
         
 
         

@@ -23,7 +23,7 @@ class CreditsSceneViewController: BaseViewController<CreditsView>, UIGestureReco
         mainView.delegate = self
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.leftBarButtonItem = self.mainView.backButton
-        //mainView.tableView.sectionFooterHeight = 30
+        mainView.tableView.sectionFooterHeight = 30
         
     }
     
@@ -62,6 +62,7 @@ class CreditsSceneViewController: BaseViewController<CreditsView>, UIGestureReco
        /* if timer == nil {
             mainView.tableView.scrollsToTop = true
         }*/
+        //mainView.tableView.de
 
     }
 }
@@ -127,17 +128,17 @@ extension CreditsSceneViewController: UITableViewDelegate{
             default:
                 switch indexPath.row{
                 case 0:
-                    return 110 //two
+                    return 165 //two 120
                 case 1:
-                    return 180 //five
+                    return 225 //four 180
                 case 2:
-                    return 150 //three
+                    return 200 //three
                 case 3:
-                    return 110 //two
+                    return 165 //two
                 case 4:
-                    return 220 //five
+                    return 260 //five
                 default:
-                    return 70 //one
+                    return 135 //one 90
                 }
             }
            
@@ -146,33 +147,25 @@ extension CreditsSceneViewController: UITableViewDelegate{
         func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int, indexPath: IndexPath) -> CGFloat {
             return 20 //one
         }
+    
    //MARK: Not calling this function
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int, indexPath: IndexPath) -> CGFloat{
+    /*
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch section{
         case 0:
-            return 0
+            return 0 // for example
         case 1:
             return 0
         default:
-            return 30
-            /*
+            let indexPath = NSIndexPath(row: 6, section: section)
             switch indexPath.row{
-                case 0:
-                    return 30 //two
-                case 1:
-                    return 30 //five
-                case 2:
-                    return 30 //three
-                case 3:
-                    return 30 //two
-                case 4:
-                    return 30 //five
-                default:
-                    return 30 //one
-                }*/
+            default:
+                print(indexPath.row)
+                //return 100 //one
+                
             }
-        
-    }
+        }
+    }*/
         
         ///Set the numbers of cells we will display
         func numberOfSections(in tableView: UITableView) -> Int {
