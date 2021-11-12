@@ -68,7 +68,6 @@ class Level {
         case "level3":
             let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
             return level
-            
         default:
             let level = Level(id: "level1", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "AudioJungle")
             return level

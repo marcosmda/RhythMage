@@ -22,27 +22,29 @@ class SmileToUnlockView: UIView {
     var tutorialInstruction = TutorialInstructionView()
     var songPlaying:String?
     var bestScore: String?
+    var faceTrackingView: FaceTrackingController
     public var buttonSelected: Bool = false
     
     var gradientView = GradientBackgroundView()
     
     var delegate: SmileToUnlockDelegate?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(faceTrackingView: FaceTrackingController) {
+        self.faceTrackingView = faceTrackingView
+        super.init(frame: .zero)
         buttonSettings.tintColor = .label
         self.addSubview(gradientView)
         self.addSubview(nameGameTitle)
         self.addSubview(nameSongTitle)
         self.addSubview(bestScoreTitle)
-        self.addSubview(mageImage)
+//        previewCameraLayer.addSubview(faceTrackingView)
+        self.addSubview(previewCameraLayer)
         self.addSubview(progressView)
         progressView.addSubview(smileToPlayTitle)
         self.addSubview(buttonSongLibrary)
         self.addSubview(tutorialInstruction)
         gradientView.setupCircleBackgroundBlur()
         setupLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +62,11 @@ class SmileToUnlockView: UIView {
         return imageView
     }()
     
-    
+    ///user camera view
+    var previewCameraLayer: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     lazy var nameSongTitle: UILabel = {
         let label2 = UILabel(frame: .zero)
@@ -127,15 +133,15 @@ class SmileToUnlockView: UIView {
     }()
     
     //MARK: - Mage Image
-    let mageImage: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "mageWithOrbs")
-        imageView.contentMode = .scaleAspectFit
-        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return imageView
-    }()
+//    let mageImage: UIImageView = {
+//        let imageView = UIImageView(frame: .zero)
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.clipsToBounds = true
+//        imageView.image = UIImage(named: "mageWithOrbs")
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+//        return imageView
+//    }()
     
     lazy var buttonSettings: UIBarButtonItem = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -201,23 +207,27 @@ class SmileToUnlockView: UIView {
         nameSongTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         bestScoreTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1, constant: 0).isActive = true
-        bestScoreTitle.bottomAnchor.constraint(equalTo: mageImage.topAnchor, constant: -20).isActive = true
+        bestScoreTitle.bottomAnchor.constraint(equalTo: previewCameraLayer.topAnchor, constant: -20).isActive = true
         bestScoreTitle.topAnchor.constraint(equalTo: nameSongTitle.bottomAnchor).isActive = true
         bestScoreTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
-        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
-        mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//        mageImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
+//        mageImage.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
+//        mageImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        previewCameraLayer.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor).isActive = true
+        previewCameraLayer.heightAnchor.constraint(equalTo: previewCameraLayer.widthAnchor).isActive = true
+        previewCameraLayer.topAnchor.constraint(equalTo: bestScoreTitle.bottomAnchor, constant: 20).isActive = true
+        previewCameraLayer.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         smileToPlayTitle.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         smileToPlayTitle.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
         
         progressView.widthAnchor.constraint(equalTo: buttonSongLibrary.widthAnchor).isActive = true
-        progressView.topAnchor.constraint(equalTo: mageImage.bottomAnchor, constant: 25).isActive = true
+        progressView.topAnchor.constraint(equalTo: previewCameraLayer.bottomAnchor, constant: 25).isActive = true
         progressView.bottomAnchor.constraint(equalTo: buttonSongLibrary.topAnchor, constant: -20).isActive = true
         progressView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         progressView.heightAnchor.constraint(equalTo: buttonSongLibrary.heightAnchor).isActive = true
-        
         
         buttonSongLibrary.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         buttonSongLibrary.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 20).isActive = true
@@ -229,6 +239,12 @@ class SmileToUnlockView: UIView {
         gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        faceTrackingView.setFrame(frame: previewCameraLayer.frame, circle: true)
         
     }
     
@@ -254,11 +270,11 @@ class SmileToUnlockView: UIView {
     }
     
     func handleAutoResizingMasks() {
-        
+        previewCameraLayer.translatesAutoresizingMaskIntoConstraints = false
         nameGameTitle.translatesAutoresizingMaskIntoConstraints = false
         nameSongTitle.translatesAutoresizingMaskIntoConstraints = false
         bestScoreTitle.translatesAutoresizingMaskIntoConstraints = false
-        mageImage.translatesAutoresizingMaskIntoConstraints = false
+//        mageImage.translatesAutoresizingMaskIntoConstraints = false
         buttonSongLibrary.translatesAutoresizingMaskIntoConstraints = false
         gradientView.translatesAutoresizingMaskIntoConstraints = false
             

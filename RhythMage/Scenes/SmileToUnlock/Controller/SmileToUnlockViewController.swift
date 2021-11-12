@@ -11,6 +11,8 @@ import AVFoundation
 import GameKit
 import Photos
 
+
+
 class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     
     //MARK: Injected Properties
@@ -19,6 +21,11 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     let authenticationController: AuthenticationController
     let faceTrackingController: FaceTrackingController
     let audioController: AudioController
+    
+    ///camera capture
+    var captureSession: AVCaptureSession!
+    var stillImageOutput: AVCapturePhotoOutput!
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     //MARK: Properties
     var progressTime: Double = 0
@@ -38,7 +45,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         self.audioController = audioController
         self.authenticationController = authenticationController
         self.faceTrackingController = facetrackingController
-        super.init(mainView: SmileToUnlockView())
+        super.init(mainView: SmileToUnlockView(faceTrackingView: faceTrackingController))
         mainView.delegate = self
         //mainView.insertSubview(faceTrackingController, at: 0)
     }
@@ -110,11 +117,11 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
 //MARK: - FaceTracking Delegate
 extension SmileToUnlockController: FaceTrackingControllerDelegate {
     
-    
     func setupFaceTracking() {
-        mainView.insertSubview(faceTrackingController, at: 0)
+        mainView.addSubview(faceTrackingController)
         faceTrackingController.initialConfiguration()
         faceTrackingController.isEnabled = true
+        faceTrackingController.isViewHidden = false
         faceTrackingController.delegates.append(self)
         faceTrackingController.addTrackedFaces(faces: [.mouthSmileLeft])
     }
@@ -164,6 +171,7 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     func onSongLibraryButtonPush() {
         navigationController?.pushViewController(factory.createSongLibraryScene(), animated: true)
     }
+
     
 }
 

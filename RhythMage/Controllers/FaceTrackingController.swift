@@ -139,6 +139,26 @@ class FaceTrackingController: UIView {
             subview.removeFromSuperview()
         }
     }
+    
+    func setFrame(frame: CGRect, circle: Bool = false){
+        let height = frame.height
+        let width = frame.width
+        let origin = frame.origin
+        var newFrame = frame
+        if height > width{
+            newFrame = CGRect(x: origin.x, y: origin.y, width: width, height: width)
+        } else {
+            newFrame = CGRect(x: origin.x, y: origin.y, width: height, height: height)
+        }
+        self.frame = frame
+        sceneView?.frame = CGRect(x: 0, y: 0, width: newFrame.width, height: newFrame.height)
+        
+        if circle {
+            sceneView?.layer.cornerRadius =  (sceneView?.bounds.height ?? 0) / 2
+            sceneView?.layer.masksToBounds = true
+            sceneView?.clipsToBounds = true
+        }
+    }
 }
 
 //MARK: - ARSceneViewDelegate
