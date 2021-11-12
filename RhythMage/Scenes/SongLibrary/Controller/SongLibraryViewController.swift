@@ -74,6 +74,7 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         levels[0].unlock()
         levels[1].unlock()
         levels[2].unlock()
+        levels[3].unlock()
     }
     
     func backButtonAction() {
@@ -135,7 +136,7 @@ extension SongLibraryViewController: UITableViewDelegate{
         let song = levels[indexPath.section].getUnlock()
         switch song.self {
         case true:
-            return 82.00
+            return 110.00
         case false:
             return 61.00
         }
@@ -149,8 +150,14 @@ extension SongLibraryViewController: UITableViewDelegate{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryUnlockedSongCell else {
                 return UITableViewCell()
             }
+            
+            if levels[indexPath.row].getId() == authenticationController.user.currentlevel {
+                cell.song.isSelected = true
+            }
+    
             cell.song.libraryDelegate = self
             cell.song.configure(with: levels[indexPath.row], userModel: user)
+            cell.selectionStyle = .none
             return cell
         case false:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SongLibraryLockedSongCell.reusableIdentifier, for: indexPath) as? SongLibraryLockedSongCell else {
@@ -172,25 +179,10 @@ extension SongLibraryViewController: UITableViewDelegate{
 extension SongLibraryViewController: UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.layer.cornerRadius = 20
-        cell.layer.masksToBounds = true
-        cell.layer.borderWidth = 2
-        cell.accessoryType = UITableViewCell.AccessoryType.none
-
-        let borderColor: UIColor = UIColor.white
-        cell.layer.borderColor = borderColor.cgColor
-        cell.selectionStyle = .none
-
-        let selectedView: UIView = UIView(frame: cell.frame)
-        selectedView.layer.cornerRadius = 20
-        selectedView.layer.masksToBounds = true
-        selectedView.layer.borderWidth = 0
-        selectedView.layer.borderColor = UIColor.white.cgColor
-        selectedView.backgroundColor = UIColor.black
-        cell.selectedBackgroundView = selectedView
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let selectedLevel = levels[indexPath.row]
         authenticationController.updateCurrentLevel(level: selectedLevel)
         navigationController?.popViewController(animated: true)

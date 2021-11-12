@@ -20,11 +20,10 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         self.song.translatesAutoresizingMaskIntoConstraints = false
        
         super.init(style: style, reuseIdentifier: SongLibraryUnlockedSongCell.reusableIdentifier)
-        self.backgroundColor = UIColor.terciaryBackground
+        //self.backgroundColor = UIColor.terciaryBackground
+        self.backgroundColor = .clear
         
-        contentView.clipsToBounds = false
-        
-        contentView.addSubview(self.song)
+        self.addSubview(self.song)
     }
     
     required init?(coder: NSCoder) {
@@ -36,9 +35,11 @@ class SongLibraryUnlockedSongCell: UITableViewCell{
         super.layoutSubviews()
     
         NSLayoutConstraint.activate([
-            song.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            song.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            song.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+            song.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            song.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            song.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+            song.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
         ])
     }
  

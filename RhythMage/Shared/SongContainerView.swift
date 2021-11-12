@@ -29,6 +29,7 @@ class SongContainerView:UIView {
     var imageSize: CGFloat = 36
     
     var isPlaying = false
+    var isSelected = false
     
     var gameDelegate: GameSceneDelegate?
     var libraryDelegate: SongLibraryViewDelegate?
@@ -51,8 +52,8 @@ class SongContainerView:UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        view.backgroundColor = UIColor.terciaryBackground
         view.layer.cornerRadius = 20
-        view.layer.borderWidth = 3
         view.layer.masksToBounds = true
         return view
     }()
@@ -225,6 +226,13 @@ class SongContainerView:UIView {
                 highestScore = Double(user) ?? 0
             }
             highestScoreLabel.text = "Best Score: " + String(highestScore)
+            if (isSelected) {
+                backgroundView.layer.borderWidth = 5
+                backgroundView.layer.borderColor = UIColor.white.withAlphaComponent(0.5).cgColor
+            } else {
+                backgroundView.layer.borderWidth = 0
+            }
+            
         case .playingSong:
             songTitleLabel.text = level.songName.uppercased()
             //
@@ -250,6 +258,7 @@ extension SongContainerView{
         ])
         
         iconImageView.frame = CGRect(x: 20, y: (self.frame.size.height - imageSize - 5) / 2, width: imageSize, height: imageSize)
+
     }
     
     /// setupHiararchyLockedSong
