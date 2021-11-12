@@ -59,6 +59,9 @@ class CreditsSceneViewController: BaseViewController<CreditsView>, UIGestureReco
     @objc func scrollTableView(){
       // let indexPath = NSIndexPath(item: 3, section: 2)
        // mainView.tableView.scrollToRow(at: indexPath as IndexPath, at: UITableView.ScrollPosition.bottom, animated: true)
+       /* if timer == nil {
+            mainView.tableView.scrollsToTop = true
+        }*/
 
     }
 }
