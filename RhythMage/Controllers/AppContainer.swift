@@ -21,7 +21,7 @@ class AppContainer {
     lazy var faceTrackingController = FaceTrackingController()
     @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
-    var levels: [Level] = [Level.mockedLevel(id: "level1"), Level.mockedLevel(id: "level2"), Level.mockedLevel(id: "level3")]
+    var levels: [Level] = [Level.mockedLevel(id: "level1"), Level.mockedLevel(id: "level2"), Level.mockedLevel(id: "level3"), Level.mockedLevel(id: "level4")]
     
     /// The Main Navigation Controller with the root set in SmileToUnlock
     lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
