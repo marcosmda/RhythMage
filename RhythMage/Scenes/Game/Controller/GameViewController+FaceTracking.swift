@@ -84,7 +84,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.leftFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
-                    //mainScene.hitLine.handleFillColors(with: .successuful)
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         case .jawOpen:
@@ -95,7 +95,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.middleFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
-                    //mainScene.hitLine.handleFillColors(with: .successuful)
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         case .mouthLeft: //Sim, é invertido
@@ -106,7 +106,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.rightFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
-                    //mainScene.hitLine.handleFillColors(with: .successuful)
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         default:

@@ -20,7 +20,6 @@ extension GameScene {
         self.addChild(hitLine)
         
         hitLine.lineNode?.strokeColor = .clear
-        hitLine.handleFillColors(with: .successuful)
        
         for facialExpression in facialExpressions {
             self.addChild(facialExpression)

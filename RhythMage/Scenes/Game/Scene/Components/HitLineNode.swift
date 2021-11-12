@@ -7,46 +7,6 @@
 
 import Foundation
 import SpriteKit
-/*
-class HitColorModel: SKShapeNode{
-    var color: HitColors
-    
-    let startPoint = CGPoint(x: 0.6, y: 1)
-    let endPoint = CGPoint(x: 0.6, y: 0)
-    
-    
-    func setTexture(){
-        var uiColor = UIColor()
-        
-        switch color {
-        case .successuful:
-            uiColor = .primary
-        case .failure:
-            uiColor = .red
-        }
-        let image = UIImage.gradientImage(withBounds: self.frame, startPoint: startPoint, endPoint: endPoint, colors: [uiColor.cgColor, UIColor.clear.cgColor])
-        
-        let gradientTexture = SKTexture(image: image)
-        self.fillTexture = gradientTexture
-        self.strokeColor = .clear
-        
-    }
-    //MARK: - Initialization
-    init(color: HitColors) {
-        self.color = color
-        super.init()
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-*/
-enum HitColors{
-    case successuful
-    case failure
-}
 
 class HitLineNode: SKNode {
     let height: CGFloat
@@ -57,8 +17,8 @@ class HitLineNode: SKNode {
     let startPoint = CGPoint(x: 0.6, y: 1)
     let endPoint = CGPoint(x: 0.6, y: 0)
     var lineNode: SKShapeNode?
-    var imageB: UIImage?
-    var imageR: UIImage?
+    var redImage: UIImage?
+    var blueImage: UIImage?
     
     //MARK: - Initialization
     init(height: CGFloat, color: UIColor = .white) {
@@ -88,9 +48,9 @@ class HitLineNode: SKNode {
         guard let lineNode = lineNode else {
             return
         }
-        imageB = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.primary.cgColor, UIColor.clear.cgColor])
-        imageR = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.red.cgColor, UIColor.clear.cgColor])
-
+        redImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.red.cgColor, UIColor.clear.cgColor])
+        blueImage = UIImage.gradientImage(withBounds: lineNode.frame, startPoint: startPoint, endPoint: endPoint, colors: [UIColor.primary.cgColor, UIColor.clear.cgColor])
+        setHitLineToBlue()
         //lineNode.fillColor = .primary
         //lineNode.strokeColor = .clear
         self.addChild(lineNode)
@@ -108,33 +68,24 @@ class HitLineNode: SKNode {
         self.physicsBody = body
     }
     
-    public func handleFillColors(with hitColors: HitColors){
-        guard let lineNode = lineNode , let imageB = imageB , let imageR = imageR else {
+    public func hitLineErrorColor(){
+        guard let lineNode = lineNode, let redImage = redImage else {
             return
         }
-        switch hitColors {
-        case .successuful:
-            
-            let gradientTexture = SKTexture(image: imageB)
-            
-            lineNode.fillTexture = gradientTexture
-            lineNode.fillColor = .primary
-            
-        case .failure:
-            let gradientTexture = SKTexture(image: imageR)
-            
-            lineNode.fillTexture = gradientTexture
-            lineNode.fillColor = .red
-            Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
-            lineNode.strokeColor = .clear
-        }
+        
+        lineNode.fillTexture = SKTexture(image: redImage)
+        lineNode.fillColor = .red
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(setHitLineToBlue), userInfo: nil, repeats: false)
+        lineNode.strokeColor = .clear
+        
     }
     
-   @objc func setHitLineToClear(){
-       guard let lineNode = lineNode , let imageB = imageB else {
-           return
-       }
+    @objc func setHitLineToBlue(){
+        guard let lineNode = lineNode , let blueImage = blueImage else {
+            return
+        }
         if lineNode.fillColor != .primary {
+            lineNode.fillTexture = SKTexture(image: blueImage)
             lineNode.fillColor = .primary
             lineNode.strokeColor = .clear
         }

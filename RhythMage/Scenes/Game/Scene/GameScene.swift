@@ -52,8 +52,6 @@ class GameScene: SKScene {
     
     var currentNode: SKNode?
     var tileKiteContactStartTime: Double = 0
-    var lastUpdateTimeInterval = TimeInterval()          // simply a Double
-    var lastYieldTimeInterval = TimeInterval()
     //The array of tiles that are currently on contact, containing the hash of each one and teh node
     var tilesInContact = [Int: TileOrbNode]()
     
@@ -71,43 +69,35 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var flag = false
+    
     override func update(_ currentTime: TimeInterval) {
-        var timeSinceLastUpdate = currentTime - lastUpdateTimeInterval     // The name means it: time since last update
-               lastUpdateTimeInterval = currentTime
-           
-               if timeSinceLastUpdate > 1 {          // Did we wait for more than 1 (s or minutes ?) ?
-                   timeSinceLastUpdate = 1/60
-                   lastUpdateTimeInterval = currentTime
-               }
-           
-               updateWithTimeSinceLastUpdate(timeSinceLastUpdate: timeSinceLastUpdate)
+        
+        if flag {
+            print(tileOrbs)
+            print(tileOrbs[0].hasTail)
+            print(tileOrbs[0].position.y)
+            print(tileOrbs[0].height)
+            flag = false
+        }
         
         //MARK: With time interval it enters, but stops after first right face
         if tileOrbs != [] && !tileOrbs[0].hasTail && tileOrbs[0].position.y < -tileOrbs[0].height{
             tileOrbs[0].removeFromParent()
             tileOrbs.remove(at: 0)
-            print("entrei perdeu")
-            hitLine.handleFillColors(with: .failure)
-            
-            //MARK: Not entering
-        } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y - tileOrbs[0].height) < 0 { //was +
+            hitLine.hitLineErrorColor()
+        } else if tileOrbs != [] && tileOrbs[0].hasTail && (tileOrbs[0].position.y + tileOrbs[0].height) < 0 {
             tileOrbs[0].removeFromParent()
             tileOrbs.remove(at: 0)
             hashes = hashes.filter{$0 != tileOrbs[0].physicsBody?.hash}
-            print("entrei acertou")
-            hitLine.handleFillColors(with: .successuful)
         }
         
         gameDelegate?.getElapsedTime()
     }
-    func updateWithTimeSinceLastUpdate(timeSinceLastUpdate: CFTimeInterval)  {
-        lastYieldTimeInterval += timeSinceLastUpdate
-        if lastYieldTimeInterval > 0.6 {     // time out of 0.6 s
-            lastYieldTimeInterval = 0
-       
-        }
-    }
 
-    
+    func tileWasHit(tile: TileOrbNode) {
+        tile.removeFromParent()
+        tileOrbs = tileOrbs.filter{$0 != tile}
+    }
 }
 
