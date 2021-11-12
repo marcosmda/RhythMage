@@ -7,7 +7,7 @@
 
 import Foundation
 import SpriteKit
-
+/*
 class HitColorModel: SKShapeNode{
     var color: HitColors
     
@@ -42,7 +42,7 @@ class HitColorModel: SKShapeNode{
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+*/
 enum HitColors{
     case successuful
     case failure
@@ -120,14 +120,12 @@ class HitLineNode: SKNode {
             lineNode.fillTexture = gradientTexture
             lineNode.fillColor = .primary
             
-            //Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
-            
         case .failure:
             let gradientTexture = SKTexture(image: imageR)
             
             lineNode.fillTexture = gradientTexture
             lineNode.fillColor = .red
-            Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(setHitLineToClear), userInfo: nil, repeats: false)
             lineNode.strokeColor = .clear
         }
     }
