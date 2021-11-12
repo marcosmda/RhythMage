@@ -21,11 +21,22 @@ class AppContainer {
     lazy var faceTrackingController = FaceTrackingController()
     @State var didSkip = UserDefaults.standard.bool(forKey: "Skip")
     
+    var levels: [Level] = [Level.mockedLevel(id: "level1"), Level.mockedLevel(id: "level2"), Level.mockedLevel(id: "level3"), Level.mockedLevel(id: "level4")]
+    
     /// The Main Navigation Controller with the root set in SmileToUnlock
     lazy var navigationController = MainNavigationController(rootViewController: self.createHeadphoneWarningScene())
     lazy var authenticatinController = AuthenticationController(realm: realm)
+ 
     
-    init() {
+    func getCurrentLevel() -> Level {
+        
+        for level in levels {
+            if level.getId() == authenticatinController.user.currentlevel {
+                return level
+            }
+        }
+        
+        return levels[0]
         
     }
 }
@@ -55,7 +66,7 @@ protocol SongLibrarySceneFactory {
 extension AppContainer: SongLibrarySceneFactory {
     
     func createSongLibraryScene() -> SongLibraryViewController {
-        return SongLibraryViewController(authenticationController: authenticatinController)
+        return SongLibraryViewController(authenticationController: authenticatinController, levels: levels)
     }
 }
 
@@ -94,7 +105,7 @@ protocol SmileToUnlockFactory{
 
 extension AppContainer:SmileToUnlockFactory{
     func createSmileToUnlockScene() -> SmileToUnlockController {
-        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController, facetrackingController: faceTrackingController)
+        return SmileToUnlockController(factory: self, authenticationController: authenticatinController, audioController: audioController, facetrackingController: faceTrackingController, level: self.getCurrentLevel())
     }
 }
 

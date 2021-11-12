@@ -250,7 +250,7 @@ class SmileToUnlockView: UIView {
     
     public func requestModel (user: User, level: Level)
     {
-        nameSongTitle.text = "Now Playing: \(level.songName) from \(level.artistName)"
+        nameSongTitle.text = "Now Playing: \(level.songName) by \(level.artistName)"
     }
     
     func setBestScore(score: String) {

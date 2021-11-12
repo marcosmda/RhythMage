@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,33 +13,31 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="DA6-w2-Cqt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="inH-o5-pIr">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6cQ-Ra-pfs">
-                                <rect key="frame" x="51" y="253" width="312" height="390"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCashLogo" translatesAutoresizingMaskIntoConstraints="NO" id="3C0-Oo-2UF">
+                                <rect key="frame" x="84.666666666666686" y="268" width="259" height="390"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DA6-w2-Cqt" secondAttribute="bottom" id="7XQ-Q0-Iq1"/>
-                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JHy-OY-ObL"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6cQ-Ra-pfs" secondAttribute="trailing" constant="51" id="KSn-Jq-6iN"/>
-                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Vl7-De-dW1"/>
-                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bue-na-ag3"/>
-                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="mrv-N8-aae"/>
-                            <constraint firstItem="DA6-w2-Cqt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="naj-qM-v6e"/>
-                            <constraint firstItem="6cQ-Ra-pfs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="z2z-b7-z8z"/>
+                            <constraint firstItem="inH-o5-pIr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="9H8-tV-ubd"/>
+                            <constraint firstItem="3C0-Oo-2UF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KLg-FA-BTo"/>
+                            <constraint firstItem="3C0-Oo-2UF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZIy-rf-bnB"/>
+                            <constraint firstItem="inH-o5-pIr" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="feZ-Kr-YMX"/>
+                            <constraint firstItem="inH-o5-pIr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="wTC-Gq-Zi3"/>
+                            <constraint firstAttribute="bottom" secondItem="inH-o5-pIr" secondAttribute="bottom" id="yJx-Aq-hvK"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="-494" y="-56"/>
         </scene>
     </scenes>
     <resources>

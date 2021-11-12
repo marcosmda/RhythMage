@@ -31,6 +31,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
     
     //MARK: - Protocol Methods
     func faceRecognized(face: ARFaceAnchor.BlendShapeLocation) {
+        /*
         switch face {
         case .mouthRight: //Sim, é invertido
             mainScene.leftFaceExpression.updateExpressionActiveAnimation(with: true)
@@ -41,6 +42,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.leftFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .successuful)
                 }
             }
         case .jawOpen:
@@ -52,6 +54,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.middleFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .successuful)
                 }
             }
         case .mouthLeft: //Sim, é invertido
@@ -63,11 +66,12 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.rightFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.hitLine.handleFillColors(with: .successuful)
                 }
             }
         default:
             return
-        }
+        }*/
     }
     
     func faceHeld(face: ARFaceAnchor.BlendShapeLocation, for time: Double) {
@@ -80,6 +84,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.leftFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         case .jawOpen:
@@ -90,6 +95,7 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.middleFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         case .mouthLeft: //Sim, é invertido
@@ -100,19 +106,23 @@ extension GameViewController: FaceTrackingControllerDelegate {
                     mainScene.updateScore(by: tile.value.tileInteraction.minimumScore)
                     mainScene.rightFaceExpression.runHitAnimation()
                     tileOrb.runHitAnimation()
+                    mainScene.tileWasHit(tile: tileOrb)
                 }
             }
         default:
             return
         }
-        
     }
     
     func faceReleased() {
         for expression in mainScene.facialExpressions {
             if expression.isCircleActive {
                 expression.updateExpressionActiveAnimation()
+                
             }
+            
         }
+        
     }
+    
 }

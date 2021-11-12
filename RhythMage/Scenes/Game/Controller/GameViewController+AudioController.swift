@@ -19,7 +19,7 @@ extension GameViewController: AudioControllerDelegate {
     }
     
     func setupAudioController() {
-        audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
+        audioController.updateUrl(fileName: level.fileName, fileType: level.fileType)
         audioController.start(playing: false)
     }
     

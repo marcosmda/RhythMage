@@ -61,3 +61,7 @@ class User: Object {
     }
 }
 
+protocol UserObserver {
+    func changedCurrentLevel(to level: Level)
+}
+

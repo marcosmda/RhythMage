@@ -21,6 +21,7 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     let authenticationController: AuthenticationController
     let faceTrackingController: FaceTrackingController
     let audioController: AudioController
+    var level: Level
     
     ///camera capture
     var captureSession: AVCaptureSession!
@@ -40,14 +41,16 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
     var ableToPlay = false
     
     //MARK: Initialization
-    init (factory: Factory, authenticationController: AuthenticationController, audioController: AudioController, facetrackingController: FaceTrackingController) {
+    init (factory: Factory, authenticationController: AuthenticationController, audioController: AudioController, facetrackingController: FaceTrackingController, level: Level) {
         self.factory = factory
         self.audioController = audioController
         self.authenticationController = authenticationController
         self.faceTrackingController = facetrackingController
-        super.init(mainView: SmileToUnlockView(faceTrackingView: faceTrackingController))
+        self.level = level
+        super.init(mainView: SmileToUnlockView())
         mainView.delegate = self
-        //mainView.insertSubview(faceTrackingController, at: 0)
+        authenticationController.observers.append(self)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -86,9 +89,8 @@ class SmileToUnlockController: BaseViewController<SmileToUnlockView> {
         initiatedGameScene = false
         mainView.progressView.setProgress(0, animated: false)
         mainView.setBestScore(score: authenticationController.user.completed[authenticationController.user.currentlevel] ?? "0")
-        
-        // TO-DO: Pass the correct song name (and file type!)
-        audioController.updateUrl(fileName: "fairy-tale-waltz", fileType: "mp3")
+    
+        audioController.updateUrl(fileName: level.fileName, fileType: level.fileType)
         audioController.start(playing: true)
         audioController.playerVolume(myVolume: 0.3)
         setupFaceTracking()
@@ -175,4 +177,8 @@ extension SmileToUnlockController: SmileToUnlockDelegate {
     
 }
 
-
+extension SmileToUnlockController: UserObserver {
+    func changedCurrentLevel(to level: Level) {
+        self.level = level
+    }
+}
