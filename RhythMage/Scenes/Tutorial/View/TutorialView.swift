@@ -56,24 +56,30 @@ class TutorialView: UIView {
     }()
     
     lazy var skipTutorialButton: UIButton = {
-        var config = UIButton.Configuration.filled()
-        config.title = NSLocalizedString("Skip ", comment: "Skip Tutorial Button")
-        config.image = UIImage(systemName: "chevron.forward.2",
-                               withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
-        config.imagePlacement = .trailing
-        config.imagePadding = 8.0
-        config.baseBackgroundColor = .terciary.withAlphaComponent(0.5)
-        config.baseForegroundColor = .white
-        config.cornerStyle = .capsule
-        //button.setTitle(, for: .normal)
-        //button.setImage(UIImage(systemName: "chevron.forward.2"), for: .normal)
-        //button.tintColor = .white
-        //button.layer.cornerRadius = 20
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = config
-        button.addTarget(self, action: #selector(onSkipOption), for: .touchUpInside)
-        //button.clipsToBounds = true
+        if #available(iOS 15.0, *) {
+            var config = UIButton.Configuration.filled()
+            config.title = NSLocalizedString("Skip ", comment: "Skip Tutorial Button")
+            config.image = UIImage(systemName: "chevron.forward.2",
+                                   withConfiguration: UIImage.SymbolConfiguration(weight: .bold))
+            config.imagePlacement = .trailing
+            config.imagePadding = 8.0
+            config.baseBackgroundColor = .terciary.withAlphaComponent(0.5)
+            config.baseForegroundColor = .white
+            config.cornerStyle = .capsule
+            button.configuration = config
+        } else {
+            // Fallback on earlier versions
+            button.setTitle(NSLocalizedString("Skip ", comment: "Skip Tutorial Button"), for: .normal)
+            button.setImage(UIImage(systemName: "chevron.forward.2"), for: .normal)
+            button.tintColor = .white
+            button.layer.cornerRadius = 20
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.addTarget(self, action: #selector(onSkipOption), for: .touchUpInside)
+            button.backgroundColor = .terciary.withAlphaComponent(0.5)
+            button.clipsToBounds = true
+        }
+      
         return button
     }()
     

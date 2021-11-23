@@ -67,8 +67,15 @@ class AuthenticationController: GKGameCenterViewController {
         var highScore = 0
         var newScore = 0
         do {
-            try highScore = Int(user.completed[level] ?? "0", format: IntegerFormatStyle<Int>.number)
-            try newScore = Int(score, format: IntegerFormatStyle<Int>.number)
+            if #available(iOS 15.0, *) {
+                try highScore = Int(user.completed[level] ?? "0", format: IntegerFormatStyle<Int>.number)
+                try newScore = Int(score, format: IntegerFormatStyle<Int>.number)
+            } else {
+                // Fallback on earlier versions
+                try highScore = Int(user.completed[level] ?? "0")!
+                try newScore = Int(score)!
+            }
+           
         } catch {dump("Error updating user score on Realm")}
         
         if highScore < newScore {

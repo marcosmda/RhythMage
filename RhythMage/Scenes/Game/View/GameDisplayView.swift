@@ -103,7 +103,12 @@ class GameDisplayView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let window = self.window?.windowScene?.keyWindow
+        if #available(iOS 15.0, *) {
+            let window = self.window?.windowScene?.keyWindow
+        } else {
+            // Fallback on earlier versions
+            
+        }
         let topPadding = window?.safeAreaInsets.top
         
         container.topAnchor.constraint(equalTo: self.topAnchor, constant:  topPadding!).isActive = true
