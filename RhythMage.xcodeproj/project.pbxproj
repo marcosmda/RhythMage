@@ -128,6 +128,16 @@
 		DB6B35FB2756CF73001491D5 /* MondayMorning.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B35D42756CF73001491D5 /* MondayMorning.json */; };
 		DB6B35FC2756CF73001491D5 /* TrapAndBoss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B35D52756CF73001491D5 /* TrapAndBoss.mp3 */; };
 		DB6B35FE2756D194001491D5 /* ElectronicWave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B35FD2756D194001491D5 /* ElectronicWave.mp3 */; };
+		DB6B36092756D537001491D5 /* MajesticOuverture.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B35FF2756D536001491D5 /* MajesticOuverture.mp3 */; };
+		DB6B360A2756D537001491D5 /* GrotesqueDemonDance.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36002756D536001491D5 /* GrotesqueDemonDance.mp3 */; };
+		DB6B360B2756D537001491D5 /* SundayInHeaven.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36012756D536001491D5 /* SundayInHeaven.json */; };
+		DB6B360C2756D537001491D5 /* GrotesqueDemonDance.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36022756D536001491D5 /* GrotesqueDemonDance.json */; };
+		DB6B360D2756D537001491D5 /* CarRace.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36032756D536001491D5 /* CarRace.json */; };
+		DB6B360E2756D537001491D5 /* Rock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36042756D537001491D5 /* Rock.mp3 */; };
+		DB6B360F2756D537001491D5 /* SundayInHeaven.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36052756D537001491D5 /* SundayInHeaven.mp3 */; };
+		DB6B36102756D537001491D5 /* CarRace.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36062756D537001491D5 /* CarRace.mp3 */; };
+		DB6B36112756D537001491D5 /* Rock.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36072756D537001491D5 /* Rock.json */; };
+		DB6B36122756D537001491D5 /* MajesticOuverture.json in Resources */ = {isa = PBXBuildFile; fileRef = DB6B36082756D537001491D5 /* MajesticOuverture.json */; };
 		DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */; };
 		DB6BD2BB270F850000BE8C80 /* Inika-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */; };
 		DBB4A1D9271756E50037BCB1 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */; };
@@ -297,6 +307,16 @@
 		DB6B35D42756CF73001491D5 /* MondayMorning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MondayMorning.json; sourceTree = "<group>"; };
 		DB6B35D52756CF73001491D5 /* TrapAndBoss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrapAndBoss.mp3; sourceTree = "<group>"; };
 		DB6B35FD2756D194001491D5 /* ElectronicWave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ElectronicWave.mp3; sourceTree = "<group>"; };
+		DB6B35FF2756D536001491D5 /* MajesticOuverture.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MajesticOuverture.mp3; sourceTree = "<group>"; };
+		DB6B36002756D536001491D5 /* GrotesqueDemonDance.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GrotesqueDemonDance.mp3; sourceTree = "<group>"; };
+		DB6B36012756D536001491D5 /* SundayInHeaven.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SundayInHeaven.json; sourceTree = "<group>"; };
+		DB6B36022756D536001491D5 /* GrotesqueDemonDance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GrotesqueDemonDance.json; sourceTree = "<group>"; };
+		DB6B36032756D536001491D5 /* CarRace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CarRace.json; sourceTree = "<group>"; };
+		DB6B36042756D537001491D5 /* Rock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rock.mp3; sourceTree = "<group>"; };
+		DB6B36052756D537001491D5 /* SundayInHeaven.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SundayInHeaven.mp3; sourceTree = "<group>"; };
+		DB6B36062756D537001491D5 /* CarRace.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CarRace.mp3; sourceTree = "<group>"; };
+		DB6B36072756D537001491D5 /* Rock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Rock.json; sourceTree = "<group>"; };
+		DB6B36082756D537001491D5 /* MajesticOuverture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MajesticOuverture.json; sourceTree = "<group>"; };
 		DB6BD2B8270F850000BE8C80 /* Inika-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Regular.ttf"; sourceTree = "<group>"; };
 		DB6BD2B9270F850000BE8C80 /* Inika-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inika-Bold.ttf"; sourceTree = "<group>"; };
 		DBB4A1D8271756E50037BCB1 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
@@ -494,6 +514,16 @@
 				DB6B35D52756CF73001491D5 /* TrapAndBoss.mp3 */,
 				DB6B35C82756CF72001491D5 /* TryandSolveThis.json */,
 				DB6B35BF2756CF71001491D5 /* TryandSolveThis.mp3 */,
+				DB6B36032756D536001491D5 /* CarRace.json */,
+				DB6B36062756D537001491D5 /* CarRace.mp3 */,
+				DB6B36022756D536001491D5 /* GrotesqueDemonDance.json */,
+				DB6B36002756D536001491D5 /* GrotesqueDemonDance.mp3 */,
+				DB6B36082756D537001491D5 /* MajesticOuverture.json */,
+				DB6B35FF2756D536001491D5 /* MajesticOuverture.mp3 */,
+				DB6B36072756D537001491D5 /* Rock.json */,
+				DB6B36042756D537001491D5 /* Rock.mp3 */,
+				DB6B36012756D536001491D5 /* SundayInHeaven.json */,
+				DB6B36052756D537001491D5 /* SundayInHeaven.mp3 */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -1032,14 +1062,18 @@
 				DBD55A60273D95F900235985 /* Winds.json in Resources */,
 				CFA1A13F273C432E001DB0F1 /* CollectOrbSound.mp3 in Resources */,
 				DB6B35F32756CF73001491D5 /* HopefulProposition.mp3 in Resources */,
+				DB6B360F2756D537001491D5 /* SundayInHeaven.mp3 in Resources */,
 				DB6B35FC2756CF73001491D5 /* TrapAndBoss.mp3 in Resources */,
 				8DDCA80027078443002E9925 /* Assets.xcassets in Resources */,
 				8D00CA1E2722D3E600DCBA84 /* fairy-tale-waltz.json in Resources */,
 				8DDCA80327078443002E9925 /* LaunchScreen.storyboard in Resources */,
 				DB6B35D92756CF73001491D5 /* ChiptuneDream.json in Resources */,
+				DB6B360B2756D537001491D5 /* SundayInHeaven.json in Resources */,
 				DB6B35F42756CF73001491D5 /* FinallyHappy.json in Resources */,
 				DB6B35E82756CF73001491D5 /* Derp.mp3 in Resources */,
+				DB6B360E2756D537001491D5 /* Rock.mp3 in Resources */,
 				DB6B35ED2756CF73001491D5 /* HumbleBeginning.json in Resources */,
+				DB6B360D2756D537001491D5 /* CarRace.json in Resources */,
 				DB6B35F02756CF73001491D5 /* Electricbuzz.json in Resources */,
 				DB6B35DC2756CF73001491D5 /* HopefulProposition.json in Resources */,
 				DB6B35D62756CF73001491D5 /* RainFlows.json in Resources */,
@@ -1049,11 +1083,14 @@
 				DB6B35E32756CF73001491D5 /* PinkBlue.json in Resources */,
 				DB6B35E52756CF73001491D5 /* NewCitySameSity.mp3 in Resources */,
 				CFC99B5827288D8800773C92 /* rhtyhMage.mp4 in Resources */,
+				DB6B36102756D537001491D5 /* CarRace.mp3 in Resources */,
 				DB6B35DA2756CF73001491D5 /* ChiptuneDream.mp3 in Resources */,
 				DB6B35FB2756CF73001491D5 /* MondayMorning.json in Resources */,
 				DBD55A72273D96C100235985 /* AtTheBottomOfInfinity.mp3 in Resources */,
 				DB6B35E92756CF73001491D5 /* RainFlows.mp3 in Resources */,
+				DB6B36122756D537001491D5 /* MajesticOuverture.json in Resources */,
 				DB6B35DB2756CF73001491D5 /* SunShine.json in Resources */,
+				DB6B36092756D537001491D5 /* MajesticOuverture.mp3 in Resources */,
 				DB6B35D82756CF73001491D5 /* ElectronicWave.json in Resources */,
 				CFB113B72729BA77001A5447 /* cameraCaptureAudio.m4a in Resources */,
 				DB6B35EC2756CF73001491D5 /* LittleApprentice.json in Resources */,
@@ -1062,6 +1099,7 @@
 				DB6B35F12756CF73001491D5 /* JingleBells.mp3 in Resources */,
 				DB6B35F92756CF73001491D5 /* PinkBlue.mp3 in Resources */,
 				DB6B35F82756CF73001491D5 /* Electricbuzz.mp3 in Resources */,
+				DB6B360A2756D537001491D5 /* GrotesqueDemonDance.mp3 in Resources */,
 				DB6B35E12756CF73001491D5 /* TenseBoggie.mp3 in Resources */,
 				DBD55A6C273D966800235985 /* Puffs.mp3 in Resources */,
 				DB6BD2BA270F850000BE8C80 /* Inika-Regular.ttf in Resources */,
@@ -1075,8 +1113,10 @@
 				DB6B35D72756CF73001491D5 /* TrapAndBoss.json in Resources */,
 				DB6B35FE2756D194001491D5 /* ElectronicWave.mp3 in Resources */,
 				DB6B35F52756CF73001491D5 /* NewCitySameSity.json in Resources */,
+				DB6B36112756D537001491D5 /* Rock.json in Resources */,
 				8D09842527175BD6007477F3 /* fairy-tale-waltz.mp3 in Resources */,
 				DB6B35FA2756CF73001491D5 /* SunShine.mp3 in Resources */,
+				DB6B360C2756D537001491D5 /* GrotesqueDemonDance.json in Resources */,
 				DB6B35EE2756CF73001491D5 /* ThisIsIt.mp3 in Resources */,
 				DB6B35E62756CF73001491D5 /* TryandSolveThis.mp3 in Resources */,
 				DB6B35E72756CF73001491D5 /* JingleBells.json in Resources */,

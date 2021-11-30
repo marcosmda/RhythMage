@@ -117,8 +117,24 @@ class Level {
             let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "TrapAndBoss")], song: "Trap And Boss", artist: "Fred Patry", fileName: "TrapAndBoss", fileType: "mp3")
             return level
         case "level18":
-            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "TryandSolveThis")], song: "Tryand Solve This", artist: "Tim Beek", fileName: "TryandSolveThis", fileType: "mp3")
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "TryandSolveThis")], song: "Try and Solve This", artist: "Tim Beek", fileName: "TryandSolveThis", fileType: "mp3")
             return level
+        case "level19":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "CarRace")], song: "Car Race", artist: "Marma Music", fileName: "CarRace", fileType: "mp3")
+            return level
+        case "level20":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "GrotesqueDemonDance")], song: "Grotesque Demon Dance", artist: "Marma Music", fileName: "GrotesqueDemonDance", fileType: "mp3")
+            return level
+        case "level21":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "MajesticOuverture")], song: "Majestic Ouverture", artist: "Marma Music", fileName: "MajesticOuverture", fileType: "mp3")
+            return level
+        case "level22":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "Rock")], song: "Rock", artist: "Marma Music", fileName: "Rock", fileType: "mp3")
+            return level
+        case "level23":
+            let level = Level(id: id, checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "SundayInHeaven")], song: "Sunday In Heaven", artist: "Marma Music", fileName: "SundayInHeaven", fileType: "mp3")
+            return level
+        
         default:
             let level = Level(id: "level4", checkpointScores: checkpoint, sequences: [InteractionSequence.mockedInteraction(fileName: "fairy-tale-waltz")], song: "fairy-tale-waltz", artist: "misha-02", fileName: "fairy-tale-waltz", fileType: "mp3")
             return level
