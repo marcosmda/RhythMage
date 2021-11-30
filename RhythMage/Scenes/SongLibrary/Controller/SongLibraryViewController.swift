@@ -75,6 +75,26 @@ class SongLibraryViewController: BaseViewController<SongLibraryView>, SongLibrar
         levels[1].unlock()
         levels[2].unlock()
         levels[3].unlock()
+        levels[4].unlock()
+        levels[5].unlock()
+        levels[6].unlock()
+        levels[7].unlock()
+        levels[8].unlock()
+        levels[9].unlock()
+        levels[10].unlock()
+        levels[11].unlock()
+        levels[12].unlock()
+        levels[13].unlock()
+        levels[14].unlock()
+        levels[15].unlock()
+        levels[16].unlock()
+        levels[17].unlock()
+        levels[18].unlock()
+        levels[19].unlock()
+        levels[20].unlock()
+        levels[21].unlock()
+        levels[22].unlock()
+        
     }
     
     func backButtonAction() {
